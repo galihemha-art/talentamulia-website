@@ -22,6 +22,7 @@ import { Route as ProgramRouteImport } from './routes/program'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
+import { Route as IndustriIndexRouteImport } from './routes/industri.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -88,12 +89,17 @@ const TestimoniRoute = TestimoniRouteImport.update({
   path: '/testimoni',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriIndexRoute = IndustriIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => IndustriRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
-  '/industri': typeof IndustriRoute
+  '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -103,12 +109,12 @@ export interface FileRoutesByFullPath {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/industri/': typeof IndustriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
-  '/industri': typeof IndustriRoute
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -118,13 +124,14 @@ export interface FileRoutesByTo {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/industri': typeof IndustriIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
-  '/industri': typeof IndustriRoute
+  '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -134,6 +141,7 @@ export interface FileRoutesById {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/industri/': typeof IndustriIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,12 +159,12 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/industri/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/artikel'
     | '/faq'
-    | '/industri'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -166,6 +174,7 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/industri'
   id:
     | '__root__'
     | '/'
@@ -181,13 +190,14 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/industri/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtikelRoute: typeof ArtikelRoute
   FaqRoute: typeof FaqRoute
-  IndustriRoute: typeof IndustriRoute
+  IndustriRoute: typeof IndustriRouteWithChildren
   KesehatanRoute: typeof KesehatanRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
@@ -292,14 +302,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimoniRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industri/': {
+      id: '/industri/'
+      path: '/'
+      fullPath: '/industri/'
+      preLoaderRoute: typeof IndustriIndexRouteImport
+      parentRoute: typeof IndustriRoute
+    }
   }
 }
+
+interface IndustriRouteChildren {
+  IndustriIndexRoute: typeof IndustriIndexRoute
+}
+
+const IndustriRouteChildren: IndustriRouteChildren = {
+  IndustriIndexRoute: IndustriIndexRoute,
+}
+
+const IndustriRouteWithChildren = IndustriRoute._addFileChildren(
+  IndustriRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtikelRoute: ArtikelRoute,
   FaqRoute: FaqRoute,
-  IndustriRoute: IndustriRoute,
+  IndustriRoute: IndustriRouteWithChildren,
   KesehatanRoute: KesehatanRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
