@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArtikelRouteImport } from './routes/artikel'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as IndustriRouteImport } from './routes/industri'
+import { Route as KesehatanRouteImport } from './routes/kesehatan'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
+import { Route as PelatihanRouteImport } from './routes/pelatihan'
+import { Route as ProfessionalsRouteImport } from './routes/professionals'
+import { Route as ProgramRouteImport } from './routes/program'
+import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
+import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
+import { Route as TestimoniRouteImport } from './routes/testimoni'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArtikelRoute = ArtikelRouteImport.update({
+  id: '/artikel',
+  path: '/artikel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriRoute = IndustriRouteImport.update({
+  id: '/industri',
+  path: '/industri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KesehatanRoute = KesehatanRouteImport.update({
+  id: '/kesehatan',
+  path: '/kesehatan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LayananIndividuRoute = LayananIndividuRouteImport.update({
+  id: '/layanan-individu',
+  path: '/layanan-individu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PelatihanRoute = PelatihanRouteImport.update({
+  id: '/pelatihan',
+  path: '/pelatihan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessionalsRoute = ProfessionalsRouteImport.update({
+  id: '/professionals',
+  path: '/professionals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramRoute = ProgramRouteImport.update({
+  id: '/program',
+  path: '/program',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolusiKorporatRoute = SolusiKorporatRouteImport.update({
+  id: '/solusi-korporat',
+  path: '/solusi-korporat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TentangKamiRoute = TentangKamiRouteImport.update({
+  id: '/tentang-kami',
+  path: '/tentang-kami',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestimoniRoute = TestimoniRouteImport.update({
+  id: '/testimoni',
+  path: '/testimoni',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/artikel': typeof ArtikelRoute
+  '/faq': typeof FaqRoute
+  '/industri': typeof IndustriRoute
+  '/kesehatan': typeof KesehatanRoute
+  '/kontak': typeof KontakRoute
+  '/layanan-individu': typeof LayananIndividuRoute
+  '/pelatihan': typeof PelatihanRoute
+  '/professionals': typeof ProfessionalsRoute
+  '/program': typeof ProgramRoute
+  '/solusi-korporat': typeof SolusiKorporatRoute
+  '/tentang-kami': typeof TentangKamiRoute
+  '/testimoni': typeof TestimoniRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/artikel': typeof ArtikelRoute
+  '/faq': typeof FaqRoute
+  '/industri': typeof IndustriRoute
+  '/kesehatan': typeof KesehatanRoute
+  '/kontak': typeof KontakRoute
+  '/layanan-individu': typeof LayananIndividuRoute
+  '/pelatihan': typeof PelatihanRoute
+  '/professionals': typeof ProfessionalsRoute
+  '/program': typeof ProgramRoute
+  '/solusi-korporat': typeof SolusiKorporatRoute
+  '/tentang-kami': typeof TentangKamiRoute
+  '/testimoni': typeof TestimoniRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/artikel': typeof ArtikelRoute
+  '/faq': typeof FaqRoute
+  '/industri': typeof IndustriRoute
+  '/kesehatan': typeof KesehatanRoute
+  '/kontak': typeof KontakRoute
+  '/layanan-individu': typeof LayananIndividuRoute
+  '/pelatihan': typeof PelatihanRoute
+  '/professionals': typeof ProfessionalsRoute
+  '/program': typeof ProgramRoute
+  '/solusi-korporat': typeof SolusiKorporatRoute
+  '/tentang-kami': typeof TentangKamiRoute
+  '/testimoni': typeof TestimoniRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/artikel'
+    | '/faq'
+    | '/industri'
+    | '/kesehatan'
+    | '/kontak'
+    | '/layanan-individu'
+    | '/pelatihan'
+    | '/professionals'
+    | '/program'
+    | '/solusi-korporat'
+    | '/tentang-kami'
+    | '/testimoni'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/artikel'
+    | '/faq'
+    | '/industri'
+    | '/kesehatan'
+    | '/kontak'
+    | '/layanan-individu'
+    | '/pelatihan'
+    | '/professionals'
+    | '/program'
+    | '/solusi-korporat'
+    | '/tentang-kami'
+    | '/testimoni'
+  id:
+    | '__root__'
+    | '/'
+    | '/artikel'
+    | '/faq'
+    | '/industri'
+    | '/kesehatan'
+    | '/kontak'
+    | '/layanan-individu'
+    | '/pelatihan'
+    | '/professionals'
+    | '/program'
+    | '/solusi-korporat'
+    | '/tentang-kami'
+    | '/testimoni'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArtikelRoute: typeof ArtikelRoute
+  FaqRoute: typeof FaqRoute
+  IndustriRoute: typeof IndustriRoute
+  KesehatanRoute: typeof KesehatanRoute
+  KontakRoute: typeof KontakRoute
+  LayananIndividuRoute: typeof LayananIndividuRoute
+  PelatihanRoute: typeof PelatihanRoute
+  ProfessionalsRoute: typeof ProfessionalsRoute
+  ProgramRoute: typeof ProgramRoute
+  SolusiKorporatRoute: typeof SolusiKorporatRoute
+  TentangKamiRoute: typeof TentangKamiRoute
+  TestimoniRoute: typeof TestimoniRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,12 +208,118 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/artikel': {
+      id: '/artikel'
+      path: '/artikel'
+      fullPath: '/artikel'
+      preLoaderRoute: typeof ArtikelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industri': {
+      id: '/industri'
+      path: '/industri'
+      fullPath: '/industri'
+      preLoaderRoute: typeof IndustriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kesehatan': {
+      id: '/kesehatan'
+      path: '/kesehatan'
+      fullPath: '/kesehatan'
+      preLoaderRoute: typeof KesehatanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/layanan-individu': {
+      id: '/layanan-individu'
+      path: '/layanan-individu'
+      fullPath: '/layanan-individu'
+      preLoaderRoute: typeof LayananIndividuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pelatihan': {
+      id: '/pelatihan'
+      path: '/pelatihan'
+      fullPath: '/pelatihan'
+      preLoaderRoute: typeof PelatihanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professionals': {
+      id: '/professionals'
+      path: '/professionals'
+      fullPath: '/professionals'
+      preLoaderRoute: typeof ProfessionalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/program': {
+      id: '/program'
+      path: '/program'
+      fullPath: '/program'
+      preLoaderRoute: typeof ProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solusi-korporat': {
+      id: '/solusi-korporat'
+      path: '/solusi-korporat'
+      fullPath: '/solusi-korporat'
+      preLoaderRoute: typeof SolusiKorporatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tentang-kami': {
+      id: '/tentang-kami'
+      path: '/tentang-kami'
+      fullPath: '/tentang-kami'
+      preLoaderRoute: typeof TentangKamiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testimoni': {
+      id: '/testimoni'
+      path: '/testimoni'
+      fullPath: '/testimoni'
+      preLoaderRoute: typeof TestimoniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArtikelRoute: ArtikelRoute,
+  FaqRoute: FaqRoute,
+  IndustriRoute: IndustriRoute,
+  KesehatanRoute: KesehatanRoute,
+  KontakRoute: KontakRoute,
+  LayananIndividuRoute: LayananIndividuRoute,
+  PelatihanRoute: PelatihanRoute,
+  ProfessionalsRoute: ProfessionalsRoute,
+  ProgramRoute: ProgramRoute,
+  SolusiKorporatRoute: SolusiKorporatRoute,
+  TentangKamiRoute: TentangKamiRoute,
+  TestimoniRoute: TestimoniRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
