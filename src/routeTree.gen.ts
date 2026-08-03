@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArtikelRouteImport } from './routes/artikel'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
@@ -37,6 +38,11 @@ const ArtikelRoute = ArtikelRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriRoute = IndustriRouteImport.update({
+  id: '/industri',
+  path: '/industri',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KesehatanRoute = KesehatanRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
+  '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -132,6 +139,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
+  '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -150,6 +158,7 @@ export interface FileRouteTypes {
     | '/'
     | '/artikel'
     | '/faq'
+    | '/industri'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/'
     | '/artikel'
     | '/faq'
+    | '/industri'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -199,6 +209,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtikelRoute: typeof ArtikelRoute
   FaqRoute: typeof FaqRoute
+  IndustriRoute: typeof IndustriRouteWithChildren
   KesehatanRoute: typeof KesehatanRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
@@ -231,6 +242,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industri': {
+      id: '/industri'
+      path: '/industri'
+      fullPath: '/industri'
+      preLoaderRoute: typeof IndustriRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kesehatan': {
@@ -313,10 +331,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface IndustriRouteChildren {
+  IndustriSlugRoute: typeof IndustriSlugRoute
+  IndustriIndexRoute: typeof IndustriIndexRoute
+}
+
+const IndustriRouteChildren: IndustriRouteChildren = {
+  IndustriSlugRoute: IndustriSlugRoute,
+  IndustriIndexRoute: IndustriIndexRoute,
+}
+
+const IndustriRouteWithChildren = IndustriRoute._addFileChildren(
+  IndustriRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtikelRoute: ArtikelRoute,
   FaqRoute: FaqRoute,
+  IndustriRoute: IndustriRouteWithChildren,
   KesehatanRoute: KesehatanRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
