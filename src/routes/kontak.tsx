@@ -35,6 +35,11 @@ const WA_URL =
 
 const ALAMAT = "Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur";
 
+const MAPS_URL = "https://maps.app.goo.gl/jytMfuarDW5F5FBE6";
+
+const MAPS_EMBED_URL =
+  "https://www.google.com/maps?q=Jl.%20Raya%20Gadung%20No.5%2C%20Margomulyo%2C%20Wage%2C%20Taman%2C%20Sidoarjo%2C%20Jawa%20Timur&output=embed";
+
 const LAYANAN = [
   "Assessment Psikologi",
   "Executive Coaching",
