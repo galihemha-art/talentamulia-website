@@ -22,6 +22,8 @@ import { Route as ProgramRouteImport } from './routes/program'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
+import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
+import { Route as ArtikelSlugRouteImport } from './routes/artikel.$slug'
 import { Route as IndustriIndexRouteImport } from './routes/industri.index'
 import { Route as IndustriSlugRouteImport } from './routes/industri.$slug'
 
@@ -90,6 +92,16 @@ const TestimoniRoute = TestimoniRouteImport.update({
   path: '/testimoni',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArtikelIndexRoute = ArtikelIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ArtikelRoute,
+} as any)
+const ArtikelSlugRoute = ArtikelSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ArtikelRoute,
+} as any)
 const IndustriIndexRoute = IndustriIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -103,7 +115,7 @@ const IndustriSlugRoute = IndustriSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/artikel': typeof ArtikelRoute
+  '/artikel': typeof ArtikelRouteWithChildren
   '/faq': typeof FaqRoute
   '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
@@ -115,12 +127,13 @@ export interface FileRoutesByFullPath {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/artikel/': typeof ArtikelIndexRoute
   '/industri/': typeof IndustriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
@@ -131,13 +144,15 @@ export interface FileRoutesByTo {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/artikel': typeof ArtikelIndexRoute
   '/industri': typeof IndustriIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/artikel': typeof ArtikelRoute
+  '/artikel': typeof ArtikelRouteWithChildren
   '/faq': typeof FaqRoute
   '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
@@ -149,7 +164,9 @@ export interface FileRoutesById {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/artikel/': typeof ArtikelIndexRoute
   '/industri/': typeof IndustriIndexRoute
 }
 export interface FileRouteTypes {
@@ -168,12 +185,13 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/artikel/$slug'
     | '/industri/$slug'
+    | '/artikel/'
     | '/industri/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/artikel'
     | '/faq'
     | '/kesehatan'
     | '/kontak'
@@ -184,7 +202,9 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/artikel/$slug'
     | '/industri/$slug'
+    | '/artikel'
     | '/industri'
   id:
     | '__root__'
@@ -201,13 +221,15 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/artikel/$slug'
     | '/industri/$slug'
+    | '/artikel/'
     | '/industri/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArtikelRoute: typeof ArtikelRoute
+  ArtikelRoute: typeof ArtikelRouteWithChildren
   FaqRoute: typeof FaqRoute
   IndustriRoute: typeof IndustriRouteWithChildren
   KesehatanRoute: typeof KesehatanRoute
@@ -314,6 +336,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimoniRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/artikel/': {
+      id: '/artikel/'
+      path: '/'
+      fullPath: '/artikel/'
+      preLoaderRoute: typeof ArtikelIndexRouteImport
+      parentRoute: typeof ArtikelRoute
+    }
+    '/artikel/$slug': {
+      id: '/artikel/$slug'
+      path: '/$slug'
+      fullPath: '/artikel/$slug'
+      preLoaderRoute: typeof ArtikelSlugRouteImport
+      parentRoute: typeof ArtikelRoute
+    }
     '/industri/': {
       id: '/industri/'
       path: '/'
@@ -331,6 +367,19 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ArtikelRouteChildren {
+  ArtikelSlugRoute: typeof ArtikelSlugRoute
+  ArtikelIndexRoute: typeof ArtikelIndexRoute
+}
+
+const ArtikelRouteChildren: ArtikelRouteChildren = {
+  ArtikelSlugRoute: ArtikelSlugRoute,
+  ArtikelIndexRoute: ArtikelIndexRoute,
+}
+
+const ArtikelRouteWithChildren =
+  ArtikelRoute._addFileChildren(ArtikelRouteChildren)
+
 interface IndustriRouteChildren {
   IndustriSlugRoute: typeof IndustriSlugRoute
   IndustriIndexRoute: typeof IndustriIndexRoute
@@ -347,7 +396,7 @@ const IndustriRouteWithChildren = IndustriRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArtikelRoute: ArtikelRoute,
+  ArtikelRoute: ArtikelRouteWithChildren,
   FaqRoute: FaqRoute,
   IndustriRoute: IndustriRouteWithChildren,
   KesehatanRoute: KesehatanRoute,
