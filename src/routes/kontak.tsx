@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Clock, ExternalLink, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/kontak")({
@@ -34,6 +34,11 @@ const WA_URL =
   "https://wa.me/6282132990498?text=Halo%20Talenta%20Mulia%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20konsultasi.";
 
 const ALAMAT = "Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur";
+
+const MAPS_URL = "https://maps.app.goo.gl/jytMfuarDW5F5FBE6";
+
+const MAPS_EMBED_URL =
+  "https://www.google.com/maps?q=Jl.%20Raya%20Gadung%20No.5%2C%20Margomulyo%2C%20Wage%2C%20Taman%2C%20Sidoarjo%2C%20Jawa%20Timur&output=embed";
 
 const LAYANAN = [
   "Assessment Psikologi",
@@ -225,7 +230,14 @@ function Page() {
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" />
-                  <span className="leading-relaxed text-muted-foreground">{ALAMAT}</span>
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="leading-relaxed text-muted-foreground hover:text-primary"
+                  >
+                    {ALAMAT}
+                  </a>
                 </li>
                 <li className="flex gap-3">
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" />
@@ -258,14 +270,22 @@ function Page() {
               </a>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
+            <div className="relative overflow-hidden rounded-2xl border border-border shadow-sm">
               <iframe
                 title="Peta lokasi kantor Talenta Mulia di Wage, Taman, Sidoarjo, Jawa Timur"
-                src="https://www.google.com/maps?q=Jl.%20Raya%20Gadung%20No.5%2C%20Wage%2C%20Taman%2C%20Sidoarjo%2C%20Jawa%20Timur&output=embed"
+                src={MAPS_EMBED_URL}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-72 w-full border-0"
               />
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-lg bg-card/95 px-3 py-1.5 text-xs font-semibold text-brand-blue shadow-sm hover:bg-card"
+              >
+                Buka di Maps <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             </div>
           </aside>
         </div>
