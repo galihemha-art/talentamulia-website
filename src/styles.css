@@ -19,7 +19,14 @@
  */
 
 @theme inline {
+  --font-sans: var(--font-sans);
+  --font-wordmark: var(--font-wordmark);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-magenta: var(--brand-magenta);
+  --color-surface-soft: var(--surface-soft);
+  --shadow-soft: var(--shadow-soft);
   --radius-sm: calc(var(--radius) - 4px);
+
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
