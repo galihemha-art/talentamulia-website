@@ -258,14 +258,22 @@ function Page() {
               </a>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
+            <div className="relative overflow-hidden rounded-2xl border border-border shadow-sm">
               <iframe
                 title="Peta lokasi kantor Talenta Mulia di Wage, Taman, Sidoarjo, Jawa Timur"
-                src="https://www.google.com/maps?q=Jl.%20Raya%20Gadung%20No.5%2C%20Wage%2C%20Taman%2C%20Sidoarjo%2C%20Jawa%20Timur&output=embed"
+                src={MAPS_EMBED_URL}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-72 w-full border-0"
               />
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-lg bg-card/95 px-3 py-1.5 text-xs font-semibold text-brand-blue shadow-sm hover:bg-card"
+              >
+                Buka di Maps <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             </div>
           </aside>
         </div>
