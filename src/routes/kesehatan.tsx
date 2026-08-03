@@ -5,13 +5,13 @@ import andiani from "@/assets/Dr_Andiani.png.asset.json";
 export const Route = createFileRoute("/kesehatan")({
   head: () => ({
     meta: [
-      { title: "Konsultasi Kesehatan — Talenta Mulia" },
+      { title: "Konsultasi Kesehatan & Akreditasi RS — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         name: "description",
         content:
           "Pendampingan akreditasi rumah sakit, tata kelola klinis, mutu layanan kesehatan, dan medical check-up eksekutif.",
       },
-      { property: "og:title", content: "Konsultasi Kesehatan — Talenta Mulia" },
+      { property: "og:title", content: "Konsultasi Kesehatan & Akreditasi RS — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:

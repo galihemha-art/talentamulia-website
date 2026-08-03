@@ -14,13 +14,13 @@ import {
 export const Route = createFileRoute("/pelatihan")({
   head: () => ({
     meta: [
-      { title: "Pelatihan & Seminar — Talenta Mulia" },
+      { title: "Pelatihan & Seminar untuk Organisasi di Jawa Timur — Talenta Mulia" },
       {
         name: "description",
         content:
           "In-house training, workshop publik, dan webinar bertema kesehatan masyarakat, service excellence, parenting, kepemimpinan rumah sakit, dan kesehatan mental kerja.",
       },
-      { property: "og:title", content: "Pelatihan & Seminar — Talenta Mulia" },
+      { property: "og:title", content: "Pelatihan & Seminar untuk Organisasi di Jawa Timur — Talenta Mulia" },
       {
         property: "og:description",
         content:

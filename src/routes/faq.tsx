@@ -5,13 +5,13 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Pertanyaan yang Sering Diajukan — Talenta Mulia" },
+      { title: "Pertanyaan yang Sering Diajukan — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         name: "description",
         content:
           "Jawaban seputar layanan Talenta Mulia: cakupan klien, kerahasiaan sesi, konsultasi online, dan proses proposal korporat.",
       },
-      { property: "og:title", content: "Pertanyaan yang Sering Diajukan — Talenta Mulia" },
+      { property: "og:title", content: "Pertanyaan yang Sering Diajukan — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:
