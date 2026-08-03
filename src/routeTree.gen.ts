@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArtikelRouteImport } from './routes/artikel'
 import { Route as FaqRouteImport } from './routes/faq'
-import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
@@ -23,6 +22,7 @@ import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
 import { Route as IndustriIndexRouteImport } from './routes/industri.index'
+import { Route as IndustriSlugRouteImport } from './routes/industri.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -37,11 +37,6 @@ const ArtikelRoute = ArtikelRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustriRoute = IndustriRouteImport.update({
-  id: '/industri',
-  path: '/industri',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KesehatanRoute = KesehatanRouteImport.update({
@@ -94,12 +89,16 @@ const IndustriIndexRoute = IndustriIndexRouteImport.update({
   path: '/',
   getParentRoute: () => IndustriRoute,
 } as any)
+const IndustriSlugRoute = IndustriSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => IndustriRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
-  '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -109,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/industri/$slug': typeof IndustriSlugRoute
   '/industri/': typeof IndustriIndexRoute
 }
 export interface FileRoutesByTo {
@@ -124,6 +124,7 @@ export interface FileRoutesByTo {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/industri/$slug': typeof IndustriSlugRoute
   '/industri': typeof IndustriIndexRoute
 }
 export interface FileRoutesById {
@@ -131,7 +132,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRoute
   '/faq': typeof FaqRoute
-  '/industri': typeof IndustriRouteWithChildren
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -141,6 +141,7 @@ export interface FileRoutesById {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
+  '/industri/$slug': typeof IndustriSlugRoute
   '/industri/': typeof IndustriIndexRoute
 }
 export interface FileRouteTypes {
@@ -149,7 +150,6 @@ export interface FileRouteTypes {
     | '/'
     | '/artikel'
     | '/faq'
-    | '/industri'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -159,6 +159,7 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/industri/$slug'
     | '/industri/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -174,13 +175,13 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/industri/$slug'
     | '/industri'
   id:
     | '__root__'
     | '/'
     | '/artikel'
     | '/faq'
-    | '/industri'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -190,6 +191,7 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
+    | '/industri/$slug'
     | '/industri/'
   fileRoutesById: FileRoutesById
 }
@@ -197,7 +199,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtikelRoute: typeof ArtikelRoute
   FaqRoute: typeof FaqRoute
-  IndustriRoute: typeof IndustriRouteWithChildren
   KesehatanRoute: typeof KesehatanRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
@@ -230,13 +231,6 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industri': {
-      id: '/industri'
-      path: '/industri'
-      fullPath: '/industri'
-      preLoaderRoute: typeof IndustriRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kesehatan': {
@@ -309,26 +303,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriIndexRouteImport
       parentRoute: typeof IndustriRoute
     }
+    '/industri/$slug': {
+      id: '/industri/$slug'
+      path: '/$slug'
+      fullPath: '/industri/$slug'
+      preLoaderRoute: typeof IndustriSlugRouteImport
+      parentRoute: typeof IndustriRoute
+    }
   }
 }
-
-interface IndustriRouteChildren {
-  IndustriIndexRoute: typeof IndustriIndexRoute
-}
-
-const IndustriRouteChildren: IndustriRouteChildren = {
-  IndustriIndexRoute: IndustriIndexRoute,
-}
-
-const IndustriRouteWithChildren = IndustriRoute._addFileChildren(
-  IndustriRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtikelRoute: ArtikelRoute,
   FaqRoute: FaqRoute,
-  IndustriRoute: IndustriRouteWithChildren,
   KesehatanRoute: KesehatanRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
@@ -342,3 +330,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
