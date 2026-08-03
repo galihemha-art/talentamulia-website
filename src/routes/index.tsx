@@ -17,20 +17,60 @@ import {
 } from "lucide-react";
 import heroImage from "@/assets/hero-konsultasi.jpg";
 
+const SITE_URL = "https://talenta-mulia-hub.lovable.app";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo" },
+      { title: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo, Jawa Timur" },
       {
         name: "description",
         content:
-          "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi.",
+          "Pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur: assessment, executive coaching, konsultasi kesehatan, pelatihan, dan program persiapan pensiun.",
       },
-      { property: "og:title", content: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo" },
+      {
+        property: "og:title",
+        content: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo, Jawa Timur",
+      },
       {
         property: "og:description",
         content:
-          "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi.",
+          "Pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur untuk individu, organisasi, dan institusi.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Talenta Mulia",
+          description:
+            "Pusat konsultasi psikologi dan human capital terintegrasi di Sidoarjo, Jawa Timur.",
+          url: SITE_URL,
+          telephone: "+62 821 3299 0498",
+          email: "info@talentamulia.co.id",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Jl. Raya Gadung No.5, Margomulyo, Wage",
+            addressLocality: "Kec. Taman, Sidoarjo",
+            addressRegion: "Jawa Timur",
+            addressCountry: "ID",
+          },
+          areaServed: "Indonesia",
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              opens: "09:00",
+              closes: "16:00",
+            },
+          ],
+        }),
       },
     ],
   }),

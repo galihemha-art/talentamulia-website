@@ -14,13 +14,13 @@ import {
 export const Route = createFileRoute("/solusi-korporat")({
   head: () => ({
     meta: [
-      { title: "Solusi Korporat — Talenta Mulia" },
+      { title: "Solusi Korporat & Human Capital — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         name: "description",
         content:
           "Layanan human capital, asesmen, pelatihan, healthcare, dan rekrutmen untuk korporat, rumah sakit, BUMN, dan instansi pemerintah.",
       },
-      { property: "og:title", content: "Solusi Korporat — Talenta Mulia" },
+      { property: "og:title", content: "Solusi Korporat & Human Capital — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:

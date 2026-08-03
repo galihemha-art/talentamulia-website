@@ -14,10 +14,10 @@ export const Route = createFileRoute("/industri/$slug")({
     const nama = NAMA[params.slug] ?? "Industri";
     return {
       meta: [
-        { title: `${nama} — Industri | Talenta Mulia` },
-        { name: "description", content: `Layanan Talenta Mulia untuk sektor ${nama}.` },
-        { property: "og:title", content: `${nama} — Industri | Talenta Mulia` },
-        { property: "og:description", content: `Layanan Talenta Mulia untuk sektor ${nama}.` },
+        { title: `Layanan ${nama} — Talenta Mulia Sidoarjo, Jawa Timur` },
+        { name: "description", content: `Layanan psikologi, asesmen, dan pengembangan SDM Talenta Mulia untuk sektor ${nama} di Sidoarjo dan seluruh Jawa Timur.` },
+        { property: "og:title", content: `Layanan ${nama} — Talenta Mulia Sidoarjo, Jawa Timur` },
+        { property: "og:description", content: `Layanan psikologi, asesmen, dan pengembangan SDM Talenta Mulia untuk sektor ${nama} di Sidoarjo dan seluruh Jawa Timur.` },
       ],
     };
   },

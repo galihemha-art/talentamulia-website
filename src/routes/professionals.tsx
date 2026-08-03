@@ -8,13 +8,13 @@ import mamluatul from "@/assets/Mamluatul_Khoiriyah.png.asset.json";
 export const Route = createFileRoute("/professionals")({
   head: () => ({
     meta: [
-      { title: "Tim Profesional Kami — Talenta Mulia" },
+      { title: "Tim Profesional Psikolog & Coach — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         name: "description",
         content:
           "Psikolog klinis, dokter konsultan, executive coach ICF PCC, dan trainer SEFT di balik Talenta Mulia.",
       },
-      { property: "og:title", content: "Tim Profesional Kami — Talenta Mulia" },
+      { property: "og:title", content: "Tim Profesional Psikolog & Coach — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:
@@ -75,7 +75,7 @@ function Page() {
             >
               <img
                 src={p.photo}
-                alt={`Potret ${p.name}`}
+                alt={`Potret ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
                 loading="lazy"
                 className="aspect-4/5 w-full object-cover object-top"
               />

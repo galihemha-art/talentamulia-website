@@ -4,13 +4,13 @@ import { ArrowRight, Banknote, Building2, Factory, GraduationCap, Stethoscope } 
 export const Route = createFileRoute("/industri/")({
   head: () => ({
     meta: [
-      { title: "Industri yang Kami Layani — Talenta Mulia" },
+      { title: "Industri yang Kami Layani — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         name: "description",
         content:
           "Pendekatan yang disesuaikan konteks dan regulasi untuk manufaktur, rumah sakit, pendidikan, pemerintahan, dan perbankan.",
       },
-      { property: "og:title", content: "Industri yang Kami Layani — Talenta Mulia" },
+      { property: "og:title", content: "Industri yang Kami Layani — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:

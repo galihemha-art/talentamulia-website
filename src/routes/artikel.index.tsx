@@ -5,13 +5,13 @@ import { ARTIKEL } from "@/lib/artikel-data";
 export const Route = createFileRoute("/artikel/")({
   head: () => ({
     meta: [
-      { title: "Artikel & Wawasan — Talenta Mulia" },
+      { title: "Artikel & Wawasan Psikologi Kerja — Talenta Mulia Jawa Timur" },
       {
         name: "description",
         content:
           "Wawasan seputar masa persiapan pensiun, psikologi kerja, dan pengembangan manusia dari tim Talenta Mulia.",
       },
-      { property: "og:title", content: "Artikel & Wawasan — Talenta Mulia" },
+      { property: "og:title", content: "Artikel & Wawasan Psikologi Kerja — Talenta Mulia Jawa Timur" },
       {
         property: "og:description",
         content:

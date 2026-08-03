@@ -5,7 +5,7 @@ import { ARTIKEL } from "@/lib/artikel-data";
 export const Route = createFileRoute("/artikel/$slug")({
   head: ({ params }) => {
     const a = ARTIKEL.find((x) => x.slug === params.slug);
-    const title = a ? `${a.title} — Talenta Mulia` : "Artikel — Talenta Mulia";
+    const title = a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur";
     const desc = a?.excerpt ?? "Artikel dari Talenta Mulia.";
     return {
       meta: [

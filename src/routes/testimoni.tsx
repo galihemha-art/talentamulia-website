@@ -4,13 +4,13 @@ import { ArrowRight, Quote } from "lucide-react";
 export const Route = createFileRoute("/testimoni")({
   head: () => ({
     meta: [
-      { title: "Apa Kata Klien Kami — Talenta Mulia" },
+      { title: "Testimoni Klien Talenta Mulia — Sidoarjo & Jawa Timur" },
       {
         name: "description",
         content:
           "Cerita klien Talenta Mulia dari sektor manufaktur, rumah sakit, keuangan, pendidikan, dan pemerintahan.",
       },
-      { property: "og:title", content: "Apa Kata Klien Kami — Talenta Mulia" },
+      { property: "og:title", content: "Testimoni Klien Talenta Mulia — Sidoarjo & Jawa Timur" },
       {
         property: "og:description",
         content:

@@ -14,13 +14,13 @@ import {
 export const Route = createFileRoute("/layanan-individu")({
   head: () => ({
     meta: [
-      { title: "Layanan Individu & Keluarga — Talenta Mulia" },
+      { title: "Layanan Individu & Keluarga di Sidoarjo, Jawa Timur — Talenta Mulia" },
       {
         name: "description",
         content:
           "Konseling psikologis, hipnoterapi, konseling pernikahan, parenting, penanganan stres, dan coaching karier di Sidoarjo.",
       },
-      { property: "og:title", content: "Layanan Individu & Keluarga — Talenta Mulia" },
+      { property: "og:title", content: "Layanan Individu & Keluarga di Sidoarjo, Jawa Timur — Talenta Mulia" },
       {
         property: "og:description",
         content:

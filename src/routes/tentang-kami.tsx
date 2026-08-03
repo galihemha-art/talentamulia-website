@@ -4,13 +4,13 @@ import { ArrowRight, BrainCircuit, ShieldCheck, TrendingUp, Users } from "lucide
 export const Route = createFileRoute("/tentang-kami")({
   head: () => ({
     meta: [
-      { title: "Tentang Kami — Talenta Mulia" },
+      { title: "Tentang Kami — Talenta Mulia, Konsultan Psikologi Sidoarjo Jawa Timur" },
       {
         name: "description",
         content:
           "Dari biro psikologi lokal di Sidoarjo menjadi pusat konsultasi psikologi & human capital terintegrasi kelas nasional.",
       },
-      { property: "og:title", content: "Tentang Kami — Talenta Mulia" },
+      { property: "og:title", content: "Tentang Kami — Talenta Mulia, Konsultan Psikologi Sidoarjo Jawa Timur" },
       {
         property: "og:description",
         content:

@@ -13,13 +13,13 @@ import {
 export const Route = createFileRoute("/program")({
   head: () => ({
     meta: [
-      { title: "Program Unggulan — Talenta Mulia" },
+      { title: "Program MPP & Coaching Unggulan di Jawa Timur — Talenta Mulia" },
       {
         name: "description",
         content:
           "Pensiun Bahagia, Hidup Bermakna (Program MPP) memadukan psikologi, hipnoterapi/SEFT, dan medis — plus Executive Coaching dan Leadership Academy.",
       },
-      { property: "og:title", content: "Program Unggulan — Talenta Mulia" },
+      { property: "og:title", content: "Program MPP & Coaching Unggulan di Jawa Timur — Talenta Mulia" },
       {
         property: "og:description",
         content:
