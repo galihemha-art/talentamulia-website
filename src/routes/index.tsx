@@ -26,11 +26,11 @@ export const Route = createFileRoute("/")({
         content:
           "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi.",
       },
-      { property: "og:title", content: "Talenta Mulia — Membina Manusia. Menguatkan Organisasi." },
+      { property: "og:title", content: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo" },
       {
         property: "og:description",
         content:
-          "Pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.",
+          "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi.",
       },
     ],
   }),

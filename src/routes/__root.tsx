@@ -80,15 +80,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Talenta Mulia — Konsultasi Psikologi & Human Capital" },
+      { title: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo" },
       {
         name: "description",
         content:
-          "Pusat konsultasi psikologi, kesehatan, dan human capital terintegrasi di Sidoarjo, Jawa Timur.",
+          "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi.",
       },
       { name: "author", content: "Talenta Mulia" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo" },
+      { name: "twitter:title", content: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo" },
+      { property: "og:description", content: "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi." },
+      { name: "twitter:description", content: "Psikologi terintegrasi, kesehatan, executive coaching, assessment center, dan konsultasi human capital untuk individu, organisasi, dan institusi." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7a3f4b52-6902-4fe1-a31c-e4bc6b483f25/id-preview-83a513cd--3d9ec9b3-bcb6-448f-8e0f-d4e8bf37a9f6.lovable.app-1785734720880.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7a3f4b52-6902-4fe1-a31c-e4bc6b483f25/id-preview-83a513cd--3d9ec9b3-bcb6-448f-8e0f-d4e8bf37a9f6.lovable.app-1785734720880.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
