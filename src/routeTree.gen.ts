@@ -19,6 +19,7 @@ import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
 import { Route as PelatihanRouteImport } from './routes/pelatihan'
 import { Route as ProfessionalsRouteImport } from './routes/professionals'
 import { Route as ProgramRouteImport } from './routes/program'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
@@ -77,6 +78,11 @@ const ProgramRoute = ProgramRouteImport.update({
   path: '/program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolusiKorporatRoute = SolusiKorporatRouteImport.update({
   id: '/solusi-korporat',
   path: '/solusi-korporat',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/sitemap.xml'
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/sitemap.xml'
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/sitemap.xml'
     | '/solusi-korporat'
     | '/tentang-kami'
     | '/testimoni'
@@ -238,6 +250,7 @@ export interface RootRouteChildren {
   PelatihanRoute: typeof PelatihanRoute
   ProfessionalsRoute: typeof ProfessionalsRoute
   ProgramRoute: typeof ProgramRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolusiKorporatRoute: typeof SolusiKorporatRoute
   TentangKamiRoute: typeof TentangKamiRoute
   TestimoniRoute: typeof TestimoniRoute
@@ -313,6 +326,13 @@ declare module '@tanstack/react-router' {
       path: '/program'
       fullPath: '/program'
       preLoaderRoute: typeof ProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/solusi-korporat': {
@@ -405,6 +425,7 @@ const rootRouteChildren: RootRouteChildren = {
   PelatihanRoute: PelatihanRoute,
   ProfessionalsRoute: ProfessionalsRoute,
   ProgramRoute: ProgramRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolusiKorporatRoute: SolusiKorporatRoute,
   TentangKamiRoute: TentangKamiRoute,
   TestimoniRoute: TestimoniRoute,
@@ -412,3 +433,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
