@@ -230,7 +230,14 @@ function Page() {
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" />
-                  <span className="leading-relaxed text-muted-foreground">{ALAMAT}</span>
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="leading-relaxed text-muted-foreground hover:text-primary"
+                  >
+                    {ALAMAT}
+                  </a>
                 </li>
                 <li className="flex gap-3">
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" />
