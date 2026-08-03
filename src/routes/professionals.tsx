@@ -75,7 +75,7 @@ function Page() {
             >
               <img
                 src={p.photo}
-                alt={`Potret ${p.name}`}
+                alt={`Potret ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
                 loading="lazy"
                 className="aspect-4/5 w-full object-cover object-top"
               />
