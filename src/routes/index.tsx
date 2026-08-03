@@ -199,8 +199,8 @@ function Beranda() {
             <img
               src={heroImage}
               alt="Sesi konsultasi psikologi profesional di Talenta Mulia"
-              width={1200}
-              height={1408}
+              width={1024}
+              height={1200}
               className="h-[440px] w-full rounded-3xl object-cover shadow-soft lg:h-[540px]"
             />
           </div>
@@ -314,7 +314,7 @@ function Beranda() {
               <ul className="mt-6 space-y-3">
                 {col.items.map((item) => (
                   <li key={item} className="flex gap-3 text-sm text-muted-foreground">
-                    <BadgeCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-magenta" />
+                    <BadgeCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-blue" />
                     {item}
                   </li>
                 ))}
@@ -352,7 +352,7 @@ function Beranda() {
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {TESTIMONI.map((t) => (
             <figure key={t.name} className="rounded-2xl border border-border bg-card p-7">
-              <Quote className="h-7 w-7 text-brand-magenta" />
+              <Quote className="h-7 w-7 text-brand-blue" />
               <blockquote className="mt-4 text-sm leading-relaxed text-foreground/85">
                 “{t.quote}”
               </blockquote>
