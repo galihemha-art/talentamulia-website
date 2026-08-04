@@ -31,19 +31,27 @@ export function LayananDetailPage({
       {/* Breadcrumb + Hero */}
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
             <Link to="/" className="transition-colors hover:text-brand-blue">
               Beranda
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
-            <Link to="/solusi-korporat" className="transition-colors hover:text-brand-blue">
-              Layanan
+            <Link
+              to={(breadcrumb?.to ?? "/solusi-korporat") as "/solusi-korporat"}
+              className="transition-colors hover:text-brand-blue"
+            >
+              {breadcrumb?.label ?? "Layanan"}
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="text-primary">{data.nama}</span>
           </nav>
 
-          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+          {label && (
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
+              {label}
+            </p>
+          )}
+          <h1 className={`${label ? "mt-2" : "mt-6"} max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl`}>
             {data.nama}
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -55,14 +63,14 @@ export function LayananDetailPage({
               to="/kontak"
               className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Minta Proposal {data.nama}
+              {ctaPrimary ?? `Minta Proposal ${data.nama}`}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/kontak"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:border-brand-blue hover:text-brand-blue"
             >
-              Konsultasi Gratis
+              {ctaSecondary ?? "Konsultasi Gratis"}
             </Link>
           </div>
         </div>
