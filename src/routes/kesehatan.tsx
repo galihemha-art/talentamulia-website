@@ -114,7 +114,46 @@ function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-5 py-16 text-center md:py-20">
+      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          Layanan terkait
+        </h2>
+        <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
+          Program yang sering berjalan beriringan dengan konsultasi kesehatan untuk institusi dan
+          organisasi.
+        </p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          {[
+            {
+              slug: "medical-wellness",
+              title: "Medical Wellness",
+              text: "Program kesehatan preventif bagi karyawan: skrining, edukasi gaya hidup, dan pemantauan berkala bersama dokter.",
+            },
+            {
+              slug: "kesejahteraan-karyawan",
+              title: "Kesejahteraan Karyawan",
+              text: "Menjaga kesehatan mental dan produktivitas tim melalui skrining, konseling, dan pencegahan burnout.",
+            },
+          ].map((l) => (
+            <Link
+              key={l.slug}
+              to="/layanan/$slug"
+              params={{ slug: l.slug }}
+              className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-blue hover:shadow-soft"
+            >
+              <h3 className="font-heading text-lg font-semibold text-primary">{l.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{l.text}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
+                Selengkapnya
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl border-t border-border px-5 py-16 text-center md:py-20">
+
         <h2 className="text-2xl font-bold text-primary md:text-3xl">
           Butuh pendampingan untuk fasilitas kesehatan Anda?
         </h2>
