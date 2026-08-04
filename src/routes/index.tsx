@@ -16,6 +16,7 @@ import {
   Wifi,
 } from "lucide-react";
 import heroImage from "@/assets/hero-konsultasi.jpg";
+import { SiteLink } from "@/components/site/SiteLink";
 
 const SITE_URL = "https://talenta-mulia-hub.lovable.app";
 
