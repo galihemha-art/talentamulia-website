@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
+import { CoachingHubPage } from "@/components/site/CoachingHubPage";
 
 
 const TITLES: Record<string, string> = {
@@ -12,6 +13,7 @@ const TITLES: Record<string, string> = {
   "pelatihan-kepemimpinan": "Pengembangan Kepemimpinan",
   coaching: "Coaching",
   "executive-coaching": "Executive Coaching",
+  "team-coaching": "Team Coaching",
   "kesejahteraan-karyawan": "Kesejahteraan Karyawan",
   "medical-wellness": "Medical Wellness",
   "talent-acquisition": "Talent Acquisition",
@@ -66,6 +68,7 @@ export const Route = createFileRoute("/layanan/$slug")({
 
 function LayananRoutePage() {
   const { slug } = Route.useParams();
+  if (slug === "coaching") return <CoachingHubPage />;
   const detail = LAYANAN_KORPORAT[slug];
   if (detail) return <LayananDetailPage data={detail} />;
   return <LayananPlaceholder slug={slug} />;
