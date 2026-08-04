@@ -27,7 +27,9 @@ import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
 import { Route as ArtikelSlugRouteImport } from './routes/artikel.$slug'
 import { Route as IndustriIndexRouteImport } from './routes/industri.index'
 import { Route as IndustriSlugRouteImport } from './routes/industri.$slug'
+import { Route as LayananSlugRouteImport } from './routes/layanan.$slug'
 import { Route as ProgramIndexRouteImport } from './routes/program.index'
+import { Route as ProgramMppRouteImport } from './routes/program.mpp'
 import { Route as TentangKamiIndexRouteImport } from './routes/tentang-kami.index'
 import { Route as TentangKamiLegalitasRouteImport } from './routes/tentang-kami.legalitas'
 
@@ -121,9 +123,19 @@ const IndustriSlugRoute = IndustriSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => IndustriRoute,
 } as any)
+const LayananSlugRoute = LayananSlugRouteImport.update({
+  id: '/layanan/$slug',
+  path: '/layanan/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramIndexRoute = ProgramIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => ProgramRoute,
+} as any)
+const ProgramMppRoute = ProgramMppRouteImport.update({
+  id: '/mpp',
+  path: '/mpp',
   getParentRoute: () => ProgramRoute,
 } as any)
 const TentangKamiIndexRoute = TentangKamiIndexRouteImport.update({
@@ -154,6 +166,8 @@ export interface FileRoutesByFullPath {
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/layanan/$slug': typeof LayananSlugRoute
+  '/program/mpp': typeof ProgramMppRoute
   '/tentang-kami/legalitas': typeof TentangKamiLegalitasRoute
   '/artikel/': typeof ArtikelIndexRoute
   '/industri/': typeof IndustriIndexRoute
@@ -173,6 +187,8 @@ export interface FileRoutesByTo {
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/layanan/$slug': typeof LayananSlugRoute
+  '/program/mpp': typeof ProgramMppRoute
   '/tentang-kami/legalitas': typeof TentangKamiLegalitasRoute
   '/artikel': typeof ArtikelIndexRoute
   '/industri': typeof IndustriIndexRoute
@@ -197,6 +213,8 @@ export interface FileRoutesById {
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/layanan/$slug': typeof LayananSlugRoute
+  '/program/mpp': typeof ProgramMppRoute
   '/tentang-kami/legalitas': typeof TentangKamiLegalitasRoute
   '/artikel/': typeof ArtikelIndexRoute
   '/industri/': typeof IndustriIndexRoute
@@ -222,6 +240,8 @@ export interface FileRouteTypes {
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
+    | '/layanan/$slug'
+    | '/program/mpp'
     | '/tentang-kami/legalitas'
     | '/artikel/'
     | '/industri/'
@@ -241,6 +261,8 @@ export interface FileRouteTypes {
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
+    | '/layanan/$slug'
+    | '/program/mpp'
     | '/tentang-kami/legalitas'
     | '/artikel'
     | '/industri'
@@ -264,6 +286,8 @@ export interface FileRouteTypes {
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
+    | '/layanan/$slug'
+    | '/program/mpp'
     | '/tentang-kami/legalitas'
     | '/artikel/'
     | '/industri/'
@@ -286,6 +310,7 @@ export interface RootRouteChildren {
   SolusiKorporatRoute: typeof SolusiKorporatRoute
   TentangKamiRoute: typeof TentangKamiRouteWithChildren
   TestimoniRoute: typeof TestimoniRoute
+  LayananSlugRoute: typeof LayananSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -416,11 +441,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriSlugRouteImport
       parentRoute: typeof IndustriRoute
     }
+    '/layanan/$slug': {
+      id: '/layanan/$slug'
+      path: '/layanan/$slug'
+      fullPath: '/layanan/$slug'
+      preLoaderRoute: typeof LayananSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/program/': {
       id: '/program/'
       path: '/'
       fullPath: '/program/'
       preLoaderRoute: typeof ProgramIndexRouteImport
+      parentRoute: typeof ProgramRoute
+    }
+    '/program/mpp': {
+      id: '/program/mpp'
+      path: '/mpp'
+      fullPath: '/program/mpp'
+      preLoaderRoute: typeof ProgramMppRouteImport
       parentRoute: typeof ProgramRoute
     }
     '/tentang-kami/': {
@@ -468,10 +507,12 @@ const IndustriRouteWithChildren = IndustriRoute._addFileChildren(
 )
 
 interface ProgramRouteChildren {
+  ProgramMppRoute: typeof ProgramMppRoute
   ProgramIndexRoute: typeof ProgramIndexRoute
 }
 
 const ProgramRouteChildren: ProgramRouteChildren = {
+  ProgramMppRoute: ProgramMppRoute,
   ProgramIndexRoute: ProgramIndexRoute,
 }
 
@@ -507,17 +548,8 @@ const rootRouteChildren: RootRouteChildren = {
   SolusiKorporatRoute: SolusiKorporatRoute,
   TentangKamiRoute: TentangKamiRouteWithChildren,
   TestimoniRoute: TestimoniRoute,
+  LayananSlugRoute: LayananSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
