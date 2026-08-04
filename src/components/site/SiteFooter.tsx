@@ -46,9 +46,9 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-2.5 text-sm text-primary-foreground/75">
             {SOLUSI.map((item) => (
               <li key={item.label}>
-                <Link to={item.to} className="transition-colors hover:text-primary-foreground">
+                <SiteLink to={item.to} className="transition-colors hover:text-primary-foreground">
                   {item.label}
-                </Link>
+                </SiteLink>
               </li>
             ))}
           </ul>

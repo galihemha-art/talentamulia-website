@@ -113,12 +113,12 @@ const ALASAN = [
 ];
 
 const LAYANAN = [
-  { icon: ClipboardList, title: "Assessment Psikologi", text: "Seleksi, promosi, dan pemetaan potensi dengan alat ukur tervalidasi." },
-  { icon: Target, title: "Executive Coaching", text: "Pendampingan personal bagi pemimpin untuk tumbuh lebih efektif." },
-  { icon: Sparkles, title: "Pengembangan Kepemimpinan", text: "Program berjenjang untuk membangun pipeline pemimpin masa depan." },
-  { icon: HeartPulse, title: "Kesejahteraan Karyawan", text: "Layanan konseling dan program well-being di tempat kerja." },
-  { icon: Stethoscope, title: "Konsultasi Kesehatan", text: "Pendekatan medis dan psikologis untuk kesehatan eksekutif dan institusi." },
-  { icon: GraduationCap, title: "Pelatihan & Seminar", text: "Workshop tematik yang aplikatif untuk tim dan komunitas Anda." },
+  { icon: ClipboardList, title: "Assessment Psikologi", to: "/layanan/asesmen-psikologi", text: "Seleksi, promosi, dan pemetaan potensi dengan alat ukur tervalidasi." },
+  { icon: Target, title: "Executive Coaching", to: "/layanan/executive-coaching", text: "Pendampingan personal bagi pemimpin untuk tumbuh lebih efektif." },
+  { icon: Sparkles, title: "Pengembangan Kepemimpinan", to: "/layanan/pelatihan-kepemimpinan", text: "Program berjenjang untuk membangun pipeline pemimpin masa depan." },
+  { icon: HeartPulse, title: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan", text: "Layanan konseling dan program well-being di tempat kerja." },
+  { icon: Stethoscope, title: "Konsultasi Kesehatan", to: "/kesehatan", text: "Pendekatan medis dan psikologis untuk kesehatan eksekutif dan institusi." },
+  { icon: GraduationCap, title: "Pelatihan & Seminar", to: "/pelatihan", text: "Workshop tematik yang aplikatif untuk tim dan komunitas Anda." },
 ];
 
 const ORGANISASI = [
