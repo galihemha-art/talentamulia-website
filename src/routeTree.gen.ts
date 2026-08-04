@@ -27,6 +27,8 @@ import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
 import { Route as ArtikelSlugRouteImport } from './routes/artikel.$slug'
 import { Route as IndustriIndexRouteImport } from './routes/industri.index'
 import { Route as IndustriSlugRouteImport } from './routes/industri.$slug'
+import { Route as TentangKamiIndexRouteImport } from './routes/tentang-kami.index'
+import { Route as TentangKamiLegalitasRouteImport } from './routes/tentang-kami.legalitas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +120,16 @@ const IndustriSlugRoute = IndustriSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => IndustriRoute,
 } as any)
+const TentangKamiIndexRoute = TentangKamiIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TentangKamiRoute,
+} as any)
+const TentangKamiLegalitasRoute = TentangKamiLegalitasRouteImport.update({
+  id: '/legalitas',
+  path: '/legalitas',
+  getParentRoute: () => TentangKamiRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -132,12 +144,14 @@ export interface FileRoutesByFullPath {
   '/program': typeof ProgramRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
-  '/tentang-kami': typeof TentangKamiRoute
+  '/tentang-kami': typeof TentangKamiRouteWithChildren
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/tentang-kami/legalitas': typeof TentangKamiLegalitasRoute
   '/artikel/': typeof ArtikelIndexRoute
   '/industri/': typeof IndustriIndexRoute
+  '/tentang-kami/': typeof TentangKamiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -150,12 +164,13 @@ export interface FileRoutesByTo {
   '/program': typeof ProgramRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
-  '/tentang-kami': typeof TentangKamiRoute
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/tentang-kami/legalitas': typeof TentangKamiLegalitasRoute
   '/artikel': typeof ArtikelIndexRoute
   '/industri': typeof IndustriIndexRoute
+  '/tentang-kami': typeof TentangKamiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -171,12 +186,14 @@ export interface FileRoutesById {
   '/program': typeof ProgramRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
-  '/tentang-kami': typeof TentangKamiRoute
+  '/tentang-kami': typeof TentangKamiRouteWithChildren
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
+  '/tentang-kami/legalitas': typeof TentangKamiLegalitasRoute
   '/artikel/': typeof ArtikelIndexRoute
   '/industri/': typeof IndustriIndexRoute
+  '/tentang-kami/': typeof TentangKamiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -197,8 +214,10 @@ export interface FileRouteTypes {
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
+    | '/tentang-kami/legalitas'
     | '/artikel/'
     | '/industri/'
+    | '/tentang-kami/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -211,12 +230,13 @@ export interface FileRouteTypes {
     | '/program'
     | '/sitemap.xml'
     | '/solusi-korporat'
-    | '/tentang-kami'
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
+    | '/tentang-kami/legalitas'
     | '/artikel'
     | '/industri'
+    | '/tentang-kami'
   id:
     | '__root__'
     | '/'
@@ -235,8 +255,10 @@ export interface FileRouteTypes {
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
+    | '/tentang-kami/legalitas'
     | '/artikel/'
     | '/industri/'
+    | '/tentang-kami/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -252,7 +274,7 @@ export interface RootRouteChildren {
   ProgramRoute: typeof ProgramRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolusiKorporatRoute: typeof SolusiKorporatRoute
-  TentangKamiRoute: typeof TentangKamiRoute
+  TentangKamiRoute: typeof TentangKamiRouteWithChildren
   TestimoniRoute: typeof TestimoniRoute
 }
 
@@ -384,6 +406,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriSlugRouteImport
       parentRoute: typeof IndustriRoute
     }
+    '/tentang-kami/': {
+      id: '/tentang-kami/'
+      path: '/'
+      fullPath: '/tentang-kami/'
+      preLoaderRoute: typeof TentangKamiIndexRouteImport
+      parentRoute: typeof TentangKamiRoute
+    }
+    '/tentang-kami/legalitas': {
+      id: '/tentang-kami/legalitas'
+      path: '/legalitas'
+      fullPath: '/tentang-kami/legalitas'
+      preLoaderRoute: typeof TentangKamiLegalitasRouteImport
+      parentRoute: typeof TentangKamiRoute
+    }
   }
 }
 
@@ -414,6 +450,20 @@ const IndustriRouteWithChildren = IndustriRoute._addFileChildren(
   IndustriRouteChildren,
 )
 
+interface TentangKamiRouteChildren {
+  TentangKamiLegalitasRoute: typeof TentangKamiLegalitasRoute
+  TentangKamiIndexRoute: typeof TentangKamiIndexRoute
+}
+
+const TentangKamiRouteChildren: TentangKamiRouteChildren = {
+  TentangKamiLegalitasRoute: TentangKamiLegalitasRoute,
+  TentangKamiIndexRoute: TentangKamiIndexRoute,
+}
+
+const TentangKamiRouteWithChildren = TentangKamiRoute._addFileChildren(
+  TentangKamiRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtikelRoute: ArtikelRouteWithChildren,
@@ -427,7 +477,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramRoute: ProgramRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolusiKorporatRoute: SolusiKorporatRoute,
-  TentangKamiRoute: TentangKamiRoute,
+  TentangKamiRoute: TentangKamiRouteWithChildren,
   TestimoniRoute: TestimoniRoute,
 }
 export const routeTree = rootRouteImport
