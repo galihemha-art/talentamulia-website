@@ -40,6 +40,7 @@ const FAQ = [
   {
     q: "Apakah tersedia konsultasi online?",
     a: "Tersedia. Anda dapat memilih sesi online melalui video call maupun sesi tatap muka (offline) di kantor kami di Sidoarjo, Jawa Timur.",
+    link: { to: "/layanan/$slug", slug: "konsultasi-online-offline", label: "Lihat detail konsultasi online & offline" },
   },
   {
     q: "Bagaimana proses pengajuan proposal korporat?",
@@ -81,7 +82,18 @@ function Page() {
                 />
               </button>
               {open === i && (
-                <p className="px-6 pb-6 text-sm leading-relaxed text-muted-foreground">{item.a}</p>
+                <div className="px-6 pb-6">
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.a}</p>
+                  {"link" in item && item.link && (
+                    <Link
+                      to={item.link.to}
+                      params={{ slug: item.link.slug }}
+                      className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
+                    >
+                      {item.link.label} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
               )}
             </div>
           ))}

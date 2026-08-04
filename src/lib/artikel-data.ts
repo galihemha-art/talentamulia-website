@@ -8,6 +8,19 @@ export type Artikel = {
 
 export const ARTIKEL: Artikel[] = [
   {
+    slug: "post-power-syndrome-gejala-dan-pencegahan",
+    kategori: "Masa Persiapan Pensiun",
+    title: "Post Power Syndrome: Kenali Gejala dan Cara Mencegahnya Sejak Dini",
+    excerpt:
+      "Kenali gejala post power syndrome pada karyawan menjelang pensiun dan cara perusahaan mencegahnya sejak dini melalui program persiapan pensiun yang tepat.",
+    paragraphs: [
+      "Post power syndrome muncul ketika seseorang kehilangan peran, status, dan rutinitas yang selama puluhan tahun menjadi sumber identitasnya. Gejalanya kerap tidak langsung terlihat: mudah tersinggung, menarik diri dari lingkungan sosial, sering membanggakan masa lalu, kehilangan motivasi, hingga keluhan fisik yang tidak jelas penyebabnya.",
+      "Pada karyawan yang mendekati masa purnabakti, tanda-tanda awal biasanya sudah tampak satu hingga dua tahun sebelum pensiun. Semakin melekat identitas seseorang pada jabatannya, semakin besar risiko guncangan psikologis saat masa itu tiba.",
+      "Pencegahan paling efektif dilakukan lebih awal, bukan di bulan-bulan terakhir. Perusahaan dapat membuka ruang percakapan tentang masa pensiun, memberikan pendampingan psikologis, memfasilitasi pemeriksaan kesehatan, serta membantu karyawan menyusun rencana aktivitas bermakna setelah purnabakti.",
+      "Program Masa Persiapan Pensiun (MPP) Talenta Mulia menggabungkan pendekatan psikologi, hipnoterapi/SEFT, dan keahlian medis agar peserta memasuki babak baru dengan pikiran yang tenang, tubuh yang terjaga, dan rencana hidup yang jelas.",
+    ],
+  },
+  {
     slug: "peran-kesehatan-fisik-dalam-kesiapan-pensiun",
     kategori: "Masa Persiapan Pensiun",
     title:
