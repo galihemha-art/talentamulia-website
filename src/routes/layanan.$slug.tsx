@@ -1,4 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { LayananDetailPage } from "@/components/site/LayananDetailPage";
+import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
+
 
 const TITLES: Record<string, string> = {
   "konsultasi-hr": "Konsultasi HR",
@@ -42,29 +45,34 @@ function titleFor(slug: string) {
 
 export const Route = createFileRoute("/layanan/$slug")({
   head: ({ params }) => {
-    const title = titleFor(params.slug);
+    const detail = LAYANAN_KORPORAT[params.slug];
+    const title = detail?.nama ?? titleFor(params.slug);
+    const description = detail
+      ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
+      : `Layanan ${title} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
     return {
       meta: [
         { title: `${title} — Talenta Mulia Sidoarjo, Jawa Timur` },
-        {
-          name: "description",
-          content: `Layanan ${title} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`,
-        },
+        { name: "description", content: description },
         { property: "og:title", content: `${title} — Talenta Mulia` },
-        {
-          property: "og:description",
-          content: `Layanan ${title} dari Talenta Mulia di Sidoarjo, Jawa Timur. Halaman detail segera hadir.`,
-        },
+        { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },
-  component: LayananPlaceholder,
+  component: LayananRoutePage,
 });
 
-function LayananPlaceholder() {
+function LayananRoutePage() {
   const { slug } = Route.useParams();
+  const detail = LAYANAN_KORPORAT[slug];
+  if (detail) return <LayananDetailPage data={detail} />;
+  return <LayananPlaceholder slug={slug} />;
+}
+
+function LayananPlaceholder({ slug }: { slug: string }) {
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-24 text-center">
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
