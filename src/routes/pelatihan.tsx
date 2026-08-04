@@ -93,46 +93,76 @@ function Page() {
           <h1 className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl">
             Pelatihan &amp; Seminar
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Program belajar yang aplikatif, dibawakan psikolog, dokter, dan coach bersertifikat.
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Program belajar yang aplikatif, dibawakan psikolog, dokter, dan coach bersertifikat —
+            mencakup empat format: pelatihan in-house/klasikal, seminar, workshop, dan parenting
+            education.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <h2 className="text-2xl font-bold text-primary md:text-3xl">Topik Pelatihan</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TOPIK.map(({ icon: Icon, title, text }) => (
-            <article
-              key={title}
-              className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-brand-blue">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-4 font-semibold text-primary">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-secondary/40">
+      <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-          <h2 className="text-2xl font-bold text-primary md:text-3xl">Format Penyelenggaraan</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <h2 className="font-heading text-2xl font-bold text-primary md:text-3xl">
+            Format Penyelenggaraan
+          </h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
+            Empat format yang kami sediakan, dapat dikombinasikan sesuai kebutuhan dan jumlah
+            peserta.
+          </p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FORMAT.map(({ icon: Icon, title, text }) => (
               <article key={title} className="rounded-2xl border border-border bg-card p-7 shadow-sm">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-brand-blue">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-4 text-lg font-bold text-primary">{title}</h3>
+                <h3 className="mt-4 font-heading text-lg font-bold text-primary">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-border bg-secondary/40 p-6">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <span className="font-semibold text-primary">Catatan pembeda:</span> Parenting
+              Education di halaman ini berbentuk seminar/workshop kelompok untuk sekolah, komunitas,
+              atau perusahaan. Bila Anda mencari pendampingan personal untuk satu keluarga,
+              kunjungi layanan konseling{" "}
+              <Link
+                to="/layanan/$slug"
+                params={{ slug: "parenting-anak" }}
+                className="font-semibold text-brand-blue underline underline-offset-4"
+              >
+                Parenting &amp; Anak
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary/40">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <h2 className="font-heading text-2xl font-bold text-primary md:text-3xl">
+            Topik Pelatihan
+          </h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {TOPIK.map(({ icon: Icon, title, text }) => (
+              <article
+                key={title}
+                className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-brand-blue">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 font-semibold text-primary">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
+
 
       <section className="mx-auto max-w-3xl px-5 py-16 text-center md:py-20">
         <h2 className="text-2xl font-bold text-primary md:text-3xl">
