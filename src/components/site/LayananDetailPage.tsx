@@ -2,9 +2,29 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
 import { FAQ_KORPORAT, type LayananDetail } from "@/lib/layanan-korporat-data";
+import type { Artikel } from "@/lib/artikel-data";
 
-export function LayananDetailPage({ data }: { data: LayananDetail }) {
+export function LayananDetailPage({
+  data,
+  label,
+  breadcrumb,
+  ctaPrimary,
+  ctaSecondary,
+  faq,
+  wawasan,
+}: {
+  data: LayananDetail;
+  /** Small eyebrow label above the hero title. */
+  label?: string;
+  /** Overrides the middle breadcrumb entry. */
+  breadcrumb?: { label: string; to: string };
+  ctaPrimary?: string;
+  ctaSecondary?: string;
+  faq?: { q: string; a: string }[];
+  wawasan?: Artikel[];
+}) {
   const [open, setOpen] = useState<number | null>(0);
+  const faqItems = faq ?? FAQ_KORPORAT;
 
   return (
     <>
