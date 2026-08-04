@@ -39,7 +39,7 @@ function Page() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {ARTIKEL.map((a) => (
             <article
               key={a.slug}
