@@ -40,6 +40,7 @@ const FAQ = [
   {
     q: "Apakah tersedia konsultasi online?",
     a: "Tersedia. Anda dapat memilih sesi online melalui video call maupun sesi tatap muka (offline) di kantor kami di Sidoarjo, Jawa Timur.",
+    link: { to: "/layanan/$slug", slug: "konsultasi-online-offline", label: "Lihat detail konsultasi online & offline" },
   },
   {
     q: "Bagaimana proses pengajuan proposal korporat?",
