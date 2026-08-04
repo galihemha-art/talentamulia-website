@@ -152,7 +152,7 @@ function Page() {
         </div>
       </section>
 
-      <section className="border-t border-border">
+      <section className="mx-auto max-w-3xl border-t border-border px-5 py-16 text-center md:py-20">
 
         <h2 className="text-2xl font-bold text-primary md:text-3xl">
           Butuh pendampingan untuk fasilitas kesehatan Anda?
