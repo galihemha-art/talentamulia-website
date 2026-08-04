@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { SiteLink } from "./SiteLink";
 
 const SOLUSI = [
   { label: "Solusi Korporat", to: "/solusi-korporat" },
   { label: "Layanan Individu", to: "/layanan-individu" },
   { label: "Konsultasi Kesehatan", to: "/kesehatan" },
-  { label: "Executive Coaching", to: "/program" },
+  { label: "Executive Coaching", to: "/layanan/executive-coaching" },
   { label: "Pelatihan & Seminar", to: "/pelatihan" },
 ] as const;
 
@@ -16,6 +17,7 @@ const PERUSAHAAN = [
   { label: "Testimoni", to: "/testimoni" },
   { label: "FAQ", to: "/faq" },
 ] as const;
+
 
 export function SiteFooter() {
   return (
@@ -44,9 +46,9 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-2.5 text-sm text-primary-foreground/75">
             {SOLUSI.map((item) => (
               <li key={item.label}>
-                <Link to={item.to} className="transition-colors hover:text-primary-foreground">
+                <SiteLink to={item.to} className="transition-colors hover:text-primary-foreground">
                   {item.label}
-                </Link>
+                </SiteLink>
               </li>
             ))}
           </ul>
