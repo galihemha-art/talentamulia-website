@@ -47,6 +47,7 @@ const LAYANAN = [
   "Pelatihan & Seminar",
   "Layanan Individu",
   "Program Masa Persiapan Pensiun (MPP)",
+  "Pemeriksaan Psikologi",
   "Lainnya",
 ];
 
