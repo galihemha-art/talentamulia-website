@@ -322,11 +322,11 @@ function Beranda() {
       <section className="mx-auto max-w-7xl px-5 py-14">
         <h2 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">Layanan Kami</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {LAYANAN.map(({ icon: Icon, title, text }) => (
-            <Link
+          {LAYANAN.map(({ icon: Icon, title, text, to }) => (
+            <SiteLink
               key={title}
-              to="/solusi-korporat"
-              className="group rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-soft"
+              to={to}
+              className="group block rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-soft"
             >
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-gradient text-white">
                 <Icon className="h-5 w-5" />
@@ -336,7 +336,7 @@ function Beranda() {
               <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue">
                 Selengkapnya <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-            </Link>
+            </SiteLink>
           ))}
         </div>
       </section>
