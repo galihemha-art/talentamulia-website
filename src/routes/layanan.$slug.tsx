@@ -5,6 +5,8 @@ import { CoachingHubPage } from "@/components/site/CoachingHubPage";
 import { KonsultasiOnlineOfflinePage } from "@/components/site/KonsultasiOnlineOfflinePage";
 import { PemeriksaanPsikologiDetailPage } from "@/components/site/PemeriksaanPsikologiDetailPage";
 import { PEMERIKSAAN_PSIKOLOGI } from "@/lib/pemeriksaan-psikologi-data";
+import { LayananIndividuDetailPage } from "@/components/site/LayananIndividuDetailPage";
+import { LAYANAN_INDIVIDU } from "@/lib/layanan-individu-data";
 
 
 const TITLES: Record<string, string> = {
@@ -50,7 +52,7 @@ function titleFor(slug: string) {
 
 export const Route = createFileRoute("/layanan/$slug")({
   head: ({ params }) => {
-    const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug];
+    const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug] ?? LAYANAN_INDIVIDU[params.slug];
     const title = detail?.nama ?? titleFor(params.slug);
     const description = detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
@@ -75,6 +77,8 @@ function LayananRoutePage() {
   if (slug === "konsultasi-online-offline") return <KonsultasiOnlineOfflinePage />;
   const pemeriksaan = PEMERIKSAAN_PSIKOLOGI[slug];
   if (pemeriksaan) return <PemeriksaanPsikologiDetailPage data={pemeriksaan} />;
+  const individu = LAYANAN_INDIVIDU[slug];
+  if (individu) return <LayananIndividuDetailPage data={individu} />;
   const detail = LAYANAN_KORPORAT[slug];
   if (detail) return <LayananDetailPage data={detail} />;
   return <LayananPlaceholder slug={slug} />;
