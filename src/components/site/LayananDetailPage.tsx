@@ -173,31 +173,37 @@ export function LayananDetailPage({ data }: { data: LayananDetail }) {
         </div>
       </section>
 
-      {/* CTA penutup */}
-      <section className="mx-auto max-w-3xl px-5 pb-24 text-center">
-        <h2 className="font-heading text-3xl font-bold tracking-tight text-primary">
-          Siap menguatkan tim &amp; organisasi Anda?
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Bicara dengan tim multidisiplin kami — psikolog, coach, dan konsultan kesehatan. Dapatkan
-          proposal khusus dalam 2 hari kerja.
-        </p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Link
-            to="/kontak"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Ajukan Proposal
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            to="/kontak"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:border-brand-blue hover:text-brand-blue"
-          >
-            Buat Janji Konsultasi
-          </Link>
-        </div>
-      </section>
+      <CtaPenutup />
     </>
   );
 }
+
+export function CtaPenutup() {
+  return (
+    <section className="mx-auto max-w-3xl px-5 pb-24 text-center">
+      <h2 className="font-heading text-3xl font-bold tracking-tight text-primary">
+        Siap menguatkan tim &amp; organisasi Anda?
+      </h2>
+      <p className="mt-3 leading-relaxed text-muted-foreground">
+        Bicara dengan tim multidisiplin kami — psikolog, coach, dan konsultan kesehatan. Dapatkan
+        proposal khusus dalam 2 hari kerja.
+      </p>
+      <div className="mt-7 flex flex-wrap justify-center gap-3">
+        <Link
+          to="/kontak"
+          className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          Ajukan Proposal
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+        <Link
+          to="/kontak"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:border-brand-blue hover:text-brand-blue"
+        >
+          Buat Janji Konsultasi
+        </Link>
+      </div>
+    </section>
+  );
+}
+
