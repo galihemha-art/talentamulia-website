@@ -29,26 +29,26 @@ const TIM = [
   {
     photo: maulidah.url,
     name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
-    role: "Founder & Psikolog Klinis, Certified Hypnotherapist",
-    desc: "Psikolog klinis berpengalaman dan hypnotherapist bersertifikat, pendiri Talenta Mulia.",
+    role: "Founder · Psikolog Utama · Certified Hypnotherapist",
+    desc: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
   },
   {
     photo: andiani.url,
     name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
-    role: "Konsultan Kepemimpinan Medis",
-    desc: "Dokter spesialis dengan keahlian kedokteran keluarga layanan primer dan kepemimpinan kesehatan.",
+    role: "Konsultan Kepemimpinan Medis & Kesehatan",
+    desc: "Wakil Direktur Pelayanan Medis & Keperawatan di RSI Siti Hajar Sidoarjo. Ahli kesehatan masyarakat dengan otoritas dalam akreditasi rumah sakit, tata kelola klinis, dan manajemen rumah sakit.",
   },
   {
     photo: eka.url,
     name: "Eka Rachmawaty, M.M., PCC",
-    role: "Executive Coach ICF PCC (ACTC)",
-    desc: "Professional Certified Coach bersertifikat ICF dengan pengalaman 20+ tahun di bidang HR & Organizational Development.",
+    role: "Konsultan Pengembangan Kepemimpinan & Organisasi · ICF PCC",
+    desc: "Professional Certified Coach (ICF PCC) yang berspesialisasi dalam executive coaching, pengembangan kepemimpinan, talent management, dan pengembangan organisasi.",
   },
   {
     photo: mamluatul.url,
     name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
-    role: "Trainer SEFT Healing",
-    desc: "Psikolog dan trainer bersertifikat SEFT (Spiritual Emotional Freedom Technique) healing.",
+    role: "Psikolog Senior",
+    desc: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
   },
 ];
 
@@ -56,33 +56,48 @@ function Page() {
   return (
     <>
       <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-4xl px-5 py-20 text-center md:py-24">
-          <h1 className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl">
-            Tim Profesional Kami
+        <div className="mx-auto max-w-4xl px-5 py-16 md:py-24">
+          <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
+            <Link to="/" className="hover:text-brand-blue">
+              Beranda
+            </Link>
+            <span className="mx-2">&gt;</span>
+            <span className="text-primary">Tim Profesional</span>
+          </nav>
+          <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl">
+            Dipimpin praktisi, bukan sekadar teori.
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Psikolog, dokter, dan coach bersertifikat yang bekerja sebagai satu tim multidisiplin.
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Empat praktisi senior yang memimpin penugasan korporat, rumah sakit, dan institusi —
+            psikolog, konsultan kepemimpinan medis, dan executive coach bersertifikat ICF.
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <div className="grid gap-8 sm:grid-cols-2">
-          {TIM.map((p) => (
+        <div className="grid gap-10">
+          {TIM.map((p, i) => (
             <article
               key={p.name}
-              className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md"
+              className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md md:grid-cols-[minmax(0,320px)_1fr]"
             >
               <img
                 src={p.photo}
-                alt={`Potret ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
+                alt={`Potret studio ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
                 loading="lazy"
-                className="aspect-4/5 w-full object-cover object-top"
+                className="aspect-4/5 w-full object-cover object-top md:h-full"
               />
-              <div className="p-6">
-                <h2 className="text-lg font-bold leading-snug text-primary">{p.name}</h2>
-                <p className="mt-1 text-sm font-semibold text-brand-blue">{p.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              <div className="flex flex-col justify-center p-7 md:p-10">
+                <span className="text-xs font-bold tracking-[0.18em] text-brand-blue">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="mt-3 text-xl font-bold leading-snug text-primary md:text-2xl">
+                  {p.name}
+                </h2>
+                <p className="mt-2 text-sm font-semibold text-brand-blue">{p.role}</p>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                  {p.desc}
+                </p>
               </div>
             </article>
           ))}
