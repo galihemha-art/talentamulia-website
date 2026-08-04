@@ -1,4 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { LayananDetailPage } from "@/components/site/LayananDetailPage";
+import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
+
 
 const TITLES: Record<string, string> = {
   "konsultasi-hr": "Konsultasi HR",
