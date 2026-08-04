@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
 import { CoachingHubPage } from "@/components/site/CoachingHubPage";
+import { KonsultasiOnlineOfflinePage } from "@/components/site/KonsultasiOnlineOfflinePage";
+import { PemeriksaanPsikologiDetailPage } from "@/components/site/PemeriksaanPsikologiDetailPage";
+import { PEMERIKSAAN_PSIKOLOGI } from "@/lib/pemeriksaan-psikologi-data";
 
 
 const TITLES: Record<string, string> = {
@@ -47,7 +50,7 @@ function titleFor(slug: string) {
 
 export const Route = createFileRoute("/layanan/$slug")({
   head: ({ params }) => {
-    const detail = LAYANAN_KORPORAT[params.slug];
+    const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug];
     const title = detail?.nama ?? titleFor(params.slug);
     const description = detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
@@ -69,6 +72,9 @@ export const Route = createFileRoute("/layanan/$slug")({
 function LayananRoutePage() {
   const { slug } = Route.useParams();
   if (slug === "coaching") return <CoachingHubPage />;
+  if (slug === "konsultasi-online-offline") return <KonsultasiOnlineOfflinePage />;
+  const pemeriksaan = PEMERIKSAAN_PSIKOLOGI[slug];
+  if (pemeriksaan) return <PemeriksaanPsikologiDetailPage data={pemeriksaan} />;
   const detail = LAYANAN_KORPORAT[slug];
   if (detail) return <LayananDetailPage data={detail} />;
   return <LayananPlaceholder slug={slug} />;
