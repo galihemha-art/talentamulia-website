@@ -364,4 +364,93 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
       "Tim fasilitator berpengalaman lintas sektor",
     ],
   },
+  "talent-acquisition": {
+    slug: "talent-acquisition",
+    nama: "Talent Acquisition",
+    subjudul:
+      "Pencarian dan penyaringan kandidat untuk posisi staff hingga menengah dengan proses yang efisien dan terukur.",
+    ringkasan:
+      "Layanan Talent Acquisition membantu organisasi mengisi posisi staff hingga level menengah dengan proses yang cepat namun tetap terukur — memadukan pencarian kandidat, wawancara terstruktur, dan asesmen psikologi dalam satu alur kerja.",
+    tantangan: [
+      "Proses rekrutmen manual memakan waktu lama",
+      "Kualitas kandidat tidak konsisten",
+      "Kesalahan hiring berulang di posisi yang sama",
+      "Tidak ada standar seleksi yang objektif",
+    ],
+    pendekatan:
+      "Kombinasi sourcing kandidat, screening awal, dan asesmen psikologi untuk memastikan kesesuaian kandidat dengan kebutuhan posisi.",
+    ruangLingkup: [
+      "Sourcing & screening kandidat",
+      "Wawancara awal terstruktur",
+      "Asesmen psikologi kandidat",
+      "Rekomendasi kandidat siap wawancara final",
+    ],
+    untukSiapa: [
+      "Perusahaan yang butuh percepatan proses rekrutmen volume menengah",
+      "Organisasi tanpa tim rekrutmen internal yang memadai",
+    ],
+    kenapaKami: [
+      "Kombinasi rekrutmen dan asesmen psikologi dalam satu proses, bukan sekadar penyaringan CV",
+    ],
+  },
+  "executive-search": {
+    slug: "executive-search",
+    nama: "Executive Search",
+    subjudul:
+      "Proses identifikasi dan seleksi calon eksekutif dengan pendekatan diskret, objektif, dan selaras visi bisnis.",
+    ringkasan:
+      "Executive Search menangani pencarian pemimpin untuk posisi strategis secara diskret — mulai dari pemetaan kandidat di pasar, pendekatan personal, asesmen mendalam, hingga pendampingan negosiasi dan onboarding.",
+    tantangan: [
+      "Posisi eksekutif kosong terlalu lama",
+      "Kandidat internal terbatas untuk posisi strategis",
+      "Kebutuhan kerahasiaan proses pencarian",
+      "Risiko salah pilih pemimpin berdampak besar ke organisasi",
+    ],
+    pendekatan:
+      "Pendekatan pencarian diskret (headhunting terarah), asesmen mendalam, dan verifikasi rekam jejak kandidat.",
+    ruangLingkup: [
+      "Pemetaan kandidat pasar (market mapping)",
+      "Pendekatan & asesmen kandidat",
+      "Verifikasi rekam jejak & referensi",
+      "Pendampingan proses negosiasi & onboarding",
+    ],
+    untukSiapa: [
+      "Perusahaan yang mencari posisi C-level, direksi, atau senior leadership",
+      "Organisasi yang butuh kerahasiaan tinggi dalam proses pencarian",
+    ],
+    kenapaKami: [
+      "Pendekatan berbasis asesmen psikologi, bukan sekadar database CV",
+      "Kerahasiaan terjaga sepanjang proses",
+    ],
+  },
+  "pendampingan-sekolah-perusahaan": {
+    slug: "pendampingan-sekolah-perusahaan",
+    nama: "Pendampingan Sekolah & Perusahaan",
+    subjudul:
+      "Pendampingan berkelanjutan dan terjadwal untuk sekolah atau perusahaan yang membutuhkan kehadiran psikolog/konsultan secara rutin.",
+    ringkasan:
+      "Program pendampingan menghadirkan psikolog dan konsultan kami secara terjadwal di lokasi Anda, sehingga penanganan kasus siswa maupun karyawan berjalan berkelanjutan dan tim internal memperoleh dukungan teknis yang konsisten.",
+    tantangan: [
+      "Kebutuhan psikolog/konselor rutin di lokasi belum terpenuhi",
+      "Kasus siswa/karyawan butuh penanganan berkelanjutan, bukan sesi lepas",
+      "Tim BK/HR internal butuh pendampingan teknis dari psikolog eksternal",
+    ],
+    pendekatan:
+      "Penjadwalan sesi rutin di lokasi (mingguan atau bulanan sesuai kebutuhan), dengan koordinasi berkelanjutan bersama tim internal.",
+    ruangLingkup: [
+      "Sesi konseling terjadwal rutin di lokasi",
+      "Pendampingan kasus siswa/karyawan berkelanjutan",
+      "Koordinasi dengan guru BK/HR internal",
+      "Laporan perkembangan berkala",
+    ],
+    untukSiapa: [
+      "Sekolah yang membutuhkan psikolog pendamping rutin",
+      "Perusahaan yang membutuhkan psikolog in-house atau paruh waktu terjadwal",
+    ],
+    kenapaKami: [
+      "Fleksibel disesuaikan jadwal institusi",
+      "Satu tim menangani multi kebutuhan: psikologi, kesehatan, dan coaching",
+      "Kontinuitas penanganan lebih terjaga dibanding sesi lepas",
+    ],
+  },
 };
