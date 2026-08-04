@@ -21,7 +21,7 @@ export function SiteLink({
     return (
       <Link
         to="/layanan/$slug"
-        params={{ slug: layanan[1] }}
+        params={{ slug: layanan[1]! }}
         className={className}
         onClick={onClick}
       >
@@ -35,7 +35,7 @@ export function SiteLink({
     return (
       <Link
         to="/industri/$slug"
-        params={{ slug: industri[1] }}
+        params={{ slug: industri[1]! }}
         className={className}
         onClick={onClick}
       >
