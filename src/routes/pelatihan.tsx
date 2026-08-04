@@ -64,20 +64,26 @@ const TOPIK = [
 const FORMAT = [
   {
     icon: Users,
-    title: "In-House Training",
-    text: "Materi dikustomisasi sesuai isu dan budaya organisasi Anda, diselenggarakan di lokasi perusahaan.",
+    title: "Pelatihan (In-House/Klasikal)",
+    text: "Materi dikustomisasi sesuai isu dan budaya organisasi Anda, diselenggarakan klasikal di lokasi perusahaan atau institusi.",
   },
   {
     icon: Presentation,
-    title: "Workshop Publik",
-    text: "Kelas terbuka lintas organisasi dengan porsi praktik dan diskusi kasus yang besar.",
+    title: "Seminar",
+    text: "Sesi penyampaian gagasan untuk audiens besar — cocok untuk peluncuran program, kampanye internal, atau acara institusi.",
   },
   {
     icon: Laptop,
-    title: "Webinar",
-    text: "Sesi daring interaktif untuk peserta tersebar, lengkap dengan materi dan rekaman.",
+    title: "Workshop",
+    text: "Kelas dengan porsi praktik, simulasi, dan diskusi kasus yang besar; tersedia luring maupun daring interaktif.",
+  },
+  {
+    icon: Baby,
+    title: "Parenting Education",
+    text: "Seminar dan workshop parenting untuk sekolah, komunitas, atau perusahaan — format kelompok yang bersifat edukatif.",
   },
 ];
+
 
 function Page() {
   return (
