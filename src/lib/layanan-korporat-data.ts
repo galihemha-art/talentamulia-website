@@ -175,4 +175,193 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
       "Hasil actionable untuk pengembangan individu",
     ],
   },
+  "pemetaan-talenta": {
+    slug: "pemetaan-talenta",
+    nama: "Pemetaan Talenta",
+    subjudul:
+      "Memetakan potensi, kompetensi, dan kesiapan karyawan untuk keputusan promosi dan suksesi yang tepat sasaran.",
+    ringkasan:
+      "Pemetaan Talenta membantu organisasi mengenali siapa yang siap naik, siapa yang perlu dikembangkan, dan di mana risiko kekosongan posisi kunci berada — sehingga keputusan promosi dan suksesi berdiri di atas data, bukan asumsi.",
+    tantangan: [
+      "Promosi sering berbasis senioritas bukan kompetensi",
+      "Posisi kunci tidak punya kandidat pengganti",
+      "Potensi karyawan tersembunyi tidak terpetakan",
+      "Keputusan pengembangan SDM kurang berbasis data",
+    ],
+    pendekatan:
+      "Kombinasi psikotes, wawancara kompetensi, dan analisis data kinerja untuk menghasilkan peta talenta 9-box yang actionable.",
+    ruangLingkup: [
+      "Pemetaan 9-Box (kinerja x potensi)",
+      "Profil kompetensi individu",
+      "Rekomendasi jalur pengembangan",
+      "Input untuk perencanaan suksesi",
+    ],
+    untukSiapa: [
+      "Perusahaan yang menyusun rencana suksesi",
+      "Organisasi yang ingin objektif dalam promosi",
+      "HR yang butuh basis data pengembangan SDM",
+    ],
+    kenapaKami: [
+      "Metode tervalidasi, bukan formulir generik",
+      "Hasil actionable, bukan sekadar laporan",
+      "Tim psikolog bersertifikat",
+    ],
+  },
+  "executive-coaching": {
+    slug: "executive-coaching",
+    nama: "Executive Coaching",
+    subjudul:
+      "Coaching satu-lawan-satu bersertifikat ICF PCC untuk pemimpin dan talenta berpotensi tinggi.",
+    ringkasan:
+      "Executive Coaching memberi pemimpin ruang reflektif yang terstruktur untuk mengasah cara berpikir, mengambil keputusan, dan memimpin orang — dengan pendampingan coach bersertifikat ICF PCC yang berorientasi pada hasil nyata di tempat kerja.",
+    tantangan: [
+      "Pemimpin baru kesulitan beradaptasi dengan peran lebih besar",
+      "Blind spot kepemimpinan tidak disadari",
+      "Tekanan performa tinggi tanpa ruang refleksi",
+      "Suksesor perlu dipersiapkan sebelum naik jabatan",
+    ],
+    pendekatan:
+      "Sesi coaching individual terstruktur, berbasis tujuan yang disepakati bersama atasan/HR, dengan evaluasi progres berkala.",
+    ruangLingkup: [
+      "Coaching kepemimpinan eksekutif",
+      "Coaching transisi jabatan",
+      "Coaching kesiapan suksesi",
+      "Coaching keseimbangan kerja-kehidupan pemimpin",
+    ],
+    untukSiapa: [
+      "Direksi dan senior leader",
+      "Talenta berpotensi tinggi (high-potential)",
+      "Pemimpin yang baru naik jabatan",
+    ],
+    kenapaKami: [
+      "Coach bersertifikat ICF PCC (ACTC)",
+      "Pengalaman 20+ tahun di bidang HR dan pengembangan organisasi",
+      "Pendekatan rahasia dan berorientasi hasil",
+    ],
+  },
+  "team-coaching": {
+    slug: "team-coaching",
+    nama: "Team Coaching",
+    subjudul: "Penguatan kolaborasi dan kinerja tim melalui pendekatan coaching kelompok.",
+    ringkasan:
+      "Team Coaching bekerja pada pola interaksi tim — bagaimana anggota berkomunikasi, menyelesaikan perbedaan, dan menyepakati cara kerja bersama — sehingga tim bergerak sebagai satu kesatuan, bukan kumpulan individu yang saling menunggu.",
+    tantangan: [
+      "Silo antar divisi menghambat kolaborasi",
+      "Konflik tim tidak terselesaikan tuntas",
+      "Tim baru hasil merger/reorganisasi belum solid",
+      "Komunikasi lintas fungsi lemah",
+    ],
+    pendekatan:
+      "Sesi coaching kelompok terfasilitasi untuk membangun kesepakatan kerja tim, memperbaiki pola komunikasi, dan menyelaraskan tujuan bersama.",
+    ruangLingkup: [
+      "Diagnosis dinamika tim",
+      "Fasilitasi team charter/kesepakatan kerja",
+      "Sesi resolusi konflik tim",
+      "Pendampingan pasca-merger/reorganisasi",
+    ],
+    untukSiapa: [
+      "Tim lintas fungsi yang perlu keselarasan",
+      "Tim hasil merger, akuisisi, atau reorganisasi",
+      "Leadership team yang ingin memperkuat kekompakan",
+    ],
+    kenapaKami: [
+      "Fasilitator berpengalaman menangani dinamika tim organisasi kompleks",
+      "Pendekatan netral dan berbasis proses, bukan menghakimi individu",
+    ],
+  },
+  "kesejahteraan-karyawan": {
+    slug: "kesejahteraan-karyawan",
+    nama: "Kesejahteraan Karyawan",
+    subjudul:
+      "Program bantuan karyawan (EAP), skrining kesehatan mental, dan pencegahan burnout di tempat kerja.",
+    ringkasan:
+      "Program kesejahteraan karyawan Talenta Mulia menyediakan saluran dukungan psikologis yang rahasia dan mudah diakses, dipadukan dengan skrining berkala serta pelatihan manajer lini agar organisasi mampu mencegah burnout sebelum berdampak pada kinerja.",
+    tantangan: [
+      "Burnout dan stres kerja meningkatkan turnover",
+      "Karyawan enggan mencari bantuan psikologis karena stigma",
+      "Tidak ada saluran dukungan kesehatan mental di tempat kerja",
+      "Produktivitas menurun akibat masalah pribadi karyawan yang tidak tertangani",
+    ],
+    pendekatan:
+      "Layanan konseling rahasia untuk karyawan, skrining kesehatan mental berkala, dan pelatihan awareness untuk manajer lini.",
+    ruangLingkup: [
+      "Employee Assistance Program (EAP)",
+      "Skrining kesehatan mental karyawan",
+      "Pelatihan awareness burnout untuk manajer",
+      "Hotline/konseling rahasia karyawan",
+    ],
+    untukSiapa: [
+      "Perusahaan dengan tingkat stres kerja tinggi",
+      "Organisasi yang ingin menekan turnover",
+      "HR yang membangun budaya peduli kesehatan mental",
+    ],
+    kenapaKami: [
+      "Kerahasiaan terjamin sesuai kode etik psikologi",
+      "Kombinasi psikolog dan tenaga medis dalam satu program",
+      "Pendekatan preventif, bukan hanya reaktif",
+    ],
+  },
+  "medical-wellness": {
+    slug: "medical-wellness",
+    nama: "Medical Wellness",
+    subjudul:
+      "Layanan kesehatan medis korporat: medical check-up eksekutif, edukasi kesehatan, dan program wellness karyawan.",
+    ringkasan:
+      "Medical Wellness menghadirkan sisi medis dalam program kesejahteraan korporat — pemeriksaan kesehatan yang ditindaklanjuti, edukasi gaya hidup, dan wellness berkelanjutan yang terhubung dengan layanan psikologi kami.",
+    tantangan: [
+      "Karyawan senior/eksekutif jarang medical check-up rutin",
+      "Risiko penyakit tidak menular meningkat di usia produktif",
+      "Program wellness perusahaan sering seremonial tanpa tindak lanjut medis",
+      "Kurang integrasi kesehatan fisik dan mental karyawan",
+    ],
+    pendekatan:
+      "Kombinasi pemeriksaan medis, edukasi kesehatan, dan program wellness berkelanjutan yang dipandu konsultan kepemimpinan medis.",
+    ruangLingkup: [
+      "Medical check-up eksekutif",
+      "Edukasi kesehatan & gaya hidup",
+      "Program wellness berkala",
+      "Integrasi kesehatan fisik-mental karyawan",
+    ],
+    untukSiapa: [
+      "Korporat yang ingin program wellness bermakna medis",
+      "Eksekutif dan karyawan senior",
+      "Perusahaan yang mempersiapkan karyawan menjelang pensiun",
+    ],
+    kenapaKami: [
+      "Dipandu langsung oleh dokter spesialis dengan pengalaman manajemen rumah sakit",
+      "Terintegrasi dengan program psikologi, bukan berdiri sendiri",
+    ],
+  },
+  "pelatihan-kepemimpinan": {
+    slug: "pelatihan-kepemimpinan",
+    nama: "Pengembangan Kepemimpinan",
+    subjudul:
+      "Program pengembangan kepemimpinan dan manajemen yang dirancang sesuai kebutuhan level serta budaya organisasi.",
+    ringkasan:
+      "Program pengembangan kepemimpinan kami dirancang berdasarkan level jabatan dan budaya organisasi Anda, lalu dilanjutkan dengan pendampingan penerapan agar perilaku kepemimpinan benar-benar berubah di lapangan.",
+    tantangan: [
+      "Pemimpin baru (first-time manager) belum siap secara kompetensi",
+      "Gaya kepemimpinan tidak konsisten antar level manajer",
+      "Program leadership development sering seremonial tanpa tindak lanjut",
+      "Kebutuhan penyelarasan budaya kepemimpinan dengan strategi bisnis",
+    ],
+    pendekatan:
+      "Kombinasi pelatihan klasikal, praktik terbimbing, dan pendampingan pasca-pelatihan agar perubahan perilaku benar-benar terjadi.",
+    ruangLingkup: [
+      "Program leadership untuk first-time manager",
+      "Program leadership untuk middle-senior manager",
+      "Akademi kepemimpinan (multi-modul)",
+      "Pendampingan penerapan pasca-pelatihan",
+    ],
+    untukSiapa: [
+      "Perusahaan yang mempersiapkan jalur kepemimpinan",
+      "Organisasi yang ingin menyelaraskan gaya kepemimpinan antar level",
+      "Institusi yang menjalankan transformasi budaya",
+    ],
+    kenapaKami: [
+      "Dirancang sesuai level dan budaya organisasi, bukan template generik",
+      "Ada pendampingan penerapan, bukan hanya pelatihan satu hari",
+      "Tim fasilitator berpengalaman lintas sektor",
+    ],
+  },
 };
