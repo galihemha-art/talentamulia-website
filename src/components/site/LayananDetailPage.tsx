@@ -178,7 +178,7 @@ export function LayananDetailPage({
           Pertanyaan yang sering diajukan
         </h2>
         <div className="mt-8 space-y-3">
-          {FAQ_KORPORAT.map((faq, i) => (
+          {faqItems.map((faq, i) => (
             <div key={faq.q} className="overflow-hidden rounded-2xl border border-border bg-card">
               <button
                 type="button"
@@ -201,6 +201,41 @@ export function LayananDetailPage({
         </div>
       </section>
 
+      {wawasan && wawasan.length > 0 && (
+        <section className="border-t border-border bg-secondary/40">
+          <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+            <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+              Wawasan terkait
+            </h2>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {wawasan.map((a) => (
+                <Link
+                  key={a.slug}
+                  to="/artikel/$slug"
+                  params={{ slug: a.slug }}
+                  className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-soft"
+                >
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-blue">
+                    {a.kategori}
+                  </span>
+                  <h3 className="mt-3 font-heading text-lg font-semibold leading-snug text-primary">
+                    {a.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                    {a.excerpt}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
+                    Baca artikel
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <div className={wawasan && wawasan.length > 0 ? "pt-16" : ""} />
       <CtaPenutup />
     </>
   );
