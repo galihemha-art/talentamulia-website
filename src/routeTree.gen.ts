@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArtikelRouteImport } from './routes/artikel'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndustriRouteImport } from './routes/industri'
+import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
@@ -21,6 +22,7 @@ import { Route as ProfessionalsRouteImport } from './routes/professionals'
 import { Route as ProgramRouteImport } from './routes/program'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
+import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
 import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
@@ -51,6 +53,11 @@ const FaqRoute = FaqRouteImport.update({
 const IndustriRoute = IndustriRouteImport.update({
   id: '/industri',
   path: '/industri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KebijakanPrivasiRoute = KebijakanPrivasiRouteImport.update({
+  id: '/kebijakan-privasi',
+  path: '/kebijakan-privasi',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KesehatanRoute = KesehatanRouteImport.update({
@@ -91,6 +98,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const SolusiKorporatRoute = SolusiKorporatRouteImport.update({
   id: '/solusi-korporat',
   path: '/solusi-korporat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SyaratKetentuanRoute = SyaratKetentuanRouteImport.update({
+  id: '/syarat-ketentuan',
+  path: '/syarat-ketentuan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TentangKamiRoute = TentangKamiRouteImport.update({
@@ -154,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/artikel': typeof ArtikelRouteWithChildren
   '/faq': typeof FaqRoute
   '/industri': typeof IndustriRouteWithChildren
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -162,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/program': typeof ProgramRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -177,6 +191,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -184,6 +199,7 @@ export interface FileRoutesByTo {
   '/professionals': typeof ProfessionalsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
@@ -201,6 +217,7 @@ export interface FileRoutesById {
   '/artikel': typeof ArtikelRouteWithChildren
   '/faq': typeof FaqRoute
   '/industri': typeof IndustriRouteWithChildren
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -209,6 +226,7 @@ export interface FileRoutesById {
   '/program': typeof ProgramRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
   '/testimoni': typeof TestimoniRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -228,6 +246,7 @@ export interface FileRouteTypes {
     | '/artikel'
     | '/faq'
     | '/industri'
+    | '/kebijakan-privasi'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -236,6 +255,7 @@ export interface FileRouteTypes {
     | '/program'
     | '/sitemap.xml'
     | '/solusi-korporat'
+    | '/syarat-ketentuan'
     | '/tentang-kami'
     | '/testimoni'
     | '/artikel/$slug'
@@ -251,6 +271,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/faq'
+    | '/kebijakan-privasi'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -258,6 +279,7 @@ export interface FileRouteTypes {
     | '/professionals'
     | '/sitemap.xml'
     | '/solusi-korporat'
+    | '/syarat-ketentuan'
     | '/testimoni'
     | '/artikel/$slug'
     | '/industri/$slug'
@@ -274,6 +296,7 @@ export interface FileRouteTypes {
     | '/artikel'
     | '/faq'
     | '/industri'
+    | '/kebijakan-privasi'
     | '/kesehatan'
     | '/kontak'
     | '/layanan-individu'
@@ -282,6 +305,7 @@ export interface FileRouteTypes {
     | '/program'
     | '/sitemap.xml'
     | '/solusi-korporat'
+    | '/syarat-ketentuan'
     | '/tentang-kami'
     | '/testimoni'
     | '/artikel/$slug'
@@ -300,6 +324,7 @@ export interface RootRouteChildren {
   ArtikelRoute: typeof ArtikelRouteWithChildren
   FaqRoute: typeof FaqRoute
   IndustriRoute: typeof IndustriRouteWithChildren
+  KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KesehatanRoute: typeof KesehatanRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
@@ -308,6 +333,7 @@ export interface RootRouteChildren {
   ProgramRoute: typeof ProgramRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolusiKorporatRoute: typeof SolusiKorporatRoute
+  SyaratKetentuanRoute: typeof SyaratKetentuanRoute
   TentangKamiRoute: typeof TentangKamiRouteWithChildren
   TestimoniRoute: typeof TestimoniRoute
   LayananSlugRoute: typeof LayananSlugRoute
@@ -341,6 +367,13 @@ declare module '@tanstack/react-router' {
       path: '/industri'
       fullPath: '/industri'
       preLoaderRoute: typeof IndustriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kebijakan-privasi': {
+      id: '/kebijakan-privasi'
+      path: '/kebijakan-privasi'
+      fullPath: '/kebijakan-privasi'
+      preLoaderRoute: typeof KebijakanPrivasiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kesehatan': {
@@ -397,6 +430,13 @@ declare module '@tanstack/react-router' {
       path: '/solusi-korporat'
       fullPath: '/solusi-korporat'
       preLoaderRoute: typeof SolusiKorporatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/syarat-ketentuan': {
+      id: '/syarat-ketentuan'
+      path: '/syarat-ketentuan'
+      fullPath: '/syarat-ketentuan'
+      preLoaderRoute: typeof SyaratKetentuanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tentang-kami': {
@@ -538,6 +578,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArtikelRoute: ArtikelRouteWithChildren,
   FaqRoute: FaqRoute,
   IndustriRoute: IndustriRouteWithChildren,
+  KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KesehatanRoute: KesehatanRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
@@ -546,6 +587,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramRoute: ProgramRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolusiKorporatRoute: SolusiKorporatRoute,
+  SyaratKetentuanRoute: SyaratKetentuanRoute,
   TentangKamiRoute: TentangKamiRouteWithChildren,
   TestimoniRoute: TestimoniRoute,
   LayananSlugRoute: LayananSlugRoute,
