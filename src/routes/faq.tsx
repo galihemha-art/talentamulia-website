@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -23,6 +24,10 @@ export const Route = createFileRoute("/faq")({
       ogUrl("/faq"),
     ],
     links: [canonicalLink("/faq")],
+    scripts: [
+      jsonLd(faqSchema(FAQ.map(({ q, a }) => ({ q, a })))),
+      jsonLd(breadcrumbSchema([{ name: "FAQ", path: "/faq" }])),
+    ],
   }),
   component: Page,
 });
