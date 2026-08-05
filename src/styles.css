@@ -1,3 +1,8 @@
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+@import "@fontsource/poppins/800.css";
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -94,8 +99,8 @@
   --surface-soft: oklch(0.975 0.02 245);
   --gradient-brand: linear-gradient(100deg, var(--brand-magenta), var(--brand-blue));
   --shadow-soft: 0 18px 45px -25px color-mix(in oklab, var(--primary) 45%, transparent);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-wordmark: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-wordmark: "Poppins", "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
