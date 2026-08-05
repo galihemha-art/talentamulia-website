@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { WordMark } from "./WordMark";
@@ -114,6 +114,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [lang, setLang] = useState<"ID" | "EN">("ID");
+  const router = useRouter();
+  const [warmed, setWarmed] = useState(false);
+
+  /** Warms the shared service/industry route chunks as soon as the menu opens. */
+  const warmServiceRoutes = () => {
+    if (warmed) return;
+    setWarmed(true);
+    void router.preloadRoute({ to: "/solusi-korporat" });
+    void router.preloadRoute({ to: "/layanan/$slug", params: { slug: "konsultasi-hr" } });
+    void router.preloadRoute({ to: "/industri/$slug", params: { slug: "manufaktur" } });
+  };
 
   const close = () => {
     setOpen(false);
@@ -152,7 +163,7 @@ export function SiteHeader() {
           </div>
 
           {/* Mega-menu Layanan */}
-          <div className="group static">
+          <div className="group static" onMouseEnter={warmServiceRoutes} onFocus={warmServiceRoutes}>
             <Link
               to="/solusi-korporat"
               activeProps={{ className: "text-primary" }}
