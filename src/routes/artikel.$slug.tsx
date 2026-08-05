@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ARTIKEL } from "@/lib/artikel-data";
@@ -15,7 +16,9 @@ export const Route = createFileRoute("/artikel/$slug")({
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+        ogUrl(`/artikel/${params.slug}`),
       ],
+      links: [canonicalLink(`/artikel/${params.slug}`)],
     };
   },
   component: Page,
