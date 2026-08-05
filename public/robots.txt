@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://talenta-mulia-hub.lovable.app/sitemap.xml
+Sitemap: https://talentamulia.co.id/sitemap.xml
