@@ -28,7 +28,7 @@ export const Route = createFileRoute("/industri/$slug")({
         jsonLd(
           breadcrumbSchema([
             { name: "Industri", path: "/industri" },
-            { name: params.slug, path: `/industri/${params.slug}` },
+            { name: nama, path: `/industri/${params.slug}` },
           ]),
         ),
       ],
