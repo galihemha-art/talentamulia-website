@@ -1,7 +1,7 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Activity, ClipboardCheck, HeartPulse, Stethoscope } from "lucide-react";
-import andiani from "@/assets/Dr_Andiani.png.asset.json";
+import andiani from "@/assets/Dr_Andiani.webp";
 
 export const Route = createFileRoute("/kesehatan")({
   head: () => ({
@@ -85,7 +85,7 @@ function Page() {
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto grid max-w-5xl items-center gap-8 px-5 py-16 md:grid-cols-[280px_1fr] md:py-20">
           <img
-            src={andiani.url}
+            src={andiani}
             alt="Potret Dr. dr. Hj. Andiani, konsultan kepemimpinan medis Talenta Mulia"
             loading="lazy"
             className="aspect-4/5 w-full rounded-2xl border border-border object-cover object-top shadow-sm"
