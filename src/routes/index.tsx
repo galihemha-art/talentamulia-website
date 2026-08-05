@@ -88,11 +88,26 @@ const MARQUEE =
 const SEKTOR = ["Rumah Sakit", "BUMN", "Manufaktur", "Perbankan", "Pemerintah", "Universitas"];
 
 const STATS = [
-  { value: "8+", label: "Ahli Multidisiplin" },
-  { value: "25+", label: "Tahun Pengalaman Gabungan" },
-  { value: "50+", label: "Organisasi Dilayani" },
-  { value: "2rb+", label: "Individu Terberdayakan" },
+  {
+    value: "4",
+    label: "Profesional Senior",
+    note: "Psikolog • Dokter • Executive Coach • Konsultan Organisasi",
+  },
+  { value: "45+", label: "Tahun Pengalaman Profesional" },
+  { value: "80+", label: "Seminar, Workshop & Pelatihan" },
+  { value: "20+", label: "Institusi Pendidikan, Rumah Sakit & Organisasi" },
+  { value: "1000+", label: "Jam Executive Coaching" },
+  { value: "3", label: "Buku ISBN Nasional" },
 ];
+
+const KEPERCAYAAN = [
+  { group: "Rumah Sakit", items: ["RS Umum", "RS Ibu & Anak", "Klinik Utama"] },
+  { group: "Universitas", items: ["Universitas Negeri", "Universitas Swasta", "Politeknik"] },
+  { group: "Sekolah", items: ["SMA / SMK", "SMP", "Yayasan Pendidikan"] },
+  { group: "Organisasi Profesi", items: ["Asosiasi Psikologi", "Asosiasi Medis", "Forum HR"] },
+  { group: "Government", items: ["Pemerintah Daerah", "BUMN", "Dinas Terkait"] },
+];
+
 
 const ALASAN = [
   {
@@ -327,16 +342,59 @@ function Beranda() {
             Psikolog, executive coach, dokter, dan pemimpin kesehatan — dalam satu praktik
             konsultasi terintegrasi.
           </p>
-          <dl className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {STATS.map((stat) => (
               <div key={stat.label} className="rounded-2xl bg-background p-6 shadow-soft">
                 <dt className="text-4xl font-extrabold text-gradient-brand">{stat.value}</dt>
-                <dd className="mt-2 text-sm text-muted-foreground">{stat.label}</dd>
+                <dd className="mt-2 text-sm font-semibold text-primary">{stat.label}</dd>
+                {stat.note ? (
+                  <dd className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                    {stat.note}
+                  </dd>
+                ) : null}
               </div>
             ))}
           </dl>
         </div>
       </section>
+
+      {/* Dipercaya */}
+      <section className="mx-auto max-w-7xl px-5 py-14">
+        <h2 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
+          Dipercaya oleh Profesional dari Berbagai Institusi
+        </h2>
+        <div className="mt-10 space-y-8">
+          {KEPERCAYAAN.map((kel) => (
+            <div key={kel.group}>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {kel.group}
+              </h3>
+              <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                {kel.items.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 opacity-70 grayscale transition-opacity hover:opacity-100"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-secondary text-xs font-bold text-primary">
+                      {item
+                        .split(" ")
+                        .map((w) => w[0])
+                        .join("")
+                        .slice(0, 2)
+                        .toUpperCase()}
+                    </span>
+                    <span className="text-sm font-medium text-primary/80">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-xs text-muted-foreground">
+          Ilustrasi kelompok institusi mitra; logo aktual tidak ditampilkan.
+        </p>
+      </section>
+
 
       {/* Alasan */}
       <section className="mx-auto max-w-7xl px-5 py-14">
