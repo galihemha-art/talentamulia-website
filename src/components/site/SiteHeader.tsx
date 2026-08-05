@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { WordMark } from "./WordMark";
