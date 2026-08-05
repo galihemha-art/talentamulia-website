@@ -30,6 +30,8 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/faq", changefreq: "monthly", priority: "0.6" },
           { path: "/testimoni", changefreq: "monthly", priority: "0.6" },
           { path: "/kontak", changefreq: "monthly", priority: "0.9" },
+          { path: "/kebijakan-privasi", changefreq: "yearly", priority: "0.3" },
+          { path: "/syarat-ketentuan", changefreq: "yearly", priority: "0.3" },
           ...["manufaktur", "kesehatan", "pendidikan", "pemerintahan", "perbankan"].map((slug) => ({
             path: `/industri/${slug}`,
             changefreq: "monthly" as const,
