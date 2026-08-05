@@ -78,7 +78,7 @@ export function ServiceTopicClusters({
 }: {
   slug: string;
   /** Override for related articles; defaults to the service's topic cluster. */
-  articles?: Artikel[];
+  articles?: Artikel[] | undefined;
 }) {
   const related = articles ?? relatedArticlesForService(slug, 3);
   const services = relatedServicesForService(slug, 3);
