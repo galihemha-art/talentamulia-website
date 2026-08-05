@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 const TITLE = "Kebijakan Privasi — Talenta Mulia Sidoarjo, Jawa Timur";
@@ -17,6 +18,9 @@ export const Route = createFileRoute("/kebijakan-privasi")({
       ogUrl("/kebijakan-privasi"),
     ],
     links: [canonicalLink("/kebijakan-privasi")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Kebijakan Privasi", path: "/kebijakan-privasi" }])),
+    ],
   }),
   component: Page,
 });

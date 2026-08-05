@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 const TITLE = "Syarat & Ketentuan — Talenta Mulia Sidoarjo, Jawa Timur";
@@ -17,6 +18,9 @@ export const Route = createFileRoute("/syarat-ketentuan")({
       ogUrl("/syarat-ketentuan"),
     ],
     links: [canonicalLink("/syarat-ketentuan")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Syarat & Ketentuan", path: "/syarat-ketentuan" }])),
+    ],
   }),
   component: Page,
 });

@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLink } from "@/components/site/SiteLink";
@@ -34,6 +35,9 @@ export const Route = createFileRoute("/artikel/")({
       ogUrl("/artikel"),
     ],
     links: [canonicalLink("/artikel")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Artikel", path: "/artikel" }])),
+    ],
   }),
   component: Page,
 });

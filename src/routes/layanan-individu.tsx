@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MonitorSmartphone, ShieldCheck } from "lucide-react";
 import { LAYANAN_INDIVIDU, LAYANAN_INDIVIDU_LIST, KERAHASIAAN_NOTE } from "@/lib/layanan-individu-data";
@@ -26,6 +27,9 @@ export const Route = createFileRoute("/layanan-individu")({
       ogUrl("/layanan-individu"),
     ],
     links: [canonicalLink("/layanan-individu")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Layanan Individu", path: "/layanan-individu" }])),
+    ],
   }),
   component: Page,
 });

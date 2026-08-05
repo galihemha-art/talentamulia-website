@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd, medicalOrganizationSchema } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Activity, ClipboardCheck, HeartPulse, Stethoscope } from "lucide-react";
 import andiani from "@/assets/Dr_Andiani.webp";
@@ -23,6 +24,10 @@ export const Route = createFileRoute("/kesehatan")({
       ogUrl("/kesehatan"),
     ],
     links: [canonicalLink("/kesehatan")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Konsultasi Kesehatan", path: "/kesehatan" }])),
+      jsonLd(medicalOrganizationSchema("/kesehatan")),
+    ],
   }),
   component: Page,
 });

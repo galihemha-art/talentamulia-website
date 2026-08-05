@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { useState, type FormEvent } from "react";
 import { Clock, ExternalLink, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { z } from "zod";
@@ -27,6 +28,9 @@ export const Route = createFileRoute("/kontak")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [canonicalLink("/kontak")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Kontak", path: "/kontak" }])),
+    ],
   }),
   component: Page,
 });

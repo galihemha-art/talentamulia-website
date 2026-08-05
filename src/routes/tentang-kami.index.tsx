@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -34,6 +35,9 @@ export const Route = createFileRoute("/tentang-kami/")({
       ogUrl("/tentang-kami"),
     ],
     links: [canonicalLink("/tentang-kami")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Tentang Kami", path: "/tentang-kami" }])),
+    ],
   }),
   component: Page,
 });
