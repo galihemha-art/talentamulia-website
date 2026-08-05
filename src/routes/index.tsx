@@ -88,11 +88,26 @@ const MARQUEE =
 const SEKTOR = ["Rumah Sakit", "BUMN", "Manufaktur", "Perbankan", "Pemerintah", "Universitas"];
 
 const STATS = [
-  { value: "8+", label: "Ahli Multidisiplin" },
-  { value: "25+", label: "Tahun Pengalaman Gabungan" },
-  { value: "50+", label: "Organisasi Dilayani" },
-  { value: "2rb+", label: "Individu Terberdayakan" },
+  {
+    value: "4",
+    label: "Profesional Senior",
+    note: "Psikolog • Dokter • Executive Coach • Konsultan Organisasi",
+  },
+  { value: "45+", label: "Tahun Pengalaman Profesional" },
+  { value: "80+", label: "Seminar, Workshop & Pelatihan" },
+  { value: "20+", label: "Institusi Pendidikan, Rumah Sakit & Organisasi" },
+  { value: "1000+", label: "Jam Executive Coaching" },
+  { value: "3", label: "Buku ISBN Nasional" },
 ];
+
+const KEPERCAYAAN = [
+  { group: "Rumah Sakit", items: ["RS Umum", "RS Ibu & Anak", "Klinik Utama"] },
+  { group: "Universitas", items: ["Universitas Negeri", "Universitas Swasta", "Politeknik"] },
+  { group: "Sekolah", items: ["SMA / SMK", "SMP", "Yayasan Pendidikan"] },
+  { group: "Organisasi Profesi", items: ["Asosiasi Psikologi", "Asosiasi Medis", "Forum HR"] },
+  { group: "Government", items: ["Pemerintah Daerah", "BUMN", "Dinas Terkait"] },
+];
+
 
 const ALASAN = [
   {
