@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/tentang-kami/legalitas")({
@@ -17,7 +18,9 @@ export const Route = createFileRoute("/tentang-kami/legalitas")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/tentang-kami/legalitas"),
     ],
+    links: [canonicalLink("/tentang-kami/legalitas")],
   }),
   component: Page,
 });

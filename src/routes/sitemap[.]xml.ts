@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { ARTIKEL } from "@/lib/artikel-data";
 
-const BASE_URL = "https://talenta-mulia-hub.lovable.app";
+import { SITE_URL } from "@/lib/seo";
+
+const BASE_URL = SITE_URL;
 
 interface SitemapEntry {
   path: string;

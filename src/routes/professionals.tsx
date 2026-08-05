@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import maulidah from "@/assets/Maulidah_Muflichah.png.asset.json";
@@ -20,7 +21,9 @@ export const Route = createFileRoute("/professionals")({
         content:
           "Psikolog klinis, dokter konsultan, executive coach ICF PCC, dan trainer SEFT di balik Talenta Mulia.",
       },
+      ogUrl("/professionals"),
     ],
+    links: [canonicalLink("/professionals")],
   }),
   component: Page,
 });

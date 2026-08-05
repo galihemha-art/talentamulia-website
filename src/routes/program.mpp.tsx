@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { ARTIKEL } from "@/lib/artikel-data";
@@ -73,7 +74,9 @@ export const Route = createFileRoute("/program/mpp")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/program/mpp"),
     ],
+    links: [canonicalLink("/program/mpp")],
   }),
   component: ProgramMpp,
 });

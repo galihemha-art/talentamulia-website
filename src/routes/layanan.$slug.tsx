@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
@@ -65,7 +66,9 @@ export const Route = createFileRoute("/layanan/$slug")({
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
+        ogUrl(`/layanan/${params.slug}`),
       ],
+      links: [canonicalLink(`/layanan/${params.slug}`)],
     };
   },
   component: LayananRoutePage,

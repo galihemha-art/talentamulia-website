@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, HeartHandshake, Sparkles } from "lucide-react";
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
@@ -19,7 +20,9 @@ export const Route = createFileRoute("/program/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/program"),
     ],
+    links: [canonicalLink("/program")],
   }),
   component: Page,
 });

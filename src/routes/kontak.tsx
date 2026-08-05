@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { useState, type FormEvent } from "react";
 import { Clock, ExternalLink, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { z } from "zod";
@@ -22,10 +23,10 @@ export const Route = createFileRoute("/kontak")({
           "Hubungi Talenta Mulia di Sidoarjo, Jawa Timur untuk konsultasi psikologi, coaching, kesehatan, dan pelatihan.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://talenta-mulia-hub.lovable.app/kontak" },
+      ogUrl("/kontak"),
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://talenta-mulia-hub.lovable.app/kontak" }],
+    links: [canonicalLink("/kontak")],
   }),
   component: Page,
 });

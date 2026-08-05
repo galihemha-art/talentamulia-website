@@ -17,8 +17,9 @@ import {
 } from "lucide-react";
 import heroImage from "@/assets/hero-konsultasi.jpg";
 import { SiteLink } from "@/components/site/SiteLink";
+import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
-const SITE_URL = "https://talenta-mulia-hub.lovable.app";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,10 +40,10 @@ export const Route = createFileRoute("/")({
           "Pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur untuk individu, organisasi, dan institusi.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: SITE_URL },
+      ogUrl("/"),
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: SITE_URL }],
+    links: [canonicalLink("/")],
     scripts: [
       {
         type: "application/ld+json",

@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { IndustriDetailPage } from "@/components/site/IndustriDetailPage";
@@ -19,7 +20,9 @@ export const Route = createFileRoute("/industri/$slug")({
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
+        ogUrl(`/industri/${params.slug}`),
       ],
+      links: [canonicalLink(`/industri/${params.slug}`)],
     };
   },
   component: Page,

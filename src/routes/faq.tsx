@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -19,7 +20,9 @@ export const Route = createFileRoute("/faq")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/faq"),
     ],
+    links: [canonicalLink("/faq")],
   }),
   component: Page,
 });
