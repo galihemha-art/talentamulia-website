@@ -1,6 +1,11 @@
+import type { AuthorId } from "@/lib/authors";
+
 export type Artikel = {
   slug: string;
   kategori: string;
+  authorId: AuthorId;
+  publishedAt: string;
+  updatedAt: string;
   title: string;
   excerpt: string;
   paragraphs: string[];
@@ -9,6 +14,9 @@ export type Artikel = {
 export const ARTIKEL: Artikel[] = [
   {
     slug: "post-power-syndrome-gejala-dan-pencegahan",
+    authorId: "maulidah",
+    publishedAt: "2025-09-12",
+    updatedAt: "2026-06-18",
     kategori: "Masa Persiapan Pensiun",
     title: "Post Power Syndrome: Kenali Gejala dan Cara Mencegahnya Sejak Dini",
     excerpt:
@@ -22,6 +30,9 @@ export const ARTIKEL: Artikel[] = [
   },
   {
     slug: "peran-kesehatan-fisik-dalam-kesiapan-pensiun",
+    authorId: "andiani",
+    publishedAt: "2025-10-08",
+    updatedAt: "2026-05-22",
     kategori: "Masa Persiapan Pensiun",
     title:
       "Peran Kesehatan Fisik dalam Kesiapan Pensiun: Mengapa Program Pensiun Perlu Melibatkan Dokter",
@@ -35,6 +46,9 @@ export const ARTIKEL: Artikel[] = [
   },
   {
     slug: "5-tanda-karyawan-belum-siap-pensiun",
+    authorId: "eka",
+    publishedAt: "2025-11-19",
+    updatedAt: "2026-04-30",
     kategori: "Masa Persiapan Pensiun",
     title: "5 Tanda Karyawan Belum Siap Menghadapi Masa Pensiun (dan Peran HR di Dalamnya)",
     excerpt:
@@ -47,6 +61,9 @@ export const ARTIKEL: Artikel[] = [
   },
   {
     slug: "kenapa-perusahaan-jawa-timur-perlu-mpp",
+    authorId: "maulidah",
+    publishedAt: "2026-01-14",
+    updatedAt: "2026-07-02",
     kategori: "Masa Persiapan Pensiun",
     title: "Kenapa Perusahaan di Jawa Timur Perlu Program Masa Persiapan Pensiun (MPP)?",
     excerpt:
@@ -58,3 +75,22 @@ export const ARTIKEL: Artikel[] = [
     ],
   },
 ];
+
+/** Estimated reading time in minutes (200 wpm), min 1. */
+export function readingTime(a: Artikel): number {
+  const words = a.paragraphs.join(" ").trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+export function wordCount(a: Artikel): number {
+  return a.paragraphs.join(" ").trim().split(/\s+/).length;
+}
+
+export function formatTanggal(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
