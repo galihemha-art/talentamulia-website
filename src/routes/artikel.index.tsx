@@ -1,7 +1,18 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { ARTIKEL } from "@/lib/artikel-data";
+import { SiteLink } from "@/components/site/SiteLink";
+import { ArtikelGrid } from "@/components/site/TopicClusters";
+import {
+  TOPIC_CLUSTERS,
+  articlesInCluster,
+  featuredArticles,
+  latestInsights,
+  serviceTitle,
+} from "@/lib/topic-clusters";
+
+const featured = featuredArticles(2);
+const latest = latestInsights(3);
 
 export const Route = createFileRoute("/artikel/")({
   head: () => ({
