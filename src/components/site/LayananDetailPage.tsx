@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
 import { FAQ_KORPORAT, type LayananDetail } from "@/lib/layanan-korporat-data";
 import type { Artikel } from "@/lib/artikel-data";
+import { ServiceTopicClusters } from "@/components/site/TopicClusters";
 
 export function LayananDetailPage({
   data,
