@@ -163,7 +163,7 @@ export function SiteHeader() {
           </div>
 
           {/* Mega-menu Layanan */}
-          <div className="group static">
+          <div className="group static" onMouseEnter={warmServiceRoutes} onFocus={warmServiceRoutes}>
             <Link
               to="/solusi-korporat"
               activeProps={{ className: "text-primary" }}
