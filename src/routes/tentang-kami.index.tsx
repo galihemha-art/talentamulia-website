@@ -9,10 +9,10 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import maulidah from "@/assets/Maulidah_Muflichah.png.asset.json";
-import andiani from "@/assets/Dr_Andiani.png.asset.json";
-import eka from "@/assets/Eka_Rachmawaty.png.asset.json";
-import mamluatul from "@/assets/Mamluatul_Khoiriyah.png.asset.json";
+import maulidah from "@/assets/Maulidah_Muflichah.webp";
+import andiani from "@/assets/Dr_Andiani.webp";
+import eka from "@/assets/Eka_Rachmawaty.webp";
+import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
 
 export const Route = createFileRoute("/tentang-kami/")({
   head: () => ({
@@ -82,28 +82,28 @@ const NILAI = [
 
 const TIM = [
   {
-    photo: maulidah.url,
+    photo: maulidah,
     alt: "Potret Maulidah Muflichah, Founder dan Psikolog Utama Talenta Mulia",
     name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
     role: "Founder · Psikolog Utama · Certified Hypnotherapist",
     desc: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
   },
   {
-    photo: andiani.url,
+    photo: andiani,
     alt: "Potret Dr. dr. Hj. Andiani, Konsultan Kepemimpinan Medis & Kesehatan",
     name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
     role: "Konsultan Kepemimpinan Medis & Kesehatan",
     desc: "Wakil Direktur Pelayanan Medis & Keperawatan di RSI Siti Hajar Sidoarjo. Ahli kesehatan masyarakat dengan otoritas dalam akreditasi rumah sakit, tata kelola klinis, dan manajemen rumah sakit.",
   },
   {
-    photo: eka.url,
+    photo: eka,
     alt: "Potret Eka Rachmawaty, Executive Coach bersertifikat ICF PCC",
     name: "Eka Rachmawaty, M.M., PCC",
     role: "Konsultan Pengembangan Kepemimpinan & Organisasi · ICF PCC",
     desc: "Professional Certified Coach (ICF PCC) yang berspesialisasi dalam executive coaching, pengembangan kepemimpinan, talent management, dan pengembangan organisasi.",
   },
   {
-    photo: mamluatul.url,
+    photo: mamluatul,
     alt: "Potret Mamluatul Khoiriyah, Psikolog Senior Talenta Mulia",
     name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
     role: "Psikolog Senior",
@@ -299,6 +299,8 @@ function Page() {
                   src={t.photo}
                   alt={t.alt}
                   loading="lazy"
+                decoding="async"
+                width={800} height={1000}
                   className="aspect-[4/5] w-full object-cover object-top"
                 />
                 <div className="p-5">

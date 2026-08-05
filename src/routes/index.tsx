@@ -15,7 +15,7 @@ import {
   Users,
   Wifi,
 } from "lucide-react";
-import heroImage from "@/assets/hero-konsultasi.jpg";
+import heroImage from "@/assets/hero-konsultasi.webp";
 import { SiteLink } from "@/components/site/SiteLink";
 import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
@@ -243,6 +243,8 @@ function Beranda() {
               alt="Sesi konsultasi psikologi profesional di Talenta Mulia"
               width={1024}
               height={1200}
+              fetchPriority="high"
+              decoding="async"
               className="h-[440px] w-full rounded-3xl object-cover shadow-soft lg:h-[540px]"
             />
           </div>
