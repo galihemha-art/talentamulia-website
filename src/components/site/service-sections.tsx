@@ -110,6 +110,8 @@ export function ServiceHero({
                 alt={images.heroAlt}
                 width={1400}
                 height={1000}
+                decoding="async"
+                fetchPriority="high"
                 className="h-72 w-full object-cover md:h-[26rem]"
               />
             </div>
