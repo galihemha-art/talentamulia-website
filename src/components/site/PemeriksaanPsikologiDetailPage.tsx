@@ -1,153 +1,144 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { ArrowRight, Check, ChevronDown, ChevronRight, FileCheck2, Info } from "lucide-react";
-import { CtaPenutup } from "@/components/site/LayananDetailPage";
-import { FAQ_KORPORAT } from "@/lib/layanan-korporat-data";
+import { ArrowRight, Info } from "lucide-react";
 import type { PemeriksaanDetail } from "@/lib/pemeriksaan-psikologi-data";
+import { ServiceTopicClusters } from "@/components/site/TopicClusters";
+import {
+  BenefitCards,
+  CtaBanner,
+  ExpertSpotlight,
+  FaqAccordion,
+  ProblemSection,
+  ProcessTimeline,
+  ServiceHero,
+  SolutionSection,
+  WhySection,
+} from "@/components/site/service-sections";
+import { serviceImages } from "@/lib/service-images";
+import { expertForService } from "@/lib/service-expert";
+
+const FAQ_PEMERIKSAAN = [
+  {
+    q: "Berapa lama proses pemeriksaan psikologi?",
+    a: "Pelaksanaan tes umumnya 2–4 jam, sedangkan laporan hasil kami serahkan dalam 3–7 hari kerja tergantung jumlah peserta.",
+  },
+  {
+    q: "Apakah hasil pemeriksaan bisa digunakan sebagai syarat resmi?",
+    a: "Ya. Laporan ditandatangani psikolog berizin praktik sehingga dapat digunakan untuk keperluan seleksi, promosi, sekolah, maupun rujukan profesional lain.",
+  },
+  {
+    q: "Apakah peserta bisa mengetahui hasilnya?",
+    a: "Kami menyediakan sesi umpan balik agar peserta memahami hasil dan rekomendasi tindak lanjutnya, sesuai kesepakatan dengan pihak yang meminta pemeriksaan.",
+  },
+  {
+    q: "Apakah pemeriksaan bisa dilakukan di lokasi kami?",
+    a: "Bisa. Tim kami dapat melaksanakan pemeriksaan di kantor, sekolah, atau fasilitas Anda, maupun di kantor kami di Sidoarjo.",
+  },
+];
 
 export function PemeriksaanPsikologiDetailPage({ data }: { data: PemeriksaanDetail }) {
-  const [open, setOpen] = useState<number | null>(0);
+  const images = serviceImages(data.slug, "asesmen");
+  const expert = expertForService(data.slug);
 
   return (
     <>
-      {/* Breadcrumb + Hero */}
-      <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground"
-          >
-            <Link to="/" className="transition-colors hover:text-brand-blue">
-              Beranda
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <Link to="/solusi-korporat" className="transition-colors hover:text-brand-blue">
-              Layanan
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-primary">{data.nama}</span>
-          </nav>
+      <ServiceHero
+        breadcrumbs={[
+          { label: "Beranda", to: "/" },
+          { label: "Pemeriksaan Psikologi", to: "/solusi-korporat" },
+          { label: data.nama },
+        ]}
+        eyebrow="Pemeriksaan Psikologi"
+        title={data.nama}
+        valueProp={data.subjudul}
+        ctaPrimary="Minta Proposal Pemeriksaan"
+        ctaSecondary="Jadwalkan Konsultasi"
+        images={images}
+        highlights={["Psikolog berizin praktik", "Alat tes terstandar", "Laporan terukur"]}
+      />
 
-          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
-            {data.nama}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            {data.subjudul}
-          </p>
-
-          <Link
-            to="/kontak"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Daftar Pemeriksaan
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Apa itu + Untuk siapa */}
-      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <div className="grid gap-10 md:grid-cols-2">
-          <div>
-            <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
-              Apa itu pemeriksaan ini
-            </h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{data.apaItu}</p>
-          </div>
-          <div className="rounded-2xl border border-border bg-card p-7 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
-              Untuk siapa
-            </p>
-            <ul className="mt-5 space-y-4">
-              {data.untukSiapa.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Metode & alat ukur */}
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-4xl px-5 py-14 text-center md:py-16">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
-            Metode &amp; alat ukur
-          </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{data.metode}</p>
-        </div>
-      </section>
-
-      {/* Yang Anda terima */}
       <section className="mx-auto max-w-4xl px-5 py-16 md:py-20">
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm md:p-10">
-          <FileCheck2 className="h-6 w-6 text-brand-blue" />
-          <h2 className="mt-4 font-heading text-2xl font-bold tracking-tight text-primary">
-            Yang Anda terima
-          </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{data.yangDiterima}</p>
-          {data.catatan && (
-            <p className="mt-5 flex gap-3 rounded-2xl bg-secondary/60 p-5 text-sm leading-relaxed text-muted-foreground">
-              <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
-              <span>
-                <span className="font-semibold text-primary">Catatan: </span>
-                {data.catatan}
-              </span>
-            </p>
-          )}
-        </div>
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          Apa itu {data.nama}
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{data.apaItu}</p>
+      </section>
 
-        {/* Layanan terkait */}
-        <div className="mt-10">
-          <h3 className="font-heading text-lg font-semibold text-primary">Layanan terkait</h3>
-          <div className="mt-4 flex flex-wrap gap-3">
+      <ProblemSection
+        title="Siapa yang membutuhkan pemeriksaan ini"
+        points={data.untukSiapa}
+        images={images}
+      />
+
+      <SolutionSection text={data.metode} />
+
+      <BenefitCards
+        title="Yang Anda terima"
+        items={data.yangDiterima
+          .split(/\.\s+|; /)
+          .map((s) => s.trim().replace(/\.$/, ""))
+          .filter(Boolean)}
+      />
+
+      <ProcessTimeline
+        title="Tahapan pemeriksaan"
+        steps={[
+          { title: "Penentuan Tujuan", desc: "Klarifikasi tujuan pemeriksaan dan jabatan/konteks yang diukur." },
+          { title: "Pemilihan Alat Tes", desc: "Penyusunan baterai tes terstandar yang sesuai tujuan." },
+          { title: "Pelaksanaan", desc: "Administrasi tes dan wawancara oleh psikolog di lokasi Anda atau kantor kami." },
+          { title: "Laporan & Umpan Balik", desc: "Interpretasi, laporan tertulis, dan sesi penjelasan hasil." },
+        ]}
+      />
+
+      <WhySection
+        images={images}
+        reasons={[
+          "Interpretasi dilakukan psikolog berizin, bukan sekadar skoring otomatis.",
+          "Alat tes terstandar dan disesuaikan dengan konteks Indonesia.",
+          "Laporan ditulis aplikatif — langsung dapat dipakai untuk keputusan.",
+        ]}
+      />
+
+      {data.catatan && (
+        <div className="mx-auto max-w-4xl px-5">
+          <div className="flex gap-3 rounded-2xl border border-border bg-secondary/60 p-5 text-sm leading-relaxed text-muted-foreground">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
+            <p>{data.catatan}</p>
+          </div>
+        </div>
+      )}
+
+      {data.terkait.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+            Bidang pemeriksaan lainnya
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {data.terkait.map((t) => (
               <Link
                 key={t.slug}
                 to="/layanan/$slug"
                 params={{ slug: t.slug }}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+                className="group flex items-center justify-between gap-3 rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-soft"
               >
-                {t.label}
-                <ArrowRight className="h-3.5 w-3.5" />
+                <span className="font-heading font-semibold text-primary">{t.label}</span>
+                <ArrowRight className="h-4 w-4 shrink-0 text-brand-blue transition-transform group-hover:translate-x-1" />
               </Link>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-5 pb-16 md:pb-20">
-        <h2 className="text-center font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
-          Pertanyaan yang sering diajukan
-        </h2>
-        <div className="mt-8 space-y-3">
-          {FAQ_KORPORAT.map((faq, i) => (
-            <div key={faq.q} className="overflow-hidden rounded-2xl border border-border bg-card">
-              <button
-                type="button"
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-              >
-                <span className="font-semibold text-primary">{faq.q}</span>
-                <ChevronDown
-                  className={`h-4 w-4 shrink-0 text-brand-blue transition-transform ${
-                    open === i ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {open === i && (
-                <p className="px-6 pb-6 text-sm leading-relaxed text-muted-foreground">{faq.a}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
+      <ExpertSpotlight expert={expert} />
 
-      <CtaPenutup />
+      <FaqAccordion items={FAQ_PEMERIKSAAN} />
+
+      <ServiceTopicClusters slug={data.slug} />
+
+      <CtaBanner
+        title={`Butuh ${data.nama}?`}
+        primary="Minta Proposal Pemeriksaan"
+        secondary="Jadwalkan Konsultasi"
+      />
     </>
   );
 }
