@@ -4,29 +4,40 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { WordMark } from "./WordMark";
 import { SiteLink } from "./SiteLink";
 
-type Item = { label: string; to: string };
-type Column = { title: string; top: Item; items: Item[] };
+type Item = { label: string; to: string; highlight?: boolean };
+type Group = { label: string; items: Item[] };
+type Column = { title: string; top: Item; items?: Item[]; groups?: Group[] };
 
 const MEGA: Column[] = [
   {
     title: "Solusi Korporat",
     top: { label: "Semua Solusi Korporat", to: "/solusi-korporat" },
-    items: [
-      { label: "Konsultasi HR", to: "/layanan/konsultasi-hr" },
-      { label: "Konsultasi Organisasi", to: "/layanan/konsultasi-organisasi" },
-      { label: "Assessment Center", to: "/layanan/assessment-center" },
-      { label: "Assessment Psikologi", to: "/layanan/asesmen-psikologi" },
-      { label: "Pemetaan Talenta", to: "/layanan/pemetaan-talenta" },
-      { label: "Pengembangan Kepemimpinan", to: "/layanan/pelatihan-kepemimpinan" },
-      { label: "Coaching", to: "/layanan/coaching" },
-      { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
-      { label: "Medical Wellness", to: "/layanan/medical-wellness" },
-      { label: "Konsultasi Rumah Sakit", to: "/kesehatan" },
-      { label: "Talent Acquisition", to: "/layanan/talent-acquisition" },
-      { label: "Executive Search", to: "/layanan/executive-search" },
+    groups: [
       {
-        label: "Pendampingan Sekolah & Perusahaan",
-        to: "/layanan/pendampingan-sekolah-perusahaan",
+        label: "HR & Assessment",
+        items: [
+          { label: "Konsultasi HR", to: "/layanan/konsultasi-hr" },
+          { label: "Konsultasi Organisasi", to: "/layanan/konsultasi-organisasi" },
+          { label: "Assessment Center", to: "/layanan/assessment-center" },
+          { label: "Assessment Psikologi", to: "/layanan/asesmen-psikologi" },
+          { label: "Pemetaan Talenta", to: "/layanan/pemetaan-talenta" },
+          { label: "Pengembangan Kepemimpinan", to: "/layanan/pelatihan-kepemimpinan" },
+          { label: "Coaching", to: "/layanan/coaching" },
+        ],
+      },
+      {
+        label: "Kesehatan & Rekrutmen",
+        items: [
+          { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
+          { label: "Medical Wellness", to: "/layanan/medical-wellness" },
+          { label: "Konsultasi Rumah Sakit", to: "/kesehatan" },
+          { label: "Talent Acquisition", to: "/layanan/talent-acquisition" },
+          { label: "Executive Search", to: "/layanan/executive-search" },
+          {
+            label: "Pendampingan Sekolah & Perusahaan",
+            to: "/layanan/pendampingan-sekolah-perusahaan",
+          },
+        ],
       },
     ],
   },
@@ -70,12 +81,20 @@ const MEGA: Column[] = [
     title: "Program",
     top: { label: "Semua Program", to: "/program" },
     items: [
-      { label: "Program Masa Persiapan Pensiun (MPP)", to: "/program/mpp" },
+      { label: "Program Masa Persiapan Pensiun (MPP)", to: "/program/mpp", highlight: true },
       { label: "Executive Coaching", to: "/layanan/executive-coaching" },
       { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
     ],
   },
 ];
+
+const itemClass = (item: Item) =>
+  item.highlight
+    ? "block rounded-lg bg-secondary/70 px-2 py-1.5 text-sm font-bold text-brand-blue transition-colors hover:bg-secondary"
+    : "block rounded-lg px-2 py-1.5 text-sm text-foreground/80 transition-colors hover:bg-secondary hover:text-primary";
+
+const columnItems = (col: Column): Item[] => col.items ?? col.groups?.flatMap((g) => g.items) ?? [];
+
 
 const SIMPLE: Item[] = [
   { label: "Beranda", to: "/" },
@@ -143,7 +162,8 @@ export function SiteHeader() {
             </Link>
             <div className="invisible absolute left-0 right-0 top-full opacity-0 transition-all group-hover:visible group-hover:opacity-100">
               <div className="mx-auto mt-1 max-w-7xl px-5">
-                <div className="grid grid-cols-5 gap-6 rounded-2xl border border-border bg-popover p-6 shadow-soft">
+                <div className="max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-popover p-6 shadow-soft">
+                  <div className="grid grid-cols-5 gap-6">
                   {MEGA.map((col) => (
                     <div key={col.title}>
                       <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -155,22 +175,42 @@ export function SiteHeader() {
                       >
                         {col.top.label}
                       </SiteLink>
-                      <ul className="mt-3 space-y-1">
-                        {col.items.map((item) => (
-                          <li key={item.label + item.to}>
-                            <SiteLink
-                              to={item.to}
-                              className="block rounded-lg px-2 py-1.5 text-sm text-foreground/80 transition-colors hover:bg-secondary hover:text-primary"
-                            >
-                              {item.label}
-                            </SiteLink>
-                          </li>
-                        ))}
-                      </ul>
+                      {col.groups ? (
+                        <div className="mt-3 space-y-4">
+                          {col.groups.map((group) => (
+                            <div key={group.label}>
+                              <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/80">
+                                {group.label}
+                              </p>
+                              <ul className="mt-1 space-y-1">
+                                {group.items.map((item) => (
+                                  <li key={item.label + item.to}>
+                                    <SiteLink to={item.to} className={itemClass(item)}>
+                                      {item.label}
+                                    </SiteLink>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <ul className="mt-3 space-y-1">
+                          {columnItems(col).map((item) => (
+                            <li key={item.label + item.to}>
+                              <SiteLink to={item.to} className={itemClass(item)}>
+                                {item.label}
+                              </SiteLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   ))}
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
 
@@ -269,12 +309,16 @@ export function SiteHeader() {
                       >
                         {col.top.label}
                       </SiteLink>
-                      {col.items.map((item) => (
+                      {columnItems(col).map((item) => (
                         <SiteLink
                           key={item.label + item.to}
                           to={item.to}
                           onClick={close}
-                          className="block rounded-lg px-6 py-1.5 text-sm text-muted-foreground"
+                          className={
+                            item.highlight
+                              ? "block rounded-lg px-6 py-1.5 text-sm font-bold text-brand-blue"
+                              : "block rounded-lg px-6 py-1.5 text-sm text-muted-foreground"
+                          }
                         >
                           {item.label}
                         </SiteLink>
