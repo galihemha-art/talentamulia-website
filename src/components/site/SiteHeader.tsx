@@ -162,7 +162,8 @@ export function SiteHeader() {
             </Link>
             <div className="invisible absolute left-0 right-0 top-full opacity-0 transition-all group-hover:visible group-hover:opacity-100">
               <div className="mx-auto mt-1 max-w-7xl px-5">
-                <div className="grid grid-cols-5 gap-6 rounded-2xl border border-border bg-popover p-6 shadow-soft">
+                <div className="max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-popover p-6 shadow-soft">
+                  <div className="grid grid-cols-5 gap-6">
                   {MEGA.map((col) => (
                     <div key={col.title}>
                       <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -174,22 +175,42 @@ export function SiteHeader() {
                       >
                         {col.top.label}
                       </SiteLink>
-                      <ul className="mt-3 space-y-1">
-                        {col.items.map((item) => (
-                          <li key={item.label + item.to}>
-                            <SiteLink
-                              to={item.to}
-                              className="block rounded-lg px-2 py-1.5 text-sm text-foreground/80 transition-colors hover:bg-secondary hover:text-primary"
-                            >
-                              {item.label}
-                            </SiteLink>
-                          </li>
-                        ))}
-                      </ul>
+                      {col.groups ? (
+                        <div className="mt-3 space-y-4">
+                          {col.groups.map((group) => (
+                            <div key={group.label}>
+                              <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/80">
+                                {group.label}
+                              </p>
+                              <ul className="mt-1 space-y-1">
+                                {group.items.map((item) => (
+                                  <li key={item.label + item.to}>
+                                    <SiteLink to={item.to} className={itemClass(item)}>
+                                      {item.label}
+                                    </SiteLink>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <ul className="mt-3 space-y-1">
+                          {columnItems(col).map((item) => (
+                            <li key={item.label + item.to}>
+                              <SiteLink to={item.to} className={itemClass(item)}>
+                                {item.label}
+                              </SiteLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   ))}
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
 
