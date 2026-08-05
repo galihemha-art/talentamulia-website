@@ -299,6 +299,8 @@ function Page() {
                   src={t.photo}
                   alt={t.alt}
                   loading="lazy"
+                decoding="async"
+                width={800} height={1000}
                   className="aspect-[4/5] w-full object-cover object-top"
                 />
                 <div className="p-5">

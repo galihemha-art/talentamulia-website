@@ -243,6 +243,8 @@ function Beranda() {
               alt="Sesi konsultasi psikologi profesional di Talenta Mulia"
               width={1024}
               height={1200}
+              fetchPriority="high"
+              decoding="async"
               className="h-[440px] w-full rounded-3xl object-cover shadow-soft lg:h-[540px]"
             />
           </div>

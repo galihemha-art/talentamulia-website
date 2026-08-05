@@ -88,6 +88,8 @@ function Page() {
             src={andiani}
             alt="Potret Dr. dr. Hj. Andiani, konsultan kepemimpinan medis Talenta Mulia"
             loading="lazy"
+                decoding="async"
+                width={800} height={1000}
             className="aspect-4/5 w-full rounded-2xl border border-border object-cover object-top shadow-sm"
           />
           <div>

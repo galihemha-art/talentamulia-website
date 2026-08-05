@@ -88,6 +88,8 @@ function Page() {
                 src={p.photo}
                 alt={`Potret studio ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
                 loading="lazy"
+                decoding="async"
+                width={800} height={1000}
                 className="aspect-4/5 w-full object-cover object-top md:h-full"
               />
               <div className="flex flex-col justify-center p-7 md:p-10">
