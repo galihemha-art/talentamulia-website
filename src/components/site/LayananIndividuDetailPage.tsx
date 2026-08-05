@@ -1,94 +1,123 @@
-import { Link } from "@tanstack/react-router";
-import { AlertTriangle, ArrowRight, Check, ChevronRight, Info, ShieldCheck } from "lucide-react";
-import { CtaPenutup } from "@/components/site/LayananDetailPage";
+import { AlertTriangle, Info } from "lucide-react";
 import { KERAHASIAAN_NOTE, type LayananIndividuDetail } from "@/lib/layanan-individu-data";
+import { ServiceTopicClusters } from "@/components/site/TopicClusters";
+import {
+  BenefitCards,
+  CtaBanner,
+  ExpertSpotlight,
+  FaqAccordion,
+  ProcessTimeline,
+  ServiceHero,
+  SolutionSection,
+  WhySection,
+} from "@/components/site/service-sections";
+import { serviceImages } from "@/lib/service-images";
+import { expertForService } from "@/lib/service-expert";
+
+const FAQ_INDIVIDU = [
+  {
+    q: "Berapa lama satu sesi berlangsung?",
+    a: "Satu sesi umumnya 60–90 menit. Jumlah sesi disepakati bersama setelah sesi pertama, sesuai kebutuhan Anda.",
+  },
+  {
+    q: "Apakah sesi bisa dilakukan online?",
+    a: "Bisa. Kami melayani sesi daring melalui video call maupun tatap muka di kantor kami di Sidoarjo, Jawa Timur.",
+  },
+  {
+    q: "Apakah data saya aman?",
+    a: KERAHASIAAN_NOTE + " Catatan sesi hanya diakses psikolog yang menangani Anda.",
+  },
+  {
+    q: "Saya belum yakin layanan mana yang tepat. Apa yang harus dilakukan?",
+    a: "Hubungi kami lebih dulu. Tim kami akan membantu mengarahkan Anda ke layanan dan profesional yang paling sesuai, tanpa biaya.",
+  },
+];
 
 export function LayananIndividuDetailPage({ data }: { data: LayananIndividuDetail }) {
+  const images = serviceImages(data.slug, "individu");
+  const expert = expertForService(data.slug);
+  const warn = data.catatan?.tone === "warning";
+
   return (
     <>
-      {/* Breadcrumb + Hero */}
-      <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground"
+      <ServiceHero
+        breadcrumbs={[
+          { label: "Beranda", to: "/" },
+          { label: "Layanan Individu", to: "/layanan-individu" },
+          { label: data.nama },
+        ]}
+        eyebrow="Layanan Individu"
+        title={data.nama}
+        valueProp={data.subjudul}
+        ctaPrimary="Jadwalkan Konsultasi"
+        ctaSecondary="Tanya Lewat WhatsApp"
+        images={images}
+        highlights={["Psikolog bersertifikat", "Online & tatap muka", "Rahasia"]}
+      />
+
+      {data.catatan && (
+        <div className="mx-auto max-w-4xl px-5 pt-10">
+          <div
+            className={`flex gap-3 rounded-2xl border p-5 text-sm leading-relaxed ${
+              warn
+                ? "border-destructive/30 bg-destructive/5 text-destructive"
+                : "border-border bg-secondary/60 text-muted-foreground"
+            }`}
           >
-            <Link to="/" className="transition-colors hover:text-brand-blue">
-              Beranda
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <Link to="/layanan-individu" className="transition-colors hover:text-brand-blue">
-              Layanan Individu
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-primary">{data.nama}</span>
-          </nav>
-
-          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
-            {data.nama}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            {data.subjudul}
-          </p>
-
-          <Link
-            to="/kontak"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Buat Janji Konsultasi
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-
-          {data.catatan && (
-            <div
-              className={`mt-8 flex max-w-3xl gap-3 rounded-2xl border p-5 text-sm leading-relaxed ${
-                data.catatan.tone === "warning"
-                  ? "border-amber-400/70 bg-amber-50 text-amber-900"
-                  : "border-border bg-card text-muted-foreground"
-              }`}
-            >
-              {data.catatan.tone === "warning" ? (
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-              ) : (
-                <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
-              )}
-              <p>{data.catatan.text}</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Untuk siapa + Yang didapat */}
-      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <div className="grid gap-10 md:grid-cols-2">
-          <div>
-            <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
-              Untuk siapa layanan ini
-            </h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{data.untukSiapa}</p>
-          </div>
-          <div className="rounded-2xl border border-border bg-card p-7 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
-              Yang akan Anda dapatkan
-            </p>
-            <ul className="mt-5 space-y-4">
-              {data.yangDidapat.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            {warn ? (
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+            ) : (
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
+            )}
+            <p>{data.catatan.text}</p>
           </div>
         </div>
+      )}
 
-        <div className="mt-10 flex max-w-3xl items-center gap-3 rounded-2xl bg-secondary/60 p-5">
-          <ShieldCheck className="h-5 w-5 shrink-0 text-brand-blue" />
-          <p className="text-sm leading-relaxed text-muted-foreground">{KERAHASIAAN_NOTE}</p>
-        </div>
+      <section className="mx-auto max-w-4xl px-5 py-16 md:py-20">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          Layanan ini untuk siapa
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{data.untukSiapa}</p>
       </section>
 
-      <CtaPenutup />
+      <SolutionSection
+        text="Sesi dimulai dari mendengarkan cerita Anda secara utuh, dilanjutkan asesmen ringan bila diperlukan, lalu penyusunan rencana penanganan yang realistis dan terukur bersama psikolog Anda."
+      />
+
+      <BenefitCards title="Yang Anda dapatkan" items={data.yangDidapat} />
+
+      <ProcessTimeline
+        title="Alur sesi"
+        steps={[
+          { title: "Kontak Awal", desc: "Ceritakan kebutuhan Anda lewat WhatsApp atau formulir; kami bantu memilih layanan yang tepat." },
+          { title: "Penjadwalan", desc: "Pilih jadwal dan format sesi — daring atau tatap muka di Sidoarjo." },
+          { title: "Sesi Bersama Psikolog", desc: "Sesi 60–90 menit yang aman, rahasia, dan tanpa penghakiman." },
+          { title: "Tindak Lanjut", desc: "Rencana lanjutan, latihan mandiri, atau rujukan bila diperlukan." },
+        ]}
+      />
+
+      <WhySection
+        images={images}
+        reasons={[
+          KERAHASIAAN_NOTE,
+          "Ditangani psikolog bersertifikat dengan pengalaman lintas kasus.",
+          "Bila kebutuhan Anda bersinggungan dengan kesehatan fisik, kami dapat melibatkan dokter dalam tim kami.",
+        ]}
+      />
+
+      <ExpertSpotlight expert={expert} />
+
+      <FaqAccordion items={FAQ_INDIVIDU} />
+
+      <ServiceTopicClusters slug={data.slug} />
+
+      <CtaBanner
+        title={`Mulai langkah pertama Anda`}
+        text="Satu percakapan sering kali cukup untuk membuat masalah terasa lebih jernih. Kami siap mendengarkan."
+        primary="Jadwalkan Konsultasi"
+        secondary="Hubungi Kami"
+      />
     </>
   );
 }
