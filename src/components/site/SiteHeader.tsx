@@ -4,29 +4,40 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { WordMark } from "./WordMark";
 import { SiteLink } from "./SiteLink";
 
-type Item = { label: string; to: string };
-type Column = { title: string; top: Item; items: Item[] };
+type Item = { label: string; to: string; highlight?: boolean };
+type Group = { label: string; items: Item[] };
+type Column = { title: string; top: Item; items?: Item[]; groups?: Group[] };
 
 const MEGA: Column[] = [
   {
     title: "Solusi Korporat",
     top: { label: "Semua Solusi Korporat", to: "/solusi-korporat" },
-    items: [
-      { label: "Konsultasi HR", to: "/layanan/konsultasi-hr" },
-      { label: "Konsultasi Organisasi", to: "/layanan/konsultasi-organisasi" },
-      { label: "Assessment Center", to: "/layanan/assessment-center" },
-      { label: "Assessment Psikologi", to: "/layanan/asesmen-psikologi" },
-      { label: "Pemetaan Talenta", to: "/layanan/pemetaan-talenta" },
-      { label: "Pengembangan Kepemimpinan", to: "/layanan/pelatihan-kepemimpinan" },
-      { label: "Coaching", to: "/layanan/coaching" },
-      { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
-      { label: "Medical Wellness", to: "/layanan/medical-wellness" },
-      { label: "Konsultasi Rumah Sakit", to: "/kesehatan" },
-      { label: "Talent Acquisition", to: "/layanan/talent-acquisition" },
-      { label: "Executive Search", to: "/layanan/executive-search" },
+    groups: [
       {
-        label: "Pendampingan Sekolah & Perusahaan",
-        to: "/layanan/pendampingan-sekolah-perusahaan",
+        label: "HR & Assessment",
+        items: [
+          { label: "Konsultasi HR", to: "/layanan/konsultasi-hr" },
+          { label: "Konsultasi Organisasi", to: "/layanan/konsultasi-organisasi" },
+          { label: "Assessment Center", to: "/layanan/assessment-center" },
+          { label: "Assessment Psikologi", to: "/layanan/asesmen-psikologi" },
+          { label: "Pemetaan Talenta", to: "/layanan/pemetaan-talenta" },
+          { label: "Pengembangan Kepemimpinan", to: "/layanan/pelatihan-kepemimpinan" },
+          { label: "Coaching", to: "/layanan/coaching" },
+        ],
+      },
+      {
+        label: "Kesehatan & Rekrutmen",
+        items: [
+          { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
+          { label: "Medical Wellness", to: "/layanan/medical-wellness" },
+          { label: "Konsultasi Rumah Sakit", to: "/kesehatan" },
+          { label: "Talent Acquisition", to: "/layanan/talent-acquisition" },
+          { label: "Executive Search", to: "/layanan/executive-search" },
+          {
+            label: "Pendampingan Sekolah & Perusahaan",
+            to: "/layanan/pendampingan-sekolah-perusahaan",
+          },
+        ],
       },
     ],
   },
@@ -70,12 +81,20 @@ const MEGA: Column[] = [
     title: "Program",
     top: { label: "Semua Program", to: "/program" },
     items: [
-      { label: "Program Masa Persiapan Pensiun (MPP)", to: "/program/mpp" },
+      { label: "Program Masa Persiapan Pensiun (MPP)", to: "/program/mpp", highlight: true },
       { label: "Executive Coaching", to: "/layanan/executive-coaching" },
       { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
     ],
   },
 ];
+
+const itemClass = (item: Item) =>
+  item.highlight
+    ? "block rounded-lg bg-secondary/70 px-2 py-1.5 text-sm font-bold text-brand-blue transition-colors hover:bg-secondary"
+    : "block rounded-lg px-2 py-1.5 text-sm text-foreground/80 transition-colors hover:bg-secondary hover:text-primary";
+
+const columnItems = (col: Column): Item[] => col.items ?? col.groups?.flatMap((g) => g.items) ?? [];
+
 
 const SIMPLE: Item[] = [
   { label: "Beranda", to: "/" },
