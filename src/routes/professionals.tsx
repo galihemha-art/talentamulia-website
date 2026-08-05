@@ -1,11 +1,10 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, peopleSchema } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import maulidah from "@/assets/Maulidah_Muflichah.webp";
-import andiani from "@/assets/Dr_Andiani.webp";
-import eka from "@/assets/Eka_Rachmawaty.webp";
-import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import { ArrowRight, Award, BookOpen, Briefcase, FileText, Mic, Sparkles } from "lucide-react";
+import { PROFESSIONALS } from "@/lib/professionals-data";
+import { ARTIKEL } from "@/lib/artikel-data";
+
 
 export const Route = createFileRoute("/professionals")({
   head: () => ({
