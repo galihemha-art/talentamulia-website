@@ -15,7 +15,10 @@ import {
   Users,
   Wifi,
 } from "lucide-react";
-import heroImage from "@/assets/hero-konsultasi.webp";
+import maulidah from "@/assets/Maulidah_Muflichah.webp";
+import andiani from "@/assets/Dr_Andiani.webp";
+import eka from "@/assets/Eka_Rachmawaty.webp";
+import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
 import { SiteLink } from "@/components/site/SiteLink";
 import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
@@ -190,6 +193,13 @@ const FAQ = [
   },
 ];
 
+const HERO_PROFILS = [
+  { img: maulidah, name: "Maulidah Muflichah", badge: "Psychologist" },
+  { img: eka, name: "Eka Rachmawaty", badge: "Executive Coach" },
+  { img: andiani, name: "Dr. Hj. Andiani", badge: "Medical Consultant" },
+  { img: mamluatul, name: "Mamluatul Khoiriyah", badge: "Leadership Consultant" },
+];
+
 function Beranda() {
   return (
     <>
@@ -200,15 +210,16 @@ function Beranda() {
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
               Pusat Konsultasi Terintegrasi
             </span>
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-6xl">
-              Membina Manusia.
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.4rem]">
+              Membangun Manusia Hebat.
               <br />
-              <span className="text-gradient-brand">Menguatkan Organisasi.</span>
+              <span className="text-gradient-brand">Menguatkan Organisasi Berkelanjutan.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Psikologi Terintegrasi, Kesehatan, Pengembangan Kepemimpinan, Executive Coaching,
-              Kesehatan Medis, Assessment Center, dan Konsultasi Human Capital — untuk individu,
-              organisasi, dan institusi kesehatan.
+              Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
+              Development, Assessment Center, Medical Wellness, dan Healthcare Consulting yang
+              didukung oleh psikolog, dokter, executive coach, serta konsultan organisasi
+              berpengalaman.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -222,6 +233,12 @@ function Beranda() {
                 className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-background px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
               >
                 Ajukan Proposal Korporat
+              </Link>
+              <Link
+                to="/kontak"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Minta Proposal Corporate <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
@@ -238,18 +255,38 @@ function Beranda() {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-brand-gradient opacity-15 blur-2xl" />
-            <img
-              src={heroImage}
-              alt="Sesi konsultasi psikologi profesional di Talenta Mulia"
-              width={1024}
-              height={1200}
-              fetchPriority="high"
-              decoding="async"
-              className="h-[440px] w-full rounded-3xl object-cover shadow-soft lg:h-[540px]"
-            />
+            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+              {HERO_PROFILS.map((p, i) => (
+                <figure
+                  key={p.name}
+                  className={`group relative overflow-hidden rounded-3xl bg-background shadow-soft ${
+                    i % 2 === 1 ? "lg:mt-8" : ""
+                  }`}
+                >
+                  <img
+                    src={p.img}
+                    alt={`${p.name} — ${p.badge} Talenta Mulia`}
+                    width={480}
+                    height={600}
+                    fetchPriority={i === 0 ? "high" : undefined}
+                    decoding="async"
+                    className="h-56 w-full object-cover object-top sm:h-64 lg:h-72"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-transparent p-3 pt-10">
+                    <span className="inline-flex rounded-full bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-primary">
+                      {p.badge}
+                    </span>
+                    <span className="mt-1.5 block text-xs font-medium text-primary-foreground">
+                      {p.name}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Marquee */}
       <div className="overflow-hidden border-y border-border bg-primary py-3.5">
