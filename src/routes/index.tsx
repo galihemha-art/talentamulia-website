@@ -15,7 +15,10 @@ import {
   Users,
   Wifi,
 } from "lucide-react";
-import heroImage from "@/assets/hero-konsultasi.webp";
+import maulidah from "@/assets/Maulidah_Muflichah.webp";
+import andiani from "@/assets/Dr_Andiani.webp";
+import eka from "@/assets/Eka_Rachmawaty.webp";
+import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
 import { SiteLink } from "@/components/site/SiteLink";
 import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
