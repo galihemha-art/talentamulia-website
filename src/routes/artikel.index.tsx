@@ -41,31 +41,70 @@ function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {ARTIKEL.map((a) => (
-            <article
-              key={a.slug}
-              className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="w-fit rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-brand-blue">
-                {a.kategori}
-              </span>
-              <h2 className="mt-4 text-lg font-bold leading-snug text-primary">{a.title}</h2>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {a.excerpt}
-              </p>
-              <Link
-                to="/artikel/$slug"
-                params={{ slug: a.slug }}
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-              >
-                Baca selengkapnya <ArrowRight className="h-4 w-4" />
-              </Link>
-            </article>
-          ))}
+      {/* Featured */}
+      <section className="mx-auto max-w-6xl px-5 pt-16">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          Artikel pilihan
+        </h2>
+        <div className="mt-8">
+          <ArtikelGrid items={featured} />
         </div>
       </section>
+
+      {/* Latest */}
+      <section className="mx-auto max-w-6xl px-5 pt-14">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          Wawasan terbaru
+        </h2>
+        <div className="mt-8">
+          <ArtikelGrid items={latest} />
+        </div>
+      </section>
+
+      {/* Topic clusters */}
+      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          Jelajahi berdasarkan topik
+        </h2>
+        <div className="mt-8 space-y-12">
+          {TOPIC_CLUSTERS.map((cluster) => {
+            const items = articlesInCluster(cluster);
+            const services = cluster.layanan.slice(0, 4);
+            return (
+              <div key={cluster.id}>
+                <h3 className="font-heading text-xl font-semibold text-primary">{cluster.label}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{cluster.description}</p>
+
+                {items.length > 0 ? (
+                  <div className="mt-6">
+                    <ArtikelGrid items={items} />
+                  </div>
+                ) : (
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    Artikel untuk topik ini sedang disiapkan.
+                  </p>
+                )}
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {[
+                    ...services.map((s) => ({ title: serviceTitle(s), to: `/layanan/${s}` })),
+                    ...(cluster.halaman ?? []),
+                  ].map((s) => (
+                    <SiteLink
+                      key={s.to}
+                      to={s.to}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-background"
+                    >
+                      {s.title} <ArrowRight className="h-3.5 w-3.5 text-brand-blue" />
+                    </SiteLink>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
     </>
   );
 }
