@@ -32,32 +32,38 @@ export const Route = createFileRoute("/professionals")({
   component: Page,
 });
 
-const TIM = [
-  {
-    photo: maulidah,
-    name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
-    role: "Founder · Psikolog Utama · Certified Hypnotherapist",
-    desc: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
-  },
-  {
-    photo: andiani,
-    name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
-    role: "Konsultan Kepemimpinan Medis & Kesehatan",
-    desc: "Wakil Direktur Pelayanan Medis & Keperawatan di RSI Siti Hajar Sidoarjo. Ahli kesehatan masyarakat dengan otoritas dalam akreditasi rumah sakit, tata kelola klinis, dan manajemen rumah sakit.",
-  },
-  {
-    photo: eka,
-    name: "Eka Rachmawaty, M.M., PCC",
-    role: "Konsultan Pengembangan Kepemimpinan & Organisasi · ICF PCC",
-    desc: "Professional Certified Coach (ICF PCC) yang berspesialisasi dalam executive coaching, pengembangan kepemimpinan, talent management, dan pengembangan organisasi.",
-  },
-  {
-    photo: mamluatul,
-    name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
-    role: "Psikolog Senior",
-    desc: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
-  },
-];
+function Section({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: typeof Award;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border border-border bg-secondary/30 p-5">
+      <h3 className="flex items-center gap-2 text-sm font-bold text-primary">
+        <Icon className="h-4 w-4 text-brand-blue" aria-hidden />
+        {title}
+      </h3>
+      <div className="mt-3 text-sm leading-relaxed text-muted-foreground">{children}</div>
+    </div>
+  );
+}
+
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((t) => (
+        <li key={t} className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function Page() {
   return (
@@ -83,33 +89,147 @@ function Page() {
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid gap-10">
-          {TIM.map((p, i) => (
-            <article
-              key={p.name}
-              className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md md:grid-cols-[minmax(0,320px)_1fr]"
-            >
-              <img
-                src={p.photo}
-                alt={`Potret studio ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
-                loading="lazy"
-                decoding="async"
-                width={800} height={1000}
-                className="aspect-4/5 w-full object-cover object-top md:h-full"
-              />
-              <div className="flex flex-col justify-center p-7 md:p-10">
-                <span className="text-xs font-bold tracking-[0.18em] text-brand-blue">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="mt-3 text-xl font-bold leading-snug text-primary md:text-2xl">
-                  {p.name}
-                </h2>
-                <p className="mt-2 text-sm font-semibold text-brand-blue">{p.role}</p>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  {p.desc}
-                </p>
-              </div>
-            </article>
-          ))}
+          {PROFESSIONALS.map((p, i) => {
+            const artikel = ARTIKEL.filter((a) => a.authorId === p.id).slice(0, 3);
+            return (
+              <article
+                key={p.name}
+                className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md md:grid-cols-[minmax(0,320px)_1fr]"
+              >
+                <img
+                  src={p.photo}
+                  alt={`Potret studio ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={1000}
+                  className="aspect-4/5 w-full object-cover object-top md:h-full"
+                />
+                <div className="flex flex-col justify-center p-7 md:p-10">
+                  <span className="text-xs font-bold tracking-[0.18em] text-brand-blue">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="mt-3 text-xl font-bold leading-snug text-primary md:text-2xl">
+                    {p.name}
+                  </h2>
+                  <p className="mt-2 text-sm font-semibold text-brand-blue">{p.role}</p>
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                    {p.desc}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {p.keahlian.map((k) => (
+                      <span
+                        key={k}
+                        className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-primary"
+                      >
+                        {k}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-7 grid gap-4 md:grid-cols-2">
+                    <div className="md:col-span-2">
+                      <Section icon={Briefcase} title="Perjalanan Profesional">
+                        <ol className="space-y-4 border-l border-border pl-5">
+                          {p.timeline.map((t) => (
+                            <li key={t.periode} className="relative">
+                              <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-brand-blue" />
+                              <p className="text-xs font-bold tracking-wide text-brand-blue">
+                                {t.periode}
+                              </p>
+                              <p className="mt-1 font-semibold text-primary">{t.judul}</p>
+                              <p className="mt-1">{t.detail}</p>
+                            </li>
+                          ))}
+                        </ol>
+                      </Section>
+                    </div>
+
+                    <Section icon={Award} title="Sertifikasi">
+                      <Bullets items={p.sertifikasi} />
+                    </Section>
+
+                    <Section icon={BookOpen} title="Buku">
+                      <ul className="space-y-2">
+                        {p.buku.map((b) => (
+                          <li key={b.judul}>
+                            <span className="font-semibold text-primary">{b.judul}</span>
+                            <span className="block text-xs">{b.catatan}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </Section>
+
+                    <Section icon={Mic} title="Pengalaman sebagai Pembicara">
+                      <Bullets items={p.speaking} />
+                    </Section>
+
+                    <Section icon={FileText} title="Publikasi">
+                      <Bullets items={p.publikasi} />
+                    </Section>
+
+                    <Section icon={Sparkles} title="Bidang Keahlian">
+                      <Bullets items={p.keahlian} />
+                    </Section>
+
+                    <Section icon={Briefcase} title="Layanan yang Ditangani">
+                      <ul className="space-y-2">
+                        {p.layanan.map((l) => (
+                          <li key={l.slug}>
+                            <Link
+                              to="/layanan/$slug"
+                              params={{ slug: l.slug }}
+                              className="inline-flex items-center gap-1 font-medium text-brand-blue hover:underline"
+                            >
+                              {l.title}
+                              <ArrowRight className="h-3.5 w-3.5" />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </Section>
+
+                    {artikel.length > 0 && (
+                      <div className="md:col-span-2">
+                        <Section icon={FileText} title="Artikel Terkait">
+                          <ul className="grid gap-2 md:grid-cols-2">
+                            {artikel.map((a) => (
+                              <li key={a.slug}>
+                                <Link
+                                  to="/artikel/$slug"
+                                  params={{ slug: a.slug }}
+                                  className="font-medium text-brand-blue hover:underline"
+                                >
+                                  {a.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </Section>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <Link
+                      to="/kontak"
+                      className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    >
+                      Jadwalkan Konsultasi
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      to="/kontak"
+                      className="inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
+                    >
+                      Minta Pertemuan Korporat
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-14 text-center">
