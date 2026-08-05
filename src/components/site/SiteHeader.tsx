@@ -309,12 +309,16 @@ export function SiteHeader() {
                       >
                         {col.top.label}
                       </SiteLink>
-                      {col.items.map((item) => (
+                      {columnItems(col).map((item) => (
                         <SiteLink
                           key={item.label + item.to}
                           to={item.to}
                           onClick={close}
-                          className="block rounded-lg px-6 py-1.5 text-sm text-muted-foreground"
+                          className={
+                            item.highlight
+                              ? "block rounded-lg px-6 py-1.5 text-sm font-bold text-brand-blue"
+                              : "block rounded-lg px-6 py-1.5 text-sm text-muted-foreground"
+                          }
                         >
                           {item.label}
                         </SiteLink>
