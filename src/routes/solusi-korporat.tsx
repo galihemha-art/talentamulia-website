@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
@@ -31,7 +32,9 @@ export const Route = createFileRoute("/solusi-korporat")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/solusi-korporat"),
     ],
+    links: [canonicalLink("/solusi-korporat")],
   }),
   component: Page,
 });

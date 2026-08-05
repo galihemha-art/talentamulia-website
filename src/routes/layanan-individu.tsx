@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MonitorSmartphone, ShieldCheck } from "lucide-react";
 import { LAYANAN_INDIVIDU, LAYANAN_INDIVIDU_LIST, KERAHASIAAN_NOTE } from "@/lib/layanan-individu-data";
@@ -22,7 +23,9 @@ export const Route = createFileRoute("/layanan-individu")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/layanan-individu"),
     ],
+    links: [canonicalLink("/layanan-individu")],
   }),
   component: Page,
 });

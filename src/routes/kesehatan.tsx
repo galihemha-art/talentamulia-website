@@ -1,3 +1,4 @@
+import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Activity, ClipboardCheck, HeartPulse, Stethoscope } from "lucide-react";
 import andiani from "@/assets/Dr_Andiani.png.asset.json";
@@ -19,7 +20,9 @@ export const Route = createFileRoute("/kesehatan")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ogUrl("/kesehatan"),
     ],
+    links: [canonicalLink("/kesehatan")],
   }),
   component: Page,
 });
