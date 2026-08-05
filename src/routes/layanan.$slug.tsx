@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
@@ -69,6 +70,14 @@ export const Route = createFileRoute("/layanan/$slug")({
         ogUrl(`/layanan/${params.slug}`),
       ],
       links: [canonicalLink(`/layanan/${params.slug}`)],
+      scripts: [
+        jsonLd(
+          breadcrumbSchema([
+            { name: "Solusi Korporat", path: "/solusi-korporat" },
+            { name: title, path: `/layanan/${params.slug}` },
+          ]),
+        ),
+      ],
     };
   },
   component: LayananRoutePage,

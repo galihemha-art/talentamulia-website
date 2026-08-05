@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, HeartHandshake, Sparkles } from "lucide-react";
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
@@ -23,6 +24,9 @@ export const Route = createFileRoute("/program/")({
       ogUrl("/program"),
     ],
     links: [canonicalLink("/program")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Program", path: "/program" }])),
+    ],
   }),
   component: Page,
 });

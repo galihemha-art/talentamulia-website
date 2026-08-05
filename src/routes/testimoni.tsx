@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Quote } from "lucide-react";
 
@@ -22,6 +23,9 @@ export const Route = createFileRoute("/testimoni")({
       ogUrl("/testimoni"),
     ],
     links: [canonicalLink("/testimoni")],
+    scripts: [
+      jsonLd(breadcrumbSchema([{ name: "Testimoni", path: "/testimoni" }])),
+    ],
   }),
   component: Page,
 });

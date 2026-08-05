@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site/SiteHeader";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { WhatsAppButton } from "../components/site/WhatsAppButton";
+import { jsonLd, organizationSchema } from "../lib/structured-data";
 
 function NotFoundComponent() {
   return (
@@ -100,6 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    scripts: [jsonLd(organizationSchema())],
   }),
   shellComponent: RootShell,
   component: RootComponent,

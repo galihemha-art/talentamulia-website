@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { ARTIKEL } from "@/lib/artikel-data";
@@ -77,6 +78,14 @@ export const Route = createFileRoute("/program/mpp")({
       ogUrl("/program/mpp"),
     ],
     links: [canonicalLink("/program/mpp")],
+    scripts: [
+      jsonLd(
+        breadcrumbSchema([
+          { name: "Program", path: "/program" },
+          { name: "Masa Persiapan Pensiun (MPP)", path: "/program/mpp" },
+        ]),
+      ),
+    ],
   }),
   component: ProgramMpp,
 });
