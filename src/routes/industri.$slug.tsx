@@ -1,4 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { IndustriDetailPage } from "@/components/site/IndustriDetailPage";
@@ -23,6 +24,14 @@ export const Route = createFileRoute("/industri/$slug")({
         ogUrl(`/industri/${params.slug}`),
       ],
       links: [canonicalLink(`/industri/${params.slug}`)],
+      scripts: [
+        jsonLd(
+          breadcrumbSchema([
+            { name: "Industri", path: "/industri" },
+            { name: params.slug, path: `/industri/${params.slug}` },
+          ]),
+        ),
+      ],
     };
   },
   component: Page,
