@@ -114,6 +114,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [lang, setLang] = useState<"ID" | "EN">("ID");
+  const router = useRouter();
+  const [warmed, setWarmed] = useState(false);
+
+  /** Warms the shared service/industry route chunks as soon as the menu opens. */
+  const warmServiceRoutes = () => {
+    if (warmed) return;
+    setWarmed(true);
+    void router.preloadRoute({ to: "/solusi-korporat" });
+    void router.preloadRoute({ to: "/layanan/$slug", params: { slug: "konsultasi-hr" } });
+    void router.preloadRoute({ to: "/industri/$slug", params: { slug: "manufaktur" } });
+  };
 
   const close = () => {
     setOpen(false);
