@@ -529,29 +529,65 @@ function Beranda() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-5 py-14">
-        <div className="rounded-3xl bg-primary px-8 py-14 text-center text-primary-foreground md:px-16">
-          <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight md:text-4xl">
-            Siap menguatkan tim & organisasi Anda?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-primary-foreground/75">
-            Mulai dengan konsultasi awal bersama tim profesional kami.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
+          {/* Korporat */}
+          <div className="rounded-3xl bg-primary px-8 py-12 text-primary-foreground md:px-12">
+            <span className="inline-flex rounded-full border border-primary-foreground/25 px-4 py-1.5 text-xs font-semibold tracking-wide">
+              Untuk Organisasi
+            </span>
+            <h2 className="mt-6 max-w-xl text-3xl font-bold tracking-tight md:text-4xl">
+              Siap menguatkan tim & organisasi Anda?
+            </h2>
+            <p className="mt-4 max-w-lg text-sm text-primary-foreground/75">
+              Diskusikan kebutuhan assessment, coaching, pelatihan, dan medical wellness bersama tim
+              konsultan kami.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/kontak"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Minta Proposal Corporate <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/kontak"
+                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/35 px-6 py-3 text-sm font-semibold transition-colors hover:bg-primary-foreground/10"
+              >
+                Book Discovery Meeting
+              </Link>
+              <Link
+                to="/kontak"
+                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-6 py-3 text-sm font-semibold transition-colors hover:bg-primary-foreground/20"
+              >
+                Download Company Profile <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Individu */}
+          <div className="flex flex-col justify-between rounded-3xl border border-border bg-card px-8 py-12 shadow-soft md:px-10">
+            <div>
+              <span className="inline-flex rounded-full border border-border bg-secondary px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
+                Untuk Individu & Keluarga
+              </span>
+              <h2 className="mt-6 text-2xl font-bold tracking-tight text-primary md:text-3xl">
+                Butuh pendampingan personal?
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Konseling, tes minat bakat, parenting, hingga konsultasi kesehatan — tersedia daring
+                maupun tatap muka di Sidoarjo.
+              </p>
+            </div>
             <Link
               to="/kontak"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white"
+              className="mt-8 inline-flex items-center gap-2 self-start rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
             >
-              Buat Janji Konsultasi <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/kontak"
-              className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-semibold"
-            >
-              Hubungi Tim Kami
+              Jadwalkan Konsultasi <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
+
     </>
   );
 }
