@@ -233,9 +233,11 @@ function Beranda() {
               Pusat Konsultasi Terintegrasi
             </span>
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.4rem]">
-              Membangun Manusia Hebat.
+              Psikologi, Kesehatan &amp; Kepemimpinan Terintegrasi.
               <br />
-              <span className="text-gradient-brand">Menguatkan Organisasi Berkelanjutan.</span>
+              <span className="text-gradient-brand">
+                Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
+              </span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
