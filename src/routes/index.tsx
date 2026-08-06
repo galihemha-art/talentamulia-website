@@ -311,6 +311,46 @@ function Beranda() {
         </div>
       </section>
 
+      {/* Tokoh Sentral */}
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <h2 className="text-center text-3xl font-extrabold tracking-tight text-primary md:text-4xl">
+            Tokoh Sentral
+          </h2>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {TOKOH_SENTRAL.map((t) => (
+              <figure
+                key={t.name}
+                className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft"
+              >
+                <img
+                  src={t.img}
+                  alt={`${t.name} — Distinguished Fellow Talenta Mulia`}
+                  width={720}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-80 w-full object-cover object-top md:h-[26rem]"
+                />
+                <figcaption className="p-6 text-center">
+                  <p className="text-lg font-bold text-primary">{t.name}</p>
+                  <span className="mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
+                    Distinguished Fellow, Talenta Mulia
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              to="/tokoh-sentral"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Lihat Profil Lengkap <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Marquee */}
       <div className="overflow-hidden border-y border-border bg-primary py-3.5">
