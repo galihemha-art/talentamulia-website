@@ -97,7 +97,7 @@ export const PROFESSIONALS: Professional[] = [
     photo: andiani,
     name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
     role: "Konsultan Kepemimpinan Medis & Kesehatan",
-    desc: "Wakil Direktur Pelayanan Medis & Keperawatan di RSI Siti Hajar Sidoarjo. Ahli kesehatan masyarakat dengan otoritas dalam akreditasi rumah sakit, tata kelola klinis, dan manajemen rumah sakit.",
+    desc: "Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
     timeline: [
       {
         periode: "1998 — 2005",
