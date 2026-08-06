@@ -106,7 +106,7 @@ const SIMPLE: Item[] = [
 ];
 
 const TENTANG: Item[] = [
-  { label: "Tokoh Sentral", to: "/tokoh-sentral" },
+  { label: "Principal Experts", to: "/tokoh-sentral" },
   { label: "Profesional", to: "/professionals" },
 ];
 

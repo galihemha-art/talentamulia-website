@@ -6,13 +6,13 @@ import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 export const Route = createFileRoute("/tokoh-sentral")({
   head: () => ({
     meta: [
-      { title: "Tokoh Sentral — Distinguished Fellow Talenta Mulia Sidoarjo" },
+      { title: "Principal Experts — Distinguished Fellow Talenta Mulia Sidoarjo" },
       {
         name: "description",
         content:
           "Dr. Hj. Andiani dan Dr. Tri Novia, Distinguished Fellow Talenta Mulia yang memimpin arah praktik psikologi klinis, kesehatan, dan transformasi layanan kesehatan.",
       },
-      { property: "og:title", content: "Tokoh Sentral — Distinguished Fellow Talenta Mulia" },
+      { property: "og:title", content: "Principal Experts — Distinguished Fellow Talenta Mulia" },
       {
         property: "og:description",
         content:
@@ -70,10 +70,10 @@ function Page() {
               Beranda
             </Link>
             <span className="mx-2">&gt;</span>
-            <span className="text-primary">Tokoh Sentral</span>
+            <span className="text-primary">Principal Experts</span>
           </nav>
           <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl">
-            Tokoh Sentral
+            Principal Experts
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,

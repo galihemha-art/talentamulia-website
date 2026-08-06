@@ -289,18 +289,18 @@ function Page() {
         </div>
       </section>
 
-      {/* TOKOH SENTRAL */}
+      {/* PRINCIPAL EXPERTS */}
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <Label>Tokoh Sentral</Label>
+              <Label>Principal Experts</Label>
               <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-                Tokoh Sentral
+                Principal Experts
               </h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Dua figur senior yang memimpin arah praktik psikologi klinis, kesehatan, dan
-                transformasi layanan kesehatan di Talenta Mulia.
+                Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
+                dan pengembangan organisasi di Talenta Mulia.
               </p>
             </div>
             <Link
