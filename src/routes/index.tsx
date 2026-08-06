@@ -411,41 +411,23 @@ function Beranda() {
       </section>
 
       {/* Dipercaya */}
-      <section className="mx-auto max-w-7xl px-5 py-14">
-        <h2 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
+      <section className="mx-auto max-w-7xl px-5 py-8">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
           Dipercaya oleh Profesional dari Berbagai Institusi
         </h2>
-        <div className="mt-10 space-y-8">
-          {KEPERCAYAAN.map((kel) => (
-            <div key={kel.group}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                {kel.group}
-              </h3>
-              <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                {kel.items.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 opacity-70 grayscale transition-opacity hover:opacity-100"
-                  >
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-secondary text-xs font-bold text-primary">
-                      {item
-                        .split(" ")
-                        .map((w) => w[0])
-                        .join("")
-                        .slice(0, 2)
-                        .toUpperCase()}
-                    </span>
-                    <span className="text-sm font-medium text-primary/80">{item}</span>
-                  </div>
-                ))}
-              </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {KEPERCAYAAN.map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3"
+            >
+              <Icon className="h-4 w-4 shrink-0 text-primary/70" />
+              <span className="text-xs font-medium leading-snug text-primary/80">{label}</span>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-xs text-muted-foreground">
-          Ilustrasi kelompok institusi mitra; logo aktual tidak ditampilkan.
-        </p>
       </section>
+
 
 
       {/* Alasan */}
