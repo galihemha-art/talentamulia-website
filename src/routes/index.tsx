@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeCheck,
+  Building2,
+  Handshake,
+  Landmark,
   BrainCircuit,
   ClipboardList,
   GraduationCap,
@@ -103,11 +106,11 @@ const STATS = [
 ];
 
 const KEPERCAYAAN = [
-  { group: "Rumah Sakit", items: ["RS Umum", "RS Ibu & Anak", "Klinik Utama"] },
-  { group: "Universitas", items: ["Universitas Negeri", "Universitas Swasta", "Politeknik"] },
-  { group: "Sekolah", items: ["SMA / SMK", "SMP", "Yayasan Pendidikan"] },
-  { group: "Organisasi Profesi", items: ["Asosiasi Psikologi", "Asosiasi Medis", "Forum HR"] },
-  { group: "Government", items: ["Pemerintah Daerah", "BUMN", "Dinas Terkait"] },
+  { icon: HeartPulse, label: "Rumah Sakit & Fasilitas Kesehatan" },
+  { icon: Building2, label: "Korporasi & Industri" },
+  { icon: GraduationCap, label: "Universitas & Pendidikan" },
+  { icon: Landmark, label: "Pemerintah & BUMN" },
+  { icon: Handshake, label: "Organisasi Profesi" },
 ];
 
 
@@ -227,25 +230,21 @@ function Beranda() {
     <>
       {/* Hero */}
       <section className="bg-surface-soft">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-2 lg:py-16">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
               Pusat Konsultasi Terintegrasi
             </span>
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.4rem]">
-              Psikologi, Kesehatan &amp; Kepemimpinan Terintegrasi.
-              <br />
-              <span className="text-gradient-brand">
-                Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
-              </span>
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl">
+              Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
               Development, Assessment Center, Medical Wellness, dan Healthcare Consulting yang
               didukung oleh psikolog, dokter, executive coach, serta konsultan organisasi
               berpengalaman.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 to="/kontak"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
@@ -311,12 +310,16 @@ function Beranda() {
         </div>
       </section>
 
-      {/* Tokoh Sentral */}
+      {/* Principal Experts */}
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-primary md:text-4xl">
-            Tokoh Sentral
+            Principal Experts
           </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
+            Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
+            dan pengembangan organisasi di Talenta Mulia.
+          </p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {TOKOH_SENTRAL.map((t) => (
               <figure
@@ -408,41 +411,23 @@ function Beranda() {
       </section>
 
       {/* Dipercaya */}
-      <section className="mx-auto max-w-7xl px-5 py-14">
-        <h2 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
+      <section className="mx-auto max-w-7xl px-5 py-8">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
           Dipercaya oleh Profesional dari Berbagai Institusi
         </h2>
-        <div className="mt-10 space-y-8">
-          {KEPERCAYAAN.map((kel) => (
-            <div key={kel.group}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                {kel.group}
-              </h3>
-              <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                {kel.items.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 opacity-70 grayscale transition-opacity hover:opacity-100"
-                  >
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-secondary text-xs font-bold text-primary">
-                      {item
-                        .split(" ")
-                        .map((w) => w[0])
-                        .join("")
-                        .slice(0, 2)
-                        .toUpperCase()}
-                    </span>
-                    <span className="text-sm font-medium text-primary/80">{item}</span>
-                  </div>
-                ))}
-              </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {KEPERCAYAAN.map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3"
+            >
+              <Icon className="h-4 w-4 shrink-0 text-primary/70" />
+              <span className="text-xs font-medium leading-snug text-primary/80">{label}</span>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-xs text-muted-foreground">
-          Ilustrasi kelompok institusi mitra; logo aktual tidak ditampilkan.
-        </p>
       </section>
+
 
 
       {/* Alasan */}
