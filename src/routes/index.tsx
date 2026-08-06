@@ -213,8 +213,13 @@ const FAQ = [
 const HERO_PROFILS = [
   { img: maulidah, name: "Maulidah Muflichah", badge: "Psychologist" },
   { img: eka, name: "Eka Rachmawaty", badge: "Executive Coach" },
-  { img: andiani, name: "Dr. Hj. Andiani", badge: "Medical Consultant" },
+  { img: hilda, name: "Hilda Rosa Ainiyah", badge: "Psikolog Klinis" },
   { img: mamluatul, name: "Mamluatul Khoiriyah", badge: "Leadership Consultant" },
+];
+
+const TOKOH_SENTRAL = [
+  { img: andiani, name: "Dr. Hj. Andiani" },
+  { img: trinovia, name: "Dr. Tri Novia" },
 ];
 
 function Beranda() {
