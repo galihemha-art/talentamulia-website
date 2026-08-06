@@ -48,6 +48,14 @@ export const AUTHORS: Record<AuthorId, Author> = {
     photo: mamluatul,
     jobTitle: "Psikolog",
   },
+  hilda: {
+    id: "hilda",
+    name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
+    role: "Psikolog Klinis",
+    bio: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri.",
+    photo: hilda,
+    jobTitle: "Psikolog Klinis",
+  },
 };
 
 export const AUTHOR_LIST = Object.values(AUTHORS);
