@@ -59,8 +59,8 @@ function Page() {
             Principal Experts
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Distinguished Fellow yang memimpin arah praktik psikologi klinis, kesehatan, dan
-            transformasi layanan kesehatan.
+            Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
+            dan pengembangan organisasi di Talenta Mulia.
           </p>
         </div>
       </section>
