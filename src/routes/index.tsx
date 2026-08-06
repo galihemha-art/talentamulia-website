@@ -310,12 +310,16 @@ function Beranda() {
         </div>
       </section>
 
-      {/* Tokoh Sentral */}
+      {/* Principal Experts */}
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-primary md:text-4xl">
-            Tokoh Sentral
+            Principal Experts
           </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
+            Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
+            dan pengembangan organisasi di Talenta Mulia.
+          </p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {TOKOH_SENTRAL.map((t) => (
               <figure
