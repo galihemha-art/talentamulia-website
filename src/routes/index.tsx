@@ -230,25 +230,21 @@ function Beranda() {
     <>
       {/* Hero */}
       <section className="bg-surface-soft">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-2 lg:py-16">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
               Pusat Konsultasi Terintegrasi
             </span>
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.4rem]">
-              Psikologi, Kesehatan &amp; Kepemimpinan Terintegrasi.
-              <br />
-              <span className="text-gradient-brand">
-                Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
-              </span>
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl">
+              Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
               Development, Assessment Center, Medical Wellness, dan Healthcare Consulting yang
               didukung oleh psikolog, dokter, executive coach, serta konsultan organisasi
               berpengalaman.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 to="/kontak"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
