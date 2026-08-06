@@ -103,11 +103,11 @@ const STATS = [
 ];
 
 const KEPERCAYAAN = [
-  { group: "Rumah Sakit", items: ["RS Umum", "RS Ibu & Anak", "Klinik Utama"] },
-  { group: "Universitas", items: ["Universitas Negeri", "Universitas Swasta", "Politeknik"] },
-  { group: "Sekolah", items: ["SMA / SMK", "SMP", "Yayasan Pendidikan"] },
-  { group: "Organisasi Profesi", items: ["Asosiasi Psikologi", "Asosiasi Medis", "Forum HR"] },
-  { group: "Government", items: ["Pemerintah Daerah", "BUMN", "Dinas Terkait"] },
+  { icon: HeartPulse, label: "Rumah Sakit & Fasilitas Kesehatan" },
+  { icon: Building2, label: "Korporasi & Industri" },
+  { icon: GraduationCap, label: "Universitas & Pendidikan" },
+  { icon: Landmark, label: "Pemerintah & BUMN" },
+  { icon: Handshake, label: "Organisasi Profesi" },
 ];
 
 
