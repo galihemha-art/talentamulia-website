@@ -89,7 +89,7 @@ function Page() {
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid gap-10">
-          {PROFESSIONALS.map((p, i) => {
+          {PROFESSIONALS.filter((p) => p.id !== "andiani").map((p, i) => {
             const artikel = ARTIKEL.filter((a) => a.authorId === p.id).slice(0, 3);
             return (
               <article
