@@ -91,7 +91,7 @@ const SEKTOR = ["Rumah Sakit", "BUMN", "Manufaktur", "Perbankan", "Pemerintah", 
 
 const STATS = [
   {
-    value: "4",
+    value: "6",
     label: "Profesional Senior",
     note: "Psikolog • Dokter • Executive Coach • Konsultan Organisasi",
   },
