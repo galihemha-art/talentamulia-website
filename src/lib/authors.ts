@@ -2,8 +2,9 @@ import maulidah from "@/assets/Maulidah_Muflichah.webp";
 import andiani from "@/assets/Dr_Andiani.webp";
 import eka from "@/assets/Eka_Rachmawaty.webp";
 import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
 
-export type AuthorId = "maulidah" | "andiani" | "eka" | "mamluatul";
+export type AuthorId = "maulidah" | "andiani" | "eka" | "mamluatul" | "hilda";
 
 export type Author = {
   id: AuthorId;
