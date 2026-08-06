@@ -289,18 +289,70 @@ function Page() {
         </div>
       </section>
 
-      {/* TIM KEPEMIMPINAN */}
+      {/* TOKOH SENTRAL */}
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <Label>Tim Kepemimpinan</Label>
+              <Label>Tokoh Sentral</Label>
               <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-                Dipimpin praktisi, bukan sekadar teori.
+                Tokoh Sentral
               </h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Empat praktisi senior yang memimpin penugasan korporat, rumah sakit, dan institusi —
-                psikolog, konsultan kepemimpinan medis, dan executive coach.
+                Dua figur senior yang memimpin arah praktik psikologi klinis, kesehatan, dan
+                transformasi layanan kesehatan di Talenta Mulia.
+              </p>
+            </div>
+            <Link
+              to="/tokoh-sentral"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-card px-5 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:border-brand-blue hover:text-brand-blue"
+            >
+              Lihat Profil Lengkap
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {TOKOH.map((t) => (
+              <article
+                key={t.name}
+                className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+              >
+                <img
+                  src={t.photo}
+                  alt={t.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={840}
+                  height={1050}
+                  className="aspect-[4/5] w-full object-cover object-top"
+                />
+                <div className="p-6">
+                  <h3 className="text-base font-bold leading-snug text-primary">{t.name}</h3>
+                  <span className="mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
+                    Distinguished Fellow, Talenta Mulia
+                  </span>
+                  <p className="mt-2 text-xs font-semibold text-brand-blue">{t.role}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TIM PROFESIONAL */}
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <Label>Tim Profesional</Label>
+              <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
+                Tim Profesional
+              </h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Psikolog dan konsultan pengembangan kepemimpinan yang menangani penugasan individu,
+                korporat, dan institusi.
               </p>
             </div>
             <Link
@@ -322,8 +374,9 @@ function Page() {
                   src={t.photo}
                   alt={t.alt}
                   loading="lazy"
-                decoding="async"
-                width={800} height={1000}
+                  decoding="async"
+                  width={800}
+                  height={1000}
                   className="aspect-[4/5] w-full object-cover object-top"
                 />
                 <div className="p-5">
@@ -336,6 +389,7 @@ function Page() {
           </div>
         </div>
       </section>
+
 
       {/* PERJALANAN KAMI */}
       <section className="mx-auto max-w-5xl px-5 py-16 md:py-20">
