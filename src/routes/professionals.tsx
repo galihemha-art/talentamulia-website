@@ -82,14 +82,14 @@ function Page() {
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Empat praktisi senior yang memimpin penugasan korporat, rumah sakit, dan institusi —
-            psikolog, konsultan kepemimpinan medis, dan executive coach bersertifikat ICF.
+            psikolog klinis, psikolog senior, dan executive coach bersertifikat ICF.
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid gap-10">
-          {PROFESSIONALS.map((p, i) => {
+          {PROFESSIONALS.filter((p) => p.id !== "andiani").map((p, i) => {
             const artikel = ARTIKEL.filter((a) => a.authorId === p.id).slice(0, 3);
             return (
               <article
