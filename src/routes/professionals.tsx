@@ -129,37 +129,41 @@ function Page() {
                   </div>
 
                   <div className="mt-7 grid gap-4 md:grid-cols-2">
-                    <div className="md:col-span-2">
-                      <Section icon={Briefcase} title="Perjalanan Profesional">
-                        <ol className="space-y-4 border-l border-border pl-5">
-                          {p.timeline.map((t) => (
-                            <li key={t.periode} className="relative">
-                              <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-brand-blue" />
-                              <p className="text-xs font-bold tracking-wide text-brand-blue">
-                                {t.periode}
-                              </p>
-                              <p className="mt-1 font-semibold text-primary">{t.judul}</p>
-                              <p className="mt-1">{t.detail}</p>
-                            </li>
-                          ))}
-                        </ol>
-                      </Section>
-                    </div>
+                    {p.timeline.length > 0 && (
+                      <div className="md:col-span-2">
+                        <Section icon={Briefcase} title="Perjalanan Profesional">
+                          <ol className="space-y-4 border-l border-border pl-5">
+                            {p.timeline.map((t) => (
+                              <li key={t.periode} className="relative">
+                                <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-brand-blue" />
+                                <p className="text-xs font-bold tracking-wide text-brand-blue">
+                                  {t.periode}
+                                </p>
+                                <p className="mt-1 font-semibold text-primary">{t.judul}</p>
+                                <p className="mt-1">{t.detail}</p>
+                              </li>
+                            ))}
+                          </ol>
+                        </Section>
+                      </div>
+                    )}
 
                     <Section icon={Award} title="Sertifikasi">
                       <Bullets items={p.sertifikasi} />
                     </Section>
 
-                    <Section icon={BookOpen} title="Buku">
-                      <ul className="space-y-2">
-                        {p.buku.map((b) => (
-                          <li key={b.judul}>
-                            <span className="font-semibold text-primary">{b.judul}</span>
-                            <span className="block text-xs">{b.catatan}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </Section>
+                    {p.buku.length > 0 && (
+                      <Section icon={BookOpen} title="Buku">
+                        <ul className="space-y-2">
+                          {p.buku.map((b) => (
+                            <li key={b.judul}>
+                              <span className="font-semibold text-primary">{b.judul}</span>
+                              <span className="block text-xs">{b.catatan}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </Section>
+                    )}
 
                     <Section icon={Mic} title="Pengalaman sebagai Pembicara">
                       <Bullets items={p.speaking} />
