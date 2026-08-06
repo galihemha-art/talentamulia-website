@@ -11,12 +11,14 @@ export type Professional = {
   name: string;
   role: string;
   desc: string;
+  /** Pills shown under the name; falls back to keahlian */
+  tags?: string[];
   /** Professional Timeline */
-  timeline: { periode: string; judul: string; detail: string }[];
+  timeline: { periode: string; judul: string; detail?: string }[];
   /** Certification */
   sertifikasi: string[];
   /** Books */
-  buku: { judul: string; catatan: string }[];
+  buku: { judul: string; catatan?: string }[];
   /** Speaking Experience */
   speaking: string[];
   /** Areas of Expertise */
@@ -34,58 +36,54 @@ export const PROFESSIONALS: Professional[] = [
     name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
     role: "Founder · Psikolog Utama · Certified Hypnotherapist",
     desc: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
+    tags: [
+      "Psikologi Klinis",
+      "Terapi Keluarga",
+      "Konseling Pernikahan",
+      "Hipnoterapi",
+      "Psikoterapi Islami",
+    ],
     timeline: [
       {
-        periode: "1999 — 2006",
-        judul: "Praktik Psikologi Klinis Awal",
+        periode: "2007–2014",
+        judul: "Psikolog Pusat Terapan Psikologi Pendidikan UNAIR Surabaya",
         detail:
-          "Menangani konseling individu, keluarga, dan pasangan di layanan psikologi serta institusi pendidikan di Jawa Timur.",
+          "Turut aktif sebagai psikolog di Qur'anic Science Club Surabaya (2009–2011) dan Psikolog Expert Jakarta (2009–2013).",
       },
       {
-        periode: "2007 — 2014",
-        judul: "Psikolog Konsultan Organisasi",
-        detail:
-          "Memimpin asesmen psikologi untuk seleksi dan promosi di perusahaan manufaktur, rumah sakit, dan lembaga pendidikan.",
+        periode: "2009–2019",
+        judul: "Dosen Psikologi, UIN Sunan Ampel Surabaya",
+        detail: "Mengajar mata kuliah Akhlak Tasawuf dan Psikoterapi (2016–2019).",
       },
       {
-        periode: "2015 — 2020",
-        judul: "Pengembangan Program Terintegrasi",
+        periode: "2019–sekarang",
+        judul: "Founder & Psikolog, Talenta Mulia",
         detail:
-          "Merancang program Masa Persiapan Pensiun dan kesejahteraan karyawan yang menggabungkan psikologi, hipnoterapi, dan pendekatan medis.",
+          "Mendirikan dan memimpin praktik psikologi Talenta Mulia di Sidoarjo, sekaligus narasumber tetap program Mozaik, Radio Suara Muslim Surabaya, sejak 2019.",
       },
       {
-        periode: "2021 — sekarang",
-        judul: "Founder Talenta Mulia",
-        detail:
-          "Memimpin pusat konsultasi psikologi, kesehatan, dan kepemimpinan terintegrasi di Sidoarjo, Jawa Timur.",
+        periode: "2025–sekarang",
+        judul: "Psikolog Sekolah, SD Kreatif Insan Rabbani Sidoarjo",
       },
     ],
     sertifikasi: [
-      "Psikolog (Surat Izin Praktik Psikologi — HIMPSI)",
+      "Certified Family Therapy — Pendekatan Virginia Satir",
+      "Certified Marital Counselor",
+      "Certified Forgiveness Therapy",
       "Certified Hypnotherapist (CHt.)",
-      "Sertifikasi Asesor Psikologi Industri & Organisasi",
-      "Pelatihan Terapi Keluarga & Konseling Pernikahan",
+      "Member, TEMPA Trainers Guild (TTG)",
     ],
-    buku: [
-      { judul: "Menata Diri Menjelang Purnabakti", catatan: "Buku ber-ISBN nasional" },
-      { judul: "Pendampingan Psikologis untuk Keluarga Indonesia", catatan: "Kontributor bab" },
-    ],
+    buku: [],
     speaking: [
-      "Pembicara seminar Masa Persiapan Pensiun untuk BUMN dan perusahaan manufaktur",
-      "Narasumber workshop parenting di sekolah dan komunitas orang tua",
-      "Fasilitator pelatihan kesehatan mental karyawan di rumah sakit",
+      "Narasumber tetap program Mozaik, Radio Suara Muslim Surabaya (2019–sekarang)",
     ],
     keahlian: [
       "Psikologi Klinis",
-      "Konseling Pernikahan & Keluarga",
-      "Hipnoterapi",
-      "Asesmen Psikologi",
-      "Program Masa Persiapan Pensiun",
+      "Terapi Keluarga (Virginia Satir)",
+      "Konseling Pernikahan",
+      "Hipnoterapi Bersertifikat",
     ],
-    publikasi: [
-      "Artikel populer tentang post power syndrome dan kesiapan psikologis pensiun",
-      "Materi modul pelatihan kesejahteraan karyawan untuk klien korporat",
-    ],
+    publikasi: [],
     layanan: [
       { slug: "konseling-psikologis", title: "Konseling Psikologis" },
       { slug: "konseling-pernikahan", title: "Konseling Pernikahan" },
@@ -99,58 +97,58 @@ export const PROFESSIONALS: Professional[] = [
     name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
     role: "Konsultan Kepemimpinan Medis & Kesehatan",
     desc: "Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
+    tags: [
+      "Manajemen & Akreditasi Rumah Sakit",
+      "Tata Kelola Klinis",
+      "Epidemiologi & Kesehatan Masyarakat",
+      "Mutu Pelayanan Kesehatan",
+    ],
     timeline: [
       {
-        periode: "1998 — 2005",
-        judul: "Dokter Pelayanan Primer",
-        detail: "Praktik klinis dan program kesehatan masyarakat di layanan primer Jawa Timur.",
+        periode: "2009–2017",
+        judul: "Kepala Pelayanan Medis, RS Bhayangkara Pusdik Brimob Watukosek",
+        detail:
+          "Turut menjabat Ketua Komite Medik RS (2009–2012) dan Ketua Tim Mutu RS (2010–2014).",
       },
       {
-        periode: "2006 — 2013",
-        judul: "Manajemen Mutu Rumah Sakit",
+        periode: "2018–2023",
+        judul: "Kabag Epidemiologi, FK Universitas Wijaya Kusuma Surabaya",
         detail:
-          "Mengembangkan sistem mutu, keselamatan pasien, dan tata kelola klinis di rumah sakit swasta.",
+          "Memimpin persiapan akreditasi dan asesmen internal rumah sakit sekaligus mengajar di FK UWKS.",
       },
       {
-        periode: "2014 — 2020",
-        judul: "Pendampingan Akreditasi",
+        periode: "2022–sekarang",
+        judul: "Surveyor Akreditasi, LARS & LAMFI",
         detail:
-          "Mendampingi rumah sakit dan klinik dalam persiapan serta pemenuhan standar akreditasi nasional.",
+          "Ketua Bidang Akreditasi FKTP dan Surveior Akreditasi di Lembaga Akreditasi Mutu Fasyankes Indonesia (LAMFI), serta Surveyor Akreditasi Rumah Sakit di LARS.",
       },
       {
-        periode: "2021 — sekarang",
-        judul: "Wakil Direktur Pelayanan Medis & Keperawatan",
+        periode: "2024–2027",
+        judul: "Wakil Direktur Pelayanan Medis & Keperawatan, RSI Siti Hajar Sidoarjo",
         detail:
-          "Memimpin pelayanan medis di RSI Siti Hajar Sidoarjo sekaligus konsultan medical wellness Talenta Mulia.",
+          "Turut menjabat Direktur LAFARSI (2025–sekarang) dan Dosen FK Universitas Trunojoyo Madura (2025–sekarang).",
       },
     ],
-    sertifikasi: [
-      "Spesialis Kedokteran Keluarga Layanan Primer (Sp.KKLP.)",
-      "Fellow of Indonesian Society of Community Health (FISCH)",
-      "Fellow of Indonesian Society of Preventive Medicine (FISPM)",
-      "Certified Hypnotherapist (CHt.)",
-      "Certified Executive Firm Healthcare Leadership Management (CEFHLM)",
-    ],
+    sertifikasi: ["Sp.KKLP.", "FISCH", "FISPM", "CHt.", "CEFHLM"],
     buku: [
-      { judul: "Tata Kelola Klinis & Mutu Pelayanan Rumah Sakit", catatan: "Buku ber-ISBN nasional" },
-      { judul: "Kesehatan Preventif di Tempat Kerja", catatan: "Kontributor bab" },
+      { judul: "Epidemiologi Dasar untuk Mahasiswa Kesehatan dan Kedokteran" },
+      { judul: "Membangun Kesehatan di Negara Kepulauan" },
+      { judul: "Caregiver Kanker dan Penyakit Kronis" },
+      { judul: "Bioetika dalam Sistem JKN" },
+      { judul: "Epidemiologi dan Tata Kelola Kegawatdaruratan dalam Sistem JKN" },
     ],
     speaking: [
-      "Pembicara seminar akreditasi dan mutu rumah sakit",
-      "Narasumber pelatihan kepemimpinan tenaga kesehatan",
-      "Pemateri medical wellness dan skrining kesehatan karyawan korporat",
+      'Narasumber Symposium Nasional "Mutu dan Akreditasi Tempat Praktik Dokter" (PDK3MI-IDI)',
+      'Narasumber "Kesiapan Rumah Sakit Menghadapi Akreditasi: Penyusunan Borang dan Telusur Akreditasi Standar Nasional Akreditasi Rumah Sakit Edisi 1"',
+      "Narasumber The 2nd International Conference on Health Technology and Sustainable Risk Management (ICOHAP)",
     ],
     keahlian: [
       "Manajemen & Akreditasi Rumah Sakit",
       "Tata Kelola Klinis",
-      "Kesehatan Masyarakat & Preventif",
-      "Medical Wellness Korporat",
-      "Kepemimpinan Tenaga Kesehatan",
+      "Epidemiologi & Kesehatan Masyarakat",
+      "Mutu Pelayanan Kesehatan",
     ],
-    publikasi: [
-      "Tulisan tentang peran kesehatan fisik dalam kesiapan pensiun",
-      "Materi pelatihan mutu dan keselamatan pasien untuk fasilitas kesehatan",
-    ],
+    publikasi: [],
     layanan: [
       { slug: "medical-wellness", title: "Medical Wellness" },
       { slug: "kesejahteraan-karyawan", title: "Kesejahteraan Karyawan" },
@@ -165,56 +163,47 @@ export const PROFESSIONALS: Professional[] = [
     desc: "Professional Certified Coach (ICF PCC) yang berspesialisasi dalam executive coaching, pengembangan kepemimpinan, talent management, dan pengembangan organisasi.",
     timeline: [
       {
-        periode: "2001 — 2009",
-        judul: "Praktisi Human Capital",
+        periode: "1998–2009",
+        judul:
+          "HR Generalist hingga Assistant HR Manager, PT ECCO Indonesia & ECCO Tannery Indonesia",
         detail:
-          "Menangani rekrutmen, pengembangan talenta, dan manajemen kinerja di perusahaan nasional.",
+          "Mengelola rekrutmen, competency framework, dan implementasi sistem SAP HR, termasuk struktur remunerasi berbasis metodologi Mercer.",
       },
       {
-        periode: "2010 — 2016",
-        judul: "Pemimpin Learning & Development",
+        periode: "2010–2016",
+        judul: "Associate Trainer & Consultant, Marion Human Capital Centre",
         detail:
-          "Merancang program pengembangan kepemimpinan dan succession planning untuk level manajerial.",
+          "Turut memimpin fungsi HRD & General Affairs di PT Nilam Port Terminal Indonesia (2014) dan PT Berhasil Indonesia Gemilang (2016).",
       },
       {
-        periode: "2017 — 2022",
-        judul: "Executive Coach Bersertifikat ICF",
+        periode: "2017–2023",
+        judul: "Associate Coach & Mentor, PT Akselerasi Indonesia",
         detail:
-          "Menempuh jenjang sertifikasi ICF hingga PCC dengan lebih dari 1.000 jam pendampingan eksekutif.",
+          "Mendampingi pimpinan, manajer, dan talenta kunci melalui leadership coaching 1:1 dan team coaching.",
       },
       {
-        periode: "2023 — sekarang",
-        judul: "Konsultan Kepemimpinan Talenta Mulia",
+        periode: "2024–sekarang",
+        judul: "Leadership Coach & Trainer, Professional Certified Coach (ICF PCC)",
         detail:
-          "Memimpin layanan executive coaching, team coaching, assessment center, dan pemetaan talenta.",
+          "Lebih dari 1.000 jam coaching mendampingi eksekutif, manajer, dan pimpinan sekolah.",
       },
     ],
     sertifikasi: [
-      "Professional Certified Coach (ICF PCC)",
-      "Certified Assessor — Assessment Center",
-      "Sertifikasi Talent Management & Succession Planning",
-      "Fasilitator Pelatihan Kepemimpinan",
+      "Professional Certified Coach (PCC) — International Coaching Federation (ICF)",
+      "Advanced Certification in Team Coaching (ACTC) — ICF",
+      "ICF PCC Marker Assessor",
     ],
-    buku: [
-      { judul: "Coaching untuk Pemimpin Organisasi", catatan: "Buku ber-ISBN nasional" },
-      { judul: "Membangun Jalur Suksesi Talenta", catatan: "Modul praktik korporat" },
-    ],
+    buku: [],
     speaking: [
-      "Pembicara forum HR dan asosiasi manajemen di Jawa Timur",
-      "Fasilitator leadership development program untuk level manajerial",
-      "Narasumber sesi coaching culture di perusahaan dan institusi pendidikan",
+      "Merancang dan memfasilitasi workshop, cohort-based learning, serta action learning untuk pengembangan kepemimpinan organisasi",
     ],
     keahlian: [
-      "Executive & Team Coaching",
       "Leadership Development",
-      "Assessment Center",
-      "Talent Management",
-      "Pengembangan Organisasi",
+      "Organization Development",
+      "Executive & Team Coaching",
+      "Strategic HR & Talent Systems",
     ],
-    publikasi: [
-      "Artikel tentang tanda karyawan belum siap pensiun dan peran HR",
-      "Panduan internal penyusunan kompetensi kepemimpinan",
-    ],
+    publikasi: [],
     layanan: [
       { slug: "executive-coaching", title: "Executive Coaching" },
       { slug: "team-coaching", title: "Team Coaching" },
@@ -230,55 +219,44 @@ export const PROFESSIONALS: Professional[] = [
     desc: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
     timeline: [
       {
-        periode: "2005 — 2011",
-        judul: "Psikolog Layanan Komunitas",
-        detail: "Pendampingan psikologis untuk komunitas, sekolah, dan kelompok rentan.",
+        periode: "2010–2012",
+        judul: "Guru BK, SDIT Insan Kamil Sidoarjo & SMP Plus Amanah Tasikmalaya",
       },
       {
-        periode: "2012 — 2018",
-        judul: "Praktisi Trauma Healing & SEFT",
-        detail:
-          "Mendalami terapi trauma dan forgiveness therapy untuk kasus kekerasan, kehilangan, dan krisis keluarga.",
+        periode: "2012–2017",
+        judul: "Psikolog, Dinas Kesehatan Kota Surabaya",
+        detail: "Turut menjadi Konselor HIV dan Tim Assessment Terpadu BNNK (2015–2017).",
       },
       {
-        periode: "2019 — 2023",
-        judul: "Konsultan Program Sekolah",
+        periode: "2016–sekarang",
+        judul: "Terapis, Konselor & SEFT Healing Trainer",
         detail:
-          "Mendampingi sekolah dalam layanan bimbingan, deteksi dini masalah belajar, dan program parenting.",
+          "Juga Dosen Luar Biasa Fakultas Ushuluddin dan Filsafat UIN Sunan Ampel Surabaya (2019–2021) dan Bendahara I Yayasan Kreativitas Membangun se-Indonesia (2020–sekarang).",
       },
       {
-        periode: "2024 — sekarang",
-        judul: "Psikolog Senior Talenta Mulia",
-        detail:
-          "Menangani konseling remaja, trauma healing, parenting, dan pendampingan anak berkebutuhan khusus.",
+        periode: "2022–sekarang",
+        judul: "Psikolog, Talenta Mulia, PT Graha Green Indonesia & Insight Consultant",
       },
     ],
     sertifikasi: [
-      "Psikolog (Surat Izin Praktik Psikologi — HIMPSI)",
-      "Certified SEFT Therapist",
-      "Pelatihan Trauma Healing & Forgiveness Therapy",
-      "Sertifikasi Asesmen Psikologi Pendidikan",
+      "Certified SEFT Total Solution Training",
+      "Certified Forgiveness Therapy",
+      "Certified Grapho for Success",
+      "TOT SEFT for Healing",
     ],
-    buku: [
-      { judul: "Memaafkan: Jalan Pulih dari Luka Batin", catatan: "Buku ber-ISBN nasional" },
-      { judul: "Parenting Reflektif untuk Anak dan Remaja", catatan: "Modul pelatihan orang tua" },
-    ],
+    buku: [],
     speaking: [
-      "Narasumber seminar kesehatan mental remaja di sekolah",
-      "Fasilitator kelas parenting untuk komunitas dan perusahaan",
-      "Pembicara pelatihan trauma healing untuk pendamping komunitas",
+      "Training SEFT for Healing untuk tenaga psikologi Dinas Kesehatan Kota Surabaya, masyarakat umum, dan guru TK/SD di berbagai kota (2017–2019)",
+      "Narasumber program Posyandu Remaja, Surabaya (2017–2021)",
+      "Parenting & seminar kesehatan mental di berbagai sekolah dan komunitas (2018–2026)",
     ],
     keahlian: [
       "Kesehatan Mental",
       "Trauma Healing & SEFT",
-      "Konseling Remaja",
-      "Parenting",
-      "Psikologi Komunitas & Pendidikan",
+      "Konseling Remaja & Parenting",
+      "Terapi Keluarga (Virginia Satir)",
     ],
-    publikasi: [
-      "Tulisan populer tentang pemulihan trauma dan regulasi emosi",
-      "Materi edukasi kesehatan mental untuk sekolah dan komunitas",
-    ],
+    publikasi: [],
     layanan: [
       { slug: "trauma-healing", title: "Trauma Healing" },
       { slug: "konseling-remaja", title: "Konseling Remaja" },
@@ -292,8 +270,30 @@ export const PROFESSIONALS: Professional[] = [
     name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
     role: "Psikolog Klinis",
     desc: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri. Aktif dalam penelitian dan pengabdian masyarakat terkait kesehatan mental, termasuk pelatihan asertif untuk penanganan bullying remaja dan positive parenting.",
-    timeline: [],
-    sertifikasi: ["Psikolog (Surat Izin Praktik Psikologi \u2014 HIMPSI)"],
+    timeline: [
+      {
+        periode: "2014–2016",
+        judul: "Asisten Laboratorium, Unit Layanan dan Laboratorium Psikologi UNS",
+      },
+      {
+        periode: "2018–2020",
+        judul:
+          "Asisten Psikolog & Konselor, Poliklinik Psikologi RS Airlangga & Unit Pelayanan Psikologi UNAIR",
+      },
+      {
+        periode: "2021–2023",
+        judul: "Program Leader & Homeroom PIC, Sekolah Cikal Surabaya",
+      },
+      {
+        periode: "2023–sekarang",
+        judul:
+          "Psikolog Klinis, UPT-PPA Kota Malang & ITN Malang; Dosen Fakultas Psikologi Universitas Negeri Malang",
+      },
+    ],
+    sertifikasi: [
+      "Psikolog (Surat Izin Praktik Psikologi \u2014 HIMPSI)",
+      "Member, Himpunan Psikologi Indonesia (HIMPSI) & Ikatan Psikolog Klinis Indonesia",
+    ],
     buku: [],
     speaking: [
       "Pelatihan asertif untuk penanganan bullying remaja",
@@ -307,7 +307,8 @@ export const PROFESSIONALS: Professional[] = [
       "Kesehatan Mental Remaja",
     ],
     publikasi: [
-      "Penelitian dan pengabdian masyarakat terkait kesehatan mental",
+      'Jurnal Psikostudia Vol. 9 No. 2 (2020): "Efektivitas Pelatihan Asertif Sebagai Upaya Mengatasi Perilaku Bullying di SMPN A Surabaya"',
+      'National Public Health Journal Vol. 16 No. 4 (2021): "The COVID-19 Pandemic: Role of Coping Humor and Internal Health Locus of Control on Social Dysfunction and Anxiety & Depression"',
     ],
     layanan: [
       { slug: "konseling-psikologis", title: "Konseling Psikologis" },

@@ -1,19 +1,18 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import andiani from "@/assets/Dr_Andiani.webp";
-import trinovia from "@/assets/Tri_Novia.webp";
+import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Mic, Sparkles } from "lucide-react";
+import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 
 export const Route = createFileRoute("/tokoh-sentral")({
   head: () => ({
     meta: [
-      { title: "Principal Experts — Distinguished Fellow Talenta Mulia Sidoarjo" },
+      { title: "Tokoh Sentral — Distinguished Fellow Talenta Mulia Sidoarjo" },
       {
         name: "description",
         content:
           "Dr. Hj. Andiani dan Dr. Tri Novia, Distinguished Fellow Talenta Mulia yang memimpin arah praktik psikologi klinis, kesehatan, dan transformasi layanan kesehatan.",
       },
-      { property: "og:title", content: "Principal Experts — Distinguished Fellow Talenta Mulia" },
+      { property: "og:title", content: "Tokoh Sentral — Distinguished Fellow Talenta Mulia" },
       {
         property: "og:description",
         content:
@@ -28,20 +27,38 @@ export const Route = createFileRoute("/tokoh-sentral")({
   component: Page,
 });
 
-const TOKOH = [
-  {
-    photo: andiani,
-    name: "Dr. Hj. Andiani",
-    gelar: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
-    desc: "Memimpin arah praktik psikologi klinis & kesehatan di Talenta Mulia. Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
-  },
-  {
-    photo: trinovia,
-    name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom",
-    gelar: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom",
-    desc: "Memimpin arah praktik transformasi layanan kesehatan di Talenta Mulia. Berpengalaman sebagai konsultan transformasi pelayanan di berbagai rumah sakit dan klinik, dengan fokus pada komunikasi efektif dan budaya service excellence.",
-  },
-];
+function Section({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: typeof Award;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border border-border bg-secondary/30 p-5">
+      <h3 className="flex items-center gap-2 text-sm font-bold text-primary">
+        <Icon className="h-4 w-4 text-brand-blue" aria-hidden />
+        {title}
+      </h3>
+      <div className="mt-3 text-sm leading-relaxed text-muted-foreground">{children}</div>
+    </div>
+  );
+}
+
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((t) => (
+        <li key={t} className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function Page() {
   return (
@@ -53,10 +70,10 @@ function Page() {
               Beranda
             </Link>
             <span className="mx-2">&gt;</span>
-            <span className="text-primary">Principal Experts</span>
+            <span className="text-primary">Tokoh Sentral</span>
           </nav>
           <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl">
-            Principal Experts
+            Tokoh Sentral
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
@@ -67,9 +84,9 @@ function Page() {
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid gap-10">
-          {TOKOH.map((t) => (
+          {TOKOH_SENTRAL.map((t, i) => (
             <article
-              key={t.name}
+              key={t.key}
               className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-sm md:grid-cols-[minmax(0,420px)_1fr]"
             >
               <img
@@ -82,7 +99,10 @@ function Page() {
                 className="aspect-4/5 w-full object-cover object-top md:h-full"
               />
               <div className="flex flex-col justify-center p-7 md:p-10">
-                <h2 className="text-2xl font-bold leading-snug text-primary md:text-3xl">
+                <span className="text-xs font-bold tracking-[0.18em] text-brand-blue">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="mt-3 text-2xl font-bold leading-snug text-primary md:text-3xl">
                   {t.name}
                 </h2>
                 <span className="mt-3 inline-flex w-fit rounded-full bg-brand-gradient px-4 py-1.5 text-xs font-semibold text-white">
@@ -92,6 +112,77 @@ function Page() {
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
                   {t.desc}
                 </p>
+
+                {t.tags && t.tags.length > 0 && (
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {t.tags.map((k) => (
+                      <span
+                        key={k}
+                        className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-primary"
+                      >
+                        {k}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="mt-7 grid gap-4 md:grid-cols-2">
+                  {t.timeline.length > 0 && (
+                    <div className="md:col-span-2">
+                      <Section icon={Briefcase} title="Perjalanan Profesional">
+                        <ol className="space-y-4 border-l border-border pl-5">
+                          {t.timeline.map((item) => (
+                            <li key={item.periode} className="relative">
+                              <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-brand-blue" />
+                              <p className="text-xs font-bold tracking-wide text-brand-blue">
+                                {item.periode}
+                              </p>
+                              <p className="mt-1 font-semibold text-primary">{item.judul}</p>
+                              {item.detail && <p className="mt-1">{item.detail}</p>}
+                            </li>
+                          ))}
+                        </ol>
+                      </Section>
+                    </div>
+                  )}
+
+                  {t.pendidikan && t.pendidikan.length > 0 && (
+                    <Section icon={GraduationCap} title="Pendidikan">
+                      <Bullets items={t.pendidikan} />
+                    </Section>
+                  )}
+
+                  {t.sertifikasi.length > 0 && (
+                    <Section icon={Award} title="Sertifikasi">
+                      <Bullets items={t.sertifikasi} />
+                    </Section>
+                  )}
+
+                  {t.buku.length > 0 && (
+                    <Section icon={BookOpen} title="Buku">
+                      <ul className="space-y-2">
+                        {t.buku.map((b) => (
+                          <li key={b.judul}>
+                            <span className="font-semibold text-primary">{b.judul}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </Section>
+                  )}
+
+                  {t.speaking.length > 0 && (
+                    <Section icon={Mic} title="Pengalaman sebagai Pembicara">
+                      <Bullets items={t.speaking} />
+                    </Section>
+                  )}
+
+                  {t.keahlian.length > 0 && (
+                    <Section icon={Sparkles} title="Bidang Keahlian">
+                      <Bullets items={t.keahlian} />
+                    </Section>
+                  )}
+                </div>
+
                 <div className="mt-7">
                   <Link
                     to="/kontak"

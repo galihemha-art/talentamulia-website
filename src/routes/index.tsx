@@ -310,11 +310,11 @@ function Beranda() {
         </div>
       </section>
 
-      {/* Principal Experts */}
+      {/* Tokoh Sentral */}
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-primary md:text-4xl">
-            Principal Experts
+            Tokoh Sentral
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
             Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,

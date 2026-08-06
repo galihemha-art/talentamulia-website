@@ -81,8 +81,8 @@ function Page() {
             Dipimpin praktisi, bukan sekadar teori.
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Empat praktisi senior yang memimpin penugasan korporat, rumah sakit, dan institusi —
-            psikolog klinis, psikolog senior, dan executive coach bersertifikat ICF.
+            Praktisi senior yang memimpin penugasan korporat dan individu — psikolog klinis dan
+            konsultan pengembangan kepemimpinan bersertifikat ICF.
           </p>
         </div>
       </section>
@@ -118,7 +118,7 @@ function Page() {
                   </p>
 
                   <div className="mt-6 flex flex-wrap gap-2">
-                    {p.keahlian.map((k) => (
+                    {(p.tags ?? p.keahlian).map((k) => (
                       <span
                         key={k}
                         className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-primary"
@@ -140,7 +140,7 @@ function Page() {
                                   {t.periode}
                                 </p>
                                 <p className="mt-1 font-semibold text-primary">{t.judul}</p>
-                                <p className="mt-1">{t.detail}</p>
+                                {t.detail && <p className="mt-1">{t.detail}</p>}
                               </li>
                             ))}
                           </ol>
@@ -148,9 +148,11 @@ function Page() {
                       </div>
                     )}
 
-                    <Section icon={Award} title="Sertifikasi">
-                      <Bullets items={p.sertifikasi} />
-                    </Section>
+                    {p.sertifikasi.length > 0 && (
+                      <Section icon={Award} title="Sertifikasi">
+                        <Bullets items={p.sertifikasi} />
+                      </Section>
+                    )}
 
                     {p.buku.length > 0 && (
                       <Section icon={BookOpen} title="Buku">
@@ -165,17 +167,23 @@ function Page() {
                       </Section>
                     )}
 
-                    <Section icon={Mic} title="Pengalaman sebagai Pembicara">
-                      <Bullets items={p.speaking} />
-                    </Section>
+                    {p.speaking.length > 0 && (
+                      <Section icon={Mic} title="Pengalaman sebagai Pembicara">
+                        <Bullets items={p.speaking} />
+                      </Section>
+                    )}
 
-                    <Section icon={FileText} title="Publikasi">
-                      <Bullets items={p.publikasi} />
-                    </Section>
+                    {p.publikasi.length > 0 && (
+                      <Section icon={FileText} title="Publikasi">
+                        <Bullets items={p.publikasi} />
+                      </Section>
+                    )}
 
-                    <Section icon={Sparkles} title="Bidang Keahlian">
-                      <Bullets items={p.keahlian} />
-                    </Section>
+                    {p.keahlian.length > 0 && (
+                      <Section icon={Sparkles} title="Bidang Keahlian">
+                        <Bullets items={p.keahlian} />
+                      </Section>
+                    )}
 
                     <Section icon={Briefcase} title="Layanan yang Ditangani">
                       <ul className="space-y-2">
