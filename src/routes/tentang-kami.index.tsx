@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import maulidah from "@/assets/Maulidah_Muflichah.webp";
 import andiani from "@/assets/Dr_Andiani.webp";
+import trinovia from "@/assets/Tri_Novia.webp";
 import eka from "@/assets/Eka_Rachmawaty.webp";
 import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
 
 export const Route = createFileRoute("/tentang-kami/")({
   head: () => ({
@@ -93,13 +95,6 @@ const TIM = [
     desc: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
   },
   {
-    photo: andiani,
-    alt: "Potret Dr. dr. Hj. Andiani, Konsultan Kepemimpinan Medis & Kesehatan",
-    name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
-    role: "Konsultan Kepemimpinan Medis & Kesehatan",
-    desc: "Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
-  },
-  {
     photo: eka,
     alt: "Potret Eka Rachmawaty, Executive Coach bersertifikat ICF PCC",
     name: "Eka Rachmawaty, M.M., PCC",
@@ -112,6 +107,30 @@ const TIM = [
     name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
     role: "Psikolog Senior",
     desc: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
+  },
+  {
+    photo: hilda,
+    alt: "Potret Hilda Rosa Ainiyah, Psikolog Klinis Talenta Mulia",
+    name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
+    role: "Psikolog Klinis",
+    desc: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri.",
+  },
+];
+
+const TOKOH = [
+  {
+    photo: andiani,
+    alt: "Potret Dr. dr. Hj. Andiani, Konsultan Kepemimpinan Medis & Kesehatan",
+    name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
+    role: "Konsultan Kepemimpinan Medis & Kesehatan",
+    desc: "Memimpin arah praktik psikologi klinis & kesehatan di Talenta Mulia. Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
+  },
+  {
+    photo: trinovia,
+    alt: "Potret Dr. Tri Novia, Konsultan Transformasi Pelayanan Kesehatan",
+    name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom",
+    role: "Konsultan Transformasi Pelayanan Kesehatan",
+    desc: "Memimpin arah praktik transformasi layanan kesehatan di Talenta Mulia. Berpengalaman sebagai konsultan transformasi pelayanan di berbagai rumah sakit dan klinik, dengan fokus pada komunikasi efektif dan budaya service excellence.",
   },
 ];
 
