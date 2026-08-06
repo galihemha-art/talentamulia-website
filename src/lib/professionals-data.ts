@@ -2,6 +2,7 @@ import maulidah from "@/assets/Maulidah_Muflichah.webp";
 import andiani from "@/assets/Dr_Andiani.webp";
 import eka from "@/assets/Eka_Rachmawaty.webp";
 import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
 import type { AuthorId } from "@/lib/authors";
 
 export type Professional = {
@@ -283,6 +284,35 @@ export const PROFESSIONALS: Professional[] = [
       { slug: "konseling-remaja", title: "Konseling Remaja" },
       { slug: "parenting-anak", title: "Parenting & Anak" },
       { slug: "pendampingan-abk", title: "Pendampingan ABK" },
+    ],
+  },
+  {
+    id: "hilda",
+    photo: hilda,
+    name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
+    role: "Psikolog Klinis",
+    desc: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri. Aktif dalam penelitian dan pengabdian masyarakat terkait kesehatan mental, termasuk pelatihan asertif untuk penanganan bullying remaja dan positive parenting.",
+    timeline: [],
+    sertifikasi: ["Psikolog (Surat Izin Praktik Psikologi \u2014 HIMPSI)"],
+    buku: [],
+    speaking: [
+      "Pelatihan asertif untuk penanganan bullying remaja",
+      "Kelas positive parenting untuk sekolah dan komunitas",
+    ],
+    keahlian: [
+      "Psikologi Klinis",
+      "Dampak Pengalaman Masa Kecil (ACEs)",
+      "Konseling Hubungan & Kesiapan Pranikah",
+      "Eksplorasi Diri",
+      "Kesehatan Mental Remaja",
+    ],
+    publikasi: [
+      "Penelitian dan pengabdian masyarakat terkait kesehatan mental",
+    ],
+    layanan: [
+      { slug: "konseling-psikologis", title: "Konseling Psikologis" },
+      { slug: "konseling-pernikahan", title: "Konseling Pernikahan" },
+      { slug: "konseling-remaja", title: "Konseling Remaja" },
     ],
   },
 ];
