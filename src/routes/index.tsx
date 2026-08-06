@@ -19,6 +19,8 @@ import maulidah from "@/assets/Maulidah_Muflichah.webp";
 import andiani from "@/assets/Dr_Andiani.webp";
 import eka from "@/assets/Eka_Rachmawaty.webp";
 import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
+import trinovia from "@/assets/Tri_Novia.webp";
 import { SiteLink } from "@/components/site/SiteLink";
 import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
