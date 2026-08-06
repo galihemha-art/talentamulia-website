@@ -82,7 +82,7 @@ function Page() {
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Empat praktisi senior yang memimpin penugasan korporat, rumah sakit, dan institusi —
-            psikolog, konsultan kepemimpinan medis, dan executive coach bersertifikat ICF.
+            psikolog klinis, psikolog senior, dan executive coach bersertifikat ICF.
           </p>
         </div>
       </section>
