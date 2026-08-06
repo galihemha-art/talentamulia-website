@@ -19,6 +19,8 @@ import maulidah from "@/assets/Maulidah_Muflichah.webp";
 import andiani from "@/assets/Dr_Andiani.webp";
 import eka from "@/assets/Eka_Rachmawaty.webp";
 import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
+import trinovia from "@/assets/Tri_Novia.webp";
 import { SiteLink } from "@/components/site/SiteLink";
 import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
@@ -89,7 +91,7 @@ const SEKTOR = ["Rumah Sakit", "BUMN", "Manufaktur", "Perbankan", "Pemerintah", 
 
 const STATS = [
   {
-    value: "4",
+    value: "6",
     label: "Profesional Senior",
     note: "Psikolog • Dokter • Executive Coach • Konsultan Organisasi",
   },
@@ -211,8 +213,13 @@ const FAQ = [
 const HERO_PROFILS = [
   { img: maulidah, name: "Maulidah Muflichah", badge: "Psychologist" },
   { img: eka, name: "Eka Rachmawaty", badge: "Executive Coach" },
-  { img: andiani, name: "Dr. Hj. Andiani", badge: "Medical Consultant" },
+  { img: hilda, name: "Hilda Rosa Ainiyah", badge: "Psikolog Klinis" },
   { img: mamluatul, name: "Mamluatul Khoiriyah", badge: "Leadership Consultant" },
+];
+
+const TOKOH_SENTRAL = [
+  { img: andiani, name: "Dr. Hj. Andiani" },
+  { img: trinovia, name: "Dr. Tri Novia" },
 ];
 
 function Beranda() {
@@ -226,9 +233,11 @@ function Beranda() {
               Pusat Konsultasi Terintegrasi
             </span>
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.4rem]">
-              Membangun Manusia Hebat.
+              Psikologi, Kesehatan &amp; Kepemimpinan Terintegrasi.
               <br />
-              <span className="text-gradient-brand">Menguatkan Organisasi Berkelanjutan.</span>
+              <span className="text-gradient-brand">
+                Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
+              </span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
@@ -302,6 +311,46 @@ function Beranda() {
         </div>
       </section>
 
+      {/* Tokoh Sentral */}
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <h2 className="text-center text-3xl font-extrabold tracking-tight text-primary md:text-4xl">
+            Tokoh Sentral
+          </h2>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {TOKOH_SENTRAL.map((t) => (
+              <figure
+                key={t.name}
+                className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft"
+              >
+                <img
+                  src={t.img}
+                  alt={`${t.name} — Distinguished Fellow Talenta Mulia`}
+                  width={720}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-80 w-full object-cover object-top md:h-[26rem]"
+                />
+                <figcaption className="p-6 text-center">
+                  <p className="text-lg font-bold text-primary">{t.name}</p>
+                  <span className="mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
+                    Distinguished Fellow, Talenta Mulia
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              to="/tokoh-sentral"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Lihat Profil Lengkap <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Marquee */}
       <div className="overflow-hidden border-y border-border bg-primary py-3.5">

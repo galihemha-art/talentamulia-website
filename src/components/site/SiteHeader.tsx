@@ -105,7 +105,10 @@ const SIMPLE: Item[] = [
   { label: "Kontak", to: "/kontak" },
 ];
 
-const TENTANG: Item[] = [{ label: "Profesional", to: "/professionals" }];
+const TENTANG: Item[] = [
+  { label: "Tokoh Sentral", to: "/tokoh-sentral" },
+  { label: "Profesional", to: "/professionals" },
+];
 
 const linkClass =
   "inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary";

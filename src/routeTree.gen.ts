@@ -25,6 +25,7 @@ import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
+import { Route as TokohSentralRouteImport } from './routes/tokoh-sentral'
 import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
 import { Route as ArtikelSlugRouteImport } from './routes/artikel.$slug'
 import { Route as IndustriIndexRouteImport } from './routes/industri.index'
@@ -115,6 +116,11 @@ const TestimoniRoute = TestimoniRouteImport.update({
   path: '/testimoni',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TokohSentralRoute = TokohSentralRouteImport.update({
+  id: '/tokoh-sentral',
+  path: '/tokoh-sentral',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArtikelIndexRoute = ArtikelIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
   '/testimoni': typeof TestimoniRoute
+  '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
   '/layanan/$slug': typeof LayananSlugRoute
@@ -201,6 +208,7 @@ export interface FileRoutesByTo {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/testimoni': typeof TestimoniRoute
+  '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
   '/layanan/$slug': typeof LayananSlugRoute
@@ -229,6 +237,7 @@ export interface FileRoutesById {
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
   '/testimoni': typeof TestimoniRoute
+  '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/industri/$slug': typeof IndustriSlugRoute
   '/layanan/$slug': typeof LayananSlugRoute
@@ -258,6 +267,7 @@ export interface FileRouteTypes {
     | '/syarat-ketentuan'
     | '/tentang-kami'
     | '/testimoni'
+    | '/tokoh-sentral'
     | '/artikel/$slug'
     | '/industri/$slug'
     | '/layanan/$slug'
@@ -281,6 +291,7 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/syarat-ketentuan'
     | '/testimoni'
+    | '/tokoh-sentral'
     | '/artikel/$slug'
     | '/industri/$slug'
     | '/layanan/$slug'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/syarat-ketentuan'
     | '/tentang-kami'
     | '/testimoni'
+    | '/tokoh-sentral'
     | '/artikel/$slug'
     | '/industri/$slug'
     | '/layanan/$slug'
@@ -336,6 +348,7 @@ export interface RootRouteChildren {
   SyaratKetentuanRoute: typeof SyaratKetentuanRoute
   TentangKamiRoute: typeof TentangKamiRouteWithChildren
   TestimoniRoute: typeof TestimoniRoute
+  TokohSentralRoute: typeof TokohSentralRoute
   LayananSlugRoute: typeof LayananSlugRoute
 }
 
@@ -451,6 +464,13 @@ declare module '@tanstack/react-router' {
       path: '/testimoni'
       fullPath: '/testimoni'
       preLoaderRoute: typeof TestimoniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tokoh-sentral': {
+      id: '/tokoh-sentral'
+      path: '/tokoh-sentral'
+      fullPath: '/tokoh-sentral'
+      preLoaderRoute: typeof TokohSentralRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/artikel/': {
@@ -590,18 +610,9 @@ const rootRouteChildren: RootRouteChildren = {
   SyaratKetentuanRoute: SyaratKetentuanRoute,
   TentangKamiRoute: TentangKamiRouteWithChildren,
   TestimoniRoute: TestimoniRoute,
+  TokohSentralRoute: TokohSentralRoute,
   LayananSlugRoute: LayananSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

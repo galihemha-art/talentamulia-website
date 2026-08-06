@@ -2,8 +2,9 @@ import maulidah from "@/assets/Maulidah_Muflichah.webp";
 import andiani from "@/assets/Dr_Andiani.webp";
 import eka from "@/assets/Eka_Rachmawaty.webp";
 import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
+import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
 
-export type AuthorId = "maulidah" | "andiani" | "eka" | "mamluatul";
+export type AuthorId = "maulidah" | "andiani" | "eka" | "mamluatul" | "hilda";
 
 export type Author = {
   id: AuthorId;
@@ -46,6 +47,14 @@ export const AUTHORS: Record<AuthorId, Author> = {
     bio: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
     photo: mamluatul,
     jobTitle: "Psikolog",
+  },
+  hilda: {
+    id: "hilda",
+    name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
+    role: "Psikolog Klinis",
+    bio: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri.",
+    photo: hilda,
+    jobTitle: "Psikolog Klinis",
   },
 };
 
