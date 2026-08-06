@@ -17,7 +17,7 @@ export const TOKOH_SENTRAL: Tokoh[] = [
     gelar: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
     role: andiani.role,
     desc: "Memimpin arah praktik psikologi klinis & kesehatan di Talenta Mulia. Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
-    tags: andiani.tags,
+    tags: andiani.tags ?? [],
     timeline: andiani.timeline,
     sertifikasi: andiani.sertifikasi,
     buku: andiani.buku,
