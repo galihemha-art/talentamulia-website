@@ -85,7 +85,7 @@ function Page() {
         </h2>
         <div className="mt-8 space-y-12">
           {TOPIC_CLUSTERS.map((cluster) => {
-            const items = articlesInCluster(cluster);
+            const clusterItems = items.filter((a) => cluster.kategori.includes(a.kategori));
             const services = cluster.layanan.slice(0, 4);
             return (
               <div key={cluster.id}>
