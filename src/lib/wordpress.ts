@@ -23,6 +23,14 @@ export type WordPressPost = {
   content: WordPressRendered;
   author: number;
   categories: number[];
+  featured_media?: number;
+};
+
+export type WordPressMedia = {
+  id: number;
+  source_url?: string;
+  alt_text?: string;
+  media_details?: { sizes?: Record<string, { source_url?: string }> };
 };
 
 export type WordPressCategory = {
@@ -36,12 +44,29 @@ export type WordPressCategory = {
 export type ArtikelView = Omit<Artikel, "authorId"> & {
   authorId: AuthorId | null;
   authorName: string;
+  /** Featured image URL from WordPress, when available and valid. */
+  image: string | null;
+  imageAlt: string | null;
   /** true when the item comes from WordPress */
   source: "wordpress" | "local";
 };
 
 /** Minimal shape needed by article cards/grids. */
-export type ArtikelCardData = Pick<Artikel, "slug" | "kategori" | "title" | "excerpt">;
+export type ArtikelCardData = Pick<Artikel, "slug" | "kategori" | "title" | "excerpt"> & {
+  image?: string | null;
+  imageAlt?: string | null;
+};
+
+/** Accept only absolute http(s) image URLs. */
+export function isValidImageUrl(url: unknown): url is string {
+  if (typeof url !== "string" || url.length === 0) return false;
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 export const FALLBACK_AUTHOR_NAME = "Tim Talenta Mulia";
 
@@ -135,9 +160,35 @@ export function resolveAuthor(wpAuthorId: number): { id: AuthorId | null; name: 
   return { id: null, name: FALLBACK_AUTHOR_NAME };
 }
 
+export function pickMediaUrl(media: WordPressMedia | undefined | null): string | null {
+  if (!media) return null;
+  const large = media.media_details?.sizes?.["large"]?.source_url;
+  const full = media.media_details?.sizes?.["full"]?.source_url;
+  const candidate = large ?? full ?? media.source_url;
+  return isValidImageUrl(candidate) ? candidate : null;
+}
+
+/** Fetch media items by id. Returns a map of id -> media. */
+export async function fetchMediaByIds(ids: number[]): Promise<Map<number, WordPressMedia>> {
+  const unique = [...new Set(ids.filter((id) => Number.isInteger(id) && id > 0))];
+  const map = new Map<number, WordPressMedia>();
+  if (unique.length === 0) return map;
+  const items = await wpFetch<WordPressMedia[]>(
+    `/media?include=${unique.join(",")}&per_page=${Math.min(unique.length, 100)}`,
+  );
+  for (const item of items ?? []) map.set(item.id, item);
+  return map;
+}
+
+export async function fetchMediaById(id: number): Promise<WordPressMedia | null> {
+  if (!Number.isInteger(id) || id <= 0) return null;
+  return await wpFetch<WordPressMedia>(`/media/${id}`);
+}
+
 export function toArtikelView(
   post: WordPressPost,
   categories: WordPressCategory[],
+  media?: WordPressMedia | null,
 ): ArtikelView {
   const rawCategoryName =
     post.categories
@@ -163,12 +214,22 @@ export function toArtikelView(
     updatedAt: toIsoDate(post.modified),
     authorId: author.id,
     authorName: author.name,
+    image: pickMediaUrl(media),
+    imageAlt: media?.alt_text ? decodeEntities(media.alt_text) : null,
     source: "wordpress",
   };
 }
 
 export function localToView(a: Artikel): ArtikelView {
-  return { ...a, authorName: AUTHORS[a.authorId].name, source: "local" };
+  return { ...a, authorName: AUTHORS[a.authorId].name, image: null, imageAlt: null, source: "local" };
+}
+
+/** Published post slugs, newest first. Returns [] when the CMS is unreachable. */
+export async function fetchPublishedSlugs(limit = 100): Promise<string[]> {
+  const posts = await wpFetch<Pick<WordPressPost, "slug">[]>(
+    `/posts?status=publish&per_page=${limit}&orderby=date&order=desc&_fields=slug`,
+  );
+  return (posts ?? []).map((p) => p.slug).filter((s): s is string => Boolean(s));
 }
 
 /** All published posts, newest first. Returns [] when the CMS is unreachable. */
@@ -178,7 +239,8 @@ export async function fetchPublishedArticles(limit = 50): Promise<ArtikelView[]>
     fetchCategories(),
   ]);
   if (!posts || posts.length === 0) return [];
-  return posts.map((p) => toArtikelView(p, categories));
+  const media = await fetchMediaByIds(posts.map((p) => p.featured_media ?? 0));
+  return posts.map((p) => toArtikelView(p, categories, media.get(p.featured_media ?? 0)));
 }
 
 /** Single published post by slug, or null when missing/unreachable. */
@@ -188,6 +250,9 @@ export async function fetchArticleBySlug(slug: string): Promise<ArtikelView | nu
   );
   const post = posts?.[0];
   if (!post) return null;
-  const categories = await fetchCategories();
-  return toArtikelView(post, categories);
+  const [categories, media] = await Promise.all([
+    fetchCategories(),
+    post.featured_media ? fetchMediaById(post.featured_media) : Promise.resolve(null),
+  ]);
+  return toArtikelView(post, categories, media);
 }
