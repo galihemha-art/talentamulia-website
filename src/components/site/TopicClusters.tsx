@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Artikel } from "@/lib/artikel-data";
+import type { ArtikelCardData } from "@/lib/wordpress";
 import { SiteLink } from "@/components/site/SiteLink";
 import {
   featuredArticles,
@@ -10,7 +11,8 @@ import {
 } from "@/lib/topic-clusters";
 
 /** Existing article card look — unchanged, just reused. */
-export function ArtikelCard({ a }: { a: Artikel }) {
+export function ArtikelCard({ a }: { a: ArtikelCardData }) {
+
   return (
     <Link
       to="/artikel/$slug"
