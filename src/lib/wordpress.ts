@@ -139,12 +139,15 @@ export function toArtikelView(
   post: WordPressPost,
   categories: WordPressCategory[],
 ): ArtikelView {
-  const categoryName =
+  const rawCategoryName =
     post.categories
       .map((id) => categories.find((c) => c.id === id)?.name)
       .find((name): name is string => Boolean(name) && name !== "Uncategorized") ??
     categories.find((c) => c.id === post.categories[0])?.name ??
     "Artikel";
+  // Use the real WordPress category name as-is (only HTML entities decoded).
+  const categoryName = decodeEntities(rawCategoryName);
+
 
   const author = resolveAuthor(post.author);
   const paragraphs = htmlToParagraphs(post.content?.rendered ?? "");
