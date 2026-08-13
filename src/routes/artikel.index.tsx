@@ -4,18 +4,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLink } from "@/components/site/SiteLink";
 import { ArtikelGrid } from "@/components/site/TopicClusters";
-import {
-  TOPIC_CLUSTERS,
-  articlesInCluster,
-  featuredArticles,
-  latestInsights,
-  serviceTitle,
-} from "@/lib/topic-clusters";
-
-const featured = featuredArticles(2);
-const latest = latestInsights(3);
+import { ARTIKEL } from "@/lib/artikel-data";
+import { fetchPublishedArticles, localToView, type ArtikelView } from "@/lib/wordpress";
+import { TOPIC_CLUSTERS, serviceTitle } from "@/lib/topic-clusters";
 
 export const Route = createFileRoute("/artikel/")({
+  loader: async () => {
+    const wp = await fetchPublishedArticles();
+    const items: ArtikelView[] = wp.length > 0 ? wp : ARTIKEL.map(localToView);
+    return { items };
+  },
   head: () => ({
     meta: [
       { title: "Artikel & Wawasan Psikologi Kerja — Talenta Mulia Jawa Timur" },
@@ -43,6 +41,10 @@ export const Route = createFileRoute("/artikel/")({
 });
 
 function Page() {
+  const { items } = Route.useLoaderData();
+  const featured = items.slice(0, 2);
+  const latest = items.slice(0, 3);
+
   return (
     <>
       <section className="border-b border-border bg-secondary/40">
