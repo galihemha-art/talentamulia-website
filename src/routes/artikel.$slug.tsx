@@ -158,22 +158,28 @@ function Page() {
 
         {/* Author box */}
         <div className="mt-12 flex flex-col gap-5 rounded-2xl border border-border bg-card p-7 shadow-sm sm:flex-row sm:items-start">
-          <img
-            src={author.photo}
-            alt={`Foto ${author.name}`}
-            width={96}
-            height={96}
-            loading="lazy"
-            decoding="async"
-            className="h-20 w-20 shrink-0 rounded-full object-cover"
-          />
+          {author ? (
+            <img
+              src={author.photo}
+              alt={`Foto ${author.name}`}
+              width={96}
+              height={96}
+              loading="lazy"
+              decoding="async"
+              className="h-20 w-20 shrink-0 rounded-full object-cover"
+            />
+          ) : null}
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-blue">
               Ditulis oleh
             </p>
-            <h2 className="mt-1 text-lg font-bold text-primary">{author.name}</h2>
-            <p className="text-sm text-brand-blue">{author.role}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
+            <h2 className="mt-1 text-lg font-bold text-primary">
+              {author?.name ?? artikel.authorName}
+            </h2>
+            {author ? <p className="text-sm text-brand-blue">{author.role}</p> : null}
+            {author ? (
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
+            ) : null}
             <Link
               to="/professionals"
               className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
@@ -182,6 +188,7 @@ function Page() {
             </Link>
           </div>
         </div>
+
 
         {relatedServices.length > 0 ? (
           <div className="mt-10">
