@@ -92,9 +92,9 @@ function Page() {
                 <h3 className="font-heading text-xl font-semibold text-primary">{cluster.label}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{cluster.description}</p>
 
-                {items.length > 0 ? (
+                {clusterItems.length > 0 ? (
                   <div className="mt-6">
-                    <ArtikelGrid items={items} />
+                    <ArtikelGrid items={clusterItems} />
                   </div>
                 ) : (
                   <p className="mt-4 text-sm text-muted-foreground">
