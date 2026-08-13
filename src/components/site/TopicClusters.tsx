@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Artikel } from "@/lib/artikel-data";
-import type { ArtikelCardData } from "@/lib/wordpress";
+import { isValidImageUrl, type ArtikelCardData } from "@/lib/wordpress";
 import { SiteLink } from "@/components/site/SiteLink";
 import {
   featuredArticles,
@@ -19,6 +19,15 @@ export function ArtikelCard({ a }: { a: ArtikelCardData }) {
       params={{ slug: a.slug }}
       className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-soft"
     >
+      {isValidImageUrl(a.image) ? (
+        <img
+          src={a.image}
+          alt={a.imageAlt || a.title}
+          loading="lazy"
+          decoding="async"
+          className="mb-4 aspect-[16/9] w-full rounded-xl object-cover"
+        />
+      ) : null}
       <span className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-blue">
         {a.kategori}
       </span>

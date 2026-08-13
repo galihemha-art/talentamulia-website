@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { ARTIKEL } from "@/lib/artikel-data";
+import { fetchPublishedSlugs } from "@/lib/wordpress";
 
 import { SITE_URL } from "@/lib/seo";
 
@@ -16,6 +17,8 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const wpSlugs = await fetchPublishedSlugs();
+        const articleSlugs = wpSlugs.length > 0 ? wpSlugs : ARTIKEL.map((a) => a.slug);
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/tentang-kami", changefreq: "monthly", priority: "0.8" },
@@ -38,14 +41,21 @@ export const Route = createFileRoute("/sitemap.xml")({
             changefreq: "monthly" as const,
             priority: "0.5",
           })),
-          ...ARTIKEL.map((a) => ({
-            path: `/artikel/${a.slug}`,
+          ...articleSlugs.map((slug) => ({
+            path: `/artikel/${slug}`,
             changefreq: "monthly" as const,
             priority: "0.6",
           })),
         ];
 
-        const urls = entries.map((e) =>
+        const seen = new Set<string>();
+        const uniqueEntries = entries.filter((e) => {
+          if (seen.has(e.path)) return false;
+          seen.add(e.path);
+          return true;
+        });
+
+        const urls = uniqueEntries.map((e) =>
           [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,

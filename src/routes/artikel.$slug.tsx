@@ -10,6 +10,7 @@ import { serviceTitle } from "@/lib/topic-clusters";
 import {
   fetchArticleBySlug,
   fetchPublishedArticles,
+  isValidImageUrl,
   localToView,
   type ArtikelView,
 } from "@/lib/wordpress";
@@ -53,6 +54,7 @@ export const Route = createFileRoute("/artikel/$slug")({
             updatedAt: a.updatedAt,
             section: a.kategori,
             wordCount: wordCount(a),
+            image: a.image,
           }),
         ),
       );
@@ -65,6 +67,12 @@ export const Route = createFileRoute("/artikel/$slug")({
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+        ...(a && isValidImageUrl(a.image)
+          ? [
+              { property: "og:image", content: a.image },
+              { name: "twitter:image", content: a.image },
+            ]
+          : []),
         ...(a
           ? [
               { property: "article:published_time", content: a.publishedAt },
@@ -148,6 +156,15 @@ function Page() {
       </section>
 
       <article className="mx-auto max-w-3xl px-5 py-14 md:py-16">
+        {isValidImageUrl(artikel.image) ? (
+          <img
+            src={artikel.image}
+            alt={artikel.imageAlt || artikel.title}
+            loading="lazy"
+            decoding="async"
+            className="mb-10 aspect-[16/9] w-full rounded-2xl object-cover"
+          />
+        ) : null}
         <div className="space-y-5">
           {artikel.paragraphs.map((p) => (
             <p key={p} className="leading-relaxed text-muted-foreground">
