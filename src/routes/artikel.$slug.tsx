@@ -7,10 +7,28 @@ import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
 import { SiteLink } from "@/components/site/SiteLink";
 import { serviceTitle } from "@/lib/topic-clusters";
+import {
+  fetchArticleBySlug,
+  fetchPublishedArticles,
+  localToView,
+  type ArtikelView,
+} from "@/lib/wordpress";
 
 export const Route = createFileRoute("/artikel/$slug")({
-  head: ({ params }) => {
-    const a = ARTIKEL.find((x) => x.slug === params.slug);
+  loader: async ({ params }) => {
+    const wp = await fetchArticleBySlug(params.slug);
+    if (wp) {
+      const all = await fetchPublishedArticles();
+      return { artikel: wp, pool: all.length > 0 ? all : [wp] };
+    }
+    const local = ARTIKEL.find((a) => a.slug === params.slug);
+    return {
+      artikel: local ? localToView(local) : null,
+      pool: ARTIKEL.map(localToView),
+    };
+  },
+  head: ({ params, loaderData }) => {
+    const a = loaderData?.artikel ?? null;
     const title = a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur";
     const desc = a?.excerpt ?? "Artikel dari Talenta Mulia.";
     const path = `/artikel/${params.slug}`;
@@ -30,6 +48,7 @@ export const Route = createFileRoute("/artikel/$slug")({
             description: a.excerpt,
             path,
             authorId: a.authorId,
+            authorName: a.authorName,
             publishedAt: a.publishedAt,
             updatedAt: a.updatedAt,
             section: a.kategori,
@@ -51,7 +70,7 @@ export const Route = createFileRoute("/artikel/$slug")({
               { property: "article:published_time", content: a.publishedAt },
               { property: "article:modified_time", content: a.updatedAt },
               { property: "article:section", content: a.kategori },
-              { name: "author", content: AUTHORS[a.authorId].name },
+              { name: "author", content: a.authorName },
             ]
           : []),
         ogUrl(path),
@@ -64,8 +83,7 @@ export const Route = createFileRoute("/artikel/$slug")({
 });
 
 function Page() {
-  const { slug } = Route.useParams();
-  const artikel = ARTIKEL.find((a) => a.slug === slug);
+  const { artikel, pool } = Route.useLoaderData();
 
   if (!artikel) {
     return (
@@ -81,12 +99,13 @@ function Page() {
     );
   }
 
-  const author = AUTHORS[artikel.authorId];
+  const author = artikel.authorId ? AUTHORS[artikel.authorId] : null;
   const cluster = clusterForArticle(artikel);
-  const related = ARTIKEL.filter(
-    (a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)),
-  ).slice(0, 3);
+  const related: ArtikelView[] = pool
+    .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
+    .slice(0, 3);
   const relatedServices = (cluster?.layanan ?? []).slice(0, 3);
+
 
   return (
     <>
@@ -139,22 +158,28 @@ function Page() {
 
         {/* Author box */}
         <div className="mt-12 flex flex-col gap-5 rounded-2xl border border-border bg-card p-7 shadow-sm sm:flex-row sm:items-start">
-          <img
-            src={author.photo}
-            alt={`Foto ${author.name}`}
-            width={96}
-            height={96}
-            loading="lazy"
-            decoding="async"
-            className="h-20 w-20 shrink-0 rounded-full object-cover"
-          />
+          {author ? (
+            <img
+              src={author.photo}
+              alt={`Foto ${author.name}`}
+              width={96}
+              height={96}
+              loading="lazy"
+              decoding="async"
+              className="h-20 w-20 shrink-0 rounded-full object-cover"
+            />
+          ) : null}
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-blue">
               Ditulis oleh
             </p>
-            <h2 className="mt-1 text-lg font-bold text-primary">{author.name}</h2>
-            <p className="text-sm text-brand-blue">{author.role}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
+            <h2 className="mt-1 text-lg font-bold text-primary">
+              {author?.name ?? artikel.authorName}
+            </h2>
+            {author ? <p className="text-sm text-brand-blue">{author.role}</p> : null}
+            {author ? (
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
+            ) : null}
             <Link
               to="/professionals"
               className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
@@ -163,6 +188,7 @@ function Page() {
             </Link>
           </div>
         </div>
+
 
         {relatedServices.length > 0 ? (
           <div className="mt-10">
