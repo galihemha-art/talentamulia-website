@@ -120,6 +120,7 @@ export function articleSchema(input: {
   updatedAt: string;
   section?: string;
   wordCount?: number;
+  image?: string | null;
 }) {
   const author = input.authorId ? AUTHORS[input.authorId] : null;
   return {
@@ -129,6 +130,7 @@ export function articleSchema(input: {
     description: input.description,
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl(input.path) },
     url: canonicalUrl(input.path),
+    ...(input.image ? { image: [input.image] } : {}),
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
     articleSection: input.section,
