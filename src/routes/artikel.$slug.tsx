@@ -100,7 +100,7 @@ function Page() {
   }
 
   const author = artikel.authorId ? AUTHORS[artikel.authorId] : null;
-  const cluster = clusterForArticle(artikel as unknown as { kategori: string } as never);
+  const cluster = clusterForArticle(artikel);
   const related: ArtikelView[] = pool
     .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
     .slice(0, 3);
