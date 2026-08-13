@@ -112,13 +112,16 @@ export function articleSchema(input: {
   title: string;
   description: string;
   path: string;
-  authorId: keyof typeof AUTHORS;
+  /** Local author id; use null (with authorName) for CMS authors without a local profile. */
+  authorId: keyof typeof AUTHORS | null;
+  /** Fallback author name when authorId is null. */
+  authorName?: string;
   publishedAt: string;
   updatedAt: string;
   section?: string;
   wordCount?: number;
 }) {
-  const author = AUTHORS[input.authorId];
+  const author = input.authorId ? AUTHORS[input.authorId] : null;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -131,11 +134,10 @@ export function articleSchema(input: {
     articleSection: input.section,
     wordCount: input.wordCount,
     inLanguage: "id-ID",
-    author: {
-      "@type": "Person",
-      name: author.name,
-      jobTitle: author.jobTitle,
-    },
+    author: author
+      ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
+      : { "@type": "Organization", name: input.authorName ?? "Talenta Mulia" },
+
     publisher: {
       "@type": "Organization",
       name: "Talenta Mulia",
