@@ -7,10 +7,28 @@ import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
 import { SiteLink } from "@/components/site/SiteLink";
 import { serviceTitle } from "@/lib/topic-clusters";
+import {
+  fetchArticleBySlug,
+  fetchPublishedArticles,
+  localToView,
+  type ArtikelView,
+} from "@/lib/wordpress";
 
 export const Route = createFileRoute("/artikel/$slug")({
-  head: ({ params }) => {
-    const a = ARTIKEL.find((x) => x.slug === params.slug);
+  loader: async ({ params }) => {
+    const wp = await fetchArticleBySlug(params.slug);
+    if (wp) {
+      const all = await fetchPublishedArticles();
+      return { artikel: wp, pool: all.length > 0 ? all : [wp] };
+    }
+    const local = ARTIKEL.find((a) => a.slug === params.slug);
+    return {
+      artikel: local ? localToView(local) : null,
+      pool: ARTIKEL.map(localToView),
+    };
+  },
+  head: ({ params, loaderData }) => {
+    const a = loaderData?.artikel ?? null;
     const title = a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur";
     const desc = a?.excerpt ?? "Artikel dari Talenta Mulia.";
     const path = `/artikel/${params.slug}`;
@@ -30,6 +48,7 @@ export const Route = createFileRoute("/artikel/$slug")({
             description: a.excerpt,
             path,
             authorId: a.authorId,
+            authorName: a.authorName,
             publishedAt: a.publishedAt,
             updatedAt: a.updatedAt,
             section: a.kategori,
@@ -51,7 +70,7 @@ export const Route = createFileRoute("/artikel/$slug")({
               { property: "article:published_time", content: a.publishedAt },
               { property: "article:modified_time", content: a.updatedAt },
               { property: "article:section", content: a.kategori },
-              { name: "author", content: AUTHORS[a.authorId].name },
+              { name: "author", content: a.authorName },
             ]
           : []),
         ogUrl(path),
@@ -64,8 +83,7 @@ export const Route = createFileRoute("/artikel/$slug")({
 });
 
 function Page() {
-  const { slug } = Route.useParams();
-  const artikel = ARTIKEL.find((a) => a.slug === slug);
+  const { artikel, pool } = Route.useLoaderData();
 
   if (!artikel) {
     return (
@@ -81,12 +99,13 @@ function Page() {
     );
   }
 
-  const author = AUTHORS[artikel.authorId];
-  const cluster = clusterForArticle(artikel);
-  const related = ARTIKEL.filter(
-    (a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)),
-  ).slice(0, 3);
+  const author = artikel.authorId ? AUTHORS[artikel.authorId] : null;
+  const cluster = clusterForArticle(artikel as unknown as { kategori: string } as never);
+  const related: ArtikelView[] = pool
+    .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
+    .slice(0, 3);
   const relatedServices = (cluster?.layanan ?? []).slice(0, 3);
+
 
   return (
     <>
