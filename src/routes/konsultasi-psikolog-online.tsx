@@ -580,6 +580,25 @@ function Page() {
             Konseling pranikah
           </Link>
           <Link
+            to="/konseling-keluarga"
+            className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Konseling keluarga
+          </Link>
+          <Link
+            to="/psikolog-anak"
+            className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Psikolog anak
+          </Link>
+          <Link
+            to="/tes-minat-bakat"
+            className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Tes minat bakat
+          </Link>
+
+          <Link
             to="/layanan/$slug"
             params={{ slug: "konsultasi-online-offline" }}
             className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
