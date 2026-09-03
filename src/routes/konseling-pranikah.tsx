@@ -13,7 +13,6 @@ import {
   MonitorSmartphone,
   Scale,
   ShieldCheck,
-  Sparkles,
   Target,
   UserRound,
   Users,
