@@ -15,6 +15,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
+import { Route as KonselingBurnoutRouteImport } from './routes/konseling-burnout'
 import { Route as KonsultasiPsikologOnlineRouteImport } from './routes/konsultasi-psikolog-online'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
@@ -65,6 +66,11 @@ const KebijakanPrivasiRoute = KebijakanPrivasiRouteImport.update({
 const KesehatanRoute = KesehatanRouteImport.update({
   id: '/kesehatan',
   path: '/kesehatan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KonselingBurnoutRoute = KonselingBurnoutRouteImport.update({
+  id: '/konseling-burnout',
+  path: '/konseling-burnout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KonsultasiPsikologOnlineRoute =
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/industri': typeof IndustriRouteWithChildren
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
+  '/konseling-burnout': typeof KonselingBurnoutRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
+  '/konseling-burnout': typeof KonselingBurnoutRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/industri': typeof IndustriRouteWithChildren
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
+  '/konseling-burnout': typeof KonselingBurnoutRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/industri'
     | '/kebijakan-privasi'
     | '/kesehatan'
+    | '/konseling-burnout'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/kebijakan-privasi'
     | '/kesehatan'
+    | '/konseling-burnout'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
@@ -321,6 +332,7 @@ export interface FileRouteTypes {
     | '/industri'
     | '/kebijakan-privasi'
     | '/kesehatan'
+    | '/konseling-burnout'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
@@ -351,6 +363,7 @@ export interface RootRouteChildren {
   IndustriRoute: typeof IndustriRouteWithChildren
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KesehatanRoute: typeof KesehatanRoute
+  KonselingBurnoutRoute: typeof KonselingBurnoutRoute
   KonsultasiPsikologOnlineRoute: typeof KonsultasiPsikologOnlineRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
@@ -408,6 +421,13 @@ declare module '@tanstack/react-router' {
       path: '/kesehatan'
       fullPath: '/kesehatan'
       preLoaderRoute: typeof KesehatanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/konseling-burnout': {
+      id: '/konseling-burnout'
+      path: '/konseling-burnout'
+      fullPath: '/konseling-burnout'
+      preLoaderRoute: typeof KonselingBurnoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/konsultasi-psikolog-online': {
@@ -621,6 +641,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriRoute: IndustriRouteWithChildren,
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KesehatanRoute: KesehatanRoute,
+  KonselingBurnoutRoute: KonselingBurnoutRoute,
   KonsultasiPsikologOnlineRoute: KonsultasiPsikologOnlineRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
