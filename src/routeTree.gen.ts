@@ -16,6 +16,7 @@ import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
 import { Route as KonselingBurnoutRouteImport } from './routes/konseling-burnout'
+import { Route as KonselingKeluargaRouteImport } from './routes/konseling-keluarga'
 import { Route as KonselingPranikahRouteImport } from './routes/konseling-pranikah'
 import { Route as KonsultasiPsikologOnlineRouteImport } from './routes/konsultasi-psikolog-online'
 import { Route as KontakRouteImport } from './routes/kontak'
@@ -74,6 +75,11 @@ const KesehatanRoute = KesehatanRouteImport.update({
 const KonselingBurnoutRoute = KonselingBurnoutRouteImport.update({
   id: '/konseling-burnout',
   path: '/konseling-burnout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KonselingKeluargaRoute = KonselingKeluargaRouteImport.update({
+  id: '/konseling-keluarga',
+  path: '/konseling-keluarga',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KonselingPranikahRoute = KonselingPranikahRouteImport.update({
@@ -206,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-keluarga': typeof KonselingKeluargaRoute
   '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
@@ -237,6 +244,7 @@ export interface FileRoutesByTo {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-keluarga': typeof KonselingKeluargaRoute
   '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
@@ -269,6 +277,7 @@ export interface FileRoutesById {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-keluarga': typeof KonselingKeluargaRoute
   '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
@@ -304,6 +313,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-keluarga'
     | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
@@ -335,6 +345,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-keluarga'
     | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
@@ -366,6 +377,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-keluarga'
     | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
@@ -400,6 +412,7 @@ export interface RootRouteChildren {
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KesehatanRoute: typeof KesehatanRoute
   KonselingBurnoutRoute: typeof KonselingBurnoutRoute
+  KonselingKeluargaRoute: typeof KonselingKeluargaRoute
   KonselingPranikahRoute: typeof KonselingPranikahRoute
   KonsultasiPsikologOnlineRoute: typeof KonsultasiPsikologOnlineRoute
   KontakRoute: typeof KontakRoute
@@ -467,6 +480,13 @@ declare module '@tanstack/react-router' {
       path: '/konseling-burnout'
       fullPath: '/konseling-burnout'
       preLoaderRoute: typeof KonselingBurnoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/konseling-keluarga': {
+      id: '/konseling-keluarga'
+      path: '/konseling-keluarga'
+      fullPath: '/konseling-keluarga'
+      preLoaderRoute: typeof KonselingKeluargaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/konseling-pranikah': {
@@ -702,6 +722,7 @@ const rootRouteChildren: RootRouteChildren = {
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KesehatanRoute: KesehatanRoute,
   KonselingBurnoutRoute: KonselingBurnoutRoute,
+  KonselingKeluargaRoute: KonselingKeluargaRoute,
   KonselingPranikahRoute: KonselingPranikahRoute,
   KonsultasiPsikologOnlineRoute: KonsultasiPsikologOnlineRoute,
   KontakRoute: KontakRoute,

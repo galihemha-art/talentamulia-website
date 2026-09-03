@@ -24,6 +24,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/konsultasi-psikolog-online", changefreq: "weekly", priority: "1.0" },
           { path: "/konseling-burnout", changefreq: "weekly", priority: "0.9" },
           { path: "/konseling-pranikah", changefreq: "weekly", priority: "0.9" },
+          { path: "/konseling-keluarga", changefreq: "weekly", priority: "0.9" },
+          { path: "/psikolog-anak", changefreq: "weekly", priority: "0.9" },
+          { path: "/tes-minat-bakat", changefreq: "monthly", priority: "0.8" },
+
           { path: "/tentang-kami", changefreq: "monthly", priority: "0.8" },
           { path: "/tokoh-sentral", changefreq: "monthly", priority: "0.8" },
           { path: "/professionals", changefreq: "monthly", priority: "0.8" },
