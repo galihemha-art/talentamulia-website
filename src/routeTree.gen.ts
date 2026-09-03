@@ -28,6 +28,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
+import { Route as TesMinatBakatRouteImport } from './routes/tes-minat-bakat'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
 import { Route as TokohSentralRouteImport } from './routes/tokoh-sentral'
 import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
@@ -136,6 +137,11 @@ const TentangKamiRoute = TentangKamiRouteImport.update({
   path: '/tentang-kami',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TesMinatBakatRoute = TesMinatBakatRouteImport.update({
+  id: '/tes-minat-bakat',
+  path: '/tes-minat-bakat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestimoniRoute = TestimoniRouteImport.update({
   id: '/testimoni',
   path: '/testimoni',
@@ -212,6 +218,7 @@ export interface FileRoutesByFullPath {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
+  '/tes-minat-bakat': typeof TesMinatBakatRoute
   '/testimoni': typeof TestimoniRoute
   '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -240,6 +247,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tes-minat-bakat': typeof TesMinatBakatRoute
   '/testimoni': typeof TestimoniRoute
   '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -273,6 +281,7 @@ export interface FileRoutesById {
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
+  '/tes-minat-bakat': typeof TesMinatBakatRoute
   '/testimoni': typeof TestimoniRoute
   '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -307,6 +316,7 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/syarat-ketentuan'
     | '/tentang-kami'
+    | '/tes-minat-bakat'
     | '/testimoni'
     | '/tokoh-sentral'
     | '/artikel/$slug'
@@ -335,6 +345,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
+    | '/tes-minat-bakat'
     | '/testimoni'
     | '/tokoh-sentral'
     | '/artikel/$slug'
@@ -367,6 +378,7 @@ export interface FileRouteTypes {
     | '/solusi-korporat'
     | '/syarat-ketentuan'
     | '/tentang-kami'
+    | '/tes-minat-bakat'
     | '/testimoni'
     | '/tokoh-sentral'
     | '/artikel/$slug'
@@ -400,6 +412,7 @@ export interface RootRouteChildren {
   SolusiKorporatRoute: typeof SolusiKorporatRoute
   SyaratKetentuanRoute: typeof SyaratKetentuanRoute
   TentangKamiRoute: typeof TentangKamiRouteWithChildren
+  TesMinatBakatRoute: typeof TesMinatBakatRoute
   TestimoniRoute: typeof TestimoniRoute
   TokohSentralRoute: typeof TokohSentralRoute
   LayananSlugRoute: typeof LayananSlugRoute
@@ -538,6 +551,13 @@ declare module '@tanstack/react-router' {
       path: '/tentang-kami'
       fullPath: '/tentang-kami'
       preLoaderRoute: typeof TentangKamiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tes-minat-bakat': {
+      id: '/tes-minat-bakat'
+      path: '/tes-minat-bakat'
+      fullPath: '/tes-minat-bakat'
+      preLoaderRoute: typeof TesMinatBakatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/testimoni': {
@@ -694,6 +714,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolusiKorporatRoute: SolusiKorporatRoute,
   SyaratKetentuanRoute: SyaratKetentuanRoute,
   TentangKamiRoute: TentangKamiRouteWithChildren,
+  TesMinatBakatRoute: TesMinatBakatRoute,
   TestimoniRoute: TestimoniRoute,
   TokohSentralRoute: TokohSentralRoute,
   LayananSlugRoute: LayananSlugRoute,
