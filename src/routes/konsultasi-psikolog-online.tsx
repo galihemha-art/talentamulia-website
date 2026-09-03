@@ -574,6 +574,12 @@ function Page() {
             Konseling burnout
           </Link>
           <Link
+            to="/konseling-pranikah"
+            className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Konseling pranikah
+          </Link>
+          <Link
             to="/layanan/$slug"
             params={{ slug: "konsultasi-online-offline" }}
             className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"

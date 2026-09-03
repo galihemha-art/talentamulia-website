@@ -16,6 +16,7 @@ import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
 import { Route as KonselingBurnoutRouteImport } from './routes/konseling-burnout'
+import { Route as KonselingPranikahRouteImport } from './routes/konseling-pranikah'
 import { Route as KonsultasiPsikologOnlineRouteImport } from './routes/konsultasi-psikolog-online'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
@@ -71,6 +72,11 @@ const KesehatanRoute = KesehatanRouteImport.update({
 const KonselingBurnoutRoute = KonselingBurnoutRouteImport.update({
   id: '/konseling-burnout',
   path: '/konseling-burnout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KonselingPranikahRoute = KonselingPranikahRouteImport.update({
+  id: '/konseling-pranikah',
+  path: '/konseling-pranikah',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KonsultasiPsikologOnlineRoute =
@@ -188,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -216,6 +223,7 @@ export interface FileRoutesByTo {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -245,6 +253,7 @@ export interface FileRoutesById {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
@@ -277,6 +286,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
@@ -305,6 +315,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
@@ -333,6 +344,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
@@ -364,6 +376,7 @@ export interface RootRouteChildren {
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KesehatanRoute: typeof KesehatanRoute
   KonselingBurnoutRoute: typeof KonselingBurnoutRoute
+  KonselingPranikahRoute: typeof KonselingPranikahRoute
   KonsultasiPsikologOnlineRoute: typeof KonsultasiPsikologOnlineRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
@@ -428,6 +441,13 @@ declare module '@tanstack/react-router' {
       path: '/konseling-burnout'
       fullPath: '/konseling-burnout'
       preLoaderRoute: typeof KonselingBurnoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/konseling-pranikah': {
+      id: '/konseling-pranikah'
+      path: '/konseling-pranikah'
+      fullPath: '/konseling-pranikah'
+      preLoaderRoute: typeof KonselingPranikahRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/konsultasi-psikolog-online': {
@@ -642,6 +662,7 @@ const rootRouteChildren: RootRouteChildren = {
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KesehatanRoute: KesehatanRoute,
   KonselingBurnoutRoute: KonselingBurnoutRoute,
+  KonselingPranikahRoute: KonselingPranikahRoute,
   KonsultasiPsikologOnlineRoute: KonsultasiPsikologOnlineRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
