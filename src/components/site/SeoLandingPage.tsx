@@ -371,7 +371,8 @@ export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
               <Link
                 key={item.to + (item.params?.slug ?? "")}
                 to={item.to}
-                params={item.params}
+                {...(item.params ? { params: item.params } : {})}
+
                 className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-blue hover:shadow-soft"
               >
                 <h3 className="font-heading text-base font-semibold text-primary">{item.title}</h3>
