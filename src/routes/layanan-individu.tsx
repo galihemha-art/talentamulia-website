@@ -93,6 +93,19 @@ function Page() {
           </Link>
         </div>
 
+        <div className="mt-6 flex flex-col items-start gap-4 rounded-3xl border border-border bg-card p-8 shadow-sm md:flex-row md:items-center md:justify-between">
+          <p className="font-heading text-lg font-semibold text-primary">
+            Cari konsultasi psikolog online?
+          </p>
+          <Link
+            to="/konsultasi-psikolog-online"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Konsultasi Psikolog Online
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
         <div className="mt-14 text-center">
           <Link
             to="/kontak"
