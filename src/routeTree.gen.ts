@@ -16,6 +16,7 @@ import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
 import { Route as KonselingBurnoutRouteImport } from './routes/konseling-burnout'
+import { Route as KonselingKeluargaRouteImport } from './routes/konseling-keluarga'
 import { Route as KonselingPranikahRouteImport } from './routes/konseling-pranikah'
 import { Route as KonsultasiPsikologOnlineRouteImport } from './routes/konsultasi-psikolog-online'
 import { Route as KontakRouteImport } from './routes/kontak'
@@ -23,10 +24,12 @@ import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
 import { Route as PelatihanRouteImport } from './routes/pelatihan'
 import { Route as ProfessionalsRouteImport } from './routes/professionals'
 import { Route as ProgramRouteImport } from './routes/program'
+import { Route as PsikologAnakRouteImport } from './routes/psikolog-anak'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
 import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
+import { Route as TesMinatBakatRouteImport } from './routes/tes-minat-bakat'
 import { Route as TestimoniRouteImport } from './routes/testimoni'
 import { Route as TokohSentralRouteImport } from './routes/tokoh-sentral'
 import { Route as ArtikelIndexRouteImport } from './routes/artikel.index'
@@ -74,6 +77,11 @@ const KonselingBurnoutRoute = KonselingBurnoutRouteImport.update({
   path: '/konseling-burnout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KonselingKeluargaRoute = KonselingKeluargaRouteImport.update({
+  id: '/konseling-keluarga',
+  path: '/konseling-keluarga',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KonselingPranikahRoute = KonselingPranikahRouteImport.update({
   id: '/konseling-pranikah',
   path: '/konseling-pranikah',
@@ -110,6 +118,11 @@ const ProgramRoute = ProgramRouteImport.update({
   path: '/program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PsikologAnakRoute = PsikologAnakRouteImport.update({
+  id: '/psikolog-anak',
+  path: '/psikolog-anak',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -128,6 +141,11 @@ const SyaratKetentuanRoute = SyaratKetentuanRouteImport.update({
 const TentangKamiRoute = TentangKamiRouteImport.update({
   id: '/tentang-kami',
   path: '/tentang-kami',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TesMinatBakatRoute = TesMinatBakatRouteImport.update({
+  id: '/tes-minat-bakat',
+  path: '/tes-minat-bakat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestimoniRoute = TestimoniRouteImport.update({
@@ -194,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-keluarga': typeof KonselingKeluargaRoute
   '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
@@ -201,10 +220,12 @@ export interface FileRoutesByFullPath {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRouteWithChildren
+  '/psikolog-anak': typeof PsikologAnakRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
+  '/tes-minat-bakat': typeof TesMinatBakatRoute
   '/testimoni': typeof TestimoniRoute
   '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -223,15 +244,18 @@ export interface FileRoutesByTo {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-keluarga': typeof KonselingKeluargaRoute
   '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
+  '/psikolog-anak': typeof PsikologAnakRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tes-minat-bakat': typeof TesMinatBakatRoute
   '/testimoni': typeof TestimoniRoute
   '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -253,6 +277,7 @@ export interface FileRoutesById {
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
   '/konseling-burnout': typeof KonselingBurnoutRoute
+  '/konseling-keluarga': typeof KonselingKeluargaRoute
   '/konseling-pranikah': typeof KonselingPranikahRoute
   '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
@@ -260,10 +285,12 @@ export interface FileRoutesById {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRouteWithChildren
+  '/psikolog-anak': typeof PsikologAnakRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang-kami': typeof TentangKamiRouteWithChildren
+  '/tes-minat-bakat': typeof TesMinatBakatRoute
   '/testimoni': typeof TestimoniRoute
   '/tokoh-sentral': typeof TokohSentralRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
@@ -286,6 +313,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-keluarga'
     | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
@@ -293,10 +321,12 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/psikolog-anak'
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
     | '/tentang-kami'
+    | '/tes-minat-bakat'
     | '/testimoni'
     | '/tokoh-sentral'
     | '/artikel/$slug'
@@ -315,15 +345,18 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-keluarga'
     | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
     | '/pelatihan'
     | '/professionals'
+    | '/psikolog-anak'
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
+    | '/tes-minat-bakat'
     | '/testimoni'
     | '/tokoh-sentral'
     | '/artikel/$slug'
@@ -344,6 +377,7 @@ export interface FileRouteTypes {
     | '/kebijakan-privasi'
     | '/kesehatan'
     | '/konseling-burnout'
+    | '/konseling-keluarga'
     | '/konseling-pranikah'
     | '/konsultasi-psikolog-online'
     | '/kontak'
@@ -351,10 +385,12 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/psikolog-anak'
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
     | '/tentang-kami'
+    | '/tes-minat-bakat'
     | '/testimoni'
     | '/tokoh-sentral'
     | '/artikel/$slug'
@@ -376,6 +412,7 @@ export interface RootRouteChildren {
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KesehatanRoute: typeof KesehatanRoute
   KonselingBurnoutRoute: typeof KonselingBurnoutRoute
+  KonselingKeluargaRoute: typeof KonselingKeluargaRoute
   KonselingPranikahRoute: typeof KonselingPranikahRoute
   KonsultasiPsikologOnlineRoute: typeof KonsultasiPsikologOnlineRoute
   KontakRoute: typeof KontakRoute
@@ -383,10 +420,12 @@ export interface RootRouteChildren {
   PelatihanRoute: typeof PelatihanRoute
   ProfessionalsRoute: typeof ProfessionalsRoute
   ProgramRoute: typeof ProgramRouteWithChildren
+  PsikologAnakRoute: typeof PsikologAnakRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolusiKorporatRoute: typeof SolusiKorporatRoute
   SyaratKetentuanRoute: typeof SyaratKetentuanRoute
   TentangKamiRoute: typeof TentangKamiRouteWithChildren
+  TesMinatBakatRoute: typeof TesMinatBakatRoute
   TestimoniRoute: typeof TestimoniRoute
   TokohSentralRoute: typeof TokohSentralRoute
   LayananSlugRoute: typeof LayananSlugRoute
@@ -443,6 +482,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KonselingBurnoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/konseling-keluarga': {
+      id: '/konseling-keluarga'
+      path: '/konseling-keluarga'
+      fullPath: '/konseling-keluarga'
+      preLoaderRoute: typeof KonselingKeluargaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/konseling-pranikah': {
       id: '/konseling-pranikah'
       path: '/konseling-pranikah'
@@ -492,6 +538,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/psikolog-anak': {
+      id: '/psikolog-anak'
+      path: '/psikolog-anak'
+      fullPath: '/psikolog-anak'
+      preLoaderRoute: typeof PsikologAnakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -518,6 +571,13 @@ declare module '@tanstack/react-router' {
       path: '/tentang-kami'
       fullPath: '/tentang-kami'
       preLoaderRoute: typeof TentangKamiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tes-minat-bakat': {
+      id: '/tes-minat-bakat'
+      path: '/tes-minat-bakat'
+      fullPath: '/tes-minat-bakat'
+      preLoaderRoute: typeof TesMinatBakatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/testimoni': {
@@ -662,6 +722,7 @@ const rootRouteChildren: RootRouteChildren = {
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KesehatanRoute: KesehatanRoute,
   KonselingBurnoutRoute: KonselingBurnoutRoute,
+  KonselingKeluargaRoute: KonselingKeluargaRoute,
   KonselingPranikahRoute: KonselingPranikahRoute,
   KonsultasiPsikologOnlineRoute: KonsultasiPsikologOnlineRoute,
   KontakRoute: KontakRoute,
@@ -669,10 +730,12 @@ const rootRouteChildren: RootRouteChildren = {
   PelatihanRoute: PelatihanRoute,
   ProfessionalsRoute: ProfessionalsRoute,
   ProgramRoute: ProgramRouteWithChildren,
+  PsikologAnakRoute: PsikologAnakRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolusiKorporatRoute: SolusiKorporatRoute,
   SyaratKetentuanRoute: SyaratKetentuanRoute,
   TentangKamiRoute: TentangKamiRouteWithChildren,
+  TesMinatBakatRoute: TesMinatBakatRoute,
   TestimoniRoute: TestimoniRoute,
   TokohSentralRoute: TokohSentralRoute,
   LayananSlugRoute: LayananSlugRoute,
