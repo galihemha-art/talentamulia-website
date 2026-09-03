@@ -23,6 +23,7 @@ import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
 import { Route as PelatihanRouteImport } from './routes/pelatihan'
 import { Route as ProfessionalsRouteImport } from './routes/professionals'
 import { Route as ProgramRouteImport } from './routes/program'
+import { Route as PsikologAnakRouteImport } from './routes/psikolog-anak'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolusiKorporatRouteImport } from './routes/solusi-korporat'
 import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
@@ -108,6 +109,11 @@ const ProfessionalsRoute = ProfessionalsRouteImport.update({
 const ProgramRoute = ProgramRouteImport.update({
   id: '/program',
   path: '/program',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PsikologAnakRoute = PsikologAnakRouteImport.update({
+  id: '/psikolog-anak',
+  path: '/psikolog-anak',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -201,6 +207,7 @@ export interface FileRoutesByFullPath {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRouteWithChildren
+  '/psikolog-anak': typeof PsikologAnakRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
@@ -229,6 +236,7 @@ export interface FileRoutesByTo {
   '/layanan-individu': typeof LayananIndividuRoute
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
+  '/psikolog-anak': typeof PsikologAnakRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRouteWithChildren
+  '/psikolog-anak': typeof PsikologAnakRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solusi-korporat': typeof SolusiKorporatRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
@@ -293,6 +302,7 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/psikolog-anak'
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
@@ -321,6 +331,7 @@ export interface FileRouteTypes {
     | '/layanan-individu'
     | '/pelatihan'
     | '/professionals'
+    | '/psikolog-anak'
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
@@ -351,6 +362,7 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/program'
+    | '/psikolog-anak'
     | '/sitemap.xml'
     | '/solusi-korporat'
     | '/syarat-ketentuan'
@@ -383,6 +395,7 @@ export interface RootRouteChildren {
   PelatihanRoute: typeof PelatihanRoute
   ProfessionalsRoute: typeof ProfessionalsRoute
   ProgramRoute: typeof ProgramRouteWithChildren
+  PsikologAnakRoute: typeof PsikologAnakRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolusiKorporatRoute: typeof SolusiKorporatRoute
   SyaratKetentuanRoute: typeof SyaratKetentuanRoute
@@ -490,6 +503,13 @@ declare module '@tanstack/react-router' {
       path: '/program'
       fullPath: '/program'
       preLoaderRoute: typeof ProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/psikolog-anak': {
+      id: '/psikolog-anak'
+      path: '/psikolog-anak'
+      fullPath: '/psikolog-anak'
+      preLoaderRoute: typeof PsikologAnakRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -669,6 +689,7 @@ const rootRouteChildren: RootRouteChildren = {
   PelatihanRoute: PelatihanRoute,
   ProfessionalsRoute: ProfessionalsRoute,
   ProgramRoute: ProgramRouteWithChildren,
+  PsikologAnakRoute: PsikologAnakRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolusiKorporatRoute: SolusiKorporatRoute,
   SyaratKetentuanRoute: SyaratKetentuanRoute,
