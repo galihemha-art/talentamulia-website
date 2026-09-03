@@ -744,6 +744,26 @@ function Page() {
               </span>
             </Link>
             <Link
+              to="/konseling-keluarga"
+              className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-blue hover:shadow-soft"
+            >
+              <h3 className="font-heading text-base font-semibold text-primary">
+                Konseling Keluarga
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Relevan bila dinamika keluarga besar atau relasi di rumah ikut memengaruhi persiapan
+                Anda berdua.
+              </p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
+                Selengkapnya
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
+
+            <Link
               to="/layanan-individu"
               className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-blue hover:shadow-soft"
             >
