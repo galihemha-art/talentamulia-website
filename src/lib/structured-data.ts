@@ -153,3 +153,66 @@ export function articleSchema(input: {
 export function jsonLd(data: unknown) {
   return { type: "application/ld+json", children: JSON.stringify(data) };
 }
+
+/** WebPage schema tied to the sitewide Organization. */
+export function webPageSchema(input: { name: string; description: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonicalUrl(input.path)}#webpage`,
+    name: input.name,
+    description: input.description,
+    url: canonicalUrl(input.path),
+    inLanguage: "id-ID",
+    isPartOf: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+/** Service schema with Talenta Mulia as provider. */
+export function serviceSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  serviceType?: string;
+  /** Local author ids of professionals actually shown on the page. */
+  providerPeople?: (keyof typeof AUTHORS)[];
+  offerings?: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.name,
+    description: input.description,
+    serviceType: input.serviceType,
+    url: canonicalUrl(input.path),
+    areaServed: "Indonesia",
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: canonicalUrl(input.path),
+      availableLanguage: "id-ID",
+    },
+    provider: { "@id": `${SITE_URL}/#organization` },
+    ...(input.providerPeople?.length
+      ? {
+          employee: input.providerPeople.map((id) => ({
+            "@type": "Person",
+            name: AUTHORS[id].name,
+            jobTitle: AUTHORS[id].jobTitle,
+          })),
+        }
+      : {}),
+    ...(input.offerings?.length
+      ? {
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: input.name,
+            itemListElement: input.offerings.map((o) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: o.name, url: canonicalUrl(o.path) },
+            })),
+          },
+        }
+      : {}),
+  };
+}
