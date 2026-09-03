@@ -15,6 +15,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KesehatanRouteImport } from './routes/kesehatan'
+import { Route as KonsultasiPsikologOnlineRouteImport } from './routes/konsultasi-psikolog-online'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananIndividuRouteImport } from './routes/layanan-individu'
 import { Route as PelatihanRouteImport } from './routes/pelatihan'
@@ -66,6 +67,12 @@ const KesehatanRoute = KesehatanRouteImport.update({
   path: '/kesehatan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KonsultasiPsikologOnlineRoute =
+  KonsultasiPsikologOnlineRouteImport.update({
+    id: '/konsultasi-psikolog-online',
+    path: '/konsultasi-psikolog-online',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const KontakRoute = KontakRouteImport.update({
   id: '/kontak',
   path: '/kontak',
@@ -174,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/industri': typeof IndustriRouteWithChildren
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
+  '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
   '/pelatihan': typeof PelatihanRoute
@@ -200,6 +208,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
+  '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
   '/pelatihan': typeof PelatihanRoute
@@ -227,6 +236,7 @@ export interface FileRoutesById {
   '/industri': typeof IndustriRouteWithChildren
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
+  '/konsultasi-psikolog-online': typeof KonsultasiPsikologOnlineRoute
   '/kontak': typeof KontakRoute
   '/layanan-individu': typeof LayananIndividuRoute
   '/pelatihan': typeof PelatihanRoute
@@ -257,6 +267,7 @@ export interface FileRouteTypes {
     | '/industri'
     | '/kebijakan-privasi'
     | '/kesehatan'
+    | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
     | '/pelatihan'
@@ -283,6 +294,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/kebijakan-privasi'
     | '/kesehatan'
+    | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
     | '/pelatihan'
@@ -309,6 +321,7 @@ export interface FileRouteTypes {
     | '/industri'
     | '/kebijakan-privasi'
     | '/kesehatan'
+    | '/konsultasi-psikolog-online'
     | '/kontak'
     | '/layanan-individu'
     | '/pelatihan'
@@ -338,6 +351,7 @@ export interface RootRouteChildren {
   IndustriRoute: typeof IndustriRouteWithChildren
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KesehatanRoute: typeof KesehatanRoute
+  KonsultasiPsikologOnlineRoute: typeof KonsultasiPsikologOnlineRoute
   KontakRoute: typeof KontakRoute
   LayananIndividuRoute: typeof LayananIndividuRoute
   PelatihanRoute: typeof PelatihanRoute
@@ -394,6 +408,13 @@ declare module '@tanstack/react-router' {
       path: '/kesehatan'
       fullPath: '/kesehatan'
       preLoaderRoute: typeof KesehatanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/konsultasi-psikolog-online': {
+      id: '/konsultasi-psikolog-online'
+      path: '/konsultasi-psikolog-online'
+      fullPath: '/konsultasi-psikolog-online'
+      preLoaderRoute: typeof KonsultasiPsikologOnlineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontak': {
@@ -600,6 +621,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriRoute: IndustriRouteWithChildren,
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KesehatanRoute: KesehatanRoute,
+  KonsultasiPsikologOnlineRoute: KonsultasiPsikologOnlineRoute,
   KontakRoute: KontakRoute,
   LayananIndividuRoute: LayananIndividuRoute,
   PelatihanRoute: PelatihanRoute,
