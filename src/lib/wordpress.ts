@@ -44,12 +44,15 @@ export type WordPressCategory = {
 export type ArtikelView = Omit<Artikel, "authorId"> & {
   authorId: AuthorId | null;
   authorName: string;
+  /** Sanitized rich HTML body (WordPress only; null for local articles). */
+  contentHtml: string | null;
   /** Featured image URL from WordPress, when available and valid. */
   image: string | null;
   imageAlt: string | null;
   /** true when the item comes from WordPress */
   source: "wordpress" | "local";
 };
+
 
 /** Minimal shape needed by article cards/grids. */
 export type ArtikelCardData = Pick<Artikel, "slug" | "kategori" | "title" | "excerpt"> & {
@@ -120,6 +123,51 @@ export function htmlToParagraphs(html: string): string[] {
   const text = htmlToText(cleaned);
   return text ? [text] : [];
 }
+
+/** Tags kept when sanitizing WordPress article HTML. */
+const ALLOWED_TAGS = new Set([
+  "p","br","strong","b","em","i","u","h2","h3","h4","ul","ol","li",
+  "blockquote","a","figure","figcaption","img","hr","code","pre","table",
+  "thead","tbody","tr","th","td","sup","sub",
+]);
+
+/**
+ * Sanitize CMS HTML: drop script/style/iframe (and other embeds) entirely,
+ * keep an allowlist of editorial tags, and strip event handlers and
+ * javascript: URLs from the attributes that remain.
+ */
+export function sanitizeArticleHtml(html: string): string {
+  let out = html
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/<(script|style|iframe|object|embed|form|input|svg|noscript)[\s\S]*?<\/\1\s*>/gi, "")
+    .replace(/<(script|style|iframe|object|embed|form|input|svg|noscript)\b[^>]*\/?>/gi, "");
+
+  out = out.replace(/<\/?([a-zA-Z0-9]+)([^>]*)>/g, (match, rawTag: string, rawAttrs: string) => {
+    const tag = rawTag.toLowerCase();
+    if (!ALLOWED_TAGS.has(tag)) return "";
+    if (match.startsWith("</")) return `</${tag}>`;
+
+    const attrs: string[] = [];
+    const allowed =
+      tag === "a" ? ["href", "title"] : tag === "img" ? ["src", "alt", "width", "height"] : [];
+    for (const name of allowed) {
+      const found = new RegExp(`\\b${name}\\s*=\\s*("([^"]*)"|'([^']*)')`, "i").exec(rawAttrs);
+      const value = found?.[2] ?? found?.[3];
+      if (!value) continue;
+      if ((name === "href" || name === "src") && /^\s*(javascript|data|vbscript):/i.test(value)) {
+        continue;
+      }
+      attrs.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
+    }
+    if (tag === "a") attrs.push('rel="noopener"');
+    if (tag === "img") attrs.push('loading="lazy"', 'decoding="async"');
+    const selfClosing = tag === "br" || tag === "hr" || tag === "img";
+    return `<${tag}${attrs.length ? " " + attrs.join(" ") : ""}${selfClosing ? " /" : ""}>`;
+  });
+
+  return out.trim();
+}
+
 
 function toIsoDate(value: string): string {
   const date = new Date(value);
@@ -210,6 +258,8 @@ export function toArtikelView(
     title: htmlToText(post.title?.rendered ?? ""),
     excerpt,
     paragraphs,
+    contentHtml: sanitizeArticleHtml(post.content?.rendered ?? "") || null,
+
     publishedAt: toIsoDate(post.date),
     updatedAt: toIsoDate(post.modified),
     authorId: author.id,
@@ -221,7 +271,15 @@ export function toArtikelView(
 }
 
 export function localToView(a: Artikel): ArtikelView {
-  return { ...a, authorName: AUTHORS[a.authorId].name, image: null, imageAlt: null, source: "local" };
+  return {
+    ...a,
+    authorName: AUTHORS[a.authorId].name,
+    contentHtml: null,
+    image: null,
+    imageAlt: null,
+    source: "local",
+  };
+
 }
 
 /** Published post slugs, newest first. Returns [] when the CMS is unreachable. */
