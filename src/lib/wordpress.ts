@@ -258,6 +258,8 @@ export function toArtikelView(
     title: htmlToText(post.title?.rendered ?? ""),
     excerpt,
     paragraphs,
+    contentHtml: sanitizeArticleHtml(post.content?.rendered ?? "") || null,
+
     publishedAt: toIsoDate(post.date),
     updatedAt: toIsoDate(post.modified),
     authorId: author.id,
