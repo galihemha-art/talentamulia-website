@@ -124,6 +124,51 @@ export function htmlToParagraphs(html: string): string[] {
   return text ? [text] : [];
 }
 
+/** Tags kept when sanitizing WordPress article HTML. */
+const ALLOWED_TAGS = new Set([
+  "p","br","strong","b","em","i","u","h2","h3","h4","ul","ol","li",
+  "blockquote","a","figure","figcaption","img","hr","code","pre","table",
+  "thead","tbody","tr","th","td","sup","sub",
+]);
+
+/**
+ * Sanitize CMS HTML: drop script/style/iframe (and other embeds) entirely,
+ * keep an allowlist of editorial tags, and strip event handlers and
+ * javascript: URLs from the attributes that remain.
+ */
+export function sanitizeArticleHtml(html: string): string {
+  let out = html
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/<(script|style|iframe|object|embed|form|input|svg|noscript)[\s\S]*?<\/\1\s*>/gi, "")
+    .replace(/<(script|style|iframe|object|embed|form|input|svg|noscript)\b[^>]*\/?>/gi, "");
+
+  out = out.replace(/<\/?([a-zA-Z0-9]+)([^>]*)>/g, (match, rawTag: string, rawAttrs: string) => {
+    const tag = rawTag.toLowerCase();
+    if (!ALLOWED_TAGS.has(tag)) return "";
+    if (match.startsWith("</")) return `</${tag}>`;
+
+    const attrs: string[] = [];
+    const allowed =
+      tag === "a" ? ["href", "title"] : tag === "img" ? ["src", "alt", "width", "height"] : [];
+    for (const name of allowed) {
+      const found = new RegExp(`\\b${name}\\s*=\\s*("([^"]*)"|'([^']*)')`, "i").exec(rawAttrs);
+      const value = found?.[2] ?? found?.[3];
+      if (!value) continue;
+      if ((name === "href" || name === "src") && /^\s*(javascript|data|vbscript):/i.test(value)) {
+        continue;
+      }
+      attrs.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
+    }
+    if (tag === "a") attrs.push('rel="noopener"');
+    if (tag === "img") attrs.push('loading="lazy"', 'decoding="async"');
+    const selfClosing = tag === "br" || tag === "hr" || tag === "img";
+    return `<${tag}${attrs.length ? " " + attrs.join(" ") : ""}${selfClosing ? " /" : ""}>`;
+  });
+
+  return out.trim();
+}
+
+
 function toIsoDate(value: string): string {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? value : date.toISOString().slice(0, 10);
