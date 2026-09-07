@@ -44,12 +44,15 @@ export type WordPressCategory = {
 export type ArtikelView = Omit<Artikel, "authorId"> & {
   authorId: AuthorId | null;
   authorName: string;
+  /** Sanitized rich HTML body (WordPress only; null for local articles). */
+  contentHtml: string | null;
   /** Featured image URL from WordPress, when available and valid. */
   image: string | null;
   imageAlt: string | null;
   /** true when the item comes from WordPress */
   source: "wordpress" | "local";
 };
+
 
 /** Minimal shape needed by article cards/grids. */
 export type ArtikelCardData = Pick<Artikel, "slug" | "kategori" | "title" | "excerpt"> & {
