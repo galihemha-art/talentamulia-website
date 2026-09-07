@@ -271,7 +271,15 @@ export function toArtikelView(
 }
 
 export function localToView(a: Artikel): ArtikelView {
-  return { ...a, authorName: AUTHORS[a.authorId].name, image: null, imageAlt: null, source: "local" };
+  return {
+    ...a,
+    authorName: AUTHORS[a.authorId].name,
+    contentHtml: null,
+    image: null,
+    imageAlt: null,
+    source: "local",
+  };
+
 }
 
 /** Published post slugs, newest first. Returns [] when the CMS is unreachable. */
