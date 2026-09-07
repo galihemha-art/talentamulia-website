@@ -114,6 +114,22 @@ function Page() {
     .slice(0, 3);
   const relatedServices = (cluster?.layanan ?? []).slice(0, 3);
 
+  const isOrganisasi = /korporat|organisasi|perusahaan|karyawan|kepemimpinan|pelatihan|hrd|industri/i.test(
+    `${artikel.kategori} ${artikel.title}`,
+  );
+  const cta = isOrganisasi
+    ? {
+        heading: "Ingin menerapkan program ini di organisasi Anda?",
+        body: "Tim kami siap menyusun rancangan program sesuai kebutuhan dan jumlah peserta Anda.",
+        label: "Hubungi Kami",
+      }
+    : {
+        heading: "Ingin membicarakan hal ini dengan psikolog?",
+        body: "Anda dapat menjadwalkan sesi konsultasi bersama psikolog Talenta Mulia, secara online maupun tatap muka di Sidoarjo.",
+        label: "Jadwalkan Konsultasi",
+      };
+
+
 
   return (
     <>
