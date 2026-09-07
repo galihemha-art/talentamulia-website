@@ -162,16 +162,24 @@ function Page() {
             alt={artikel.imageAlt || artikel.title}
             loading="lazy"
             decoding="async"
-            className="mb-10 aspect-[16/9] w-full rounded-2xl object-cover"
+            className="mb-10 aspect-[16/9] w-full rounded-xl object-cover"
           />
         ) : null}
-        <div className="space-y-5">
-          {artikel.paragraphs.map((p) => (
-            <p key={p} className="leading-relaxed text-muted-foreground">
-              {p}
-            </p>
-          ))}
-        </div>
+        {artikel.source === "wordpress" && artikel.contentHtml ? (
+          <div
+            className="article-rich text-[1.05rem] leading-[1.85] text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: artikel.contentHtml }}
+          />
+        ) : (
+          <div className="space-y-5">
+            {artikel.paragraphs.map((p) => (
+              <p key={p} className="leading-relaxed text-muted-foreground">
+                {p}
+              </p>
+            ))}
+          </div>
+        )}
+
 
         {/* Author box */}
         <div className="mt-12 flex flex-col gap-5 rounded-2xl border border-border bg-card p-7 shadow-sm sm:flex-row sm:items-start">
