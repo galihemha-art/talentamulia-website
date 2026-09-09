@@ -36,11 +36,12 @@ type Props = {
 };
 
 const STATS: ArticleFact[] = [
-  { value: "6", label: "Profesional Senior" },
-  { value: "45+", label: "Tahun Pengalaman Profesional Gabungan" },
-  { value: "1.000+", label: "Jam Executive Coaching" },
-  { value: "80+", label: "Seminar, Workshop & Pelatihan" },
+  { value: "8+", label: "Ahli Multidisiplin" },
+  { value: "25+", label: "Tahun Pengalaman Gabungan" },
+  { value: "50+", label: "Organisasi Dilayani" },
+  { value: "2rb+", label: "Individu Terberdayakan" },
 ];
+
 
 const STEPS: ArticleApproachStep[] = [
   {
@@ -296,10 +297,11 @@ export function ArticleFramework({ article, references = [], faqs = [], showCta 
               Psychology • Healthcare • Leadership
             </p>
             <h2 id="about-talenta-mulia" className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-              Tentang Talenta Mulia
+              Fakta Singkat Talenta Mulia
             </h2>
           </div>
-          <p className="text-base leading-8 text-muted-foreground">Data resmi yang merangkum pengalaman dan jangkauan tim Talenta Mulia.</p>
+          <p className="text-base leading-8 text-muted-foreground">Ringkasan data resmi tentang cakupan pengalaman dan layanan tim Talenta Mulia.</p>
+
         </div>
 
         <dl className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border lg:grid-cols-4">
@@ -379,8 +381,9 @@ export function ArticleFramework({ article, references = [], faqs = [], showCta 
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">Tim multidisiplin</p>
             <h2 id="professionals" className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-              Profesional di Balik Talenta Mulia
+              Siapa Profesional di Balik Talenta Mulia?
             </h2>
+
           </div>
           <SiteLink to="/professionals" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:underline">
             Lihat Semua Profesional <ArrowRight className="h-4 w-4" aria-hidden />
