@@ -116,6 +116,8 @@ export function articleSchema(input: {
   authorId: keyof typeof AUTHORS | null;
   /** Fallback author name when authorId is null. */
   authorName?: string;
+  /** Editorial author from the CMS; takes precedence when a real name is present. */
+  authorOverride?: { name?: string; role?: string; credentials?: string; profileUrl?: string } | null;
   publishedAt: string;
   updatedAt: string;
   section?: string;
@@ -123,6 +125,19 @@ export function articleSchema(input: {
   image?: string | null;
 }) {
   const author = input.authorId ? AUTHORS[input.authorId] : null;
+  const override = input.authorOverride?.name ? input.authorOverride : null;
+  const authorNode = override
+    ? {
+        "@type": "Person",
+        name: override.name,
+        ...(override.credentials || override.role
+          ? { jobTitle: override.role ?? override.credentials }
+          : {}),
+        ...(override.profileUrl ? { url: override.profileUrl } : {}),
+      }
+    : author
+      ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
+      : { "@type": "Organization", name: input.authorName ?? "Talenta Mulia" };
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -136,13 +151,12 @@ export function articleSchema(input: {
     articleSection: input.section,
     wordCount: input.wordCount,
     inLanguage: "id-ID",
-    author: author
-      ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
-      : { "@type": "Organization", name: input.authorName ?? "Talenta Mulia" },
+    author: authorNode,
 
     publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
+
 
 /** Helper to build a head() scripts entry. */
 export function jsonLd(data: unknown) {
