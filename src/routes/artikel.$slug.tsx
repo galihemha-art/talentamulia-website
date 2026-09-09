@@ -5,8 +5,6 @@ import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-da
 import { AUTHORS } from "@/lib/authors";
 import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
-import { SiteLink } from "@/components/site/SiteLink";
-import { serviceTitle } from "@/lib/topic-clusters";
 import { ArticleFramework } from "@/components/site/ArticleFramework";
 import {
   fetchArticleBySlug,
@@ -113,22 +111,6 @@ function Page() {
   const related: ArtikelView[] = pool
     .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
     .slice(0, 3);
-  const relatedServices = (cluster?.layanan ?? []).slice(0, 3);
-
-  const isOrganisasi = /korporat|organisasi|perusahaan|karyawan|kepemimpinan|pelatihan|hrd|industri/i.test(
-    `${artikel.kategori} ${artikel.title}`,
-  );
-  const cta = isOrganisasi
-    ? {
-        heading: "Ingin menerapkan program ini di organisasi Anda?",
-        body: "Tim kami siap menyusun rancangan program sesuai kebutuhan dan jumlah peserta Anda.",
-        label: "Hubungi Kami",
-      }
-    : {
-        heading: "Ingin membicarakan hal ini dengan psikolog?",
-        body: "Anda dapat menjadwalkan sesi konsultasi bersama psikolog Talenta Mulia, secara online maupun tatap muka di Sidoarjo.",
-        label: "Jadwalkan Konsultasi",
-      };
 
 
 
@@ -252,33 +234,8 @@ function Page() {
           </p>
         </section>
 
-        <ArticleFramework
-          article={artikel}
-          references={artikel.references}
-          faqs={artikel.faqs}
-        />
-
-
-        {relatedServices.length > 0 ? (
-          <div className="mt-10">
-            <h2 className="text-lg font-bold text-primary">Layanan Terkait</h2>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {relatedServices.map((s) => (
-                <li key={s}>
-                  <SiteLink
-                    to={`/layanan/${s}`}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-5 py-4 text-sm font-semibold text-primary transition-colors hover:border-brand-blue"
-                  >
-                    {serviceTitle(s)} <ArrowRight className="h-4 w-4 text-brand-blue" />
-                  </SiteLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-
         {related.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-14">
             <h2 className="text-lg font-bold text-primary">Artikel Terkait</h2>
             <ul className="mt-4 grid gap-3">
               {related.map((a) => (
@@ -299,25 +256,21 @@ function Page() {
             </ul>
           </div>
         ) : null}
-
-        <div className="mt-12 rounded-xl border border-border bg-card p-7 shadow-sm">
-          <h2 className="text-xl font-bold text-primary">{cta.heading}</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{cta.body}</p>
-          <Link
-            to="/kontak"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            {cta.label} <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
+        <ArticleFramework
+          article={artikel}
+          references={artikel.references ?? []}
+          faqs={artikel.faqs ?? []}
+        />
 
-        <Link
-          to="/artikel"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-        >
-          <ArrowLeft className="h-4 w-4" /> Kembali ke daftar artikel
-        </Link>
+        <div className="mx-auto max-w-3xl">
+          <Link
+            to="/artikel"
+            className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
+          >
+            <ArrowLeft className="h-4 w-4" /> Kembali ke daftar artikel
+          </Link>
         </div>
       </article>
     </>
