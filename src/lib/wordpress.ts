@@ -417,21 +417,40 @@ function toIsoDate(value: string): string {
   return Number.isNaN(date.getTime()) ? value : date.toISOString().slice(0, 10);
 }
 
-async function wpFetch<T>(path: string): Promise<T | null> {
+// In-process cache + circuit breaker so a slow or unreachable CMS can never
+// stall server rendering or the production build.
+const WP_CACHE = new Map<string, Promise<unknown>>();
+let wpFailures = 0;
+
+async function wpRequest<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${WP_V2}${path}`, {
       headers: { Accept: "application/json" },
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(4000),
     });
     if (!res.ok) {
-      console.error(`WordPress request failed [${res.status}] ${path}: ${await res.text()}`);
+      wpFailures += 1;
+      console.error(`WordPress request failed [${res.status}] ${path}`);
       return null;
     }
+    wpFailures = 0;
     return (await res.json()) as T;
   } catch (error) {
+    wpFailures += 1;
     console.error(`WordPress request error ${path}:`, error);
     return null;
   }
+}
+
+async function wpFetch<T>(path: string): Promise<T | null> {
+  if (wpFailures >= 2) return null;
+  const cached = WP_CACHE.get(path);
+  if (cached) return (await cached) as T | null;
+  const pending = wpRequest<T>(path);
+  WP_CACHE.set(path, pending);
+  const result = await pending;
+  if (result === null) WP_CACHE.delete(path);
+  return result;
 }
 
 export async function fetchCategories(): Promise<WordPressCategory[]> {
