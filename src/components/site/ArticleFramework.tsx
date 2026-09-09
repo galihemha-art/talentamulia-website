@@ -32,6 +32,7 @@ type Props = {
   article: ArtikelView;
   references?: ArticleReference[];
   faqs?: ArticleFaq[];
+  showCta?: boolean;
 };
 
 const STATS: ArticleFact[] = [
@@ -251,7 +252,29 @@ export function ArticleEntityBlock({ article }: { article: ArtikelView }) {
   );
 }
 
-export function ArticleFramework({ article, references = [], faqs = [] }: Props) {
+export function ArticleFinalCta({ article }: { article: ArtikelView }) {
+  if (article.enhancement?.modules.cta === false) return null;
+  const cta = article.enhancement?.ctaConfig ?? defaultCta(article);
+  return (
+    <section className="mt-20 overflow-hidden rounded-xl bg-primary px-6 py-10 text-primary-foreground md:px-10 md:py-12">
+      <HeartHandshake className="h-8 w-8 text-primary-foreground" aria-hidden />
+      <h2 className="mt-5 text-2xl font-bold md:text-3xl">{cta.heading}</h2>
+      <p className="mt-3 max-w-2xl text-sm leading-7 text-primary-foreground/80 md:text-base">{cta.body}</p>
+      <Button asChild variant="secondary" size="lg" className="mt-7 w-full sm:w-auto">
+        <SiteLink to={cta.primaryUrl}>
+          {cta.primaryLabel} <ArrowRight aria-hidden />
+        </SiteLink>
+      </Button>
+      {cta.secondaryLabel && cta.secondaryUrl ? (
+        <SiteLink to={cta.secondaryUrl} className="mt-5 inline-flex text-sm font-semibold text-primary-foreground underline underline-offset-4 sm:ml-5">
+          {cta.secondaryLabel}
+        </SiteLink>
+      ) : null}
+    </section>
+  );
+}
+
+export function ArticleFramework({ article, references = [], faqs = [], showCta = true }: Props) {
   const services = relevantServices(article);
   const modules = article.enhancement?.modules;
   const stats = article.enhancement?.facts?.length ? article.enhancement.facts : STATS;
@@ -263,7 +286,6 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
   const professionals = selectedProfessionalIds?.length
     ? PROFESSIONALS.filter((item) => selectedProfessionalIds.includes(item.id as ArticleProfessionalId))
     : PROFESSIONALS;
-  const cta = article.enhancement?.ctaConfig ?? defaultCta(article);
 
   return (
     <div className="mt-16 border-t border-border pt-16 md:mt-20 md:pt-20">
@@ -381,7 +403,7 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
                 <p className="mt-1 text-sm font-semibold text-brand-blue">{professional.role}</p>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{professional.expertise}</p>
                 <SiteLink to={professional.to} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-brand-blue">
-                  Lihat Profil <ArrowRight className="h-4 w-4" aria-hidden />
+                  Lihat Halaman Tim <ArrowRight className="h-4 w-4" aria-hidden />
                 </SiteLink>
               </div>
             </article>
@@ -425,23 +447,7 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
         </section>
       ) : null}
 
-      {modules?.cta === false ? null : <section className="mt-20 overflow-hidden rounded-xl bg-primary px-6 py-10 text-primary-foreground md:px-10 md:py-12">
-        <HeartHandshake className="h-8 w-8 text-primary-foreground" aria-hidden />
-        <h2 className="mt-5 text-2xl font-bold md:text-3xl">{cta.heading}</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-7 text-primary-foreground/80 md:text-base">
-          {cta.body}
-        </p>
-        <Button asChild variant="secondary" size="lg" className="mt-7 w-full sm:w-auto">
-          <SiteLink to={cta.primaryUrl}>
-            {cta.primaryLabel} <ArrowRight aria-hidden />
-          </SiteLink>
-        </Button>
-        {cta.secondaryLabel && cta.secondaryUrl ? (
-          <SiteLink to={cta.secondaryUrl} className="mt-5 inline-flex text-sm font-semibold text-primary-foreground underline underline-offset-4 sm:ml-5">
-            {cta.secondaryLabel}
-          </SiteLink>
-        ) : null}
-      </section>}
+      {showCta ? <ArticleFinalCta article={article} /> : null}
     </div>
   );
 }

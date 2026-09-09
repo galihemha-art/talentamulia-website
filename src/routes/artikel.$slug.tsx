@@ -5,7 +5,7 @@ import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-da
 import { AUTHORS } from "@/lib/authors";
 import { articleSchema, breadcrumbSchema, faqSchema, jsonLd } from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
-import { ArticleEntityBlock, ArticleFramework } from "@/components/site/ArticleFramework";
+import { ArticleEntityBlock, ArticleFinalCta, ArticleFramework } from "@/components/site/ArticleFramework";
 import {
   fetchArticleBySlug,
   fetchPublishedArticles,
@@ -148,7 +148,7 @@ function Page() {
 
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
             <span>
-              Ditulis oleh <strong className="font-semibold text-primary">{artikel.authorName}</strong>
+             Ditulis oleh <strong className="font-semibold text-primary">{editorialAuthor?.name ?? artikel.authorName}</strong>
             </span>
             {artikel.reviewerName ? (
               <span>
@@ -252,37 +252,39 @@ function Page() {
           </p>
         </section>
 
-        {related.length > 0 ? (
-          <div className="mt-14">
-            <h2 className="text-lg font-bold text-primary">Artikel Terkait</h2>
-            <ul className="mt-4 grid gap-3">
-              {related.map((a) => (
-                <li key={a.slug}>
-                  <Link
-                    to="/artikel/$slug"
-                    params={{ slug: a.slug }}
-                    className="block rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-brand-blue"
-                  >
-                    <span className="text-xs font-semibold text-brand-blue">{a.kategori}</span>
-                    <span className="mt-1 block text-sm font-semibold text-primary">{a.title}</span>
-                    <span className="mt-1 block text-xs text-muted-foreground">
-                      {readingTime(a)} menit baca
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
         </div>
 
         <ArticleFramework
           article={artikel}
           references={artikel.references ?? []}
           faqs={artikel.faqs ?? []}
+          showCta={false}
         />
 
         <div className="mx-auto max-w-3xl">
+          {related.length > 0 ? (
+            <section className="mt-16" aria-labelledby="related-articles">
+              <h2 id="related-articles" className="text-2xl font-bold text-primary">Artikel Terkait</h2>
+              <ul className="mt-6 grid gap-3">
+                {related.map((a) => (
+                  <li key={a.slug}>
+                    <Link
+                      to="/artikel/$slug"
+                      params={{ slug: a.slug }}
+                      className="block rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-brand-blue"
+                    >
+                      <span className="text-xs font-semibold text-brand-blue">{a.kategori}</span>
+                      <span className="mt-1 block text-sm font-semibold text-primary">{a.title}</span>
+                      <span className="mt-1 block text-xs text-muted-foreground">{readingTime(a)} menit baca</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          <ArticleFinalCta article={artikel} />
+
           <Link
             to="/artikel"
             className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
