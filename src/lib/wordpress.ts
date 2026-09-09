@@ -217,6 +217,15 @@ export function resolveAuthor(wpAuthorId: number): { id: AuthorId | null; name: 
   return { id: null, name: FALLBACK_AUTHOR_NAME };
 }
 
+function readableWordPressAuthorName(name: string | null | undefined): string | null {
+  const value = name?.trim();
+  if (!value) return null;
+  // WordPress can expose a login-style display name. Keep the neutral editorial
+  // fallback instead of presenting an account slug as a person's identity.
+  if (/^[a-z0-9]+(?:[-_][a-z0-9]+)+$/.test(value)) return null;
+  return value;
+}
+
 export function pickMediaUrl(media: WordPressMedia | undefined | null): string | null {
   if (!media) return null;
   const large = media.media_details?.sizes?.["large"]?.source_url;
@@ -273,7 +282,7 @@ export function toArtikelView(
     publishedAt: toIsoDate(post.date),
     updatedAt: toIsoDate(post.modified),
     authorId: author.id,
-    authorName: wpAuthorName?.trim() || author.name,
+    authorName: readableWordPressAuthorName(wpAuthorName) ?? author.name,
     image: pickMediaUrl(media),
     imageAlt: media?.alt_text ? decodeEntities(media.alt_text) : null,
     source: "wordpress",
