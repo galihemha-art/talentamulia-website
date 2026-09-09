@@ -26,6 +26,8 @@ export type WordPressPost = {
   featured_media?: number;
   /** Optional custom fields exposed by WordPress/ACF REST. */
   acf?: Record<string, unknown> | null;
+  /** Optional registered post meta exposed by WordPress REST. */
+  meta?: Record<string, unknown> | null;
 };
 
 export type WordPressMedia = {
