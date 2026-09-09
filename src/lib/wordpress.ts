@@ -559,7 +559,7 @@ export function toArtikelView(
 
 
   const author = resolveAuthor(post.author);
-  const enhancement = parseArticleEnhancement(post.acf);
+  const enhancement = parseArticleEnhancement(pickArticleEnhancementSource(post));
   const paragraphs = htmlToParagraphs(post.content?.rendered ?? "");
   const excerpt = htmlToText(post.excerpt?.rendered ?? "") || paragraphs[0] || "";
 
