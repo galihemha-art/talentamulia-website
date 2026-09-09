@@ -206,6 +206,58 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
         return q && a ? [{ q, a }] : [];
       })
     : undefined;
+  const facts = Array.isArray(raw["facts"])
+    ? raw["facts"].flatMap((item): ArticleFact[] => {
+        if (!isRecord(item)) return [];
+        const value = cleanText(item["value"]);
+        const label = cleanText(item["label"]);
+        return value && label ? [{ value, label }] : [];
+      })
+    : undefined;
+  const approachSteps = Array.isArray(raw["approachSteps"])
+    ? raw["approachSteps"].flatMap((item): ArticleApproachStep[] => {
+        if (!isRecord(item)) return [];
+        const title = cleanText(item["title"]);
+        const body = cleanText(item["body"]);
+        return title && body ? [{ title, body }] : [];
+      })
+    : undefined;
+  const whyTalentaMulia = Array.isArray(raw["whyTalentaMulia"])
+    ? raw["whyTalentaMulia"].flatMap((item): ArticleBenefit[] => {
+        if (!isRecord(item)) return [];
+        const title = cleanText(item["title"]);
+        const body = cleanText(item["body"]);
+        return title && body ? [{ title, body }] : [];
+      })
+    : undefined;
+  const rawAuthor = isRecord(raw["author"]) ? raw["author"] : undefined;
+  const customAuthorName = rawAuthor ? cleanText(rawAuthor["name"]) : undefined;
+  const authorProfileUrl = rawAuthor ? safeEditorialUrl(rawAuthor["profileUrl"], true) : undefined;
+  const customAuthor = customAuthorName
+    ? {
+        name: customAuthorName,
+        ...(cleanText(rawAuthor?.["role"]) ? { role: cleanText(rawAuthor?.["role"]) } : {}),
+        ...(cleanText(rawAuthor?.["credentials"]) ? { credentials: cleanText(rawAuthor?.["credentials"]) } : {}),
+        ...(authorProfileUrl ? { profileUrl: authorProfileUrl } : {}),
+      }
+    : undefined;
+  const rawCta = isRecord(raw["ctaConfig"]) ? raw["ctaConfig"] : undefined;
+  const ctaHeading = rawCta ? cleanText(rawCta["heading"]) : undefined;
+  const ctaBody = rawCta ? cleanText(rawCta["body"]) : undefined;
+  const ctaPrimaryLabel = rawCta ? cleanText(rawCta["primaryLabel"]) : undefined;
+  const ctaPrimaryUrl = rawCta ? safeEditorialUrl(rawCta["primaryUrl"], true) : undefined;
+  const ctaSecondaryUrl = rawCta ? safeEditorialUrl(rawCta["secondaryUrl"], true) : undefined;
+  const ctaConfig = ctaHeading && ctaBody && ctaPrimaryLabel && ctaPrimaryUrl
+    ? {
+        heading: ctaHeading,
+        body: ctaBody,
+        primaryLabel: ctaPrimaryLabel,
+        primaryUrl: ctaPrimaryUrl,
+        ...(cleanText(rawCta?.["secondaryLabel"]) && ctaSecondaryUrl
+          ? { secondaryLabel: cleanText(rawCta?.["secondaryLabel"]), secondaryUrl: ctaSecondaryUrl }
+          : {}),
+      }
+    : undefined;
   const reviewerName = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["name"]) : undefined;
   const reviewerCredentials = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["credentials"]) : undefined;
   const reviewerRole = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["role"]) : undefined;
@@ -228,10 +280,15 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
   return {
     modules,
     ...(entitySummary ? { entitySummary } : {}),
+    ...(facts?.length ? { facts } : {}),
     ...(selectedProfessionals ? { selectedProfessionals } : {}),
     ...(selectedServices ? { selectedServices } : {}),
     ...(sources?.length ? { scientificSources: sources } : {}),
+    ...(approachSteps?.length ? { approachSteps } : {}),
+    ...(whyTalentaMulia?.length ? { whyTalentaMulia } : {}),
+    ...(customAuthor ? { author: customAuthor } : {}),
     ...(reviewer ? { reviewer } : {}),
+    ...(ctaConfig ? { ctaConfig } : {}),
     ...(faqs?.length ? { faqs } : {}),
   };
 }
