@@ -5,7 +5,15 @@ import triNoviaPhoto from "@/assets/Tri_Novia.webp";
 import maulidahPhoto from "@/assets/Maulidah_Muflichah.webp";
 import ekaPhoto from "@/assets/Eka_Rachmawaty.webp";
 import mamluatulPhoto from "@/assets/Mamluatul_Khoiriyah.webp";
-import type { ArtikelView } from "@/lib/wordpress";
+import type {
+  ArticleApproachStep,
+  ArticleBenefit,
+  ArticleCtaConfig,
+  ArticleFact,
+  ArticleProfessionalId,
+  ArticleServiceId,
+  ArtikelView,
+} from "@/lib/wordpress";
 import {
   ArrowRight,
   Check,
@@ -17,23 +25,24 @@ import {
   Users,
 } from "lucide-react";
 
-type ArticleReference = { title: string; url: string };
+type ArticleReference = { title: string; publisher?: string; url: string; publicationDate?: string };
 type ArticleFaq = { q: string; a: string };
 
 type Props = {
   article: ArtikelView;
   references?: ArticleReference[];
   faqs?: ArticleFaq[];
+  showCta?: boolean;
 };
 
-const STATS = [
+const STATS: ArticleFact[] = [
   { value: "6", label: "Profesional Senior" },
   { value: "45+", label: "Tahun Pengalaman Profesional Gabungan" },
   { value: "1.000+", label: "Jam Executive Coaching" },
   { value: "80+", label: "Seminar, Workshop & Pelatihan" },
 ];
 
-const STEPS = [
+const STEPS: ArticleApproachStep[] = [
   {
     title: "Memahami kebutuhan",
     body: "Memahami konteks individu, keluarga, organisasi, atau institusi.",
@@ -47,7 +56,7 @@ const STEPS = [
     body: "Menyusun pendekatan sesuai kebutuhan dan konteks.",
   },
   {
-    title: "Pelaksanaan",
+    title: "Implementasi",
     body: "Dilakukan oleh profesional yang relevan dengan layanan.",
   },
   {
@@ -58,11 +67,18 @@ const STEPS = [
 
 const SERVICES = [
   {
-    id: "individual",
-    name: "Layanan Individu & Keluarga",
-    description: "Pendampingan psikologis untuk kebutuhan individu, pasangan, anak, dan keluarga.",
-    to: "/layanan-individu",
+    id: "consultation",
+    name: "Konsultasi Psikologi",
+    description: "Pendampingan psikologis untuk kebutuhan individu dan keluarga.",
+    to: "/layanan/konseling-psikologis",
     keywords: /psikolog|individu|keluarga|anak|remaja|pasangan|pernikahan|emosi|mental|trauma|stres|cemas/i,
+  },
+  {
+    id: "parenting",
+    name: "Parenting & Anak",
+    description: "Pendampingan untuk memahami kebutuhan perkembangan anak dan dinamika pengasuhan.",
+    to: "/layanan/parenting-anak",
+    keywords: /parenting|orang tua|anak|remaja|pengasuhan|perkembangan/i,
   },
   {
     id: "online",
@@ -70,6 +86,13 @@ const SERVICES = [
     description: "Akses konsultasi psikolog secara online dengan proses yang terstruktur dan rahasia.",
     to: "/konsultasi-psikolog-online",
     keywords: /psikolog|individu|keluarga|anak|remaja|pasangan|pernikahan|emosi|mental|trauma|stres|cemas|online/i,
+  },
+  {
+    id: "leadership",
+    name: "Leadership Development",
+    description: "Pengembangan kapasitas kepemimpinan yang selaras dengan kebutuhan organisasi.",
+    to: "/pelatihan",
+    keywords: /pemimpin|kepemimpinan|leadership|manajer|direksi|organisasi|perusahaan/i,
   },
   {
     id: "assessment",
@@ -116,28 +139,34 @@ const REASONS = [
   },
   {
     icon: ShieldCheck,
-    title: "Profesional dan beretika",
-    body: "Layanan mengikuti kompetensi dan prinsip etika profesi yang relevan.",
+    title: "Berbasis bukti ilmiah",
+    body: "Pendekatan mempertimbangkan bukti dan metode profesional yang relevan.",
   },
   {
     icon: Search,
-    title: "Berbasis bukti ilmiah",
-    body: "Klaim ilmiah didukung referensi yang relevan dan dapat ditelusuri.",
+    title: "Praktik beretika & rahasia",
+    body: "Layanan mengikuti kompetensi, kerahasiaan, dan prinsip etika profesi yang relevan.",
   },
   {
     icon: Scale,
-    title: "Berorientasi pada kebutuhan",
-    body: "Program disesuaikan dengan konteks individu atau organisasi.",
+    title: "Pendekatan terintegrasi",
+    body: "Perspektif lintas disiplin dipadukan sesuai konteks kebutuhan.",
   },
   {
     icon: Lightbulb,
-    title: "Fokus pada pertumbuhan",
-    body: "Membantu membangun kapasitas dan tindak lanjut berkelanjutan.",
+    title: "Solusi sesuai kebutuhan",
+    body: "Program disesuaikan dengan konteks individu, keluarga, atau organisasi.",
+  },
+  {
+    icon: Check,
+    title: "Dampak yang dapat dievaluasi",
+    body: "Proses dilengkapi evaluasi dan tindak lanjut yang relevan.",
   },
 ];
 
 const PROFESSIONALS = [
   {
+    id: "andiani",
     name: "Dr. Hj. Andiani",
     role: "Psikologi & Pengembangan Organisasi",
     expertise: "Psikologi, organisasi, kepemimpinan",
@@ -145,6 +174,7 @@ const PROFESSIONALS = [
     to: "/tokoh-sentral",
   },
   {
+    id: "tri-novia",
     name: "Dr. Tri Novia",
     role: "Psikologi & Kesehatan",
     expertise: "Psikologi, kesehatan, pengembangan manusia",
@@ -152,6 +182,7 @@ const PROFESSIONALS = [
     to: "/tokoh-sentral",
   },
   {
+    id: "maulidah",
     name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
     role: "Psikolog",
     expertise: "Konsultasi psikologi, kesehatan mental, pengembangan diri",
@@ -159,6 +190,7 @@ const PROFESSIONALS = [
     to: "/professionals",
   },
   {
+    id: "eka",
     name: "Eka Rachmawaty, M.M., PCC",
     role: "Executive Coach",
     expertise: "Executive coaching, leadership, pengembangan organisasi",
@@ -166,6 +198,7 @@ const PROFESSIONALS = [
     to: "/professionals",
   },
   {
+    id: "mamluatul",
     name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
     role: "Psikolog",
     expertise: "Psikologi individu, keluarga, dan organisasi",
@@ -175,17 +208,88 @@ const PROFESSIONALS = [
 ];
 
 function relevantServices(article: ArtikelView) {
+  const selected = article.enhancement?.selectedServices;
+  if (selected?.length) return SERVICES.filter((service) => selected.includes(service.id as ArticleServiceId));
   const searchable = `${article.kategori} ${article.title} ${article.excerpt}`;
   const matches = SERVICES.filter((service) => service.keywords.test(searchable));
-  return matches.length > 0 ? matches.slice(0, 5) : SERVICES;
+  return matches.slice(0, 5);
 }
 
-export function ArticleFramework({ article, references = [], faqs = [] }: Props) {
+function isOrganizationArticle(article: ArtikelView) {
+  return /korporat|organisasi|perusahaan|karyawan|kepemimpinan|pelatihan|hrd|industri|coaching/i.test(
+    `${article.kategori} ${article.title} ${article.excerpt}`,
+  );
+}
+
+function defaultCta(article: ArtikelView): ArticleCtaConfig {
+  return isOrganizationArticle(article)
+    ? {
+        heading: "Membutuhkan Pendampingan untuk Organisasi?",
+        body: "Diskusikan kebutuhan pengembangan talenta, kepemimpinan, dan organisasi bersama tim Talenta Mulia.",
+        primaryLabel: "Ajukan Proposal Korporat",
+        primaryUrl: "/solusi-korporat",
+        secondaryLabel: "Hubungi Kami",
+        secondaryUrl: "/kontak",
+      }
+    : {
+        heading: "Membutuhkan Pendampingan?",
+        body: "Bicarakan kebutuhan Anda bersama tim Talenta Mulia melalui proses yang profesional dan sesuai konteks.",
+        primaryLabel: "Jadwalkan Konsultasi",
+        primaryUrl: "/kontak",
+      };
+}
+
+export function ArticleEntityBlock({ article }: { article: ArtikelView }) {
+  if (article.enhancement?.modules.entity === false) return null;
+  return (
+    <aside className="mt-8 max-w-3xl border-l-2 border-brand-blue pl-5" aria-label="Tentang Talenta Mulia">
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">Psychology • Healthcare • Leadership</p>
+      <p className="mt-3 text-sm leading-7 text-muted-foreground">
+        {article.enhancement?.entitySummary ?? "Talenta Mulia adalah pusat konsultasi psikologi, kesehatan, dan kepemimpinan terintegrasi untuk individu, keluarga, organisasi, serta institusi kesehatan."}{" "}
+        <SiteLink to="/tentang-kami" className="font-semibold text-brand-blue hover:underline">Kenali Talenta Mulia</SiteLink>.
+      </p>
+    </aside>
+  );
+}
+
+export function ArticleFinalCta({ article }: { article: ArtikelView }) {
+  if (article.enhancement?.modules.cta === false) return null;
+  const cta = article.enhancement?.ctaConfig ?? defaultCta(article);
+  return (
+    <section className="mt-20 overflow-hidden rounded-xl bg-primary px-6 py-10 text-primary-foreground md:px-10 md:py-12">
+      <HeartHandshake className="h-8 w-8 text-primary-foreground" aria-hidden />
+      <h2 className="mt-5 text-2xl font-bold md:text-3xl">{cta.heading}</h2>
+      <p className="mt-3 max-w-2xl text-sm leading-7 text-primary-foreground/80 md:text-base">{cta.body}</p>
+      <Button asChild variant="secondary" size="lg" className="mt-7 w-full sm:w-auto">
+        <SiteLink to={cta.primaryUrl}>
+          {cta.primaryLabel} <ArrowRight aria-hidden />
+        </SiteLink>
+      </Button>
+      {cta.secondaryLabel && cta.secondaryUrl ? (
+        <SiteLink to={cta.secondaryUrl} className="mt-5 inline-flex text-sm font-semibold text-primary-foreground underline underline-offset-4 sm:ml-5">
+          {cta.secondaryLabel}
+        </SiteLink>
+      ) : null}
+    </section>
+  );
+}
+
+export function ArticleFramework({ article, references = [], faqs = [], showCta = true }: Props) {
   const services = relevantServices(article);
+  const modules = article.enhancement?.modules;
+  const stats = article.enhancement?.facts?.length ? article.enhancement.facts : STATS;
+  const steps = article.enhancement?.approachSteps?.length ? article.enhancement.approachSteps : STEPS;
+  const reasons: ArticleBenefit[] = article.enhancement?.whyTalentaMulia?.length
+    ? article.enhancement.whyTalentaMulia
+    : REASONS.map(({ title, body }) => ({ title, body }));
+  const selectedProfessionalIds = article.enhancement?.selectedProfessionals;
+  const professionals = selectedProfessionalIds?.length
+    ? PROFESSIONALS.filter((item) => selectedProfessionalIds.includes(item.id as ArticleProfessionalId))
+    : PROFESSIONALS;
 
   return (
     <div className="mt-16 border-t border-border pt-16 md:mt-20 md:pt-20">
-      <section aria-labelledby="about-talenta-mulia">
+      {modules?.facts === false ? null : <section aria-labelledby="about-talenta-mulia">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:items-end">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">
@@ -195,29 +299,26 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
               Tentang Talenta Mulia
             </h2>
           </div>
-          <p className="text-base leading-8 text-muted-foreground">
-            Talenta Mulia adalah pusat konsultasi psikologi, kesehatan, dan kepemimpinan
-            terintegrasi untuk individu, keluarga, organisasi, serta institusi kesehatan.
-          </p>
+          <p className="text-base leading-8 text-muted-foreground">Data resmi yang merangkum pengalaman dan jangkauan tim Talenta Mulia.</p>
         </div>
 
         <dl className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border lg:grid-cols-4">
-          {STATS.map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label} className="bg-card p-5 md:p-6">
               <dd className="text-2xl font-bold text-primary md:text-3xl">{stat.value}</dd>
               <dt className="mt-2 text-xs leading-5 text-muted-foreground md:text-sm">{stat.label}</dt>
             </div>
           ))}
         </dl>
-      </section>
+      </section>}
 
-      <section aria-labelledby="approach" className="mt-20">
+      {modules?.approach === false ? null : <section aria-labelledby="approach" className="mt-20">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">Pendekatan</p>
         <h2 id="approach" className="mt-3 text-2xl font-bold text-primary md:text-3xl">
           Bagaimana Pendekatan Talenta Mulia Bekerja?
         </h2>
         <ol className="relative mt-8 grid gap-0 border-l border-border pl-6 md:grid-cols-5 md:border-l-0 md:border-t md:pl-0 md:pt-7">
-          {STEPS.map((step, index) => (
+          {steps.map((step, index) => (
             <li key={step.title} className="relative pb-8 last:pb-0 md:px-3 md:pb-0 first:md:pl-0 last:md:pr-0">
               <span className="absolute -left-[29px] top-1 h-2.5 w-2.5 rounded-full bg-brand-blue ring-4 ring-background md:-top-[33px] md:left-3 first:md:left-0" />
               <span className="text-xs font-bold text-brand-blue">{String(index + 1).padStart(2, "0")}</span>
@@ -226,9 +327,9 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
             </li>
           ))}
         </ol>
-      </section>
+      </section>}
 
-      <section aria-labelledby="article-services" className="mt-20">
+      {modules?.services === false || services.length === 0 ? null : <section aria-labelledby="article-services" className="mt-20">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">Sesuai kebutuhan Anda</p>
         <h2 id="article-services" className="mt-3 text-2xl font-bold text-primary md:text-3xl">
           Layanan Talenta Mulia
@@ -249,15 +350,17 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
             </div>
           ))}
         </div>
-      </section>
+      </section>}
 
-      <section aria-labelledby="why-talenta-mulia" className="mt-20">
+      {modules?.whyTalentaMulia === false ? null : <section aria-labelledby="why-talenta-mulia" className="mt-20">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">Standar layanan</p>
         <h2 id="why-talenta-mulia" className="mt-3 text-2xl font-bold text-primary md:text-3xl">
           Mengapa Talenta Mulia?
         </h2>
         <div className="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-2">
-          {REASONS.map(({ icon: Icon, title, body }) => (
+          {reasons.map(({ title, body }, index) => {
+            const Icon = REASONS[index % REASONS.length]?.icon ?? Check;
+            return (
             <div key={title} className="flex gap-4 border-t border-border pt-5">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary text-brand-blue">
                 <Icon className="h-4 w-4" aria-hidden />
@@ -267,11 +370,11 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
                 <p className="mt-1 text-sm leading-6 text-muted-foreground">{body}</p>
               </div>
             </div>
-          ))}
+          );})}
         </div>
-      </section>
+      </section>}
 
-      <section aria-labelledby="professionals" className="mt-20">
+      {modules?.professionals === false ? null : <section aria-labelledby="professionals" className="mt-20">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue">Tim multidisiplin</p>
@@ -284,7 +387,7 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
           </SiteLink>
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {PROFESSIONALS.map((professional) => (
+          {professionals.map((professional) => (
             <article key={professional.name} className="overflow-hidden rounded-xl border border-border bg-card">
               <img
                 src={professional.photo}
@@ -300,15 +403,15 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
                 <p className="mt-1 text-sm font-semibold text-brand-blue">{professional.role}</p>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{professional.expertise}</p>
                 <SiteLink to={professional.to} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-brand-blue">
-                  Lihat Profil <ArrowRight className="h-4 w-4" aria-hidden />
+                  Lihat Halaman Tim <ArrowRight className="h-4 w-4" aria-hidden />
                 </SiteLink>
               </div>
             </article>
           ))}
         </div>
-      </section>
+      </section>}
 
-      {references.length > 0 ? (
+      {modules?.sources !== false && references.length > 0 ? (
         <section aria-labelledby="references" className="mt-20 border-t border-border pt-10">
           <h2 id="references" className="text-2xl font-bold text-primary">Sumber & Referensi</h2>
           <ol className="mt-5 space-y-3">
@@ -318,13 +421,16 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
                 <a href={reference.url} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-blue underline underline-offset-4">
                   {reference.title}
                 </a>
+                {reference.publisher || reference.publicationDate ? (
+                  <span> — {[reference.publisher, reference.publicationDate].filter(Boolean).join(", ")}</span>
+                ) : null}
               </li>
             ))}
           </ol>
         </section>
       ) : null}
 
-      {faqs.length > 0 ? (
+      {modules?.faq !== false && faqs.length > 0 ? (
         <section aria-labelledby="article-faq" className="mt-20">
           <h2 id="article-faq" className="text-2xl font-bold text-primary">Pertanyaan yang Sering Diajukan</h2>
           <div className="mt-6 divide-y divide-border border-y border-border">
@@ -341,19 +447,7 @@ export function ArticleFramework({ article, references = [], faqs = [] }: Props)
         </section>
       ) : null}
 
-      <section className="mt-20 overflow-hidden rounded-xl bg-primary px-6 py-10 text-primary-foreground md:px-10 md:py-12">
-        <HeartHandshake className="h-8 w-8 text-primary-foreground" aria-hidden />
-        <h2 className="mt-5 text-2xl font-bold md:text-3xl">Berbicara dengan Talenta Mulia</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-7 text-primary-foreground/80 md:text-base">
-          Butuh pendampingan psikologi, pengembangan talenta, kepemimpinan, atau layanan
-          organisasi? Konsultasikan kebutuhan Anda bersama Talenta Mulia.
-        </p>
-        <Button asChild variant="secondary" size="lg" className="mt-7 w-full sm:w-auto">
-          <SiteLink to="/kontak">
-            Konsultasikan Kebutuhan Anda <ArrowRight aria-hidden />
-          </SiteLink>
-        </Button>
-      </section>
+      {showCta ? <ArticleFinalCta article={article} /> : null}
     </div>
   );
 }

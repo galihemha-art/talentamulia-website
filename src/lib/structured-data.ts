@@ -125,7 +125,7 @@ export function articleSchema(input: {
   const author = input.authorId ? AUTHORS[input.authorId] : null;
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: input.title,
     description: input.description,
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl(input.path) },
@@ -140,12 +140,7 @@ export function articleSchema(input: {
       ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
       : { "@type": "Organization", name: input.authorName ?? "Talenta Mulia" },
 
-    publisher: {
-      "@type": "Organization",
-      name: "Talenta Mulia",
-      url: SITE_URL,
-      logo: { "@type": "ImageObject", url: LOGO },
-    },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
 

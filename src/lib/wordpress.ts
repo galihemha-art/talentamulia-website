@@ -24,6 +24,8 @@ export type WordPressPost = {
   author: number;
   categories: number[];
   featured_media?: number;
+  /** Optional custom fields exposed by WordPress/ACF REST. */
+  acf?: Record<string, unknown> | null;
 };
 
 export type WordPressMedia = {
@@ -46,6 +48,68 @@ export type WordPressUser = {
 };
 
 /** Article shape used by the UI. Author may be unmapped (WordPress-only author). */
+export type ArticleFact = { value: string; label: string };
+export type ArticleProfessionalId = "andiani" | "tri-novia" | "maulidah" | "eka" | "mamluatul";
+export type ArticleSource = {
+  title: string;
+  publisher?: string;
+  url: string;
+  publicationDate?: string;
+};
+export type ArticleApproachStep = { title: string; body: string };
+export type ArticleServiceId =
+  | "consultation"
+  | "online"
+  | "parenting"
+  | "assessment"
+  | "talent"
+  | "coaching"
+  | "leadership"
+  | "wellbeing"
+  | "healthcare";
+export type ArticleBenefit = { title: string; body: string };
+export type ArticleCtaConfig = {
+  heading: string;
+  body: string;
+  primaryLabel: string;
+  primaryUrl: string;
+  secondaryLabel?: string;
+  secondaryUrl?: string;
+};
+export type ArticlePerson = {
+  name: string;
+  role?: string;
+  credentials?: string;
+  profileUrl?: string;
+};
+export type ArticleEnhancementModules = {
+  entity: boolean;
+  facts: boolean;
+  approach: boolean;
+  services: boolean;
+  whyTalentaMulia: boolean;
+  professionals: boolean;
+  sources: boolean;
+  faq: boolean;
+  cta: boolean;
+};
+
+/** CMS-ready model for the reusable SEO & Trust Article fields. */
+export type ArticleEnhancement = {
+  modules: ArticleEnhancementModules;
+  entitySummary?: string;
+  facts?: ArticleFact[];
+  selectedProfessionals?: ArticleProfessionalId[];
+  author?: ArticlePerson;
+  reviewer?: ArticlePerson;
+  scientificSources?: ArticleSource[];
+  approachSteps?: ArticleApproachStep[];
+  selectedServices?: ArticleServiceId[];
+  whyTalentaMulia?: ArticleBenefit[];
+  ctaConfig?: ArticleCtaConfig;
+  faqs?: { q: string; a: string }[];
+};
+
 export type ArtikelView = Omit<Artikel, "authorId"> & {
   authorId: AuthorId | null;
   authorName: string;
@@ -58,9 +122,179 @@ export type ArtikelView = Omit<Artikel, "authorId"> & {
   source: "wordpress" | "local";
   /** Optional editorial fields. Hidden by the article template when unavailable. */
   reviewerName?: string | null;
-  references?: { title: string; url: string }[];
+  enhancement?: ArticleEnhancement;
+  references?: ArticleSource[];
   faqs?: { q: string; a: string }[];
 };
+
+const DEFAULT_MODULES: ArticleEnhancementModules = {
+  entity: true,
+  facts: true,
+  approach: true,
+  services: true,
+  whyTalentaMulia: true,
+  professionals: true,
+  sources: true,
+  faq: true,
+  cta: true,
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function cleanText(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const clean = htmlToText(value).trim();
+  return clean && !/^(isi data|placeholder|tbd)$/i.test(clean) ? clean : undefined;
+}
+
+function safeEditorialUrl(value: unknown, internalOnly = false): string | undefined {
+  if (typeof value !== "string") return undefined;
+  if (internalOnly && value.startsWith("/")) return value;
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" && url.protocol !== "http:") return undefined;
+    return url.toString();
+  } catch {
+    return undefined;
+  }
+}
+
+function stringArray<T extends string>(value: unknown, allowed: readonly T[]): T[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const filtered = value.filter((item): item is T => typeof item === "string" && allowed.includes(item as T));
+  return filtered.length ? filtered : undefined;
+}
+
+const PROFESSIONAL_IDS: ArticleProfessionalId[] = ["andiani", "tri-novia", "maulidah", "eka", "mamluatul"];
+const SERVICE_IDS: ArticleServiceId[] = ["consultation", "online", "parenting", "assessment", "talent", "coaching", "leadership", "wellbeing", "healthcare"];
+
+/**
+ * Maps optional WordPress custom fields into safe frontend data. Unknown,
+ * placeholder, and invalid URL values are ignored instead of rendered.
+ */
+export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | undefined {
+  if (!isRecord(acf)) return undefined;
+  const raw = isRecord(acf["articleEnhancement"]) ? acf["articleEnhancement"] : acf;
+  const rawModules = isRecord(raw["modules"]) ? raw["modules"] : {};
+  const modules = Object.fromEntries(
+    Object.entries(DEFAULT_MODULES).map(([key, fallback]) => [key, typeof rawModules[key] === "boolean" ? rawModules[key] : fallback]),
+  ) as ArticleEnhancementModules;
+
+  const sources = Array.isArray(raw["scientificSources"])
+    ? raw["scientificSources"].flatMap((item): ArticleSource[] => {
+        if (!isRecord(item)) return [];
+        const title = cleanText(item["title"]);
+        const url = safeEditorialUrl(item["url"]);
+        if (!title || !url) return [];
+        const publisher = cleanText(item["publisher"]);
+        const publicationDate = cleanText(item["publicationDate"]);
+        return [{
+          title,
+          url,
+          ...(publisher ? { publisher } : {}),
+          ...(publicationDate ? { publicationDate } : {}),
+        }];
+      })
+    : undefined;
+  const faqs = Array.isArray(raw["faqs"])
+    ? raw["faqs"].flatMap((item): { q: string; a: string }[] => {
+        if (!isRecord(item)) return [];
+        const q = cleanText(item["q"]);
+        const a = cleanText(item["a"]);
+        return q && a ? [{ q, a }] : [];
+      })
+    : undefined;
+  const facts = Array.isArray(raw["facts"])
+    ? raw["facts"].flatMap((item): ArticleFact[] => {
+        if (!isRecord(item)) return [];
+        const value = cleanText(item["value"]);
+        const label = cleanText(item["label"]);
+        return value && label ? [{ value, label }] : [];
+      })
+    : undefined;
+  const approachSteps = Array.isArray(raw["approachSteps"])
+    ? raw["approachSteps"].flatMap((item): ArticleApproachStep[] => {
+        if (!isRecord(item)) return [];
+        const title = cleanText(item["title"]);
+        const body = cleanText(item["body"]);
+        return title && body ? [{ title, body }] : [];
+      })
+    : undefined;
+  const whyTalentaMulia = Array.isArray(raw["whyTalentaMulia"])
+    ? raw["whyTalentaMulia"].flatMap((item): ArticleBenefit[] => {
+        if (!isRecord(item)) return [];
+        const title = cleanText(item["title"]);
+        const body = cleanText(item["body"]);
+        return title && body ? [{ title, body }] : [];
+      })
+    : undefined;
+  const rawAuthor = isRecord(raw["author"]) ? raw["author"] : undefined;
+  const customAuthorName = rawAuthor ? cleanText(rawAuthor["name"]) : undefined;
+  const customAuthorRole = rawAuthor ? cleanText(rawAuthor["role"]) : undefined;
+  const customAuthorCredentials = rawAuthor ? cleanText(rawAuthor["credentials"]) : undefined;
+  const authorProfileUrl = rawAuthor ? safeEditorialUrl(rawAuthor["profileUrl"], true) : undefined;
+  const customAuthor = customAuthorName
+    ? {
+        name: customAuthorName,
+        ...(customAuthorRole ? { role: customAuthorRole } : {}),
+        ...(customAuthorCredentials ? { credentials: customAuthorCredentials } : {}),
+        ...(authorProfileUrl ? { profileUrl: authorProfileUrl } : {}),
+      }
+    : undefined;
+  const rawCta = isRecord(raw["ctaConfig"]) ? raw["ctaConfig"] : undefined;
+  const ctaHeading = rawCta ? cleanText(rawCta["heading"]) : undefined;
+  const ctaBody = rawCta ? cleanText(rawCta["body"]) : undefined;
+  const ctaPrimaryLabel = rawCta ? cleanText(rawCta["primaryLabel"]) : undefined;
+  const ctaPrimaryUrl = rawCta ? safeEditorialUrl(rawCta["primaryUrl"], true) : undefined;
+  const ctaSecondaryUrl = rawCta ? safeEditorialUrl(rawCta["secondaryUrl"], true) : undefined;
+  const ctaSecondaryLabel = rawCta ? cleanText(rawCta["secondaryLabel"]) : undefined;
+  const ctaConfig = ctaHeading && ctaBody && ctaPrimaryLabel && ctaPrimaryUrl
+    ? {
+        heading: ctaHeading,
+        body: ctaBody,
+        primaryLabel: ctaPrimaryLabel,
+        primaryUrl: ctaPrimaryUrl,
+        ...(ctaSecondaryLabel && ctaSecondaryUrl
+          ? { secondaryLabel: ctaSecondaryLabel, secondaryUrl: ctaSecondaryUrl }
+          : {}),
+      }
+    : undefined;
+  const reviewerName = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["name"]) : undefined;
+  const reviewerCredentials = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["credentials"]) : undefined;
+  const reviewerRole = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["role"]) : undefined;
+  const reviewerProfileUrl = isRecord(raw["reviewer"])
+    ? safeEditorialUrl(raw["reviewer"]["profileUrl"], true)
+    : undefined;
+  const reviewer = reviewerName
+    ? {
+        name: reviewerName,
+        ...(reviewerCredentials ? { credentials: reviewerCredentials } : {}),
+        ...(reviewerRole ? { role: reviewerRole } : {}),
+        ...(reviewerProfileUrl ? { profileUrl: reviewerProfileUrl } : {}),
+      }
+    : undefined;
+
+  const entitySummary = cleanText(raw["entitySummary"]);
+  const selectedProfessionals = stringArray(raw["selectedProfessionals"], PROFESSIONAL_IDS);
+  const selectedServices = stringArray(raw["selectedServices"], SERVICE_IDS);
+
+  return {
+    modules,
+    ...(entitySummary ? { entitySummary } : {}),
+    ...(facts?.length ? { facts } : {}),
+    ...(selectedProfessionals ? { selectedProfessionals } : {}),
+    ...(selectedServices ? { selectedServices } : {}),
+    ...(sources?.length ? { scientificSources: sources } : {}),
+    ...(approachSteps?.length ? { approachSteps } : {}),
+    ...(whyTalentaMulia?.length ? { whyTalentaMulia } : {}),
+    ...(customAuthor ? { author: customAuthor } : {}),
+    ...(reviewer ? { reviewer } : {}),
+    ...(ctaConfig ? { ctaConfig } : {}),
+    ...(faqs?.length ? { faqs } : {}),
+  };
+}
 
 
 /** Minimal shape needed by article cards/grids. */
@@ -268,6 +502,7 @@ export function toArtikelView(
 
 
   const author = resolveAuthor(post.author);
+  const enhancement = parseArticleEnhancement(post.acf);
   const paragraphs = htmlToParagraphs(post.content?.rendered ?? "");
   const excerpt = htmlToText(post.excerpt?.rendered ?? "") || paragraphs[0] || "";
 
@@ -283,6 +518,10 @@ export function toArtikelView(
     updatedAt: toIsoDate(post.modified),
     authorId: author.id,
     authorName: readableWordPressAuthorName(wpAuthorName) ?? author.name,
+    reviewerName: enhancement?.reviewer?.name ?? null,
+    ...(enhancement ? { enhancement } : {}),
+    ...(enhancement?.scientificSources ? { references: enhancement.scientificSources } : {}),
+    ...(enhancement?.faqs ? { faqs: enhancement.faqs } : {}),
     image: pickMediaUrl(media),
     imageAlt: media?.alt_text ? decodeEntities(media.alt_text) : null,
     source: "wordpress",

@@ -3,9 +3,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarClock, Clock } from "lucide-react";
 import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-data";
 import { AUTHORS } from "@/lib/authors";
-import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
+import { articleSchema, breadcrumbSchema, faqSchema, jsonLd } from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
-import { ArticleFramework } from "@/components/site/ArticleFramework";
+import { ArticleEntityBlock, ArticleFinalCta, ArticleFramework } from "@/components/site/ArticleFramework";
 import {
   fetchArticleBySlug,
   fetchPublishedArticles,
@@ -57,6 +57,9 @@ export const Route = createFileRoute("/artikel/$slug")({
           }),
         ),
       );
+      if (a.enhancement?.modules.faq !== false && a.faqs?.length) {
+        scripts.push(jsonLd(faqSchema(a.faqs)));
+      }
     }
     return {
       meta: [
@@ -66,6 +69,8 @@ export const Route = createFileRoute("/artikel/$slug")({
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: desc },
         ...(a && isValidImageUrl(a.image)
           ? [
               { property: "og:image", content: a.image },
@@ -107,6 +112,8 @@ function Page() {
   }
 
   const author = artikel.authorId ? AUTHORS[artikel.authorId] : null;
+  const editorialAuthor = artikel.enhancement?.author;
+  const reviewer = artikel.enhancement?.reviewer;
   const cluster = clusterForArticle(artikel);
   const related: ArtikelView[] = pool
     .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
@@ -137,10 +144,11 @@ function Page() {
             {artikel.title}
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">{artikel.excerpt}</p>
+          <ArticleEntityBlock article={artikel} />
 
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
             <span>
-              Ditulis oleh <strong className="font-semibold text-primary">{artikel.authorName}</strong>
+             Ditulis oleh <strong className="font-semibold text-primary">{editorialAuthor?.name ?? artikel.authorName}</strong>
             </span>
             {artikel.reviewerName ? (
               <span>
@@ -208,10 +216,16 @@ function Page() {
               Ditulis oleh
             </p>
             <h2 className="mt-1 text-lg font-bold text-primary">
-              {author?.name ?? artikel.authorName}
+              {editorialAuthor?.name ?? author?.name ?? artikel.authorName}
             </h2>
-            {author ? <p className="text-sm text-brand-blue">{author.role}</p> : null}
-            {author ? (
+            {editorialAuthor?.role || editorialAuthor?.credentials ? (
+              <p className="text-sm text-brand-blue">{[editorialAuthor.role, editorialAuthor.credentials].filter(Boolean).join(" · ")}</p>
+            ) : author ? <p className="text-sm text-brand-blue">{author.role}</p> : null}
+            {editorialAuthor?.profileUrl ? (
+              <a href={editorialAuthor.profileUrl} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
+                Lihat profil penulis <ArrowRight className="h-4 w-4" />
+              </a>
+            ) : author ? (
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
             ) : null}
             {author ? (
@@ -227,6 +241,10 @@ function Page() {
           {artikel.reviewerName ? (
             <div className="mt-5 border-t border-border pt-5 text-sm text-muted-foreground">
               Ditinjau oleh <strong className="text-primary">{artikel.reviewerName}</strong>
+              {reviewer?.credentials || reviewer?.role ? ` · ${[reviewer.role, reviewer.credentials].filter(Boolean).join(" · ")}` : null}
+              {reviewer?.profileUrl ? (
+                <a href={reviewer.profileUrl} className="ml-2 font-semibold text-brand-blue underline underline-offset-4">Lihat profil</a>
+              ) : null}
             </div>
           ) : null}
           <p className="mt-4 text-xs text-muted-foreground">
@@ -234,37 +252,39 @@ function Page() {
           </p>
         </section>
 
-        {related.length > 0 ? (
-          <div className="mt-14">
-            <h2 className="text-lg font-bold text-primary">Artikel Terkait</h2>
-            <ul className="mt-4 grid gap-3">
-              {related.map((a) => (
-                <li key={a.slug}>
-                  <Link
-                    to="/artikel/$slug"
-                    params={{ slug: a.slug }}
-                    className="block rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-brand-blue"
-                  >
-                    <span className="text-xs font-semibold text-brand-blue">{a.kategori}</span>
-                    <span className="mt-1 block text-sm font-semibold text-primary">{a.title}</span>
-                    <span className="mt-1 block text-xs text-muted-foreground">
-                      {readingTime(a)} menit baca
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
         </div>
 
         <ArticleFramework
           article={artikel}
           references={artikel.references ?? []}
           faqs={artikel.faqs ?? []}
+          showCta={false}
         />
 
         <div className="mx-auto max-w-3xl">
+          {related.length > 0 ? (
+            <section className="mt-16" aria-labelledby="related-articles">
+              <h2 id="related-articles" className="text-2xl font-bold text-primary">Artikel Terkait</h2>
+              <ul className="mt-6 grid gap-3">
+                {related.map((a) => (
+                  <li key={a.slug}>
+                    <Link
+                      to="/artikel/$slug"
+                      params={{ slug: a.slug }}
+                      className="block rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-brand-blue"
+                    >
+                      <span className="text-xs font-semibold text-brand-blue">{a.kategori}</span>
+                      <span className="mt-1 block text-sm font-semibold text-primary">{a.title}</span>
+                      <span className="mt-1 block text-xs text-muted-foreground">{readingTime(a)} menit baca</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          <ArticleFinalCta article={artikel} />
+
           <Link
             to="/artikel"
             className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
