@@ -40,6 +40,11 @@ export type WordPressCategory = {
   count: number;
 };
 
+export type WordPressUser = {
+  id: number;
+  name?: string;
+};
+
 /** Article shape used by the UI. Author may be unmapped (WordPress-only author). */
 export type ArtikelView = Omit<Artikel, "authorId"> & {
   authorId: AuthorId | null;
@@ -51,6 +56,10 @@ export type ArtikelView = Omit<Artikel, "authorId"> & {
   imageAlt: string | null;
   /** true when the item comes from WordPress */
   source: "wordpress" | "local";
+  /** Optional editorial fields. Hidden by the article template when unavailable. */
+  reviewerName?: string | null;
+  references?: { title: string; url: string }[];
+  faqs?: { q: string; a: string }[];
 };
 
 
@@ -208,6 +217,15 @@ export function resolveAuthor(wpAuthorId: number): { id: AuthorId | null; name: 
   return { id: null, name: FALLBACK_AUTHOR_NAME };
 }
 
+function readableWordPressAuthorName(name: string | null | undefined): string | null {
+  const value = name?.trim();
+  if (!value) return null;
+  // WordPress can expose a login-style display name. Keep the neutral editorial
+  // fallback instead of presenting an account slug as a person's identity.
+  if (/^[a-z0-9]+(?:[-_][a-z0-9]+)+$/.test(value)) return null;
+  return value;
+}
+
 export function pickMediaUrl(media: WordPressMedia | undefined | null): string | null {
   if (!media) return null;
   const large = media.media_details?.sizes?.["large"]?.source_url;
@@ -237,6 +255,7 @@ export function toArtikelView(
   post: WordPressPost,
   categories: WordPressCategory[],
   media?: WordPressMedia | null,
+  wpAuthorName?: string | null,
 ): ArtikelView {
   const rawCategoryName =
     post.categories
@@ -263,7 +282,7 @@ export function toArtikelView(
     publishedAt: toIsoDate(post.date),
     updatedAt: toIsoDate(post.modified),
     authorId: author.id,
-    authorName: author.name,
+    authorName: readableWordPressAuthorName(wpAuthorName) ?? author.name,
     image: pickMediaUrl(media),
     imageAlt: media?.alt_text ? decodeEntities(media.alt_text) : null,
     source: "wordpress",
@@ -308,9 +327,10 @@ export async function fetchArticleBySlug(slug: string): Promise<ArtikelView | nu
   );
   const post = posts?.[0];
   if (!post) return null;
-  const [categories, media] = await Promise.all([
+  const [categories, media, wpAuthor] = await Promise.all([
     fetchCategories(),
     post.featured_media ? fetchMediaById(post.featured_media) : Promise.resolve(null),
+    wpFetch<WordPressUser>(`/users/${post.author}`),
   ]);
-  return toArtikelView(post, categories, media);
+  return toArtikelView(post, categories, media, wpAuthor?.name ?? null);
 }

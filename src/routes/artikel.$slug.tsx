@@ -5,8 +5,7 @@ import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-da
 import { AUTHORS } from "@/lib/authors";
 import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
-import { SiteLink } from "@/components/site/SiteLink";
-import { serviceTitle } from "@/lib/topic-clusters";
+import { ArticleFramework } from "@/components/site/ArticleFramework";
 import {
   fetchArticleBySlug,
   fetchPublishedArticles,
@@ -112,29 +111,13 @@ function Page() {
   const related: ArtikelView[] = pool
     .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
     .slice(0, 3);
-  const relatedServices = (cluster?.layanan ?? []).slice(0, 3);
-
-  const isOrganisasi = /korporat|organisasi|perusahaan|karyawan|kepemimpinan|pelatihan|hrd|industri/i.test(
-    `${artikel.kategori} ${artikel.title}`,
-  );
-  const cta = isOrganisasi
-    ? {
-        heading: "Ingin menerapkan program ini di organisasi Anda?",
-        body: "Tim kami siap menyusun rancangan program sesuai kebutuhan dan jumlah peserta Anda.",
-        label: "Hubungi Kami",
-      }
-    : {
-        heading: "Ingin membicarakan hal ini dengan psikolog?",
-        body: "Anda dapat menjadwalkan sesi konsultasi bersama psikolog Talenta Mulia, secara online maupun tatap muka di Sidoarjo.",
-        label: "Jadwalkan Konsultasi",
-      };
 
 
 
   return (
     <>
       <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-3xl px-5 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:py-20">
           <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
             <Link to="/" className="hover:text-brand-blue">
               Beranda
@@ -150,12 +133,20 @@ function Page() {
           <span className="mt-6 inline-block rounded-full bg-card px-3 py-1 text-xs font-semibold text-brand-blue">
             {artikel.kategori}
           </span>
-          <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-primary md:text-4xl">
+          <h1 className="mt-4 max-w-4xl text-3xl font-extrabold leading-tight text-primary md:text-5xl">
             {artikel.title}
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground">{artikel.excerpt}</p>
+          <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">{artikel.excerpt}</p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
+            <span>
+              Ditulis oleh <strong className="font-semibold text-primary">{artikel.authorName}</strong>
+            </span>
+            {artikel.reviewerName ? (
+              <span>
+                Ditinjau oleh <strong className="font-semibold text-primary">{artikel.reviewerName}</strong>
+              </span>
+            ) : null}
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" /> {readingTime(artikel)} menit baca
             </span>
@@ -171,34 +162,36 @@ function Page() {
         </div>
       </section>
 
-      <article className="mx-auto max-w-3xl px-5 py-14 md:py-16">
+      <article className="mx-auto max-w-5xl px-5 py-12 md:py-16">
         {isValidImageUrl(artikel.image) ? (
           <img
             src={artikel.image}
             alt={artikel.imageAlt || artikel.title}
-            loading="lazy"
+            fetchPriority="high"
             decoding="async"
-            className="mb-10 aspect-[16/9] w-full rounded-xl object-cover"
+            className="mb-12 aspect-[16/9] w-full rounded-xl object-cover md:mb-16"
           />
         ) : null}
-        {artikel.source === "wordpress" && artikel.contentHtml ? (
-          <div
-            className="article-rich text-[1.05rem] leading-[1.85] text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: artikel.contentHtml }}
-          />
-        ) : (
-          <div className="space-y-5">
-            {artikel.paragraphs.map((p) => (
-              <p key={p} className="leading-relaxed text-muted-foreground">
-                {p}
-              </p>
-            ))}
-          </div>
-        )}
+        <div className="mx-auto max-w-3xl">
+          {artikel.source === "wordpress" && artikel.contentHtml ? (
+            <div
+              className="article-rich text-[1.05rem] leading-[1.85] text-muted-foreground"
+              dangerouslySetInnerHTML={{ __html: artikel.contentHtml }}
+            />
+          ) : (
+            <div className="space-y-5 text-[1.05rem] leading-[1.85]">
+              {artikel.paragraphs.map((p) => (
+                <p key={p} className="text-muted-foreground">
+                  {p}
+                </p>
+              ))}
+            </div>
+          )}
 
 
         {/* Author box */}
-        <div className="mt-12 flex flex-col gap-5 rounded-2xl border border-border bg-card p-7 shadow-sm sm:flex-row sm:items-start">
+        <section aria-labelledby="article-byline" className="mt-14 border-y border-border py-7">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
           {author ? (
             <img
               src={author.photo}
@@ -211,7 +204,7 @@ function Page() {
             />
           ) : null}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-blue">
+              <p id="article-byline" className="text-xs font-semibold uppercase tracking-wider text-brand-blue">
               Ditulis oleh
             </p>
             <h2 className="mt-1 text-lg font-bold text-primary">
@@ -221,36 +214,28 @@ function Page() {
             {author ? (
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
             ) : null}
-            <Link
-              to="/professionals"
-              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-            >
-              Lihat profil tim profesional <ArrowRight className="h-4 w-4" />
-            </Link>
+            {author ? (
+              <Link
+                to="/professionals"
+                className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
+              >
+                Lihat profil tim profesional <ArrowRight className="h-4 w-4" />
+              </Link>
+            ) : null}
           </div>
-        </div>
-
-
-        {relatedServices.length > 0 ? (
-          <div className="mt-10">
-            <h2 className="text-lg font-bold text-primary">Layanan Terkait</h2>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {relatedServices.map((s) => (
-                <li key={s}>
-                  <SiteLink
-                    to={`/layanan/${s}`}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-5 py-4 text-sm font-semibold text-primary transition-colors hover:border-brand-blue"
-                  >
-                    {serviceTitle(s)} <ArrowRight className="h-4 w-4 text-brand-blue" />
-                  </SiteLink>
-                </li>
-              ))}
-            </ul>
           </div>
-        ) : null}
+          {artikel.reviewerName ? (
+            <div className="mt-5 border-t border-border pt-5 text-sm text-muted-foreground">
+              Ditinjau oleh <strong className="text-primary">{artikel.reviewerName}</strong>
+            </div>
+          ) : null}
+          <p className="mt-4 text-xs text-muted-foreground">
+            Diperbarui <time dateTime={artikel.updatedAt}>{formatTanggal(artikel.updatedAt)}</time>
+          </p>
+        </section>
 
         {related.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-14">
             <h2 className="text-lg font-bold text-primary">Artikel Terkait</h2>
             <ul className="mt-4 grid gap-3">
               {related.map((a) => (
@@ -271,25 +256,22 @@ function Page() {
             </ul>
           </div>
         ) : null}
-
-        <div className="mt-12 rounded-2xl border border-border bg-card p-7 shadow-sm">
-          <h2 className="text-xl font-bold text-primary">{cta.heading}</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{cta.body}</p>
-          <Link
-            to="/kontak"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            {cta.label} <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
+        <ArticleFramework
+          article={artikel}
+          references={artikel.references ?? []}
+          faqs={artikel.faqs ?? []}
+        />
 
-        <Link
-          to="/artikel"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-        >
-          <ArrowLeft className="h-4 w-4" /> Kembali ke daftar artikel
-        </Link>
+        <div className="mx-auto max-w-3xl">
+          <Link
+            to="/artikel"
+            className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
+          >
+            <ArrowLeft className="h-4 w-4" /> Kembali ke daftar artikel
+          </Link>
+        </div>
       </article>
     </>
   );
