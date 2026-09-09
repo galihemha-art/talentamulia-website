@@ -188,7 +188,14 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
         const title = cleanText(item["title"]);
         const url = safeEditorialUrl(item["url"]);
         if (!title || !url) return [];
-        return [{ title, url, publisher: cleanText(item["publisher"]), publicationDate: cleanText(item["publicationDate"]) }];
+        const publisher = cleanText(item["publisher"]);
+        const publicationDate = cleanText(item["publicationDate"]);
+        return [{
+          title,
+          url,
+          ...(publisher ? { publisher } : {}),
+          ...(publicationDate ? { publicationDate } : {}),
+        }];
       })
     : undefined;
   const faqs = Array.isArray(raw["faqs"])
@@ -199,12 +206,18 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
         return q && a ? [{ q, a }] : [];
       })
     : undefined;
-  const reviewer = isRecord(raw["reviewer"])
+  const reviewerName = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["name"]) : undefined;
+  const reviewerCredentials = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["credentials"]) : undefined;
+  const reviewerRole = isRecord(raw["reviewer"]) ? cleanText(raw["reviewer"]["role"]) : undefined;
+  const reviewerProfileUrl = isRecord(raw["reviewer"])
+    ? safeEditorialUrl(raw["reviewer"]["profileUrl"], true)
+    : undefined;
+  const reviewer = reviewerName
     ? {
-        name: cleanText(raw["reviewer"]["name"]) ?? "",
-        credentials: cleanText(raw["reviewer"]["credentials"]),
-        role: cleanText(raw["reviewer"]["role"]),
-        profileUrl: safeEditorialUrl(raw["reviewer"]["profileUrl"], true),
+        name: reviewerName,
+        ...(reviewerCredentials ? { credentials: reviewerCredentials } : {}),
+        ...(reviewerRole ? { role: reviewerRole } : {}),
+        ...(reviewerProfileUrl ? { profileUrl: reviewerProfileUrl } : {}),
       }
     : undefined;
 
@@ -214,7 +227,7 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
     selectedProfessionals: stringArray(raw["selectedProfessionals"], PROFESSIONAL_IDS),
     selectedServices: stringArray(raw["selectedServices"], SERVICE_IDS),
     scientificSources: sources?.length ? sources : undefined,
-    reviewer: reviewer?.name ? reviewer : undefined,
+    ...(reviewer ? { reviewer } : {}),
     faqs: faqs?.length ? faqs : undefined,
   };
 }
@@ -442,9 +455,9 @@ export function toArtikelView(
     authorId: author.id,
     authorName: readableWordPressAuthorName(wpAuthorName) ?? author.name,
     reviewerName: enhancement?.reviewer?.name ?? null,
-    enhancement,
-    references: enhancement?.scientificSources,
-    faqs: enhancement?.faqs,
+    ...(enhancement ? { enhancement } : {}),
+    ...(enhancement?.scientificSources ? { references: enhancement.scientificSources } : {}),
+    ...(enhancement?.faqs ? { faqs: enhancement.faqs } : {}),
     image: pickMediaUrl(media),
     imageAlt: media?.alt_text ? decodeEntities(media.alt_text) : null,
     source: "wordpress",
