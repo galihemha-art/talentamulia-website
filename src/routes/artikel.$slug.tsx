@@ -49,6 +49,8 @@ export const Route = createFileRoute("/artikel/$slug")({
             path,
             authorId: a.authorId,
             authorName: a.authorName,
+            authorOverride: a.enhancement?.author ?? null,
+
             publishedAt: a.publishedAt,
             updatedAt: a.updatedAt,
             section: a.kategori,
