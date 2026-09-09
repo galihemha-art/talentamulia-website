@@ -232,12 +232,14 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
     : undefined;
   const rawAuthor = isRecord(raw["author"]) ? raw["author"] : undefined;
   const customAuthorName = rawAuthor ? cleanText(rawAuthor["name"]) : undefined;
+  const customAuthorRole = rawAuthor ? cleanText(rawAuthor["role"]) : undefined;
+  const customAuthorCredentials = rawAuthor ? cleanText(rawAuthor["credentials"]) : undefined;
   const authorProfileUrl = rawAuthor ? safeEditorialUrl(rawAuthor["profileUrl"], true) : undefined;
   const customAuthor = customAuthorName
     ? {
         name: customAuthorName,
-        ...(cleanText(rawAuthor?.["role"]) ? { role: cleanText(rawAuthor?.["role"]) } : {}),
-        ...(cleanText(rawAuthor?.["credentials"]) ? { credentials: cleanText(rawAuthor?.["credentials"]) } : {}),
+        ...(customAuthorRole ? { role: customAuthorRole } : {}),
+        ...(customAuthorCredentials ? { credentials: customAuthorCredentials } : {}),
         ...(authorProfileUrl ? { profileUrl: authorProfileUrl } : {}),
       }
     : undefined;
@@ -247,14 +249,15 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
   const ctaPrimaryLabel = rawCta ? cleanText(rawCta["primaryLabel"]) : undefined;
   const ctaPrimaryUrl = rawCta ? safeEditorialUrl(rawCta["primaryUrl"], true) : undefined;
   const ctaSecondaryUrl = rawCta ? safeEditorialUrl(rawCta["secondaryUrl"], true) : undefined;
+  const ctaSecondaryLabel = rawCta ? cleanText(rawCta["secondaryLabel"]) : undefined;
   const ctaConfig = ctaHeading && ctaBody && ctaPrimaryLabel && ctaPrimaryUrl
     ? {
         heading: ctaHeading,
         body: ctaBody,
         primaryLabel: ctaPrimaryLabel,
         primaryUrl: ctaPrimaryUrl,
-        ...(cleanText(rawCta?.["secondaryLabel"]) && ctaSecondaryUrl
-          ? { secondaryLabel: cleanText(rawCta?.["secondaryLabel"]), secondaryUrl: ctaSecondaryUrl }
+        ...(ctaSecondaryLabel && ctaSecondaryUrl
+          ? { secondaryLabel: ctaSecondaryLabel, secondaryUrl: ctaSecondaryUrl }
           : {}),
       }
     : undefined;
