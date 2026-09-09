@@ -26,6 +26,8 @@ export type WordPressPost = {
   featured_media?: number;
   /** Optional custom fields exposed by WordPress/ACF REST. */
   acf?: Record<string, unknown> | null;
+  /** Optional registered post meta exposed by WordPress REST. */
+  meta?: Record<string, unknown> | null;
 };
 
 export type WordPressMedia = {
@@ -174,9 +176,45 @@ const SERVICE_IDS: ArticleServiceId[] = ["consultation", "online", "parenting", 
  * Maps optional WordPress custom fields into safe frontend data. Unknown,
  * placeholder, and invalid URL values are ignored instead of rendered.
  */
-export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | undefined {
-  if (!isRecord(acf)) return undefined;
-  const raw = isRecord(acf["articleEnhancement"]) ? acf["articleEnhancement"] : acf;
+/** Accepts an object or a JSON string (WP registered meta often stores JSON). */
+function asEnhancementRecord(value: unknown): Record<string, unknown> | undefined {
+  if (isRecord(value)) return value;
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (!trimmed.startsWith("{")) return undefined;
+    try {
+      const parsed: unknown = JSON.parse(trimmed);
+      return isRecord(parsed) ? parsed : undefined;
+    } catch {
+      return undefined;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Picks the enhancement payload from ACF first, then registered REST post meta.
+ */
+export function pickArticleEnhancementSource(post: {
+  acf?: Record<string, unknown> | null;
+  meta?: Record<string, unknown> | null;
+}): unknown {
+  const acf = isRecord(post.acf) ? post.acf : undefined;
+  const fromAcf = acf ? asEnhancementRecord(acf["articleEnhancement"]) : undefined;
+  if (fromAcf) return fromAcf;
+
+  const meta = isRecord(post.meta) ? post.meta : undefined;
+  const fromMeta = meta ? asEnhancementRecord(meta["articleEnhancement"]) : undefined;
+  if (fromMeta) return fromMeta;
+
+  // Legacy shape: flat ACF fields without a wrapper object.
+  return acf;
+}
+
+export function parseArticleEnhancement(source: unknown): ArticleEnhancement | undefined {
+  const record = asEnhancementRecord(source);
+  if (!record) return undefined;
+  const raw = asEnhancementRecord(record["articleEnhancement"]) ?? record;
   const rawModules = isRecord(raw["modules"]) ? raw["modules"] : {};
   const modules = Object.fromEntries(
     Object.entries(DEFAULT_MODULES).map(([key, fallback]) => [key, typeof rawModules[key] === "boolean" ? rawModules[key] : fallback]),
@@ -521,7 +559,7 @@ export function toArtikelView(
 
 
   const author = resolveAuthor(post.author);
-  const enhancement = parseArticleEnhancement(post.acf);
+  const enhancement = parseArticleEnhancement(pickArticleEnhancementSource(post));
   const paragraphs = htmlToParagraphs(post.content?.rendered ?? "");
   const excerpt = htmlToText(post.excerpt?.rendered ?? "") || paragraphs[0] || "";
 
