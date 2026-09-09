@@ -221,14 +221,18 @@ export function parseArticleEnhancement(acf: unknown): ArticleEnhancement | unde
       }
     : undefined;
 
+  const entitySummary = cleanText(raw["entitySummary"]);
+  const selectedProfessionals = stringArray(raw["selectedProfessionals"], PROFESSIONAL_IDS);
+  const selectedServices = stringArray(raw["selectedServices"], SERVICE_IDS);
+
   return {
     modules,
-    entitySummary: cleanText(raw["entitySummary"]),
-    selectedProfessionals: stringArray(raw["selectedProfessionals"], PROFESSIONAL_IDS),
-    selectedServices: stringArray(raw["selectedServices"], SERVICE_IDS),
-    scientificSources: sources?.length ? sources : undefined,
+    ...(entitySummary ? { entitySummary } : {}),
+    ...(selectedProfessionals ? { selectedProfessionals } : {}),
+    ...(selectedServices ? { selectedServices } : {}),
+    ...(sources?.length ? { scientificSources: sources } : {}),
     ...(reviewer ? { reviewer } : {}),
-    faqs: faqs?.length ? faqs : undefined,
+    ...(faqs?.length ? { faqs } : {}),
   };
 }
 
