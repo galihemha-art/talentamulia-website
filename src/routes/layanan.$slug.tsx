@@ -12,6 +12,7 @@ import { LAYANAN_INDIVIDU } from "@/lib/layanan-individu-data";
 import { PsychologicalCounselingPage } from "@/components/site/PsychologicalCounselingPage";
 import { MarriageCounselingPage } from "@/components/site/MarriageCounselingPage";
 import { ParentingCounselingPage } from "@/components/site/ParentingCounselingPage";
+import { TeenCounselingPage } from "@/components/site/TeenCounselingPage";
 import { serviceSchema, webPageSchema } from "@/lib/structured-data";
 
 
@@ -63,12 +64,15 @@ export const Route = createFileRoute("/layanan/$slug")({
     const isCounseling = params.slug === "konseling-psikologis";
     const isMarriage = params.slug === "konseling-pernikahan";
     const isParenting = params.slug === "parenting-anak";
+    const isTeen = params.slug === "konseling-remaja";
     const pageTitle = isMarriage
       ? "Layanan Konseling Pernikahan Profesional & Solutif | Talenta Mulia"
       : isCounseling
       ? "Konseling Psikologis Profesional | Talenta Mulia"
       : isParenting
       ? "Layanan Parenting & Konseling Anak Profesional | Talenta Mulia"
+      : isTeen
+      ? "Layanan Konseling Remaja Profesional & Friendly | Talenta Mulia"
       : `${title} — Talenta Mulia Sidoarjo, Jawa Timur`;
     const description = isMarriage
       ? "Layanan konseling pernikahan & pasangan profesional di Talenta Mulia. Psikolog berizin, penengah netral, bantu atasi konflik rumah tangga & komunikasi."
@@ -76,6 +80,8 @@ export const Route = createFileRoute("/layanan/$slug")({
       ? "Layanan konseling psikologis profesional dan empatis secara online atau tatap muka di Sidoarjo untuk stres, kecemasan, relasi, dan keluarga."
       : isParenting
       ? "Layanan parenting & konseling anak profesional di Talenta Mulia. Psikolog berizin, bantu konsultasi pola asuh, emosi anak, hingga pendampingan ABK."
+      : isTeen
+      ? "Layanan konseling remaja di Talenta Mulia. Psikolog berizin, ramah, & nyambung. Bantu atasi stres sekolah, emosi, pergaulan, hingga krisis identitas."
       : detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
       : `Layanan ${title} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
@@ -96,11 +102,11 @@ export const Route = createFileRoute("/layanan/$slug")({
       scripts: [
         jsonLd(
           breadcrumbSchema([
-            { name: isCounseling || isMarriage || isParenting ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage || isParenting ? "/layanan-individu" : "/solusi-korporat" },
+            { name: isCounseling || isMarriage || isParenting || isTeen ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage || isParenting || isTeen ? "/layanan-individu" : "/solusi-korporat" },
             { name: title, path },
           ]),
         ),
-        ...(isCounseling || isMarriage || isParenting
+        ...(isCounseling || isMarriage || isParenting || isTeen
           ? [
               jsonLd(webPageSchema({ name: pageTitle, description, path })),
               ...(isCounseling
@@ -137,6 +143,7 @@ function LayananRoutePage() {
   if (slug === "konseling-psikologis") return <PsychologicalCounselingPage />;
   if (slug === "konseling-pernikahan") return <MarriageCounselingPage />;
   if (slug === "parenting-anak") return <ParentingCounselingPage />;
+  if (slug === "konseling-remaja") return <TeenCounselingPage />;
   if (slug === "coaching") return <CoachingHubPage />;
   if (slug === "konsultasi-online-offline") return <KonsultasiOnlineOfflinePage />;
   const pemeriksaan = PEMERIKSAAN_PSIKOLOGI[slug];
