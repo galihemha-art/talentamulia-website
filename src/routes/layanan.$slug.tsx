@@ -143,6 +143,7 @@ function LayananRoutePage() {
   if (slug === "konseling-psikologis") return <PsychologicalCounselingPage />;
   if (slug === "konseling-pernikahan") return <MarriageCounselingPage />;
   if (slug === "parenting-anak") return <ParentingCounselingPage />;
+  if (slug === "konseling-remaja") return <TeenCounselingPage />;
   if (slug === "coaching") return <CoachingHubPage />;
   if (slug === "konsultasi-online-offline") return <KonsultasiOnlineOfflinePage />;
   const pemeriksaan = PEMERIKSAAN_PSIKOLOGI[slug];
