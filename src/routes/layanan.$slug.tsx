@@ -11,6 +11,7 @@ import { LayananIndividuDetailPage } from "@/components/site/LayananIndividuDeta
 import { LAYANAN_INDIVIDU } from "@/lib/layanan-individu-data";
 import { PsychologicalCounselingPage } from "@/components/site/PsychologicalCounselingPage";
 import { MarriageCounselingPage } from "@/components/site/MarriageCounselingPage";
+import { ParentingCounselingPage } from "@/components/site/ParentingCounselingPage";
 import { serviceSchema, webPageSchema } from "@/lib/structured-data";
 
 
