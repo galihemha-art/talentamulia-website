@@ -12,6 +12,7 @@ import { LAYANAN_INDIVIDU } from "@/lib/layanan-individu-data";
 import { PsychologicalCounselingPage } from "@/components/site/PsychologicalCounselingPage";
 import { MarriageCounselingPage } from "@/components/site/MarriageCounselingPage";
 import { ParentingCounselingPage } from "@/components/site/ParentingCounselingPage";
+import { TeenCounselingPage } from "@/components/site/TeenCounselingPage";
 import { serviceSchema, webPageSchema } from "@/lib/structured-data";
 
 
