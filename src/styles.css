@@ -28,6 +28,8 @@
   --font-wordmark: var(--font-wordmark);
   --color-brand-blue: var(--brand-blue);
   --color-brand-magenta: var(--brand-magenta);
+  --color-counseling: var(--counseling);
+  --color-counseling-soft: var(--counseling-soft);
   --color-surface-soft: var(--surface-soft);
   --shadow-soft: var(--shadow-soft);
   --radius-sm: calc(var(--radius) - 4px);
@@ -96,6 +98,8 @@
   --ring: oklch(0.62 0.13 250);
   --brand-blue: oklch(0.55 0.18 258);
   --brand-magenta: oklch(0.32 0.09 257);
+  --counseling: oklch(0.48 0.09 190);
+  --counseling-soft: oklch(0.97 0.022 190);
   --surface-soft: oklch(0.975 0.02 245);
   --gradient-brand: linear-gradient(100deg, var(--brand-magenta), var(--brand-blue));
   --shadow-soft: 0 18px 45px -25px color-mix(in oklab, var(--primary) 45%, transparent);
