@@ -62,15 +62,20 @@ export const Route = createFileRoute("/layanan/$slug")({
     const title = detail?.nama ?? titleFor(params.slug);
     const isCounseling = params.slug === "konseling-psikologis";
     const isMarriage = params.slug === "konseling-pernikahan";
+    const isParenting = params.slug === "parenting-anak";
     const pageTitle = isMarriage
       ? "Layanan Konseling Pernikahan Profesional & Solutif | Talenta Mulia"
       : isCounseling
       ? "Konseling Psikologis Profesional | Talenta Mulia"
+      : isParenting
+      ? "Layanan Parenting & Konseling Anak Profesional | Talenta Mulia"
       : `${title} — Talenta Mulia Sidoarjo, Jawa Timur`;
     const description = isMarriage
       ? "Layanan konseling pernikahan & pasangan profesional di Talenta Mulia. Psikolog berizin, penengah netral, bantu atasi konflik rumah tangga & komunikasi."
       : isCounseling
       ? "Layanan konseling psikologis profesional dan empatis secara online atau tatap muka di Sidoarjo untuk stres, kecemasan, relasi, dan keluarga."
+      : isParenting
+      ? "Layanan parenting & konseling anak profesional di Talenta Mulia. Psikolog berizin, bantu konsultasi pola asuh, emosi anak, hingga pendampingan ABK."
       : detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
       : `Layanan ${title} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
