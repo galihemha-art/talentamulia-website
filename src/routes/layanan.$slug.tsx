@@ -96,11 +96,11 @@ export const Route = createFileRoute("/layanan/$slug")({
       scripts: [
         jsonLd(
           breadcrumbSchema([
-            { name: isCounseling || isMarriage ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage ? "/layanan-individu" : "/solusi-korporat" },
+            { name: isCounseling || isMarriage || isParenting ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage || isParenting ? "/layanan-individu" : "/solusi-korporat" },
             { name: title, path },
           ]),
         ),
-        ...(isCounseling || isMarriage
+        ...(isCounseling || isMarriage || isParenting
           ? [
               jsonLd(webPageSchema({ name: pageTitle, description, path })),
               ...(isCounseling
