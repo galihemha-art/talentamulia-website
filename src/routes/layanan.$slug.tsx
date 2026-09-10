@@ -102,11 +102,11 @@ export const Route = createFileRoute("/layanan/$slug")({
       scripts: [
         jsonLd(
           breadcrumbSchema([
-            { name: isCounseling || isMarriage || isParenting ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage || isParenting ? "/layanan-individu" : "/solusi-korporat" },
+            { name: isCounseling || isMarriage || isParenting || isTeen ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage || isParenting || isTeen ? "/layanan-individu" : "/solusi-korporat" },
             { name: title, path },
           ]),
         ),
-        ...(isCounseling || isMarriage || isParenting
+        ...(isCounseling || isMarriage || isParenting || isTeen
           ? [
               jsonLd(webPageSchema({ name: pageTitle, description, path })),
               ...(isCounseling
