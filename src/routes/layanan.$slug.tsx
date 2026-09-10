@@ -10,6 +10,7 @@ import { PEMERIKSAAN_PSIKOLOGI } from "@/lib/pemeriksaan-psikologi-data";
 import { LayananIndividuDetailPage } from "@/components/site/LayananIndividuDetailPage";
 import { LAYANAN_INDIVIDU } from "@/lib/layanan-individu-data";
 import { PsychologicalCounselingPage } from "@/components/site/PsychologicalCounselingPage";
+import { MarriageCounselingPage } from "@/components/site/MarriageCounselingPage";
 import { serviceSchema, webPageSchema } from "@/lib/structured-data";
 
 
@@ -59,10 +60,15 @@ export const Route = createFileRoute("/layanan/$slug")({
     const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug] ?? LAYANAN_INDIVIDU[params.slug];
     const title = detail?.nama ?? titleFor(params.slug);
     const isCounseling = params.slug === "konseling-psikologis";
-    const pageTitle = isCounseling
+    const isMarriage = params.slug === "konseling-pernikahan";
+    const pageTitle = isMarriage
+      ? "Layanan Konseling Pernikahan Profesional & Solutif | Talenta Mulia"
+      : isCounseling
       ? "Konseling Psikologis Profesional | Talenta Mulia"
       : `${title} — Talenta Mulia Sidoarjo, Jawa Timur`;
-    const description = isCounseling
+    const description = isMarriage
+      ? "Layanan konseling pernikahan & pasangan profesional di Talenta Mulia. Psikolog berizin, penengah netral, bantu atasi konflik rumah tangga & komunikasi."
+      : isCounseling
       ? "Layanan konseling psikologis profesional dan empatis secara online atau tatap muka di Sidoarjo untuk stres, kecemasan, relasi, dan keluarga."
       : detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
@@ -84,30 +90,34 @@ export const Route = createFileRoute("/layanan/$slug")({
       scripts: [
         jsonLd(
           breadcrumbSchema([
-            { name: isCounseling ? "Layanan Individu" : "Solusi Korporat", path: isCounseling ? "/layanan-individu" : "/solusi-korporat" },
+            { name: isCounseling || isMarriage ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage ? "/layanan-individu" : "/solusi-korporat" },
             { name: title, path },
           ]),
         ),
-        ...(isCounseling
+        ...(isCounseling || isMarriage
           ? [
               jsonLd(webPageSchema({ name: pageTitle, description, path })),
-              jsonLd(
-                serviceSchema({
-                  name: "Layanan Konseling Psikologis Profesional & Empatis",
-                  description,
-                  path,
-                  serviceType: "Konseling Psikologis",
-                  providerPeople: ["maulidah", "mamluatul", "hilda"],
-                  offerings: [
-                    { name: "Stres & Kecemasan", path: "/layanan/stres-kecemasan" },
-                    { name: "Konseling Pernikahan", path: "/layanan/konseling-pernikahan" },
-                    { name: "Parenting & Anak", path: "/layanan/parenting-anak" },
-                    { name: "Konseling Remaja", path: "/layanan/konseling-remaja" },
-                    { name: "Trauma Healing", path: "/layanan/trauma-healing" },
-                    { name: "Hipnoterapi", path: "/layanan/hipnoterapi" },
-                  ],
-                }),
-              ),
+              ...(isCounseling
+                ? [
+                    jsonLd(
+                      serviceSchema({
+                        name: "Layanan Konseling Psikologis Profesional & Empatis",
+                        description,
+                        path,
+                        serviceType: "Konseling Psikologis",
+                        providerPeople: ["maulidah", "mamluatul", "hilda"],
+                        offerings: [
+                          { name: "Stres & Kecemasan", path: "/layanan/stres-kecemasan" },
+                          { name: "Konseling Pernikahan", path: "/layanan/konseling-pernikahan" },
+                          { name: "Parenting & Anak", path: "/layanan/parenting-anak" },
+                          { name: "Konseling Remaja", path: "/layanan/konseling-remaja" },
+                          { name: "Trauma Healing", path: "/layanan/trauma-healing" },
+                          { name: "Hipnoterapi", path: "/layanan/hipnoterapi" },
+                        ],
+                      }),
+                    ),
+                  ]
+                : []),
             ]
           : []),
       ],
@@ -119,6 +129,7 @@ export const Route = createFileRoute("/layanan/$slug")({
 function LayananRoutePage() {
   const { slug } = Route.useParams();
   if (slug === "konseling-psikologis") return <PsychologicalCounselingPage />;
+  if (slug === "konseling-pernikahan") return <MarriageCounselingPage />;
   if (slug === "coaching") return <CoachingHubPage />;
   if (slug === "konsultasi-online-offline") return <KonsultasiOnlineOfflinePage />;
   const pemeriksaan = PEMERIKSAAN_PSIKOLOGI[slug];
