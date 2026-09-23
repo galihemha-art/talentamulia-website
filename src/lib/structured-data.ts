@@ -123,21 +123,54 @@ export function articleSchema(input: {
   section?: string;
   wordCount?: number;
   image?: string | null;
+  /** Editorial reviewer from the CMS. */
+  reviewer?: { name?: string; role?: string; credentials?: string; profileUrl?: string } | null;
+  /** Scientific sources from the CMS. */
+  sources?: { title: string; url: string; publisher?: string; publicationDate?: string }[];
 }) {
   const author = input.authorId ? AUTHORS[input.authorId] : null;
   const override = input.authorOverride?.name ? input.authorOverride : null;
-  const authorNode = override
+  const teamName = "Tim Talenta Mulia";
+  const isTeam =
+    (override?.name ?? (!author ? (input.authorName ?? "") : "")).trim().toLowerCase() ===
+    teamName.toLowerCase();
+  const authorNode = isTeam
+    ? { "@type": "Organization", name: teamName, url: SITE_URL }
+    : override
+      ? {
+          "@type": "Person",
+          name: override.name,
+          ...(override.credentials || override.role
+            ? { jobTitle: override.role ?? override.credentials }
+            : {}),
+          ...(override.profileUrl ? { url: override.profileUrl } : {}),
+        }
+      : author
+        ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
+        : {
+            "@type": "Organization",
+            name: input.authorName ?? "Talenta Mulia",
+            url: SITE_URL,
+          };
+  const reviewerNode = input.reviewer?.name
     ? {
         "@type": "Person",
-        name: override.name,
-        ...(override.credentials || override.role
-          ? { jobTitle: override.role ?? override.credentials }
+        name: input.reviewer.name,
+        ...(input.reviewer.role || input.reviewer.credentials
+          ? { jobTitle: input.reviewer.role ?? input.reviewer.credentials }
           : {}),
-        ...(override.profileUrl ? { url: override.profileUrl } : {}),
+        ...(input.reviewer.profileUrl ? { url: input.reviewer.profileUrl } : {}),
       }
-    : author
-      ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
-      : { "@type": "Organization", name: input.authorName ?? "Talenta Mulia" };
+    : null;
+  const citations = (input.sources ?? [])
+    .filter((s) => s.title && s.url)
+    .map((s) => ({
+      "@type": "CreativeWork",
+      name: s.title,
+      url: s.url,
+      ...(s.publisher ? { publisher: { "@type": "Organization", name: s.publisher } } : {}),
+      ...(s.publicationDate ? { datePublished: s.publicationDate } : {}),
+    }));
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
