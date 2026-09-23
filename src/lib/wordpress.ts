@@ -330,6 +330,31 @@ export function parseArticleEnhancement(source: unknown): ArticleEnhancement | u
   const selectedProfessionals = stringArray(raw["selectedProfessionals"], PROFESSIONAL_IDS);
   const selectedServices = stringArray(raw["selectedServices"], SERVICE_IDS);
 
+  const rawSeo = isRecord(raw["seo"]) ? raw["seo"] : undefined;
+  const seoEntries: ArticleSeoMetadata = rawSeo
+    ? {
+        ...(cleanText(rawSeo["metaTitle"]) ? { metaTitle: cleanText(rawSeo["metaTitle"])! } : {}),
+        ...(cleanText(rawSeo["metaDescription"])
+          ? { metaDescription: cleanText(rawSeo["metaDescription"])! }
+          : {}),
+        ...(cleanText(rawSeo["ogTitle"]) ? { ogTitle: cleanText(rawSeo["ogTitle"])! } : {}),
+        ...(cleanText(rawSeo["ogDescription"])
+          ? { ogDescription: cleanText(rawSeo["ogDescription"])! }
+          : {}),
+        ...(safeEditorialUrl(rawSeo["ogImageUrl"])
+          ? { ogImageUrl: safeEditorialUrl(rawSeo["ogImageUrl"])! }
+          : {}),
+        ...(cleanText(rawSeo["twitterTitle"]) ? { twitterTitle: cleanText(rawSeo["twitterTitle"])! } : {}),
+        ...(cleanText(rawSeo["twitterDescription"])
+          ? { twitterDescription: cleanText(rawSeo["twitterDescription"])! }
+          : {}),
+        ...(safeEditorialUrl(rawSeo["twitterImageUrl"])
+          ? { twitterImageUrl: safeEditorialUrl(rawSeo["twitterImageUrl"])! }
+          : {}),
+      }
+    : {};
+  const seo = Object.keys(seoEntries).length ? seoEntries : undefined;
+
   return {
     modules,
     ...(entitySummary ? { entitySummary } : {}),
