@@ -490,7 +490,7 @@ export function sanitizeArticleHtml(html: string): string {
 
 function toIsoDate(value: string): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? value : date.toISOString().slice(0, 10);
+  return Number.isNaN(date.getTime()) ? value : date.toISOString();
 }
 
 // In-process cache + circuit breaker so a slow or unreachable CMS can never
