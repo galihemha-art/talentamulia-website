@@ -92,18 +92,14 @@ export const Route = createFileRoute("/artikel/$slug")({
       meta: [
         { title },
         { name: "description", content: desc },
-        { property: "og:title", content: title },
-        { property: "og:description", content: desc },
+        { property: "og:title", content: ogTitle },
+        { property: "og:description", content: ogDesc },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: desc },
-        ...(a && isValidImageUrl(a.image)
-          ? [
-              { property: "og:image", content: a.image },
-              { name: "twitter:image", content: a.image },
-            ]
-          : []),
+        { name: "twitter:title", content: twTitle },
+        { name: "twitter:description", content: twDesc },
+        ...(ogImage ? [{ property: "og:image", content: ogImage }] : []),
+        ...(twImage ? [{ name: "twitter:image", content: twImage }] : []),
         ...(a
           ? [
               { property: "article:published_time", content: a.publishedAt },
