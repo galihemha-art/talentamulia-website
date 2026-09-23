@@ -368,6 +368,7 @@ export function parseArticleEnhancement(source: unknown): ArticleEnhancement | u
     ...(reviewer ? { reviewer } : {}),
     ...(ctaConfig ? { ctaConfig } : {}),
     ...(faqs?.length ? { faqs } : {}),
+    ...(seo ? { seo } : {}),
   };
 }
 
