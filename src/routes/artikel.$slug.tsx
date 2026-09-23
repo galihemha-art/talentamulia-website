@@ -65,11 +65,20 @@ export const Route = createFileRoute("/artikel/$slug")({
             section: a.kategori,
             wordCount: wordCount(a),
             image: a.image,
+            reviewer: a.enhancement?.reviewer ?? null,
+            sources: a.enhancement?.scientificSources ?? a.references ?? [],
           }),
         ),
       );
       if (a.enhancement?.modules.faq !== false && a.faqs?.length) {
         scripts.push(jsonLd(faqSchema(a.faqs)));
+      }
+      if (a.enhancement?.modules.approach !== false && a.enhancement?.approachSteps?.length) {
+        scripts.push(jsonLd(articleApproachSchema(a.enhancement.approachSteps)));
+      }
+      if (a.enhancement?.modules.cta !== false && a.enhancement?.ctaConfig) {
+        const cta = articleCtaSchema(a.enhancement.ctaConfig);
+        if (cta) scripts.push(jsonLd(cta));
       }
     }
     return {
