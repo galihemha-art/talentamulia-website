@@ -121,6 +121,7 @@ export type ArticleEnhancement = {
   whyTalentaMulia?: ArticleBenefit[];
   ctaConfig?: ArticleCtaConfig;
   faqs?: { q: string; a: string }[];
+  seo?: ArticleSeoMetadata;
 };
 
 export type ArtikelView = Omit<Artikel, "authorId"> & {
