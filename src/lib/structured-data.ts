@@ -185,8 +185,46 @@ export function articleSchema(input: {
     wordCount: input.wordCount,
     inLanguage: "id-ID",
     author: authorNode,
-
+    ...(reviewerNode ? { reviewedBy: reviewerNode } : {}),
+    ...(citations.length ? { citation: citations } : {}),
     publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+/** ItemList of the editorial five-step approach. Plain structured data. */
+export function articleApproachSchema(
+  steps: { title: string; body: string }[],
+  name = "Pendekatan 5 Langkah",
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: steps.map((step, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: { "@type": "HowToStep", name: step.title, text: step.body },
+    })),
+  };
+}
+
+/** ContactAction for a CTA with a valid target URL. Returns null otherwise. */
+export function articleCtaSchema(cta: {
+  primaryLabel?: string;
+  primaryUrl?: string;
+}): Record<string, unknown> | null {
+  if (!cta.primaryLabel || !cta.primaryUrl) return null;
+  const target = cta.primaryUrl.startsWith("/")
+    ? canonicalUrl(cta.primaryUrl)
+    : /^https?:\/\//i.test(cta.primaryUrl)
+      ? cta.primaryUrl
+      : null;
+  if (!target) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactAction",
+    name: cta.primaryLabel,
+    target,
   };
 }
 
