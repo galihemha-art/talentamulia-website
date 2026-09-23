@@ -3,7 +3,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarClock, Clock } from "lucide-react";
 import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-data";
 import { AUTHORS } from "@/lib/authors";
-import { articleSchema, breadcrumbSchema, faqSchema, jsonLd } from "@/lib/structured-data";
+import {
+  articleApproachSchema,
+  articleCtaSchema,
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+} from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
 import { ArticleEntityBlock, ArticleFinalCta, ArticleFramework } from "@/components/site/ArticleFramework";
 import {
@@ -29,8 +36,17 @@ export const Route = createFileRoute("/artikel/$slug")({
   },
   head: ({ params, loaderData }) => {
     const a = loaderData?.artikel ?? null;
-    const title = a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur";
-    const desc = a?.excerpt ?? "Artikel dari Talenta Mulia.";
+    const seo = a?.enhancement?.seo;
+    const title =
+      seo?.metaTitle ??
+      (a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur");
+    const desc = seo?.metaDescription ?? a?.excerpt ?? "Artikel dari Talenta Mulia.";
+    const ogTitle = seo?.ogTitle ?? title;
+    const ogDesc = seo?.ogDescription ?? desc;
+    const twTitle = seo?.twitterTitle ?? title;
+    const twDesc = seo?.twitterDescription ?? desc;
+    const ogImage = seo?.ogImageUrl ?? (a && isValidImageUrl(a.image) ? a.image : null);
+    const twImage = seo?.twitterImageUrl ?? ogImage;
     const path = `/artikel/${params.slug}`;
     const scripts = [
       jsonLd(
@@ -56,29 +72,34 @@ export const Route = createFileRoute("/artikel/$slug")({
             section: a.kategori,
             wordCount: wordCount(a),
             image: a.image,
+            reviewer: a.enhancement?.reviewer ?? null,
+            sources: a.enhancement?.scientificSources ?? a.references ?? [],
           }),
         ),
       );
       if (a.enhancement?.modules.faq !== false && a.faqs?.length) {
         scripts.push(jsonLd(faqSchema(a.faqs)));
       }
+      if (a.enhancement?.modules.approach !== false && a.enhancement?.approachSteps?.length) {
+        scripts.push(jsonLd(articleApproachSchema(a.enhancement.approachSteps)));
+      }
+      if (a.enhancement?.modules.cta !== false && a.enhancement?.ctaConfig) {
+        const cta = articleCtaSchema(a.enhancement.ctaConfig);
+        if (cta) scripts.push(jsonLd(cta));
+      }
     }
     return {
       meta: [
         { title },
         { name: "description", content: desc },
-        { property: "og:title", content: title },
-        { property: "og:description", content: desc },
+        { property: "og:title", content: ogTitle },
+        { property: "og:description", content: ogDesc },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: desc },
-        ...(a && isValidImageUrl(a.image)
-          ? [
-              { property: "og:image", content: a.image },
-              { name: "twitter:image", content: a.image },
-            ]
-          : []),
+        { name: "twitter:title", content: twTitle },
+        { name: "twitter:description", content: twDesc },
+        ...(ogImage ? [{ property: "og:image", content: ogImage }] : []),
+        ...(twImage ? [{ name: "twitter:image", content: twImage }] : []),
         ...(a
           ? [
               { property: "article:published_time", content: a.publishedAt },

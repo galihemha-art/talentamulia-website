@@ -84,6 +84,17 @@ export type ArticlePerson = {
   credentials?: string;
   profileUrl?: string;
 };
+/** SEO fields authored in the CMS; used as source of truth for the HTML head. */
+export type ArticleSeoMetadata = {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImageUrl?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImageUrl?: string;
+};
 export type ArticleEnhancementModules = {
   entity: boolean;
   facts: boolean;
@@ -110,6 +121,7 @@ export type ArticleEnhancement = {
   whyTalentaMulia?: ArticleBenefit[];
   ctaConfig?: ArticleCtaConfig;
   faqs?: { q: string; a: string }[];
+  seo?: ArticleSeoMetadata;
 };
 
 export type ArtikelView = Omit<Artikel, "authorId"> & {
@@ -318,6 +330,31 @@ export function parseArticleEnhancement(source: unknown): ArticleEnhancement | u
   const selectedProfessionals = stringArray(raw["selectedProfessionals"], PROFESSIONAL_IDS);
   const selectedServices = stringArray(raw["selectedServices"], SERVICE_IDS);
 
+  const rawSeo = isRecord(raw["seo"]) ? raw["seo"] : undefined;
+  const seoEntries: ArticleSeoMetadata = rawSeo
+    ? {
+        ...(cleanText(rawSeo["metaTitle"]) ? { metaTitle: cleanText(rawSeo["metaTitle"])! } : {}),
+        ...(cleanText(rawSeo["metaDescription"])
+          ? { metaDescription: cleanText(rawSeo["metaDescription"])! }
+          : {}),
+        ...(cleanText(rawSeo["ogTitle"]) ? { ogTitle: cleanText(rawSeo["ogTitle"])! } : {}),
+        ...(cleanText(rawSeo["ogDescription"])
+          ? { ogDescription: cleanText(rawSeo["ogDescription"])! }
+          : {}),
+        ...(safeEditorialUrl(rawSeo["ogImageUrl"])
+          ? { ogImageUrl: safeEditorialUrl(rawSeo["ogImageUrl"])! }
+          : {}),
+        ...(cleanText(rawSeo["twitterTitle"]) ? { twitterTitle: cleanText(rawSeo["twitterTitle"])! } : {}),
+        ...(cleanText(rawSeo["twitterDescription"])
+          ? { twitterDescription: cleanText(rawSeo["twitterDescription"])! }
+          : {}),
+        ...(safeEditorialUrl(rawSeo["twitterImageUrl"])
+          ? { twitterImageUrl: safeEditorialUrl(rawSeo["twitterImageUrl"])! }
+          : {}),
+      }
+    : {};
+  const seo = Object.keys(seoEntries).length ? seoEntries : undefined;
+
   return {
     modules,
     ...(entitySummary ? { entitySummary } : {}),
@@ -331,6 +368,7 @@ export function parseArticleEnhancement(source: unknown): ArticleEnhancement | u
     ...(reviewer ? { reviewer } : {}),
     ...(ctaConfig ? { ctaConfig } : {}),
     ...(faqs?.length ? { faqs } : {}),
+    ...(seo ? { seo } : {}),
   };
 }
 
@@ -452,7 +490,7 @@ export function sanitizeArticleHtml(html: string): string {
 
 function toIsoDate(value: string): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? value : date.toISOString().slice(0, 10);
+  return Number.isNaN(date.getTime()) ? value : date.toISOString();
 }
 
 // In-process cache + circuit breaker so a slow or unreachable CMS can never
