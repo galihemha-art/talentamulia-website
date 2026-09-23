@@ -3,7 +3,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarClock, Clock } from "lucide-react";
 import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-data";
 import { AUTHORS } from "@/lib/authors";
-import { articleSchema, breadcrumbSchema, faqSchema, jsonLd } from "@/lib/structured-data";
+import {
+  articleApproachSchema,
+  articleCtaSchema,
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+} from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
 import { ArticleEntityBlock, ArticleFinalCta, ArticleFramework } from "@/components/site/ArticleFramework";
 import {
