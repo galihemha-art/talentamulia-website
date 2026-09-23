@@ -84,6 +84,17 @@ export type ArticlePerson = {
   credentials?: string;
   profileUrl?: string;
 };
+/** SEO fields authored in the CMS; used as source of truth for the HTML head. */
+export type ArticleSeoMetadata = {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImageUrl?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImageUrl?: string;
+};
 export type ArticleEnhancementModules = {
   entity: boolean;
   facts: boolean;
