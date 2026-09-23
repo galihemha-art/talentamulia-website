@@ -29,8 +29,17 @@ export const Route = createFileRoute("/artikel/$slug")({
   },
   head: ({ params, loaderData }) => {
     const a = loaderData?.artikel ?? null;
-    const title = a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur";
-    const desc = a?.excerpt ?? "Artikel dari Talenta Mulia.";
+    const seo = a?.enhancement?.seo;
+    const title =
+      seo?.metaTitle ??
+      (a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur");
+    const desc = seo?.metaDescription ?? a?.excerpt ?? "Artikel dari Talenta Mulia.";
+    const ogTitle = seo?.ogTitle ?? title;
+    const ogDesc = seo?.ogDescription ?? desc;
+    const twTitle = seo?.twitterTitle ?? title;
+    const twDesc = seo?.twitterDescription ?? desc;
+    const ogImage = seo?.ogImageUrl ?? (a && isValidImageUrl(a.image) ? a.image : null);
+    const twImage = seo?.twitterImageUrl ?? ogImage;
     const path = `/artikel/${params.slug}`;
     const scripts = [
       jsonLd(
