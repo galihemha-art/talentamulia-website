@@ -213,7 +213,7 @@ function Page() {
                 </p>
               ))}
               {s.list && (
-                <ListTag ordered={s.ordered}>
+                <ListTag ordered={!!s.ordered}>
                   {s.list.map(([b, t]) => (
                     <li key={b}>
                       <strong className="text-primary">{b}</strong> {t}
