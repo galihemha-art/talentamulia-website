@@ -501,6 +501,17 @@ function Beranda() {
             </div>
           ))}
         </div>
+        <div className="mt-8 flex flex-col items-start gap-4 rounded-3xl border border-border bg-surface-soft p-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-lg font-semibold text-primary">
+            Ingin berkonsultasi dari mana saja? Tersedia konsultasi psikolog online.
+          </p>
+          <Link
+            to="/konsultasi-psikolog-online"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Konsultasi Psikolog Online <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
 
       {/* Cara Kerja */}

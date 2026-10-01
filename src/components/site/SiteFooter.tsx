@@ -23,6 +23,7 @@ const COLUMNS: { title: string; items: Item[] }[] = [
     title: "Individu",
     items: [
       { label: "Semua Layanan Individu", to: "/layanan-individu" },
+      { label: "Konsultasi Psikolog Online", to: "/konsultasi-psikolog-online" },
       { label: "Konseling Psikologis", to: "/layanan/konseling-psikologis" },
       { label: "Konseling Pernikahan", to: "/layanan/konseling-pernikahan" },
       { label: "Parenting & Anak", to: "/layanan/parenting-anak" },

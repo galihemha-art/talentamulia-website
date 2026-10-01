@@ -3,16 +3,50 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarClock, Clock } from "lucide-react";
 import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-data";
 import { AUTHORS } from "@/lib/authors";
-import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
+import {
+  articleApproachSchema,
+  articleCtaSchema,
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+} from "@/lib/structured-data";
 import { clusterForArticle } from "@/lib/topic-clusters";
-import { SiteLink } from "@/components/site/SiteLink";
-import { serviceTitle } from "@/lib/topic-clusters";
+import { ArticleEntityBlock, ArticleFinalCta, ArticleFramework } from "@/components/site/ArticleFramework";
+import {
+  fetchArticleBySlug,
+  fetchPublishedArticles,
+  isValidImageUrl,
+  localToView,
+  type ArtikelView,
+} from "@/lib/wordpress";
 
 export const Route = createFileRoute("/artikel/$slug")({
-  head: ({ params }) => {
-    const a = ARTIKEL.find((x) => x.slug === params.slug);
-    const title = a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur";
-    const desc = a?.excerpt ?? "Artikel dari Talenta Mulia.";
+  loader: async ({ params }) => {
+    const wp = await fetchArticleBySlug(params.slug);
+    if (wp) {
+      const all = await fetchPublishedArticles();
+      return { artikel: wp, pool: all.length > 0 ? all : [wp] };
+    }
+    const local = ARTIKEL.find((a) => a.slug === params.slug);
+    return {
+      artikel: local ? localToView(local) : null,
+      pool: ARTIKEL.map(localToView),
+    };
+  },
+  head: ({ params, loaderData }) => {
+    const a = loaderData?.artikel ?? null;
+    const seo = a?.enhancement?.seo;
+    const title =
+      seo?.metaTitle ??
+      (a ? `${a.title} — Talenta Mulia Sidoarjo, Jawa Timur` : "Artikel — Talenta Mulia Sidoarjo, Jawa Timur");
+    const desc = seo?.metaDescription ?? a?.excerpt ?? "Artikel dari Talenta Mulia.";
+    const ogTitle = seo?.ogTitle ?? title;
+    const ogDesc = seo?.ogDescription ?? desc;
+    const twTitle = seo?.twitterTitle ?? title;
+    const twDesc = seo?.twitterDescription ?? desc;
+    const ogImage = seo?.ogImageUrl ?? (a && isValidImageUrl(a.image) ? a.image : null);
+    const twImage = seo?.twitterImageUrl ?? ogImage;
     const path = `/artikel/${params.slug}`;
     const scripts = [
       jsonLd(
@@ -30,28 +64,48 @@ export const Route = createFileRoute("/artikel/$slug")({
             description: a.excerpt,
             path,
             authorId: a.authorId,
+            authorName: a.authorName,
+            authorOverride: a.enhancement?.author ?? null,
+
             publishedAt: a.publishedAt,
             updatedAt: a.updatedAt,
             section: a.kategori,
             wordCount: wordCount(a),
+            image: a.image,
+            reviewer: a.enhancement?.reviewer ?? null,
+            sources: a.enhancement?.scientificSources ?? a.references ?? [],
           }),
         ),
       );
+      if (a.enhancement?.modules.faq !== false && a.faqs?.length) {
+        scripts.push(jsonLd(faqSchema(a.faqs)));
+      }
+      if (a.enhancement?.modules.approach !== false && a.enhancement?.approachSteps?.length) {
+        scripts.push(jsonLd(articleApproachSchema(a.enhancement.approachSteps)));
+      }
+      if (a.enhancement?.modules.cta !== false && a.enhancement?.ctaConfig) {
+        const cta = articleCtaSchema(a.enhancement.ctaConfig);
+        if (cta) scripts.push(jsonLd(cta));
+      }
     }
     return {
       meta: [
         { title },
         { name: "description", content: desc },
-        { property: "og:title", content: title },
-        { property: "og:description", content: desc },
+        { property: "og:title", content: ogTitle },
+        { property: "og:description", content: ogDesc },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: twTitle },
+        { name: "twitter:description", content: twDesc },
+        ...(ogImage ? [{ property: "og:image", content: ogImage }] : []),
+        ...(twImage ? [{ name: "twitter:image", content: twImage }] : []),
         ...(a
           ? [
               { property: "article:published_time", content: a.publishedAt },
               { property: "article:modified_time", content: a.updatedAt },
               { property: "article:section", content: a.kategori },
-              { name: "author", content: AUTHORS[a.authorId].name },
+              { name: "author", content: a.authorName },
             ]
           : []),
         ogUrl(path),
@@ -64,8 +118,7 @@ export const Route = createFileRoute("/artikel/$slug")({
 });
 
 function Page() {
-  const { slug } = Route.useParams();
-  const artikel = ARTIKEL.find((a) => a.slug === slug);
+  const { artikel, pool } = Route.useLoaderData();
 
   if (!artikel) {
     return (
@@ -81,17 +134,20 @@ function Page() {
     );
   }
 
-  const author = AUTHORS[artikel.authorId];
+  const author = artikel.authorId ? AUTHORS[artikel.authorId] : null;
+  const editorialAuthor = artikel.enhancement?.author;
+  const reviewer = artikel.enhancement?.reviewer;
   const cluster = clusterForArticle(artikel);
-  const related = ARTIKEL.filter(
-    (a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)),
-  ).slice(0, 3);
-  const relatedServices = (cluster?.layanan ?? []).slice(0, 3);
+  const related: ArtikelView[] = pool
+    .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
+    .slice(0, 3);
+
+
 
   return (
     <>
       <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-3xl px-5 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:py-20">
           <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
             <Link to="/" className="hover:text-brand-blue">
               Beranda
@@ -107,12 +163,21 @@ function Page() {
           <span className="mt-6 inline-block rounded-full bg-card px-3 py-1 text-xs font-semibold text-brand-blue">
             {artikel.kategori}
           </span>
-          <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-primary md:text-4xl">
+          <h1 className="mt-4 max-w-4xl text-3xl font-extrabold leading-tight text-primary md:text-5xl">
             {artikel.title}
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground">{artikel.excerpt}</p>
+          <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">{artikel.excerpt}</p>
+          <ArticleEntityBlock article={artikel} />
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
+            <span>
+             Ditulis oleh <strong className="font-semibold text-primary">{editorialAuthor?.name ?? artikel.authorName}</strong>
+            </span>
+            {artikel.reviewerName ? (
+              <span>
+                Ditinjau oleh <strong className="font-semibold text-primary">{artikel.reviewerName}</strong>
+              </span>
+            ) : null}
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" /> {readingTime(artikel)} menit baca
             </span>
@@ -128,104 +193,128 @@ function Page() {
         </div>
       </section>
 
-      <article className="mx-auto max-w-3xl px-5 py-14 md:py-16">
-        <div className="space-y-5">
-          {artikel.paragraphs.map((p) => (
-            <p key={p} className="leading-relaxed text-muted-foreground">
-              {p}
-            </p>
-          ))}
-        </div>
+      <article className="mx-auto max-w-5xl px-5 py-12 md:py-16">
+        {isValidImageUrl(artikel.image) ? (
+          <img
+            src={artikel.image}
+            alt={artikel.imageAlt || artikel.title}
+            fetchPriority="high"
+            decoding="async"
+            className="mb-12 aspect-[16/9] w-full rounded-xl object-cover md:mb-16"
+          />
+        ) : null}
+        <div className="mx-auto max-w-3xl">
+          {artikel.source === "wordpress" && artikel.contentHtml ? (
+            <div
+              className="article-rich text-[1.05rem] leading-[1.85] text-muted-foreground"
+              dangerouslySetInnerHTML={{ __html: artikel.contentHtml }}
+            />
+          ) : (
+            <div className="space-y-5 text-[1.05rem] leading-[1.85]">
+              {artikel.paragraphs.map((p) => (
+                <p key={p} className="text-muted-foreground">
+                  {p}
+                </p>
+              ))}
+            </div>
+          )}
+
 
         {/* Author box */}
-        <div className="mt-12 flex flex-col gap-5 rounded-2xl border border-border bg-card p-7 shadow-sm sm:flex-row sm:items-start">
-          <img
-            src={author.photo}
-            alt={`Foto ${author.name}`}
-            width={96}
-            height={96}
-            loading="lazy"
-            decoding="async"
-            className="h-20 w-20 shrink-0 rounded-full object-cover"
-          />
+        <section aria-labelledby="article-byline" className="mt-14 border-y border-border py-7">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+          {author ? (
+            <img
+              src={author.photo}
+              alt={`Foto ${author.name}`}
+              width={96}
+              height={96}
+              loading="lazy"
+              decoding="async"
+              className="h-20 w-20 shrink-0 rounded-full object-cover"
+            />
+          ) : null}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-blue">
+              <p id="article-byline" className="text-xs font-semibold uppercase tracking-wider text-brand-blue">
               Ditulis oleh
             </p>
-            <h2 className="mt-1 text-lg font-bold text-primary">{author.name}</h2>
-            <p className="text-sm text-brand-blue">{author.role}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
-            <Link
-              to="/professionals"
-              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-            >
-              Lihat profil tim profesional <ArrowRight className="h-4 w-4" />
-            </Link>
+            <h2 className="mt-1 text-lg font-bold text-primary">
+              {editorialAuthor?.name ?? author?.name ?? artikel.authorName}
+            </h2>
+            {editorialAuthor?.role || editorialAuthor?.credentials ? (
+              <p className="text-sm text-brand-blue">{[editorialAuthor.role, editorialAuthor.credentials].filter(Boolean).join(" · ")}</p>
+            ) : author ? <p className="text-sm text-brand-blue">{author.role}</p> : null}
+            {editorialAuthor?.profileUrl ? (
+              <a href={editorialAuthor.profileUrl} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
+                Lihat profil penulis <ArrowRight className="h-4 w-4" />
+              </a>
+            ) : author ? (
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
+            ) : null}
+            {author ? (
+              <Link
+                to="/professionals"
+                className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
+              >
+                Lihat profil tim profesional <ArrowRight className="h-4 w-4" />
+              </Link>
+            ) : null}
           </div>
+          </div>
+          {artikel.reviewerName ? (
+            <div className="mt-5 border-t border-border pt-5 text-sm text-muted-foreground">
+              Ditinjau oleh <strong className="text-primary">{artikel.reviewerName}</strong>
+              {reviewer?.credentials || reviewer?.role ? ` · ${[reviewer.role, reviewer.credentials].filter(Boolean).join(" · ")}` : null}
+              {reviewer?.profileUrl ? (
+                <a href={reviewer.profileUrl} className="ml-2 font-semibold text-brand-blue underline underline-offset-4">Lihat profil</a>
+              ) : null}
+            </div>
+          ) : null}
+          <p className="mt-4 text-xs text-muted-foreground">
+            Diperbarui <time dateTime={artikel.updatedAt}>{formatTanggal(artikel.updatedAt)}</time>
+          </p>
+        </section>
+
         </div>
 
-        {relatedServices.length > 0 ? (
-          <div className="mt-10">
-            <h2 className="text-lg font-bold text-primary">Layanan Terkait</h2>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {relatedServices.map((s) => (
-                <li key={s}>
-                  <SiteLink
-                    to={`/layanan/${s}`}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-5 py-4 text-sm font-semibold text-primary transition-colors hover:border-brand-blue"
-                  >
-                    {serviceTitle(s)} <ArrowRight className="h-4 w-4 text-brand-blue" />
-                  </SiteLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        <ArticleFramework
+          article={artikel}
+          references={artikel.references ?? []}
+          faqs={artikel.faqs ?? []}
+          showCta={false}
+        />
 
-        {related.length > 0 ? (
-          <div className="mt-10">
-            <h2 className="text-lg font-bold text-primary">Artikel Terkait</h2>
-            <ul className="mt-4 grid gap-3">
-              {related.map((a) => (
-                <li key={a.slug}>
-                  <Link
-                    to="/artikel/$slug"
-                    params={{ slug: a.slug }}
-                    className="block rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-brand-blue"
-                  >
-                    <span className="text-xs font-semibold text-brand-blue">{a.kategori}</span>
-                    <span className="mt-1 block text-sm font-semibold text-primary">{a.title}</span>
-                    <span className="mt-1 block text-xs text-muted-foreground">
-                      {readingTime(a)} menit baca
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        <div className="mx-auto max-w-3xl">
+          {related.length > 0 ? (
+            <section className="mt-16" aria-labelledby="related-articles">
+              <h2 id="related-articles" className="text-2xl font-bold text-primary">Artikel Terkait</h2>
+              <ul className="mt-6 grid gap-3">
+                {related.map((a) => (
+                  <li key={a.slug}>
+                    <Link
+                      to="/artikel/$slug"
+                      params={{ slug: a.slug }}
+                      className="block rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-brand-blue"
+                    >
+                      <span className="text-xs font-semibold text-brand-blue">{a.kategori}</span>
+                      <span className="mt-1 block text-sm font-semibold text-primary">{a.title}</span>
+                      <span className="mt-1 block text-xs text-muted-foreground">{readingTime(a)} menit baca</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
 
-        <div className="mt-12 rounded-2xl border border-border bg-card p-7 shadow-sm">
-          <h2 className="text-xl font-bold text-primary">
-            Ingin menerapkan program ini di organisasi Anda?
-          </h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Tim kami siap menyusun rancangan program sesuai kebutuhan dan jumlah peserta Anda.
-          </p>
+          <ArticleFinalCta article={artikel} />
+
           <Link
-            to="/kontak"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            to="/artikel"
+            className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
           >
-            Hubungi Kami <ArrowRight className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" /> Kembali ke daftar artikel
           </Link>
         </div>
-
-        <Link
-          to="/artikel"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-        >
-          <ArrowLeft className="h-4 w-4" /> Kembali ke daftar artikel
-        </Link>
       </article>
     </>
   );
