@@ -23,7 +23,6 @@ import {
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { SiteFooter } from "@/components/site/SiteFooter";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/risway")({
@@ -127,7 +126,6 @@ function RiswayPage() {
 
         <section id="konsultasi" className="px-5 py-20 md:py-24"><div className="mx-auto grid max-w-7xl gap-12 rounded-[2rem] bg-primary p-7 text-primary-foreground md:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:p-16"><div><SectionHeading light eyebrow="Konsultasi" title="Mari bahas kebutuhan kehadiran di perusahaan Anda." text="Isi formulir singkat ini sebagai placeholder booking. Tim Talenta Mulia akan menghubungi Anda untuk menindaklanjuti pembahasan." /><div className="mt-8 flex flex-col gap-3 text-sm text-primary-foreground/75"><p className="flex items-center gap-3"><MessageCircle className="size-4 text-cyan-200" /> Konsultasi awal bersama Talenta Mulia</p><p className="flex items-center gap-3"><Mail className="size-4 text-cyan-200" /> info@talentamulia.co.id</p><p className="flex items-center gap-3"><Phone className="size-4 text-cyan-200" /> +62 821 3299 0498</p></div></div><BookingForm submitted={submitted} onSubmit={() => setSubmitted(true)} /></div></section>
       </main>
-      <SiteFooter />
     </div>
   );
 }
