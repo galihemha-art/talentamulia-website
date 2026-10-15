@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -122,6 +123,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const showWhatsAppButton = location.pathname !== "/risway";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -132,7 +135,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <SiteFooter />
-        <WhatsAppButton />
+        {showWhatsAppButton && <WhatsAppButton />}
       </div>
     </QueryClientProvider>
   );
