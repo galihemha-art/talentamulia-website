@@ -9,4 +9,4 @@
 - [ ] Menunggu dari pemilik: placeholder [ISI] & item [KONFIRMASI] (lihat ringkasan chat)
 
 ## RISWAY
-- [ ] Landing /risway mandiri, fitur, pratinjau interaktif, paket, FAQ, formulir WhatsApp, SEO, dan verifikasi; tanpa publish.
+- [x] Landing /risway mandiri, fitur, pratinjau interaktif, paket, FAQ, formulir WhatsApp, SEO, dan verifikasi; tanpa publish.
