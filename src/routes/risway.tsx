@@ -25,7 +25,7 @@ export const Route = createFileRoute("/risway")({
       name: RISWAY.title,
       description: RISWAY.description,
       inLanguage: "id-ID",
-      breadcrumb: { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Talenta Mulia", item: canonicalUrl("/") }, { "@type": "ListItem", position: 2, name: "RISWAY PRO", item: canonicalUrl("/risway") }] },
+      breadcrumb: { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Talenta Mulia", item: canonicalUrl("/") }, { "@type": "ListItem", position: 2, name: "RISWAY", item: canonicalUrl("/risway") }] },
     }) }],
   }),
   component: RiswayPage,
