@@ -47,10 +47,10 @@ export function LayananDetailPage({
           { label: breadcrumb?.label ?? "Layanan", to: breadcrumb?.to ?? "/solusi-korporat" },
           { label: data.nama },
         ]}
-        eyebrow={label ?? "Solusi Korporat"}
+        eyebrow={data.segeraHadir ? "Segera hadir — menunggu perizinan" : (label ?? "Solusi Korporat")}
         title={data.nama}
         valueProp={data.subjudul}
-        ctaPrimary={ctaPrimary ?? "Minta Proposal Corporate"}
+        ctaPrimary={data.segeraHadir ? "Daftar minat" : (ctaPrimary ?? "Minta Proposal Corporate")}
         ctaSecondary={ctaSecondary ?? "Jadwalkan Konsultasi"}
         images={images}
         highlights={data.ruangLingkup.slice(0, 3)}
@@ -78,6 +78,11 @@ export function LayananDetailPage({
             </>
           )}
         </p>
+        {data.catatan && (
+          <p className="mt-4 rounded-xl border border-border bg-secondary/50 p-4 text-sm leading-relaxed text-muted-foreground">
+            {data.catatan}
+          </p>
+        )}
       </section>
 
       <ProblemSection points={data.tantangan} images={images} />
@@ -122,7 +127,7 @@ export function LayananDetailPage({
 
       <CtaBanner
         title={`Siap memulai ${data.nama}?`}
-        primary="Minta Proposal Corporate"
+        primary={data.segeraHadir ? "Daftar minat" : "Minta Proposal Corporate"}
         secondary="Jadwalkan Konsultasi"
       />
     </>

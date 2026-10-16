@@ -1,8 +1,7 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, medicalOrganizationSchema } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Activity, ClipboardCheck, HeartPulse, Stethoscope } from "lucide-react";
-import andiani from "@/assets/Dr_Andiani.webp";
+import { ArrowRight, Activity, ClipboardCheck, Stethoscope } from "lucide-react";
 
 export const Route = createFileRoute("/kesehatan")({
   head: () => ({
@@ -11,13 +10,13 @@ export const Route = createFileRoute("/kesehatan")({
       {
         name: "description",
         content:
-          "Pendampingan akreditasi rumah sakit, tata kelola klinis, mutu layanan kesehatan, dan medical check-up eksekutif.",
+          "Konsultasi manajemen untuk institusi kesehatan: pendampingan akreditasi rumah sakit, tata kelola klinis, dan mutu layanan kesehatan.",
       },
       { property: "og:title", content: "Konsultasi Kesehatan & Akreditasi RS — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:
-          "Pendampingan akreditasi rumah sakit, tata kelola klinis, mutu layanan kesehatan, dan medical check-up eksekutif.",
+          "Konsultasi manajemen untuk institusi kesehatan: pendampingan akreditasi rumah sakit, tata kelola klinis, dan mutu layanan kesehatan.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -48,11 +47,6 @@ const LAYANAN = [
     title: "Peningkatan Mutu Layanan Kesehatan",
     text: "Penyusunan indikator mutu, audit klinis, survei kepuasan pasien, dan program perbaikan berkelanjutan.",
   },
-  {
-    icon: HeartPulse,
-    title: "Medical Check-Up Eksekutif",
-    text: "Pemeriksaan kesehatan menyeluruh bagi pimpinan dan karyawan kunci, lengkap dengan konsultasi hasil.",
-  },
 ];
 
 function Page() {
@@ -64,8 +58,8 @@ function Page() {
             Konsultasi Kesehatan
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Pendampingan bagi rumah sakit, klinik, dan organisasi untuk mutu layanan yang terukur
-            dan tata kelola yang kuat.
+            Konsultasi manajemen bagi rumah sakit, klinik, dan organisasi untuk mutu layanan yang
+            terukur dan tata kelola yang kuat. Ini adalah konsultasi manajemen, bukan layanan medis.
           </p>
         </div>
       </section>
@@ -87,43 +81,6 @@ function Page() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto grid max-w-5xl items-center gap-8 px-5 py-16 md:grid-cols-[280px_1fr] md:py-20">
-          <img
-            src={andiani}
-            alt="Potret Dr. dr. Hj. Andiani, konsultan kepemimpinan medis Talenta Mulia"
-            loading="lazy"
-                decoding="async"
-                width={800} height={1000}
-            className="aspect-4/5 w-full rounded-2xl border border-border object-cover object-top shadow-sm"
-          />
-          <div>
-            <span className="text-sm font-semibold text-brand-blue">
-              Konsultan Kepemimpinan Medis
-            </span>
-            <h2 className="mt-2 text-2xl font-bold leading-snug text-primary md:text-3xl">
-              Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP.
-            </h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              Seluruh layanan konsultasi kesehatan kami dipimpin langsung oleh Dr. dr. Hj. Andiani —
-              dokter spesialis kedokteran keluarga layanan primer dengan pengalaman panjang dalam
-              tata kelola dan kepemimpinan fasilitas kesehatan.
-            </p>
-            <p className="mt-3 leading-relaxed text-muted-foreground">
-              Beliau memadukan perspektif klinis dan manajerial: memastikan rekomendasi kami tidak
-              hanya memenuhi standar akreditasi, tetapi juga dapat dijalankan oleh tim medis di
-              lapangan sehari-hari.
-            </p>
-            <Link
-              to="/professionals"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-            >
-              Lihat profil tim profesional <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
           Layanan terkait
@@ -136,8 +93,8 @@ function Page() {
           {[
             {
               slug: "medical-wellness",
-              title: "Medical Wellness",
-              text: "Program kesehatan preventif bagi karyawan: skrining, edukasi gaya hidup, dan pemantauan berkala bersama dokter.",
+              title: "Program Edukasi Kesehatan & Wellness Karyawan",
+              text: "Edukasi kesehatan, seminar gaya hidup sehat, dan integrasi well-being fisik dan mental.",
             },
             {
               slug: "kesejahteraan-karyawan",

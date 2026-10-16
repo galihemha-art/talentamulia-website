@@ -57,7 +57,7 @@ export const TOPIC_CLUSTERS: TopicCluster[] = [
   {
     id: "kesehatan-kesejahteraan",
     label: "Kesehatan & Kesejahteraan",
-    description: "Medical wellness, kesehatan eksekutif, dan well-being karyawan.",
+    description: "Edukasi kesehatan dan well-being karyawan.",
     kategori: ["Kesehatan", "Kesejahteraan Karyawan"],
     layanan: ["medical-wellness", "kesejahteraan-karyawan"],
     halaman: [{ title: "Konsultasi Kesehatan", to: "/kesehatan" }],

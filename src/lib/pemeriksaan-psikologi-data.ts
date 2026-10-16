@@ -36,9 +36,9 @@ export const PEMERIKSAAN_PSIKOLOGI: Record<string, PemeriksaanDetail> = {
     slug: "pemeriksaan-psikologi-klinis",
     nama: "Pemeriksaan Psikologi Klinis",
     subjudul:
-      "Pemeriksaan psikologi untuk kebutuhan diagnostik dan penanganan kondisi psikologis individu.",
+      "Pemeriksaan psikologi untuk kebutuhan diagnostik dan pendampingan kondisi psikologis individu.",
     apaItu:
-      "Pemeriksaan yang membantu memahami kondisi psikologis, gangguan emosi, atau kebutuhan penanganan klinis seseorang secara mendalam.",
+      "Pemeriksaan yang membantu memahami kondisi psikologis, gangguan emosi, atau kebutuhan pendampingan seseorang secara mendalam.",
     untukSiapa: [
       "Individu yang butuh pemeriksaan psikologis formal untuk keperluan medis atau terapi",
       "Rujukan dari dokter atau psikiater",
@@ -46,7 +46,7 @@ export const PEMERIKSAAN_PSIKOLOGI: Record<string, PemeriksaanDetail> = {
     ],
     metode: "Wawancara klinis, tes kepribadian dan proyektif, serta tes kognitif sesuai indikasi.",
     yangDiterima:
-      "Laporan hasil pemeriksaan psikologi klinis yang ditandatangani psikolog berizin SIPP, beserta rekomendasi penanganan atau rujukan bila diperlukan.",
+      "Laporan hasil pemeriksaan psikologi klinis yang ditandatangani psikolog berizin SIPP, beserta rekomendasi pendampingan atau rujukan ke psikiater atau tenaga medis bila diperlukan.",
     catatan:
       "Bila ditemukan indikasi yang memerlukan penanganan psikiatri, klien akan dirujuk ke tenaga medis yang sesuai.",
     terkait: [

@@ -37,7 +37,7 @@ const COLUMNS: { title: string; items: Item[] }[] = [
     title: "Kesehatan",
     items: [
       { label: "Konsultasi Kesehatan", to: "/kesehatan" },
-      { label: "Medical Wellness", to: "/layanan/medical-wellness" },
+      { label: "Edukasi Kesehatan & Wellness", to: "/layanan/medical-wellness" },
       { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
       { label: "Sektor Kesehatan", to: "/industri/kesehatan" },
     ],
@@ -98,14 +98,21 @@ const SOCIALS = [
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (!email.trim()) return;
+        if (!email.trim() || !consent) return;
+        try {
+          window.localStorage.setItem("tm-consent-newsletter", new Date().toISOString());
+        } catch {
+          /* storage unavailable */
+        }
         setSent(true);
         setEmail("");
+        setConsent(false);
       }}
       className="mt-4"
     >
@@ -124,11 +131,27 @@ function Newsletter() {
         />
         <button
           type="submit"
-          className="rounded-lg bg-brand-gradient px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          disabled={!consent}
+          className="rounded-lg bg-brand-gradient px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Berlangganan
         </button>
       </div>
+      <label className="mt-3 flex items-start gap-2 text-xs text-primary-foreground/75">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0"
+        />
+        <span>
+          Saya menyetujui pemrosesan data pribadi saya sesuai{" "}
+          <Link to="/kebijakan-privasi" className="underline">
+            Kebijakan Privasi
+          </Link>{" "}
+          PT Talenta Mulia Indonesia.
+        </span>
+      </label>
       {sent ? (
         <p className="mt-2 text-xs text-primary-foreground/70" role="status">
           Terima kasih! Kami akan mengirim wawasan terbaru ke email Anda.
@@ -164,7 +187,7 @@ export function SiteFooter() {
               <li className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
-                  Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur
+                  Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur 61257
                 </span>
               </li>
               <li className="flex gap-3">
@@ -235,7 +258,7 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Talenta Mulia. Seluruh hak cipta dilindungi.</p>
+          <p>© 2026 PT Talenta Mulia Indonesia. Seluruh hak cipta dilindungi.</p>
           <div className="flex gap-5">
             <Link to="/kebijakan-privasi" className="hover:text-primary-foreground">
               Kebijakan Privasi

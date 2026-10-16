@@ -2,21 +2,22 @@ import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Mic, Sparkles } from "lucide-react";
 import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
+import { TEAM_CONSENT_NOTE } from "@/lib/professionals-data";
 
 export const Route = createFileRoute("/tokoh-sentral")({
   head: () => ({
     meta: [
-      { title: "Principal Experts — Distinguished Fellow Talenta Mulia Sidoarjo" },
+      { title: "Principal Experts — Mitra Talenta Mulia Sidoarjo" },
       {
         name: "description",
         content:
-          "Dr. Hj. Andiani dan Dr. Tri Novia, Distinguished Fellow Talenta Mulia yang memimpin arah praktik psikologi klinis, kesehatan, dan transformasi layanan kesehatan.",
+          "Dr. dr. Hj. Andiani, M.Kes. dan Dr. Tri Novia — mitra Talenta Mulia di bidang mutu pelayanan kesehatan, akreditasi, dan transformasi layanan kesehatan.",
       },
-      { property: "og:title", content: "Principal Experts — Distinguished Fellow Talenta Mulia" },
+      { property: "og:title", content: "Principal Experts — Mitra Talenta Mulia" },
       {
         property: "og:description",
         content:
-          "Dua tokoh sentral Talenta Mulia yang memimpin arah praktik psikologi klinis, kesehatan, dan transformasi layanan kesehatan.",
+          "Mitra Talenta Mulia di bidang mutu pelayanan kesehatan, akreditasi, dan transformasi layanan kesehatan.",
       },
       { property: "og:type", content: "website" },
       ogUrl("/tokoh-sentral"),
@@ -76,8 +77,8 @@ function Page() {
             Principal Experts
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
-            dan pengembangan organisasi di Talenta Mulia.
+            Mitra Talenta Mulia untuk konsultasi organisasi, pelatihan, dan transformasi layanan
+            kesehatan.
           </p>
         </div>
       </section>
@@ -91,7 +92,7 @@ function Page() {
             >
               <img
                 src={t.photo}
-                alt={`Potret ${t.name}, Distinguished Fellow Talenta Mulia`}
+                alt={`Potret ${t.name}, mitra Talenta Mulia`}
                 loading="lazy"
                 decoding="async"
                 width={840}
@@ -105,10 +106,18 @@ function Page() {
                 <h2 className="mt-3 text-2xl font-bold leading-snug text-primary md:text-3xl">
                   {t.name}
                 </h2>
-                <span className="mt-3 inline-flex w-fit rounded-full bg-brand-gradient px-4 py-1.5 text-xs font-semibold text-white">
-                  Distinguished Fellow, Talenta Mulia
-                </span>
-                <p className="mt-4 text-sm font-semibold text-brand-blue">{t.gelar}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {t.mitra && (
+                    <span className="inline-flex w-fit rounded-full border border-brand-blue px-4 py-1.5 text-xs font-semibold text-brand-blue">
+                      Mitra
+                    </span>
+                  )}
+                  {t.fellow && (
+                    <span className="inline-flex w-fit rounded-full bg-brand-gradient px-4 py-1.5 text-xs font-semibold text-white">
+                      Distinguished Fellow, Talenta Mulia
+                    </span>
+                  )}
+                </div>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
                   {t.desc}
                 </p>
@@ -132,7 +141,7 @@ function Page() {
                       <Section icon={Briefcase} title="Perjalanan Profesional">
                         <ol className="space-y-4 border-l border-border pl-5">
                           {t.timeline.map((item) => (
-                            <li key={item.periode} className="relative">
+                            <li key={`${item.periode}-${item.judul}`} className="relative">
                               <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-brand-blue" />
                               <p className="text-xs font-bold tracking-wide text-brand-blue">
                                 {item.periode}
@@ -196,6 +205,7 @@ function Page() {
             </article>
           ))}
         </div>
+        <p className="mt-12 text-center text-sm text-muted-foreground">{TEAM_CONSENT_NOTE}</p>
       </section>
     </>
   );

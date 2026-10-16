@@ -322,11 +322,6 @@ export function WhySection({
           <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
             Mengapa Talenta Mulia
           </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            Kami satu-satunya pusat konsultasi di Jawa Timur yang memadukan psikologi, kesehatan,
-            dan kepemimpinan dalam satu tim — sehingga rekomendasi kami menyentuh manusia dan sistem
-            sekaligus.
-          </p>
           {reasons && reasons.length > 0 && (
             <ul className="mt-6 space-y-3">
               {reasons.map((r) => (

@@ -6,6 +6,8 @@ export type LayananIndividuDetail = {
   yangDidapat: string[];
   /** Optional callout under the hero. */
   catatan?: { tone: "warning" | "info"; text: string };
+  /** Not yet open for booking: shows a "Segera hadir" label and a "Daftar minat" CTA. */
+  segeraHadir?: boolean;
 };
 
 export const KERAHASIAAN_NOTE =
@@ -68,14 +70,15 @@ export const LAYANAN_INDIVIDU: Record<string, LayananIndividuDetail> = {
     slug: "hipnoterapi",
     nama: "Hipnoterapi",
     subjudul:
-      "Terapi hipnoterapi klinis bersertifikat untuk mengatasi kebiasaan, trauma ringan, dan blokade emosional.",
+      "Sesi relaksasi dan sugesti terpandu oleh psikolog bersertifikat hipnoterapi. Bukan pengganti perawatan medis atau psikiatri.",
     untukSiapa:
-      "Untuk individu yang ingin melepaskan kebiasaan yang tidak diinginkan, meredakan kecemasan, atau mengurai blokade emosional yang sulit diatasi hanya dengan pendekatan sadar.",
+      "Sesi relaksasi dan sugesti terpandu oleh psikolog bersertifikat hipnoterapi. Bukan pengganti perawatan medis atau psikiatri.",
     yangDidapat: [
-      "Sesi terpandu oleh psikolog bersertifikat hipnoterapi — bukan hiburan panggung",
-      "Pendekatan yang aman dan berbasis etika klinis",
-      "Rencana sesi yang disesuaikan dengan kondisi dan tujuan Anda",
+      "Sesi terpandu oleh psikolog bersertifikat hipnoterapi",
+      "Pendekatan yang aman dan berbasis etika profesi",
+      "Rencana sesi yang disesuaikan dengan tujuan Anda",
     ],
+    segeraHadir: true,
   },
   "trauma-healing": {
     slug: "trauma-healing",
@@ -87,18 +90,20 @@ export const LAYANAN_INDIVIDU: Record<string, LayananIndividuDetail> = {
       "Pendampingan pemulihan yang bertahap, mengikuti kesiapan Anda",
       "Teknik SEFT dan pendekatan berbasis bukti lainnya",
       "Ruang aman tanpa tekanan untuk bercerita",
+      "Rujukan ke psikiater atau tenaga medis bila diperlukan",
     ],
   },
   "stres-kecemasan": {
     slug: "stres-kecemasan",
     nama: "Stres & Kecemasan",
-    subjudul: "Penanganan psikologis untuk stres kerja, kecemasan berlebih, dan burnout.",
+    subjudul: "Pendampingan psikologis untuk stres kerja, kecemasan berlebih, dan burnout.",
     untukSiapa:
       "Untuk profesional dan individu yang merasa kewalahan oleh tekanan pekerjaan maupun kehidupan, mengalami kesulitan tidur, atau merasa cemas berlebihan tanpa sebab yang jelas.",
     yangDidapat: [
       "Identifikasi pemicu stres yang sesungguhnya",
       "Teknik manajemen stres yang praktis dan bisa langsung dipakai",
       "Pendampingan berkelanjutan bila diperlukan",
+      "Rujukan ke psikiater atau tenaga medis bila diperlukan",
     ],
   },
   "dukungan-depresi": {

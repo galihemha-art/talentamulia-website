@@ -53,7 +53,7 @@ function Page() {
               bahwa perasaan Anda sangatlah valid.
             </p>
             <p>
-              Sebagai institusi penyedia layanan psikologi klinis terpercaya, Biro Psikologi Talenta
+              Sebagai institusi penyedia layanan psikologi terpercaya, Biro Psikologi Talenta
               Mulia berkomitmen menghadirkan ruang bercerita yang suportif, hangat, dan sama sekali
               tidak menghakimi (non-judgmental). Mengingat layanan kesehatan mental berkaitan
               langsung dengan masa depan, kebahagiaan, dan kesejahteraan hidup Anda (kategori Your
@@ -272,10 +272,10 @@ const ARTIKEL: { h: string; p?: string[]; list?: [string, string][]; ordered?: b
     ],
     list: [
       ["Konseling Psikologis Pribadi:", "Pendampingan personal untuk mengurai tekanan mental, overthinking, dan kebingungan hidup."],
-      ["Manajemen Stres & Kecemasan:", "Intervensi klinis untuk membantu Anda mengelola emosi dan serangan panik (panic attack) yang mengganggu aktivitas sehari-hari."],
-      ["Trauma Healing:", "Sesi pendampingan pemulihan luka batin di masa lalu agar Anda berdamai dengan diri sendiri dan kembali melangkah maju."],
-      ["Dukungan Depresi:", "Pendampingan suportif dan terstruktur untuk individu dengan indikasi atau diagnosis depresi, agar kembali menemukan makna hidup."],
-      ["Hipnoterapi:", "Metode terapi komplementer yang aman guna menjangkau dan mengatasi hambatan psikologis di alam bawah sadar."],
+      ["Manajemen Stres & Kecemasan:", "Pendampingan psikologis untuk membantu Anda mengelola emosi dan serangan panik (panic attack), dengan rujukan ke psikiater atau tenaga medis bila perlu."],
+      ["Trauma Healing:", "Sesi pendampingan pemulihan luka batin di masa lalu, dengan rujukan ke psikiater atau tenaga medis bila perlu."],
+      ["Dukungan Depresi:", "Pendampingan suportif dan terstruktur untuk individu dengan indikasi atau diagnosis depresi, dengan rujukan ke psikiater atau tenaga medis bila perlu."],
+      ["Hipnoterapi (Segera hadir):", "Sesi relaksasi dan sugesti terpandu oleh psikolog bersertifikat hipnoterapi. Bukan pengganti perawatan medis atau psikiatri."],
       ["Konseling Pranikah dan Pernikahan:", "Solusi untuk menyelaraskan ekspektasi sebelum menikah, atau memulihkan keharmonisan rumah tangga yang sedang dilanda konflik."],
     ],
   },

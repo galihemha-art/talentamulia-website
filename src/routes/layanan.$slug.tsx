@@ -27,7 +27,7 @@ const TITLES: Record<string, string> = {
   "executive-coaching": "Executive Coaching",
   "team-coaching": "Team Coaching",
   "kesejahteraan-karyawan": "Kesejahteraan Karyawan",
-  "medical-wellness": "Medical Wellness",
+  "medical-wellness": "Program Edukasi Kesehatan & Wellness Karyawan",
   "talent-acquisition": "Talent Acquisition",
   "executive-search": "Executive Search",
   "pendampingan-sekolah-perusahaan": "Pendampingan Sekolah & Perusahaan",
