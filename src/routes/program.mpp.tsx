@@ -9,7 +9,7 @@ const MPP: LayananDetail = {
   slug: "mpp",
   nama: "Pensiun Bahagia, Hidup Bermakna",
   subjudul:
-    "Satu-satunya program persiapan pensiun di Jawa Timur yang menggabungkan psikologi, hipnoterapi/SEFT, dan keahlian medis untuk kesiapan pensiun karyawan secara utuh.",
+    "Program persiapan pensiun yang menggabungkan psikologi, SEFT, dan edukasi kesehatan untuk kesiapan pensiun karyawan secara utuh.",
   ringkasan:
     "Program Masa Persiapan Pensiun (MPP) Talenta Mulia menyiapkan karyawan senior menghadapi purnabakti bukan hanya dari sisi administratif dan finansial, tetapi juga dari sisi psikologis dan kesehatan fisik. Peserta dibimbing memahami perubahan peran yang akan terjadi, melepaskan beban emosi yang menyertainya, dan menyusun rencana hidup yang realistis serta bermakna setelah masa kerja berakhir.",
   tantangan: [
@@ -19,11 +19,11 @@ const MPP: LayananDetail = {
     "Keluarga karyawan turut terdampak perubahan peran pasca pensiun.",
   ],
   pendekatan:
-    "Program berjalan di atas tiga pilar terintegrasi. Pilar Psikologi membantu peserta menerima perubahan identitas dan peran serta menemukan makna baru. Pilar Hipnoterapi/SEFT bekerja pada pelepasan emosi negatif yang terkait pensiun — kecemasan, rasa kehilangan, dan ketakutan akan masa depan. Pilar Medis memastikan kesiapan kesehatan fisik menjelang dan pasca pensiun melalui skrining, edukasi penyakit degeneratif, dan panduan gaya hidup. Ketiganya dijalankan oleh satu tim yang sama sehingga rangkaiannya saling menopang.",
+    "Program berjalan di atas tiga pilar terintegrasi. Pilar Psikologi membantu peserta menerima perubahan identitas dan peran serta menemukan makna baru. Pilar SEFT bekerja pada pelepasan emosi negatif yang terkait pensiun — kecemasan, rasa kehilangan, dan ketakutan akan masa depan. Pilar Edukasi Kesehatan membekali peserta dengan pengetahuan tentang kesehatan fisik menjelang dan pasca pensiun. Ketiganya dijalankan oleh satu tim yang sama sehingga rangkaiannya saling menopang.",
   ruangLingkup: [
     "Asesmen kesiapan psikologis pensiun",
-    "Sesi hipnoterapi/SEFT pelepasan emosi",
-    "Konsultasi kesehatan fisik pra-pensiun",
+    "Sesi SEFT pelepasan emosi",
+    "Edukasi kesehatan pra-pensiun",
     "Workshop keluarga (melibatkan pasangan/anak)",
     "Pendampingan pasca-pensiun (opsional lanjutan)",
   ],
@@ -32,8 +32,7 @@ const MPP: LayananDetail = {
     "Individu yang akan atau baru memasuki masa pensiun, termasuk bersama pasangan.",
   ],
   kenapaKami: [
-    "Satu-satunya program MPP di Jawa Timur dengan kombinasi tiga disiplin sekaligus — kompetitor besar rata-rata berbasis Jakarta.",
-    "Tim lengkap: psikolog, hipnoterapis, dan dokter dalam satu program terintegrasi.",
+    "Psikolog dan mitra profesional dalam satu program terintegrasi.",
     "Rangkaian program dapat diperluas hingga pendampingan pasca-pensiun.",
     "Keluarga peserta dilibatkan agar transisi berjalan selaras di rumah.",
   ],
@@ -65,13 +64,13 @@ export const Route = createFileRoute("/program/mpp")({
       {
         name: "description",
         content:
-          "Pensiun Bahagia, Hidup Bermakna — program MPP Talenta Mulia memadukan psikologi, hipnoterapi/SEFT, dan keahlian medis untuk korporat dan individu di Jawa Timur.",
+          "Pensiun Bahagia, Hidup Bermakna — program MPP Talenta Mulia memadukan psikologi, SEFT, dan edukasi kesehatan untuk korporat dan individu di Jawa Timur.",
       },
       { property: "og:title", content: "Pensiun Bahagia, Hidup Bermakna — Program MPP Talenta Mulia" },
       {
         property: "og:description",
         content:
-          "Program persiapan pensiun terintegrasi: psikologi, hipnoterapi/SEFT, dan medis. Untuk korporat, BUMN, instansi pemerintah, dan individu.",
+          "Program persiapan pensiun terintegrasi: psikologi, SEFT, dan edukasi kesehatan. Untuk korporat, BUMN, instansi pemerintah, dan individu.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

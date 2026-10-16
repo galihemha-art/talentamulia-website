@@ -10,12 +10,9 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import maulidah from "@/assets/Maulidah_Muflichah.webp";
-import andiani from "@/assets/Dr_Andiani.webp";
-import trinovia from "@/assets/Tri_Novia.webp";
-import eka from "@/assets/Eka_Rachmawaty.webp";
-import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
-import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
+import { PROFESSIONALS, TEAM_CONSENT_NOTE } from "@/lib/professionals-data";
+import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
+import { LEGAL_NOTE, LEGAL_ROWS } from "@/lib/company";
 
 export const Route = createFileRoute("/tentang-kami/")({
   head: () => ({
@@ -45,7 +42,7 @@ export const Route = createFileRoute("/tentang-kami/")({
 });
 
 const PILLS = [
-  "Psikologi klinis, industri & organisasi",
+  "Psikologi, industri & organisasi",
   "Kepemimpinan medis & mutu rumah sakit",
   "Executive coaching bersertifikat ICF",
   "Pelatihan & pengembangan institusi",
@@ -86,58 +83,29 @@ const NILAI = [
   },
 ];
 
-const TIM = [
-  {
-    photo: maulidah,
-    alt: "Potret Maulidah Muflichah, Founder dan Psikolog Utama Talenta Mulia",
-    name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
-    role: "Founder · Psikolog Utama · Certified Hypnotherapist",
-    desc: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
-  },
-  {
-    photo: eka,
-    alt: "Potret Eka Rachmawaty, Executive Coach bersertifikat ICF PCC",
-    name: "Eka Rachmawaty, M.M., PCC",
-    role: "Konsultan Pengembangan Kepemimpinan & Organisasi · ICF PCC",
-    desc: "Professional Certified Coach (ICF PCC) yang berspesialisasi dalam executive coaching, pengembangan kepemimpinan, talent management, dan pengembangan organisasi.",
-  },
-  {
-    photo: mamluatul,
-    alt: "Potret Mamluatul Khoiriyah, Psikolog Senior Talenta Mulia",
-    name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
-    role: "Psikolog Senior",
-    desc: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
-  },
-  {
-    photo: hilda,
-    alt: "Potret Hilda Rosa Ainiyah, Psikolog Klinis Talenta Mulia",
-    name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
-    role: "Psikolog Klinis",
-    desc: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri.",
-  },
-];
+const TIM = PROFESSIONALS.filter((p) => p.id !== "andiani").map((p) => ({
+  photo: p.photo,
+  alt: `Potret ${p.name}${p.role ? `, ${p.role}` : ""} Talenta Mulia`,
+  name: p.name,
+  role: p.role,
+  mitra: p.mitra,
+  desc: p.desc,
+}));
 
-const TOKOH = [
-  {
-    photo: andiani,
-    alt: "Potret Dr. dr. Hj. Andiani, Konsultan Kepemimpinan Medis & Kesehatan",
-    name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP., FISCH, FISPM, CHt., CEFHLM",
-    role: "Konsultan Kepemimpinan Medis & Kesehatan",
-    desc: "Memimpin arah praktik psikologi klinis & kesehatan di Talenta Mulia. Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
-  },
-  {
-    photo: trinovia,
-    alt: "Potret Dr. Tri Novia, Konsultan Transformasi Pelayanan Kesehatan",
-    name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom",
-    role: "Konsultan Transformasi Pelayanan Kesehatan",
-    desc: "Memimpin arah praktik transformasi layanan kesehatan di Talenta Mulia. Berpengalaman sebagai konsultan transformasi pelayanan di berbagai rumah sakit dan klinik, dengan fokus pada komunikasi efektif dan budaya service excellence.",
-  },
-];
+const TOKOH = TOKOH_SENTRAL.map((t) => ({
+  photo: t.photo,
+  alt: `Potret ${t.name}, mitra Talenta Mulia`,
+  name: t.name,
+  role: t.fellow ? "" : t.role,
+  fellow: t.fellow,
+  mitra: t.mitra,
+  desc: t.desc,
+}));
 
 const TIMELINE = [
   {
-    no: "01",
-    title: "Praktik psikologi klinis",
+    no: "2019",
+    title: "Praktik Talenta Mulia berjalan di Sidoarjo",
     text: "Berawal dari layanan konseling, terapi keluarga, dan hipnoterapi untuk individu serta keluarga.",
   },
   {
@@ -152,28 +120,22 @@ const TIMELINE = [
   },
   {
     no: "04",
-    title: "Konsultasi kesehatan terintegrasi",
-    text: "Pendampingan mutu, akreditasi, dan tata kelola klinis rumah sakit bersama konsultan kepemimpinan medis.",
+    title: "Konsultasi mutu layanan kesehatan",
+    text: "Pendampingan mutu, akreditasi, dan tata kelola klinis untuk institusi kesehatan bersama mitra kami.",
+  },
+  {
+    no: "Oktober 2026",
+    title: "Berbadan hukum PT Talenta Mulia Indonesia",
+    text: "Pengesahan badan hukum melalui Keputusan Menteri Hukum RI No. AHU-0082883.AH.01.01 Tahun 2026.",
   },
 ];
 
-const LEGAL = [
-  {
-    label: "Nama entitas",
-    value: "Talenta Mulia — Integrated Psychology, Healthcare & Leadership Consulting Center",
-  },
-  {
-    label: "Bidang usaha",
-    value: "Jasa konsultasi psikologi, kesehatan, dan pengembangan kepemimpinan",
-  },
-  { label: "Badan hukum & perizinan", value: "Dokumen tersedia atas permintaan" },
-  { label: "NPWP / NIB", value: "Tersedia atas permintaan" },
-];
+const LEGAL = LEGAL_ROWS;
 
 const KREDENSIAL = [
   "Psikolog berlisensi (SIPP) sesuai ketentuan HIMPSI.",
   "Executive coach tersertifikasi ICF pada jenjang PCC.",
-  "Konsultan kepemimpinan medis dengan latar praktik dan manajemen rumah sakit.",
+  "Mitra konsultan mutu pelayanan kesehatan dengan latar praktik dan manajemen rumah sakit.",
   "Kerahasiaan data klien dijaga sesuai kode etik profesi dan perjanjian kerahasiaan.",
 ];
 
@@ -215,14 +177,14 @@ function Page() {
           Satu praktik, tiga disiplin yang saling menguatkan.
         </h2>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-          Talenta Mulia didirikan oleh Maulidah Muflichah, M.Psi., Psikolog., CHt. sebagai jawaban
+          Talenta Mulia — kini berbadan hukum PT Talenta Mulia Indonesia — didirikan oleh Maulidah Muflichah, M.Psi., Psikolog., CHt. sebagai jawaban
           atas kebutuhan organisasi yang jarang bisa dipenuhi satu disiplin saja: persoalan manusia
           di tempat kerja hampir selalu bersinggungan dengan psikologi, kesehatan, dan kualitas
           kepemimpinan sekaligus.
         </p>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-          Karena itu praktik ini dibangun sebagai pusat konsultasi terintegrasi — psikolog klinis
-          dan industri, executive coach bersertifikat ICF, serta konsultan kepemimpinan medis
+          Karena itu praktik ini dibangun sebagai pusat konsultasi terintegrasi — psikolog,
+          executive coach bersertifikat ICF, serta konsultan kepemimpinan medis
           bekerja dalam satu tim. Pendekatan ini memungkinkan kami merancang intervensi yang utuh:
           dari asesmen dan konseling individu, pengembangan pemimpin, hingga penguatan mutu dan tata
           kelola rumah sakit.
@@ -299,8 +261,8 @@ function Page() {
                 Principal Experts
               </h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
-                dan pengembangan organisasi di Talenta Mulia.
+                Mitra Talenta Mulia untuk konsultasi organisasi, pelatihan, dan transformasi layanan
+                kesehatan.
               </p>
             </div>
             <Link
@@ -329,10 +291,19 @@ function Page() {
                 />
                 <div className="p-6">
                   <h3 className="text-base font-bold leading-snug text-primary">{t.name}</h3>
-                  <span className="mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
-                    Distinguished Fellow, Talenta Mulia
-                  </span>
-                  <p className="mt-2 text-xs font-semibold text-brand-blue">{t.role}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {t.mitra && (
+                      <span className="inline-flex rounded-full border border-brand-blue px-3 py-1 text-xs font-semibold text-brand-blue">
+                        Mitra
+                      </span>
+                    )}
+                    {t.fellow && (
+                      <span className="inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
+                        Distinguished Fellow, Talenta Mulia
+                      </span>
+                    )}
+                  </div>
+                  {t.role && <p className="mt-2 text-xs font-semibold text-brand-blue">{t.role}</p>}
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
                 </div>
               </article>
@@ -381,12 +352,18 @@ function Page() {
                 />
                 <div className="p-5">
                   <h3 className="text-sm font-bold leading-snug text-primary">{t.name}</h3>
-                  <p className="mt-1 text-xs font-semibold text-brand-blue">{t.role}</p>
+                  {t.mitra && (
+                    <span className="mt-2 inline-flex rounded-full border border-brand-blue px-2.5 py-0.5 text-[11px] font-semibold text-brand-blue">
+                      Mitra
+                    </span>
+                  )}
+                  {t.role && <p className="mt-1 text-xs font-semibold text-brand-blue">{t.role}</p>}
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
                 </div>
               </article>
             ))}
           </div>
+          <p className="mt-8 text-sm text-muted-foreground">{TEAM_CONSENT_NOTE}</p>
         </div>
       </section>
 
@@ -397,10 +374,6 @@ function Page() {
         <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
           Bagaimana praktik ini berkembang.
         </h2>
-        <p className="mt-4 rounded-xl border border-border bg-secondary/50 p-4 text-sm leading-relaxed text-muted-foreground">
-          Tonggak berikut disusun berdasarkan tahapan pengembangan praktik. Tanggal resmi setiap
-          tonggak sedang kami verifikasi dan akan dilengkapi.
-        </p>
         <ol className="mt-10 space-y-8 border-l border-border pl-8">
           {TIMELINE.map((s) => (
             <li key={s.no} className="relative">
@@ -423,9 +396,7 @@ function Page() {
             Informasi legal dan kredensial.
           </h2>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            Kami hanya menampilkan data legal yang telah terverifikasi. Detail administratif di
-            bawah dilengkapi secara bertahap dan tersedia lengkap atas permintaan pada proses tender
-            atau vendor onboarding.
+            {LEGAL_NOTE}
           </p>
 
           <div className="mt-8 grid gap-8 rounded-2xl border border-border bg-card p-7 shadow-sm md:grid-cols-2">

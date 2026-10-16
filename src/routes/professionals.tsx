@@ -1,8 +1,8 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, peopleSchema } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, BookOpen, Briefcase, FileText, Mic, Sparkles } from "lucide-react";
-import { PROFESSIONALS } from "@/lib/professionals-data";
+import { ArrowRight, Award, BookOpen, Briefcase, FileText, GraduationCap, Mic, Sparkles } from "lucide-react";
+import { PROFESSIONALS, TEAM_CONSENT_NOTE } from "@/lib/professionals-data";
 import { ARTIKEL } from "@/lib/artikel-data";
 
 
@@ -13,13 +13,13 @@ export const Route = createFileRoute("/professionals")({
       {
         name: "description",
         content:
-          "Psikolog klinis, dokter konsultan, executive coach ICF PCC, dan trainer SEFT di balik Talenta Mulia.",
+          "Psikolog, psikolog klinis, dan konsultan pengembangan kepemimpinan ICF PCC di balik PT Talenta Mulia Indonesia.",
       },
       { property: "og:title", content: "Tim Profesional Psikolog & Coach — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
         property: "og:description",
         content:
-          "Psikolog klinis, dokter konsultan, executive coach ICF PCC, dan trainer SEFT di balik Talenta Mulia.",
+          "Psikolog, psikolog klinis, dan konsultan pengembangan kepemimpinan ICF PCC di balik PT Talenta Mulia Indonesia.",
       },
       ogUrl("/professionals"),
     ],
@@ -81,8 +81,8 @@ function Page() {
             Dipimpin praktisi, bukan sekadar teori.
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Praktisi senior yang memimpin penugasan korporat dan individu — psikolog klinis dan
-            konsultan pengembangan kepemimpinan bersertifikat ICF.
+            Praktisi yang memimpin penugasan korporat dan individu — psikolog dan konsultan
+            pengembangan kepemimpinan bersertifikat ICF.
           </p>
         </div>
       </section>
@@ -98,7 +98,7 @@ function Page() {
               >
                 <img
                   src={p.photo}
-                  alt={`Potret studio ${p.name}, ${p.role} di Talenta Mulia Sidoarjo`}
+                  alt={`Potret studio ${p.name}${p.role ? `, ${p.role}` : ""} di Talenta Mulia Sidoarjo`}
                   loading="lazy"
                   decoding="async"
                   width={800}
@@ -112,7 +112,12 @@ function Page() {
                   <h2 className="mt-3 text-xl font-bold leading-snug text-primary md:text-2xl">
                     {p.name}
                   </h2>
-                  <p className="mt-2 text-sm font-semibold text-brand-blue">{p.role}</p>
+                  {p.mitra && (
+                    <span className="mt-3 inline-flex w-fit rounded-full border border-brand-blue px-3 py-0.5 text-xs font-semibold text-brand-blue">
+                      Mitra
+                    </span>
+                  )}
+                  {p.role && <p className="mt-2 text-sm font-semibold text-brand-blue">{p.role}</p>}
                   <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
                     {p.desc}
                   </p>
@@ -134,7 +139,7 @@ function Page() {
                         <Section icon={Briefcase} title="Perjalanan Profesional">
                           <ol className="space-y-4 border-l border-border pl-5">
                             {p.timeline.map((t) => (
-                              <li key={t.periode} className="relative">
+                              <li key={`${t.periode}-${t.judul}`} className="relative">
                                 <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-brand-blue" />
                                 <p className="text-xs font-bold tracking-wide text-brand-blue">
                                   {t.periode}
@@ -146,6 +151,12 @@ function Page() {
                           </ol>
                         </Section>
                       </div>
+                    )}
+
+                    {p.pendidikan && p.pendidikan.length > 0 && (
+                      <Section icon={GraduationCap} title="Pendidikan">
+                        <Bullets items={p.pendidikan} />
+                      </Section>
                     )}
 
                     {p.sertifikasi.length > 0 && (
@@ -244,7 +255,9 @@ function Page() {
           })}
         </div>
 
-        <div className="mt-14 text-center">
+        <p className="mt-12 text-center text-sm text-muted-foreground">{TEAM_CONSENT_NOTE}</p>
+
+        <div className="mt-8 text-center">
           <Link
             to="/kontak"
             className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"

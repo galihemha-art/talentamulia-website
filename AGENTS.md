@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- Build uses a plain vite.config.ts (tanstackStart + nitro cloudflare-module to dist/, React, Tailwind, tsconfig paths) without @lovable.dev/vite-tanstack-config, so the project builds outside Lovable.

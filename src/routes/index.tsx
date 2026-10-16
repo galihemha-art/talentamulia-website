@@ -36,7 +36,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur: assessment, executive coaching, konsultasi kesehatan, pelatihan, dan program persiapan pensiun.",
+          "Pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur: assessment, executive coaching, konsultasi mutu layanan kesehatan, pelatihan, dan program persiapan pensiun.",
       },
       {
         property: "og:title",
@@ -59,6 +59,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name: "Talenta Mulia",
+          legalName: "PT Talenta Mulia Indonesia",
           description:
             "Pusat konsultasi psikologi dan human capital terintegrasi di Sidoarjo, Jawa Timur.",
           url: SITE_URL,
@@ -66,9 +67,10 @@ export const Route = createFileRoute("/")({
           email: "info@talentamulia.co.id",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Jl. Raya Gadung No.5, Margomulyo, Wage",
-            addressLocality: "Kec. Taman, Sidoarjo",
+            streetAddress: "Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage",
+            addressLocality: "Kec. Taman, Kab. Sidoarjo",
             addressRegion: "Jawa Timur",
+            postalCode: "61257",
             addressCountry: "ID",
           },
           areaServed: "Indonesia",
@@ -88,7 +90,7 @@ export const Route = createFileRoute("/")({
 });
 
 const MARQUEE =
-  "Korporat · Manufaktur · Rumah Sakit · BUMN · Pemerintah · Sekolah · Universitas · Bank · Asuransi · Kesehatan Eksekutif · Keluarga";
+  "Korporat · Manufaktur · Rumah Sakit · BUMN · Pemerintah · Sekolah · Universitas · Bank · Asuransi · Keluarga";
 
 const SEKTOR = ["Rumah Sakit", "BUMN", "Manufaktur", "Perbankan", "Pemerintah", "Universitas"];
 
@@ -142,7 +144,7 @@ const LAYANAN = [
   { icon: Target, title: "Executive Coaching", to: "/layanan/executive-coaching", text: "Pendampingan personal bagi pemimpin untuk tumbuh lebih efektif." },
   { icon: Sparkles, title: "Pengembangan Kepemimpinan", to: "/layanan/pelatihan-kepemimpinan", text: "Program berjenjang untuk membangun pipeline pemimpin masa depan." },
   { icon: HeartPulse, title: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan", text: "Layanan konseling dan program well-being di tempat kerja." },
-  { icon: Stethoscope, title: "Konsultasi Kesehatan", to: "/kesehatan", text: "Pendekatan medis dan psikologis untuk kesehatan eksekutif dan institusi." },
+  { icon: Stethoscope, title: "Konsultasi Kesehatan", to: "/kesehatan", text: "Konsultasi mutu layanan, akreditasi, dan tata kelola klinis untuk institusi kesehatan." },
   { icon: GraduationCap, title: "Pelatihan & Seminar", to: "/pelatihan", text: "Workshop tematik yang aplikatif untuk tim dan komunitas Anda." },
 ];
 
@@ -159,7 +161,6 @@ const INDIVIDU = [
   "Tes minat bakat pelajar dan mahasiswa",
   "Pendampingan karier dan pengembangan diri",
   "Konsultasi tumbuh kembang anak & remaja",
-  "Konsultasi kesehatan dan gaya hidup",
 ];
 
 const STEPS = [
@@ -214,15 +215,15 @@ const FAQ = [
 ];
 
 const HERO_PROFILS = [
-  { img: maulidah, name: "Maulidah Muflichah", badge: "Psychologist" },
-  { img: eka, name: "Eka Rachmawaty", badge: "Executive Coach" },
-  { img: hilda, name: "Hilda Rosa Ainiyah", badge: "Psikolog Klinis" },
-  { img: mamluatul, name: "Mamluatul Khoiriyah", badge: "Leadership Consultant" },
+  { img: maulidah, name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.", badge: "Founder · Psikolog" },
+  { img: eka, name: "Eka Rachmawaty, M.M., PCC", badge: "Mitra · Konsultan Kepemimpinan & Organisasi" },
+  { img: hilda, name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog", badge: "Mitra · Psikolog Klinis" },
+  { img: mamluatul, name: "Mamluatul Khoiriyah, M.Psi., Psikolog", badge: "Mitra · Psikolog – Konseling, SEFT & Parenting" },
 ];
 
 const TOKOH_SENTRAL = [
-  { img: andiani, name: "Dr. Hj. Andiani" },
-  { img: trinovia, name: "Dr. Tri Novia" },
+  { img: andiani, name: "Dr. dr. Hj. Andiani, M.Kes.", fellow: false },
+  { img: trinovia, name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom", fellow: true },
 ];
 
 function Beranda() {
@@ -240,7 +241,7 @@ function Beranda() {
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
-              Development, Assessment Center, Medical Wellness, dan Healthcare Consulting yang
+              Development, Assessment Center, Edukasi Kesehatan & Wellness, dan Healthcare Consulting yang
               didukung oleh psikolog, dokter, executive coach, serta konsultan organisasi
               berpengalaman.
             </p>
@@ -317,8 +318,8 @@ function Beranda() {
             Principal Experts
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
-            Praktisi senior multidisiplin yang memimpin layanan psikologi, kesehatan, kepemimpinan,
-            dan pengembangan organisasi di Talenta Mulia.
+            Mitra Talenta Mulia untuk konsultasi organisasi, pelatihan, dan transformasi layanan
+            kesehatan.
           </p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {TOKOH_SENTRAL.map((t) => (
@@ -328,7 +329,7 @@ function Beranda() {
               >
                 <img
                   src={t.img}
-                  alt={`${t.name} — Distinguished Fellow Talenta Mulia`}
+                  alt={`${t.name} — mitra Talenta Mulia`}
                   width={720}
                   height={900}
                   loading="lazy"
@@ -337,9 +338,14 @@ function Beranda() {
                 />
                 <figcaption className="p-6 text-center">
                   <p className="text-lg font-bold text-primary">{t.name}</p>
-                  <span className="mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
-                    Distinguished Fellow, Talenta Mulia
+                  <span className="mt-2 inline-flex rounded-full border border-brand-blue px-3 py-1 text-xs font-semibold text-brand-blue">
+                    Mitra
                   </span>
+                  {t.fellow && (
+                    <span className="ml-2 mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white">
+                      Distinguished Fellow, Talenta Mulia
+                    </span>
+                  )}
                 </figcaption>
               </figure>
             ))}
@@ -501,6 +507,17 @@ function Beranda() {
             </div>
           ))}
         </div>
+        <div className="mt-8 flex flex-col items-start gap-4 rounded-3xl border border-border bg-surface-soft p-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-lg font-semibold text-primary">
+            Ingin berkonsultasi dari mana saja? Tersedia konsultasi psikolog online.
+          </p>
+          <Link
+            to="/konsultasi-psikolog-online"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-brand-blue hover:text-brand-blue"
+          >
+            Konsultasi Psikolog Online <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
 
       {/* Cara Kerja */}
@@ -573,7 +590,7 @@ function Beranda() {
               Siap menguatkan tim & organisasi Anda?
             </h2>
             <p className="mt-4 max-w-lg text-sm text-primary-foreground/75">
-              Diskusikan kebutuhan assessment, coaching, pelatihan, dan medical wellness bersama tim
+              Diskusikan kebutuhan assessment, coaching, pelatihan, dan wellness karyawan bersama tim
               konsultan kami.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -608,7 +625,7 @@ function Beranda() {
                 Butuh pendampingan personal?
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Konseling, tes minat bakat, parenting, hingga konsultasi kesehatan — tersedia daring
+                Konseling, tes minat bakat, parenting, hingga pendampingan remaja — tersedia daring
                 maupun tatap muka di Sidoarjo.
               </p>
             </div>

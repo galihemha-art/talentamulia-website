@@ -10,6 +10,10 @@ export type LayananDetail = {
   ruangLingkup: string[];
   untukSiapa: string[];
   kenapaKami: string[];
+  /** Service awaiting sector licensing: shows a "Segera hadir" label and a "Daftar minat" CTA. */
+  segeraHadir?: boolean;
+  /** Optional note shown under the summary. */
+  catatan?: string;
 };
 
 export const FAQ_KORPORAT: { q: string; a: string }[] = [
@@ -303,33 +307,31 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
   },
   "medical-wellness": {
     slug: "medical-wellness",
-    nama: "Medical Wellness",
+    nama: "Program Edukasi Kesehatan & Wellness Karyawan",
     subjudul:
-      "Layanan kesehatan medis korporat: medical check-up eksekutif, edukasi kesehatan, dan program wellness karyawan.",
+      "Edukasi kesehatan, seminar gaya hidup sehat, dan integrasi well-being fisik dan mental untuk karyawan.",
     ringkasan:
-      "Medical Wellness menghadirkan sisi medis dalam program kesejahteraan korporat — pemeriksaan kesehatan yang ditindaklanjuti, edukasi gaya hidup, dan wellness berkelanjutan yang terhubung dengan layanan psikologi kami.",
+      "Program Edukasi Kesehatan & Wellness Karyawan membantu perusahaan membangun budaya hidup sehat melalui edukasi kesehatan, seminar gaya hidup sehat, dan program yang memadukan well-being fisik dan mental karyawan.",
+    catatan: "Talenta Mulia tidak menyelenggarakan pemeriksaan atau pengobatan medis.",
     tantangan: [
-      "Karyawan senior/eksekutif jarang medical check-up rutin",
-      "Risiko penyakit tidak menular meningkat di usia produktif",
-      "Program wellness perusahaan sering seremonial tanpa tindak lanjut medis",
+      "Pemahaman karyawan tentang gaya hidup sehat masih terbatas",
+      "Program wellness perusahaan sering seremonial tanpa tindak lanjut",
       "Kurang integrasi kesehatan fisik dan mental karyawan",
     ],
     pendekatan:
-      "Kombinasi pemeriksaan medis, edukasi kesehatan, dan program wellness berkelanjutan yang dipandu konsultan kepemimpinan medis.",
+      "Kombinasi edukasi kesehatan, seminar gaya hidup sehat, dan program wellness berkelanjutan yang terhubung dengan layanan psikologi kami.",
     ruangLingkup: [
-      "Medical check-up eksekutif",
-      "Edukasi kesehatan & gaya hidup",
-      "Program wellness berkala",
-      "Integrasi kesehatan fisik-mental karyawan",
+      "Edukasi kesehatan",
+      "Seminar gaya hidup sehat",
+      "Integrasi well-being fisik dan mental",
     ],
     untukSiapa: [
-      "Korporat yang ingin program wellness bermakna medis",
-      "Eksekutif dan karyawan senior",
+      "Korporat yang ingin program wellness yang bermakna",
       "Perusahaan yang mempersiapkan karyawan menjelang pensiun",
     ],
     kenapaKami: [
-      "Dipandu langsung oleh dokter spesialis dengan pengalaman manajemen rumah sakit",
       "Terintegrasi dengan program psikologi, bukan berdiri sendiri",
+      "Fokus pada edukasi dan pencegahan, bukan layanan medis",
     ],
   },
   "pelatihan-kepemimpinan": {
@@ -392,6 +394,7 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
     kenapaKami: [
       "Kombinasi rekrutmen dan asesmen psikologi dalam satu proses, bukan sekadar penyaringan CV",
     ],
+    segeraHadir: true,
   },
   "executive-search": {
     slug: "executive-search",
@@ -399,7 +402,7 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
     subjudul:
       "Proses identifikasi dan seleksi calon eksekutif dengan pendekatan diskret, objektif, dan selaras visi bisnis.",
     ringkasan:
-      "Executive Search menangani pencarian pemimpin untuk posisi strategis secara diskret — mulai dari pemetaan kandidat di pasar, pendekatan personal, asesmen mendalam, hingga pendampingan negosiasi dan onboarding.",
+      "Executive Search menangani pencarian pemimpin untuk posisi strategis secara diskret — mulai dari pemetaan kandidat di pasar, pendekatan personal, hingga asesmen mendalam kandidat.",
     tantangan: [
       "Posisi eksekutif kosong terlalu lama",
       "Kandidat internal terbatas untuk posisi strategis",
@@ -407,12 +410,11 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
       "Risiko salah pilih pemimpin berdampak besar ke organisasi",
     ],
     pendekatan:
-      "Pendekatan pencarian diskret (headhunting terarah), asesmen mendalam, dan verifikasi rekam jejak kandidat.",
+      "Pendekatan pencarian diskret, asesmen mendalam, dan verifikasi rekam jejak kandidat.",
     ruangLingkup: [
       "Pemetaan kandidat pasar (market mapping)",
       "Pendekatan & asesmen kandidat",
       "Verifikasi rekam jejak & referensi",
-      "Pendampingan proses negosiasi & onboarding",
     ],
     untukSiapa: [
       "Perusahaan yang mencari posisi C-level, direksi, atau senior leadership",
@@ -422,6 +424,7 @@ export const LAYANAN_KORPORAT: Record<string, LayananDetail> = {
       "Pendekatan berbasis asesmen psikologi, bukan sekadar database CV",
       "Kerahasiaan terjaga sepanjang proses",
     ],
+    segeraHadir: true,
   },
   "pendampingan-sekolah-perusahaan": {
     slug: "pendampingan-sekolah-perusahaan",

@@ -77,12 +77,12 @@ export const ARTIKEL: Artikel[] = [
 ];
 
 /** Estimated reading time in minutes (200 wpm), min 1. */
-export function readingTime(a: Artikel): number {
+export function readingTime(a: Pick<Artikel, "paragraphs">): number {
   const words = a.paragraphs.join(" ").trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 200));
 }
 
-export function wordCount(a: Artikel): number {
+export function wordCount(a: Pick<Artikel, "paragraphs">): number {
   return a.paragraphs.join(" ").trim().split(/\s+/).length;
 }
 

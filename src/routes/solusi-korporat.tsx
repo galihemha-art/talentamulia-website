@@ -134,9 +134,9 @@ const KATEGORI: Kategori[] = [
         text: "EAP, skrining kesehatan mental, dan pencegahan burnout di tempat kerja.",
       },
       {
-        title: "Medical Wellness",
+        title: "Edukasi Kesehatan & Wellness Karyawan",
         slug: "medical-wellness",
-        text: "Medical check-up eksekutif, edukasi kesehatan, dan program wellness berkala.",
+        text: "Edukasi kesehatan, seminar gaya hidup sehat, dan integrasi well-being fisik dan mental.",
       },
     ],
     extra: { label: "Konsultasi Rumah Sakit", to: "/kesehatan" },
@@ -150,12 +150,12 @@ const KATEGORI: Kategori[] = [
       {
         title: "Talent Acquisition",
         slug: "talent-acquisition",
-        text: "Sourcing, screening, dan asesmen kandidat untuk posisi staff hingga menengah.",
+        text: "Segera hadir — menunggu perizinan. Sourcing, screening, dan asesmen kandidat untuk posisi staff hingga menengah.",
       },
       {
         title: "Executive Search",
         slug: "executive-search",
-        text: "Pencarian diskret calon eksekutif dengan asesmen mendalam dan verifikasi rekam jejak.",
+        text: "Segera hadir — menunggu perizinan. Pencarian diskret calon eksekutif dengan asesmen mendalam dan verifikasi rekam jejak.",
       },
       {
         title: "RPO (Recruitment Process Outsourcing)",
@@ -163,10 +163,62 @@ const KATEGORI: Kategori[] = [
         soon: true,
       },
       {
-        title: "Headhunter",
-        text: "Layanan headhunting khusus untuk kebutuhan posisi spesialis.",
+        title: "Pencarian Posisi Spesialis",
+        text: "Pencarian kandidat khusus untuk kebutuhan posisi spesialis.",
         soon: true,
       },
+    ],
+  },
+];
+
+const ARTIKEL: { h: string; p?: string[]; ul?: [string, string][]; ol?: [string, string][] }[] = [
+  {
+    h: "Mengapa Kesejahteraan Mental Karyawan (Employee Wellness) Menentukan Kesuksesan Bisnis Anda?",
+    p: [
+      "Di era modern yang serba cepat ini, kesehatan mental karyawan bukan lagi sekadar isu pelengkap, melainkan fondasi utama dari produktivitas perusahaan. Karyawan yang mengalami tekanan psikologis berat, stres kerja yang tidak tertangani (burnout), atau masalah rumah tangga yang terbawa ke kantor akan mengalami penurunan fokus yang tajam. Pada akhirnya, hal ini berujung pada kerugian operasional dan tingginya angka turnover (pergantian karyawan).",
+      "Biro Psikologi Talenta Mulia hadir untuk menjembatani kesenjangan tersebut melalui pendampingan psikologis, Employee Assistance Program (EAP), dan Executive Coaching. Solusi korporat kami ditangani langsung oleh para ahli berlisensi, seperti pakar pengembangan organisasi bersertifikasi Executive Coach dari International Coaching Federation (ICF - PCC), Ibu Eka Rachmawaty. Selain itu, intervensi klinis didampingi oleh psikolog dengan Surat Izin Praktik Psikologi (SIPP) dari HIMPSI, yaitu Maulidah Muflichah, M.Psi., Psikolog. Kami menjamin penanganan yang objektif, aman, dan dapat dipertanggungjawabkan secara keilmuan.",
+    ],
+  },
+  {
+    h: "Apa Saja Layanan Solusi Korporat yang Kami Tawarkan?",
+    p: [
+      "Pendekatan kami bersifat holistik, memadukan ilmu psikologi dengan strategi manajemen bisnis. Berikut adalah pilar utama layanan korporat kami:",
+    ],
+    ul: [
+      ["Employee Assistance Program (EAP):", "Layanan pendampingan psikologis khusus bagi karyawan yang mengalami stres kerja, depresi, atau konflik keluarga. Program ini bertujuan memulihkan kesejahteraan mental mereka agar kembali produktif."],
+      ["Executive Coaching & Leadership Development:", "Program pengembangan kapasitas bagi para pimpinan, manajer, dan eksekutif perusahaan untuk meningkatkan keterampilan kepemimpinan dan pengambilan keputusan. Sesi ini dikelola langsung oleh coach bersertifikasi ICF."],
+      ["Asesmen Psikologis (Psikotes) & Rekrutmen:", "Evaluasi psikologis komprehensif untuk membantu perusahaan merekrut kandidat yang tepat, menempatkan karyawan sesuai potensi, dan merencanakan promosi jabatan secara objektif."],
+      ["Pelatihan Manajemen Stres & Team Building:", "Pelatihan interaktif untuk membekali karyawan dengan keterampilan mengelola emosi, meningkatkan resiliensi, dan membangun komunikasi yang positif antar anggota tim."],
+      ["Tata Kelola Klinis & Akreditasi Rumah Sakit:", "Pendampingan khusus bagi institusi kesehatan (klinik atau rumah sakit) berupa konsultasi mutu layanan, akreditasi, dan tata kelola klinis untuk mendukung proses peningkatan mutu dan akreditasi."],
+    ],
+  },
+  {
+    h: "Bagaimana Metode Pendekatan Psikologi & Organisasi di Talenta Mulia Berlangsung?",
+    p: [
+      "Untuk memberikan Anda gambaran yang terstruktur sebelum menjalin kemitraan dengan kami, berikut adalah 5 langkah metode pendekatan psikologi dan organisasi yang akan perusahaan Anda jalani:",
+    ],
+    ol: [
+      ["Asesmen Kebutuhan Organisasi (Need Analysis) yang Dirahasiakan:", "Langkah pertama adalah diskusi mendalam antara perwakilan manajemen perusahaan Anda dengan tim konsultan kami. Kami akan memetakan permasalahan spesifik, seperti tingginya tingkat burnout, kebutuhan rekrutmen, atau penurunan performa tim. Kerahasiaan data perusahaan Anda sangat terjamin."],
+      ["Sesi Eksplorasi Karyawan dan Pembangunan Rapport:", "Apabila program melibatkan konseling langsung dengan karyawan, psikolog kami akan membangun hubungan saling percaya (rapport) di ruang yang aman. Karyawan bebas mengutarakan tekanan kerja tanpa takut dihakimi, dengan pendekatan empati tanpa paksaan."],
+      ["Pemetaan Masalah dan Formulasi Solusi Objektif:", "Berdasarkan data dari need analysis dan eksplorasi, pakar kami akan menegakkan perumusan masalah. Pemetaan masalah ini dilakukan secara objektif berdasarkan standar Himpunan Psikologi Indonesia (HIMPSI) dan kerangka kerja coaching ICF."],
+      ["Perancangan dan Eksekusi Intervensi Korporat:", "Kami akan mempresentasikan rancangan program penyelesaian masalah kepada pihak manajemen. Intervensi yang dieksekusi dapat berupa konseling individu, training karyawan, maupun coaching pimpinan."],
+      ["Evaluasi Berkelanjutan dan Rencana Tindak Lanjut (Follow-Up):", "Keberhasilan suatu program korporat selalu diukur di tahap akhir. Kemajuan performa karyawan akan dievaluasi, lalu psikolog atau coach kami akan merekomendasikan langkah mandiri yang perlu dipertahankan oleh manajemen perusahaan."],
+    ],
+  },
+  {
+    h: "Pertanyaan yang Sering Diajukan (FAQ) Seputar Layanan Korporat Kami",
+    ol: [
+      ["Apakah rahasia internal perusahaan dan data medis karyawan dijamin kerahasiaannya?", "Ya, tentu saja. Kerahasiaan data perusahaan maupun cerita personal karyawan adalah prioritas mutlak dalam setiap sesi di Talenta Mulia. Kami beroperasi dengan kepatuhan penuh pada kode etik kerahasiaan HIMPSI dan standar etika ICF."],
+      ["Di mana program untuk perusahaan ini dapat diselenggarakan?", "Kami menawarkan fleksibilitas penuh. Kantor kami beralamat di Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur, yang melayani klien offline dari area Surabaya, Sidoarjo, dan sekitarnya. Namun, kami juga melayani program secara in-house di kantor Anda, atau jarak jauh melalui konsultasi psikolog online (via video call)."],
+      ["Siapa saja pakar yang akan mendampingi perusahaan saya?", "Anda akan didampingi oleh ahli dengan rekam jejak yang jelas, demi menjaga keamanan dan kredibilitas (E-E-A-T). Layanan ini dikelola oleh Executive Coach (ICF-PCC) Eka Rachmawaty, dan psikolog Maulidah Muflichah, M.Psi., Psikolog., CHt."],
+      ["Apakah Talenta Mulia juga melayani asesmen untuk calon karyawan baru?", "Benar. Kami menyediakan layanan asesmen psikologis atau psikotes komprehensif yang dirancang khusus untuk proses rekrutmen karyawan baru maupun evaluasi promosi jabatan."],
+      ["Bagaimana cara memulai kerja sama dengan Talenta Mulia?", "Sangat mudah. Perusahaan Anda cukup menghubungi tim representatif kami untuk mengatur jadwal pertemuan awal atau need analysis tanpa komitmen yang mengikat."],
+    ],
+  },
+  {
+    h: "Jadwalkan Diskusi dengan Tim Ahli Kami Hari Ini",
+    p: [
+      "Jangan biarkan konflik internal dan stres kerja menghancurkan produktivitas perusahaan Anda. Hubungi representatif kami melalui Telepon/WhatsApp di +62 821-3299-0498 atau akses website kami di www.talentamulia.co.id untuk berdiskusi dengan pakar kami sekarang juga.",
     ],
   },
 ];
@@ -181,12 +233,30 @@ function Page() {
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
           <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
-            Solusi Korporat
+            Solusi Korporat & Pengembangan Organisasi Talenta Mulia: Optimalkan Potensi SDM dan
+            Kesejahteraan Karyawan Anda
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Layanan konsultasi psikologi, kesehatan, dan human capital untuk korporat, rumah sakit,
-            BUMN, dan pemerintah.
-          </p>
+          <div className="mt-4 max-w-3xl space-y-4 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              Selamat datang di layanan Solusi Korporat Biro Psikologi Talenta Mulia. Jika Anda
+              berada di halaman ini, Anda mungkin adalah seorang pimpinan perusahaan, manajer Human
+              Resources (HR), atau pengambil keputusan yang sedang memikul tanggung jawab besar.
+              Mengelola dinamika sumber daya manusia (SDM), menghadapi tingginya tingkat stres
+              kerja, meredam konflik internal, hingga menjaga produktivitas tim demi tercapainya
+              target bisnis bukanlah hal yang mudah. Kami di Talenta Mulia sangat memahami beban
+              berat di pundak Anda. Ketahuilah bahwa perasaan lelah dan bingung yang mungkin Anda
+              rasakan sangatlah valid, dan Anda tidak perlu menyelesaikan semuanya sendirian.
+            </p>
+            <p>
+              Sebagai institusi penyedia layanan psikologi dan pengembangan organisasi yang
+              berpusat di Sidoarjo, Jawa Timur, Talenta Mulia berkomitmen menghadirkan ruang
+              kolaborasi yang suportif, hangat, dan solutif bagi perusahaan Anda. Mengingat
+              kesejahteraan karyawan berkaitan langsung dengan kelangsungan finansial dan masa depan
+              institusi, seluruh program kami dirancang dengan mematuhi kriteria E-E-A-T
+              (Experience, Expertise, Authoritativeness, Trustworthiness) berstandar global yang
+              sangat ketat.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -272,8 +342,8 @@ function Page() {
             Pensiun Bahagia, Hidup Bermakna
           </h2>
           <p className="mt-5 leading-relaxed text-muted-foreground">
-            Program unggulan kami — satu-satunya di Jawa Timur yang memadukan pendampingan
-            psikologi, terapi hipnoterapi/SEFT, dan pemeriksaan medis dalam satu rangkaian. Karyawan
+            Program unggulan kami yang memadukan pendampingan psikologi, SEFT, dan edukasi
+            kesehatan dalam satu rangkaian. Karyawan
             yang memasuki masa persiapan pensiun dibantu menata kesiapan mental, menjaga kesehatan
             fisik, dan merancang peran baru yang bermakna setelah purnatugas.
           </p>
@@ -284,6 +354,48 @@ function Page() {
             Pelajari Program MPP
             <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-5 py-16 md:py-20">
+        <div className="space-y-12 leading-relaxed text-muted-foreground">
+          {ARTIKEL.map((s) => (
+            <div key={s.h}>
+              <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
+                {s.h}
+              </h2>
+              {s.p?.map((t) => (
+                <p key={t} className="mt-4">
+                  {t}
+                </p>
+              ))}
+              {s.ul && (
+                <ul className="mt-4 list-disc space-y-3 pl-5">
+                  {s.ul.map(([b, t]) => (
+                    <li key={b}>
+                      <strong className="text-primary">{b}</strong> {t}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.ol && (
+                <ol className="mt-4 list-decimal space-y-3 pl-5">
+                  {s.ol.map(([b, t]) => (
+                    <li key={b}>
+                      <strong className="text-primary">{b}</strong> {t}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          ))}
+          <p className="rounded-2xl border border-border bg-secondary/40 p-5 text-sm">
+            <strong className="text-primary">Disclaimer Profesional:</strong> Halaman ini disusun
+            sebagai pedoman layanan korporat dan psikoedukasi organisasi. Jika terdapat karyawan yang
+            mengalami krisis kesehatan mental darurat atau indikasi depresi klinis yang mengancam
+            keselamatan, segera hubungi layanan darurat kesehatan mental terdekat atau jadwalkan sesi
+            darurat dengan psikolog klinis kami.
+          </p>
         </div>
       </section>
 

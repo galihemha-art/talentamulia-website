@@ -1,19 +1,18 @@
 import { Link } from "@tanstack/react-router";
 
-export function WordMark({ inverted = false }: { inverted?: boolean }) {
+import logoUrl from "@/assets/logo-talentamulia-2026.jpg";
+
+export function WordMark() {
   return (
-    <Link to="/" className="flex items-center gap-3">
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-gradient text-base font-bold tracking-tight text-white">
-        TM
-      </span>
-      <span className="leading-tight">
-        <span className="block font-wordmark text-xl text-gradient-brand">Talenta Mulia</span>
-        <span
-          className={`block text-[11px] tracking-wide ${inverted ? "text-white/70" : "text-muted-foreground"}`}
-        >
-          Psikologi · Kesehatan · Kepemimpinan
-        </span>
-      </span>
+    <Link to="/" className="flex items-center" aria-label="Talenta Mulia — Beranda">
+      <img
+        src={logoUrl}
+        alt="Talenta Mulia — Psychology, Healthcare & Leadership"
+        className="h-14 w-auto sm:h-16"
+        width={366}
+        height={110}
+        decoding="async"
+      />
     </Link>
   );
 }

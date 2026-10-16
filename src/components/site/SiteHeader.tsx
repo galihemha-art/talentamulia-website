@@ -29,10 +29,10 @@ const MEGA: Column[] = [
         label: "Kesehatan & Rekrutmen",
         items: [
           { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
-          { label: "Medical Wellness", to: "/layanan/medical-wellness" },
+          { label: "Edukasi Kesehatan & Wellness", to: "/layanan/medical-wellness" },
           { label: "Konsultasi Rumah Sakit", to: "/kesehatan" },
-          { label: "Talent Acquisition", to: "/layanan/talent-acquisition" },
-          { label: "Executive Search", to: "/layanan/executive-search" },
+          { label: "Talent Acquisition (Segera hadir)", to: "/layanan/talent-acquisition" },
+          { label: "Executive Search (Segera hadir)", to: "/layanan/executive-search" },
           {
             label: "Pendampingan Sekolah & Perusahaan",
             to: "/layanan/pendampingan-sekolah-perusahaan",
@@ -59,7 +59,7 @@ const MEGA: Column[] = [
       { label: "Konseling Pernikahan", to: "/layanan/konseling-pernikahan" },
       { label: "Parenting & Anak", to: "/layanan/parenting-anak" },
       { label: "Konseling Remaja", to: "/layanan/konseling-remaja" },
-      { label: "Hipnoterapi", to: "/layanan/hipnoterapi" },
+      { label: "Hipnoterapi (Segera hadir)", to: "/layanan/hipnoterapi" },
       { label: "Trauma Healing", to: "/layanan/trauma-healing" },
       { label: "Stres & Kecemasan", to: "/layanan/stres-kecemasan" },
       { label: "Dukungan Depresi", to: "/layanan/dukungan-depresi" },
