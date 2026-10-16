@@ -8,9 +8,9 @@ export function WordMark() {
       <img
         src={logoUrl}
         alt="Talenta Mulia — Psychology, Healthcare & Leadership"
-        className="h-14 w-auto sm:h-16"
-        width={366}
-        height={110}
+        className="h-16 w-auto sm:h-20"
+        width={552}
+        height={160}
         decoding="async"
       />
     </Link>
