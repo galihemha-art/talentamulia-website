@@ -71,8 +71,8 @@ function Page() {
           </h2>
           <p className="mt-2 font-semibold text-brand-blue">Pensiun Bahagia, Hidup Bermakna</p>
           <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">
-            Satu-satunya program persiapan pensiun di Jawa Timur yang menggabungkan psikologi,
-            hipnoterapi/SEFT, dan keahlian medis dalam satu rangkaian — agar karyawan siap secara
+            Program persiapan pensiun yang menggabungkan psikologi, SEFT, dan edukasi kesehatan
+            dalam satu rangkaian — agar karyawan siap secara
             mental, emosional, dan fisik menghadapi babak baru kehidupannya.
           </p>
           <Link
