@@ -1,7 +1,7 @@
 import { AUTHORS, AUTHOR_LIST, type Author } from "@/lib/authors";
 import { canonicalUrl, SITE_URL } from "@/lib/seo";
 
-const LOGO = `${SITE_URL}/favicon.ico`;
+const LOGO = `${SITE_URL}/favicon.png`;
 
 const ADDRESS = {
   "@type": "PostalAddress",
