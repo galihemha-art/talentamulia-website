@@ -284,7 +284,7 @@ export function TeenCounselingPage() {
             <p className="mt-4 max-w-2xl leading-relaxed text-primary-foreground/75">Jangan ragu untuk mengurai masalah Anda bersama tim psikolog profesional kami.</p>
           </div>
           <Button asChild size="lg" className="h-12 rounded-xl bg-counseling px-6 text-primary-foreground hover:bg-counseling/90">
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" /> Konsultasi via WhatsApp Sekarang</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" /> Jadwalkan konsultasi awal via WhatsApp</a>
           </Button>
         </div>
       </section>
