@@ -241,7 +241,7 @@ function Beranda() {
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
-              Development, Assessment Center, Medical Wellness, dan Healthcare Consulting yang
+              Development, Assessment Center, Edukasi Kesehatan & Wellness, dan Healthcare Consulting yang
               didukung oleh psikolog, dokter, executive coach, serta konsultan organisasi
               berpengalaman.
             </p>
@@ -590,7 +590,7 @@ function Beranda() {
               Siap menguatkan tim & organisasi Anda?
             </h2>
             <p className="mt-4 max-w-lg text-sm text-primary-foreground/75">
-              Diskusikan kebutuhan assessment, coaching, pelatihan, dan medical wellness bersama tim
+              Diskusikan kebutuhan assessment, coaching, pelatihan, dan wellness karyawan bersama tim
               konsultan kami.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -625,7 +625,7 @@ function Beranda() {
                 Butuh pendampingan personal?
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Konseling, tes minat bakat, parenting, hingga konsultasi kesehatan — tersedia daring
+                Konseling, tes minat bakat, parenting, hingga pendampingan remaja — tersedia daring
                 maupun tatap muka di Sidoarjo.
               </p>
             </div>
