@@ -30,15 +30,11 @@ export default defineConfig({
     }),
 
     nitro({
-      preset: "cloudflare-module",
+      preset: "vercel",
       output: {
         dir: "dist",
         serverDir: "dist/server",
         publicDir: "dist/client",
-      },
-      cloudflare: {
-        nodeCompat: true,
-        deployConfig: true,
       },
     }),
 
