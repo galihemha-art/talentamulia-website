@@ -39,7 +39,7 @@ export type Professional = {
 };
 
 export const TEAM_CONSENT_NOTE =
-  "Profil ditampilkan atas persetujuan masing-masing anggota. Nomor izin praktik psikolog tercantum pada profil yang bersangkutan.";
+  "Profil ditampilkan atas persetujuan masing-masing profesional. Seluruh psikolog berpraktik resmi dengan kualifikasi keilmuan dan legalitas profesi yang terverifikasi.";
 
 export const PROFESSIONALS: Professional[] = [
   {
@@ -176,7 +176,7 @@ export const PROFESSIONALS: Professional[] = [
     id: "andiani",
     photo: andiani,
     name: "Dr. dr. Hj. Andiani, M.Kes.",
-    role: "",
+    role: "Konsultan Mutu Pelayanan Kesehatan & Tata Kelola Klinis",
     mitra: true,
     desc: "Memberi arahan di bidang mutu pelayanan kesehatan, akreditasi, dan tata kelola klinis.",
     tags: ["Mutu Pelayanan Kesehatan", "Akreditasi", "Tata Kelola Klinis"],
