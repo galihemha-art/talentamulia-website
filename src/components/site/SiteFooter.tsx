@@ -37,7 +37,7 @@ const COLUMNS: { title: string; items: Item[] }[] = [
     title: "Kesehatan",
     items: [
       { label: "Konsultasi Kesehatan", to: "/kesehatan" },
-      { label: "Medical Wellness", to: "/layanan/medical-wellness" },
+      { label: "Edukasi Kesehatan & Wellness", to: "/layanan/medical-wellness" },
       { label: "Kesejahteraan Karyawan", to: "/layanan/kesejahteraan-karyawan" },
       { label: "Sektor Kesehatan", to: "/industri/kesehatan" },
     ],
