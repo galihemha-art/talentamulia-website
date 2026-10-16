@@ -28,7 +28,7 @@ export const Route = createFileRoute("/syarat-ketentuan")({
 const SECTIONS = [
   {
     h: "Ruang lingkup layanan",
-    p: "Layanan Talenta Mulia meliputi konsultasi psikologi, asesmen, executive coaching, pengembangan kepemimpinan, medical wellness, serta pelatihan untuk organisasi dan individu.",
+    p: "Layanan Talenta Mulia meliputi konsultasi psikologi, asesmen, executive coaching, pengembangan kepemimpinan, edukasi kesehatan & wellness karyawan, serta pelatihan untuk organisasi dan individu.",
   },
   {
     h: "Kesepakatan kerja",

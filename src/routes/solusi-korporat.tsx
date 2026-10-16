@@ -209,7 +209,7 @@ const ARTIKEL: { h: string; p?: string[]; ul?: [string, string][]; ol?: [string,
     h: "Pertanyaan yang Sering Diajukan (FAQ) Seputar Layanan Korporat Kami",
     ol: [
       ["Apakah rahasia internal perusahaan dan data medis karyawan dijamin kerahasiaannya?", "Ya, tentu saja. Kerahasiaan data perusahaan maupun cerita personal karyawan adalah prioritas mutlak dalam setiap sesi di Talenta Mulia. Kami beroperasi dengan kepatuhan penuh pada kode etik kerahasiaan HIMPSI dan standar etika ICF."],
-      ["Di mana program untuk perusahaan ini dapat diselenggarakan?", "Kami menawarkan fleksibilitas penuh. Pusat klinik kami beralamat di Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur, yang melayani klien offline dari area Surabaya, Sidoarjo, dan sekitarnya. Namun, kami juga melayani program secara in-house di kantor Anda, atau jarak jauh melalui konsultasi psikolog online (via video call)."],
+      ["Di mana program untuk perusahaan ini dapat diselenggarakan?", "Kami menawarkan fleksibilitas penuh. Kantor kami beralamat di Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur, yang melayani klien offline dari area Surabaya, Sidoarjo, dan sekitarnya. Namun, kami juga melayani program secara in-house di kantor Anda, atau jarak jauh melalui konsultasi psikolog online (via video call)."],
       ["Siapa saja pakar yang akan mendampingi perusahaan saya?", "Anda akan didampingi oleh ahli dengan rekam jejak yang jelas, demi menjaga keamanan dan kredibilitas (E-E-A-T). Layanan ini dikelola oleh Executive Coach (ICF-PCC) Eka Rachmawaty, dan psikolog Maulidah Muflichah, M.Psi., Psikolog., CHt."],
       ["Apakah Talenta Mulia juga melayani asesmen untuk calon karyawan baru?", "Benar. Kami menyediakan layanan asesmen psikologis atau psikotes komprehensif yang dirancang khusus untuk proses rekrutmen karyawan baru maupun evaluasi promosi jabatan."],
       ["Bagaimana cara memulai kerja sama dengan Talenta Mulia?", "Sangat mudah. Perusahaan Anda cukup menghubungi tim representatif kami untuk mengatur jadwal pertemuan awal atau need analysis tanpa komitmen yang mengikat."],
@@ -342,8 +342,8 @@ function Page() {
             Pensiun Bahagia, Hidup Bermakna
           </h2>
           <p className="mt-5 leading-relaxed text-muted-foreground">
-            Program unggulan kami — satu-satunya di Jawa Timur yang memadukan pendampingan
-            psikologi, terapi hipnoterapi/SEFT, dan pemeriksaan medis dalam satu rangkaian. Karyawan
+            Program unggulan kami yang memadukan pendampingan psikologi, SEFT, dan edukasi
+            kesehatan dalam satu rangkaian. Karyawan
             yang memasuki masa persiapan pensiun dibantu menata kesiapan mental, menjaga kesehatan
             fisik, dan merancang peran baru yang bermakna setelah purnatugas.
           </p>
