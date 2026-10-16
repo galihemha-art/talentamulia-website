@@ -29,7 +29,14 @@ export default defineConfig({
       server: { entry: "server" },
     }),
 
-    nitro(),
+    nitro({
+      preset: "cloudflare-module",
+      output: {
+        dir: "dist",
+        serverDir: "dist/server",
+        publicDir: "dist/client",
+      },
+    }),
 
     viteReact(),
   ],
