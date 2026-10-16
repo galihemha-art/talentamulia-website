@@ -54,13 +54,14 @@ export function RiswayChat() {
     const user: Msg = { from: "user", text: o.label };
     if (o.action === "menu") { setMsgs((m) => [...m, user, { from: "bot", text: "Silakan pilih topik yang ingin Anda ketahui." }]); setOpts(MENU); return; }
     if (o.action === "features" || o.action === "more") { setMsgs((m) => [...m, user, { from: "bot", text: "Pilih fitur yang ingin Anda ketahui:" }]); setOpts(FEATURE_OPTS); return; }
-    if (FEATURES[o.action]) {
-      const [name, text] = FEATURES[o.action];
+    const feat = FEATURES[o.action];
+    if (feat) {
+      const [name, text] = feat;
       setMsgs((m) => [...m, user, { from: "bot", text: `${name}: ${text}` }]);
       setOpts([{ label: "Fitur lain", action: "more" }, ...AFTER]);
       return;
     }
-    setMsgs((m) => [...m, user, { from: "bot", text: ANSWERS[o.action] }]);
+    setMsgs((m) => [...m, user, { from: "bot", text: ANSWERS[o.action] ?? "" }]);
     setOpts(AFTER);
   };
 
