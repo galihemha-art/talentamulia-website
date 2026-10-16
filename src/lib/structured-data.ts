@@ -5,9 +5,10 @@ const LOGO = `${SITE_URL}/favicon.ico`;
 
 const ADDRESS = {
   "@type": "PostalAddress",
-  streetAddress: "Jl. Raya Gadung No.5, Margomulyo, Wage",
-  addressLocality: "Kec. Taman, Sidoarjo",
+  streetAddress: "Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage",
+  addressLocality: "Kec. Taman, Kab. Sidoarjo",
   addressRegion: "Jawa Timur",
+  postalCode: "61257",
   addressCountry: "ID",
 } as const;
 
@@ -18,7 +19,9 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: "Talenta Mulia",
-    alternateName: "Talenta Mulia Consulting",
+    legalName: "PT Talenta Mulia Indonesia",
+    alternateName: "PT Talenta Mulia Indonesia",
+    identifier: { "@type": "PropertyValue", propertyID: "NIB", value: "1410260097435" },
     url: SITE_URL,
     logo: LOGO,
     email: "info@talentamulia.co.id",
@@ -47,16 +50,15 @@ export function organizationSchema() {
 export function medicalOrganizationSchema(path = "/kesehatan") {
   return {
     "@context": "https://schema.org",
-    "@type": "MedicalOrganization",
+    "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#medicalorganization`,
-    name: "Talenta Mulia — Konsultasi Kesehatan & Medical Wellness",
+    name: "Talenta Mulia — Konsultasi Mutu Layanan Kesehatan",
     url: canonicalUrl(path),
     logo: LOGO,
     email: "info@talentamulia.co.id",
     telephone: "+62 821 3299 0498",
     address: ADDRESS,
     areaServed: "Indonesia",
-    medicalSpecialty: ["PublicHealth", "PreventiveMedicine", "Psychiatric"],
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     description:
       "Layanan konsultasi kesehatan, medical wellness, skrining kesehatan karyawan, dan kepemimpinan medis oleh dokter dan psikolog Talenta Mulia.",
