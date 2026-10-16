@@ -106,7 +106,7 @@ const FAQ = [
   },
   {
     q: "Bagaimana cara menentukan jadwal konsultasi?",
-    a: "Tekan tombol Jadwalkan Konsultasi untuk terhubung dengan admin. Tim kami akan membantu memilih waktu dan psikolog yang sesuai dengan kebutuhan Anda.",
+    a: "Tekan tombol Jadwalkan konsultasi awal untuk terhubung dengan admin. Tim kami akan membantu memilih waktu dan psikolog yang sesuai dengan kebutuhan Anda.",
   },
 ] as const;
 
@@ -138,7 +138,7 @@ export function PsychologicalCounselingPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="h-12 rounded-xl px-6">
                   <a href={WA_URL} target="_blank" rel="noopener noreferrer">
-                    Jadwalkan Konsultasi Sekarang <ArrowRight aria-hidden="true" />
+                    Jadwalkan konsultasi awal <ArrowRight aria-hidden="true" />
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="h-12 rounded-xl px-6">
@@ -271,6 +271,7 @@ export function PsychologicalCounselingPage() {
         <div className="rounded-xl border border-border bg-secondary/40 p-6">
           <h2 id="safety" className="font-heading text-lg font-semibold text-primary">Catatan keselamatan</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Layanan ini bukan layanan gawat darurat. Jika Anda atau orang terdekat berisiko menyakiti diri atau berada dalam kondisi darurat, segera hubungi layanan gawat darurat atau fasilitas kesehatan terdekat.</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Ditangani oleh psikolog [ISI: nama psikolog] (STR dan SILP/SIPP tersedia atas permintaan). Layanan konseling umum, bukan layanan klinis. Untuk gangguan yang memerlukan penanganan klinis atau medis, kami merujuk ke psikolog klinis atau psikiater.</p>
         </div>
       </section>
 
