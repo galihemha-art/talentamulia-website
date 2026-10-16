@@ -38,7 +38,7 @@ export const TOKOH_SENTRAL: Tokoh[] = [
       "Ners, STIKes Indonesia Maju (2018–2019)",
       "MM, STIE Tri Dharma Widya (2018–2020)",
       "M.I.Kom, Universitas Budi Luhur (2021–2023)",
-      // Doktor Ilmu Pendidikan, Universitas Islam Nusantara (2022–[ISI tahun ijazah]) — hidden until filled.
+      "Doktor Ilmu Pendidikan, Universitas Islam Nusantara",
     ],
     sertifikasi: ["Tersertifikasi TPPK, Kemenkes RI"],
     buku: [],
