@@ -4,6 +4,8 @@ import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { useState, type FormEvent } from "react";
 import { Clock, ExternalLink, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { z } from "zod";
+import { Link } from "@tanstack/react-router";
+import { COMPANY, MAPS_EMBED_URL } from "@/lib/company";
 
 export const Route = createFileRoute("/kontak")({
   head: () => ({
@@ -12,7 +14,7 @@ export const Route = createFileRoute("/kontak")({
       {
         name: "description",
         content:
-          "Hubungi Talenta Mulia di Jl. Raya Gadung No.5, Wage, Taman, Sidoarjo, Jawa Timur. Ajukan janji konsultasi psikologi, coaching, kesehatan, atau pelatihan — online maupun tatap muka.",
+          "Hubungi Talenta Mulia (PT Talenta Mulia Indonesia) di Jl. Gadung No. 05, Wage, Taman, Sidoarjo. Ajukan janji konsultasi psikologi, coaching, atau pelatihan — online maupun tatap muka.",
       },
       {
         property: "og:title",
@@ -38,17 +40,16 @@ export const Route = createFileRoute("/kontak")({
 const WA_URL =
   "https://wa.me/6282132990498?text=Halo%20Talenta%20Mulia%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20konsultasi.";
 
-const ALAMAT = "Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur";
+const ALAMAT = COMPANY.fullAddress;
 
 const MAPS_URL = "https://maps.app.goo.gl/jytMfuarDW5F5FBE6";
 
-const MAPS_EMBED_URL =
-  "https://www.google.com/maps?q=Jl.%20Raya%20Gadung%20No.5%2C%20Margomulyo%2C%20Wage%2C%20Taman%2C%20Sidoarjo%2C%20Jawa%20Timur&output=embed";
+
 
 const LAYANAN = [
   "Assessment Psikologi",
   "Executive Coaching",
-  "Konsultasi Kesehatan",
+  "Konsultasi Mutu Layanan Kesehatan (institusi)",
   "Pelatihan & Seminar",
   "Layanan Individu",
   "Program Masa Persiapan Pensiun (MPP)",
@@ -78,6 +79,7 @@ const inputClass =
 function Page() {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -95,8 +97,15 @@ function Page() {
       return;
     }
 
+    if (!consent) return;
     setErrors({});
     const v = parsed.data;
+    const consentAt = new Date().toISOString();
+    try {
+      window.localStorage.setItem("tm-consent-kontak", consentAt);
+    } catch {
+      /* storage unavailable */
+    }
     const pesan = [
       "Halo Talenta Mulia, saya ingin membuat janji konsultasi.",
       `Nama: ${v.nama}`,
@@ -105,6 +114,7 @@ function Page() {
       v.organisasi ? `Organisasi: ${v.organisasi}` : null,
       `Jenis Layanan: ${v.layanan}`,
       `Pesan: ${v.pesan}`,
+      `Persetujuan data pribadi: ${consentAt}`,
     ]
       .filter(Boolean)
       .join("\n");
@@ -115,6 +125,7 @@ function Page() {
       "noopener,noreferrer",
     );
     setSent(true);
+    setConsent(false);
     form.reset();
   }
 
@@ -211,13 +222,36 @@ function Page() {
                   className={`${inputClass} resize-y`}
                   placeholder="Ceritakan singkat kebutuhan Anda, jumlah peserta, dan waktu yang diharapkan."
                 />
+                <p className="mt-1.5 text-xs text-muted-foreground">
+                  Jangan menulis data kesehatan atau identitas anak di kolom ini. Untuk anak di bawah
+                  18 tahun, formulir diisi orang tua/wali.
+                </p>
                 {errors.pesan && <p className="mt-1 text-xs text-destructive">{errors.pesan}</p>}
+              </div>
+              <div className="sm:col-span-2">
+                <label className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <input
+                    type="checkbox"
+                    name="persetujuan"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 h-4 w-4 shrink-0 accent-primary"
+                  />
+                  <span>
+                    Saya menyetujui pemrosesan data pribadi saya sesuai{" "}
+                    <Link to="/kebijakan-privasi" className="font-semibold text-brand-blue underline">
+                      Kebijakan Privasi
+                    </Link>{" "}
+                    PT Talenta Mulia Indonesia.
+                  </span>
+                </label>
               </div>
             </div>
 
             <button
               type="submit"
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              disabled={!consent}
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Send className="h-4 w-4" /> Kirim Permintaan
             </button>

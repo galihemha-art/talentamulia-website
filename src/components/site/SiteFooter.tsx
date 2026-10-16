@@ -98,14 +98,21 @@ const SOCIALS = [
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (!email.trim()) return;
+        if (!email.trim() || !consent) return;
+        try {
+          window.localStorage.setItem("tm-consent-newsletter", new Date().toISOString());
+        } catch {
+          /* storage unavailable */
+        }
         setSent(true);
         setEmail("");
+        setConsent(false);
       }}
       className="mt-4"
     >
@@ -124,11 +131,27 @@ function Newsletter() {
         />
         <button
           type="submit"
-          className="rounded-lg bg-brand-gradient px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          disabled={!consent}
+          className="rounded-lg bg-brand-gradient px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Berlangganan
         </button>
       </div>
+      <label className="mt-3 flex items-start gap-2 text-xs text-primary-foreground/75">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0"
+        />
+        <span>
+          Saya menyetujui pemrosesan data pribadi saya sesuai{" "}
+          <Link to="/kebijakan-privasi" className="underline">
+            Kebijakan Privasi
+          </Link>{" "}
+          PT Talenta Mulia Indonesia.
+        </span>
+      </label>
       {sent ? (
         <p className="mt-2 text-xs text-primary-foreground/70" role="status">
           Terima kasih! Kami akan mengirim wawasan terbaru ke email Anda.
