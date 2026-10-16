@@ -823,7 +823,7 @@ function Page() {
                 Talenta Mulia
               </p>
               <p className="mt-3">
-                Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur
+                Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur 61257
               </p>
               <p className="mt-2">
                 Telepon:{" "}

@@ -59,6 +59,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name: "Talenta Mulia",
+          legalName: "PT Talenta Mulia Indonesia",
           description:
             "Pusat konsultasi psikologi dan human capital terintegrasi di Sidoarjo, Jawa Timur.",
           url: SITE_URL,
@@ -66,9 +67,10 @@ export const Route = createFileRoute("/")({
           email: "info@talentamulia.co.id",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Jl. Raya Gadung No.5, Margomulyo, Wage",
-            addressLocality: "Kec. Taman, Sidoarjo",
+            streetAddress: "Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage",
+            addressLocality: "Kec. Taman, Kab. Sidoarjo",
             addressRegion: "Jawa Timur",
+            postalCode: "61257",
             addressCountry: "ID",
           },
           areaServed: "Indonesia",
@@ -159,7 +161,6 @@ const INDIVIDU = [
   "Tes minat bakat pelajar dan mahasiswa",
   "Pendampingan karier dan pengembangan diri",
   "Konsultasi tumbuh kembang anak & remaja",
-  "Konsultasi kesehatan dan gaya hidup",
 ];
 
 const STEPS = [
@@ -217,12 +218,12 @@ const HERO_PROFILS = [
   { img: maulidah, name: "Maulidah Muflichah", badge: "Psychologist" },
   { img: eka, name: "Eka Rachmawaty", badge: "Executive Coach" },
   { img: hilda, name: "Hilda Rosa Ainiyah", badge: "Psikolog Klinis" },
-  { img: mamluatul, name: "Mamluatul Khoiriyah", badge: "Leadership Consultant" },
+  { img: mamluatul, name: "Mamluatul Khoiriyah", badge: "Psikolog – Konseling, SEFT & Parenting" },
 ];
 
 const TOKOH_SENTRAL = [
-  { img: andiani, name: "Dr. Hj. Andiani" },
-  { img: trinovia, name: "Dr. Tri Novia" },
+  { img: andiani, name: "Dr. dr. Hj. Andiani, M.Kes." },
+  { img: trinovia, name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom" },
 ];
 
 function Beranda() {

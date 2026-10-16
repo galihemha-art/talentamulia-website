@@ -164,7 +164,7 @@ export function SiteFooter() {
               <li className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
-                  Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur
+                  Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur 61257
                 </span>
               </li>
               <li className="flex gap-3">
@@ -235,7 +235,7 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Talenta Mulia. Seluruh hak cipta dilindungi.</p>
+          <p>© 2026 PT Talenta Mulia Indonesia. Seluruh hak cipta dilindungi.</p>
           <div className="flex gap-5">
             <Link to="/kebijakan-privasi" className="hover:text-primary-foreground">
               Kebijakan Privasi

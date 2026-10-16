@@ -579,7 +579,7 @@ function Page() {
               </span>
               <h3 className="mt-5 font-heading text-xl font-bold text-primary">Sesi tatap muka</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Berlangsung di kantor Talenta Mulia, Jl. Raya Gadung No.5, Wage, Kec. Taman,
+                Berlangsung di kantor Talenta Mulia, Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage, Kec. Taman,
                 Sidoarjo, dengan ruang konsultasi yang privat. Untuk kebutuhan tertentu, psikolog
                 dapat menyarankan sesi tatap muka berdasarkan penilaian profesional.
               </p>
@@ -826,7 +826,7 @@ function Page() {
                 Talenta Mulia
               </p>
               <p className="mt-3">
-                Jl. Raya Gadung No.5, Margomulyo, Wage, Kec. Taman, Sidoarjo, Jawa Timur
+                Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur 61257
               </p>
               <p className="mt-2">
                 Telepon:{" "}
