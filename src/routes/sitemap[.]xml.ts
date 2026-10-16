@@ -21,6 +21,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const articleSlugs = wpSlugs.length > 0 ? wpSlugs : ARTIKEL.map((a) => a.slug);
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/risway", changefreq: "monthly", priority: "0.8" },
           { path: "/konsultasi-psikolog-online", changefreq: "weekly", priority: "1.0" },
           { path: "/konseling-burnout", changefreq: "weekly", priority: "0.9" },
           { path: "/konseling-pranikah", changefreq: "weekly", priority: "0.9" },
