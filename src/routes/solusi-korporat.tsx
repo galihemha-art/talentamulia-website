@@ -248,7 +248,7 @@ function Page() {
               rasakan sangatlah valid, dan Anda tidak perlu menyelesaikan semuanya sendirian.
             </p>
             <p>
-              Sebagai institusi penyedia layanan psikologi klinis dan pengembangan organisasi yang
+              Sebagai institusi penyedia layanan psikologi dan pengembangan organisasi yang
               berpusat di Sidoarjo, Jawa Timur, Talenta Mulia berkomitmen menghadirkan ruang
               kolaborasi yang suportif, hangat, dan solutif bagi perusahaan Anda. Mengingat
               kesejahteraan karyawan berkaitan langsung dengan kelangsungan finansial dan masa depan

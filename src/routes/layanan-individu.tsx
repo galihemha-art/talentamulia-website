@@ -53,7 +53,7 @@ function Page() {
               bahwa perasaan Anda sangatlah valid.
             </p>
             <p>
-              Sebagai institusi penyedia layanan psikologi klinis terpercaya, Biro Psikologi Talenta
+              Sebagai institusi penyedia layanan psikologi terpercaya, Biro Psikologi Talenta
               Mulia berkomitmen menghadirkan ruang bercerita yang suportif, hangat, dan sama sekali
               tidak menghakimi (non-judgmental). Mengingat layanan kesehatan mental berkaitan
               langsung dengan masa depan, kebahagiaan, dan kesejahteraan hidup Anda (kategori Your
