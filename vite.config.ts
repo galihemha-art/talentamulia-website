@@ -30,7 +30,7 @@ export default defineConfig({
     }),
 
     nitro(
-      process.env.VERCEL
+      process.env["VERCEL"]
         ? { preset: "vercel" }
         : {
             preset: "cloudflare-module",
