@@ -61,7 +61,7 @@ export function medicalOrganizationSchema(path = "/kesehatan") {
     areaServed: "Indonesia",
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     description:
-      "Layanan konsultasi kesehatan, medical wellness, skrining kesehatan karyawan, dan kepemimpinan medis oleh dokter dan psikolog Talenta Mulia.",
+      "Konsultasi manajemen untuk institusi kesehatan: mutu layanan, akreditasi, dan tata kelola klinis. Talenta Mulia tidak menyelenggarakan pemeriksaan atau pengobatan medis.",
   };
 }
 
