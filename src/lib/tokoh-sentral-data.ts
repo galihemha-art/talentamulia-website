@@ -1,5 +1,6 @@
 import { PROFESSIONALS, type Professional } from "@/lib/professionals-data";
-import trinovia from "@/assets/Tri_Novia.webp";
+import { trinoviaImage } from "@/lib/team-images";
+const trinovia = trinoviaImage.src;
 
 export type Tokoh = Omit<Professional, "id" | "layanan"> & {
   key: string;
