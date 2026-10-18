@@ -15,4 +15,4 @@
 - [ ] Chatbot AI di /risway: tombol chat melayang menggantikan WhatsApp float, Lovable AI, pesan pembuka + 4 tombol cepat, system prompt RISWAY.
 
 ## Gambar WebP
-- [ ] Ganti logo dan foto dengan varian WebP responsif, hapus gambar lama yang tidak dipakai, dan verifikasi tanpa perubahan tampilan.
+- [x] Ganti logo dan foto dengan varian WebP responsif, hapus gambar lama yang tidak dipakai, dan verifikasi tanpa perubahan tampilan.
