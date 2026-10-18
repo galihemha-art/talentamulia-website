@@ -1,8 +1,13 @@
-import maulidah from "@/assets/Maulidah_Muflichah.webp";
-import andiani from "@/assets/Dr_Andiani.webp";
-import eka from "@/assets/Eka_Rachmawaty.webp";
-import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
-import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
+import { maulidahImage } from "@/lib/team-images";
+const maulidah = maulidahImage.src;
+import { andianiImage } from "@/lib/team-images";
+const andiani = andianiImage.src;
+import { ekaImage } from "@/lib/team-images";
+const eka = ekaImage.src;
+import { mamluatulImage } from "@/lib/team-images";
+const mamluatul = mamluatulImage.src;
+import { hildaImage } from "@/lib/team-images";
+const hilda = hildaImage.src;
 import type { AuthorId } from "@/lib/authors";
 
 /**

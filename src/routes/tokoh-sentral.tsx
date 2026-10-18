@@ -1,6 +1,7 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Mic, Sparkles } from "lucide-react";
+import { andianiImage, trinoviaImage } from "@/lib/team-images";
 import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 import { TEAM_CONSENT_NOTE } from "@/lib/professionals-data";
 
@@ -92,11 +93,13 @@ function Page() {
             >
               <img
                 src={t.photo}
+                srcSet={t.key === "andiani" ? andianiImage.srcSet : trinoviaImage.srcSet}
+                sizes="(min-width: 768px) 420px, 100vw"
                 alt={`Potret ${t.name}, mitra Talenta Mulia`}
                 loading="lazy"
                 decoding="async"
-                width={840}
-                height={1050}
+                width={720}
+                height={900}
                 className="aspect-4/5 w-full object-cover object-top md:h-full"
               />
               <div className="flex flex-col justify-center p-7 md:p-10">

@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { SiteLink } from "@/components/site/SiteLink";
-import andianiPhoto from "@/assets/Dr_Andiani.webp";
-import triNoviaPhoto from "@/assets/Tri_Novia.webp";
-import maulidahPhoto from "@/assets/Maulidah_Muflichah.webp";
-import ekaPhoto from "@/assets/Eka_Rachmawaty.webp";
-import mamluatulPhoto from "@/assets/Mamluatul_Khoiriyah.webp";
+import { andianiImage } from "@/lib/team-images";
+const andianiPhoto = andianiImage.src;
+import { trinoviaImage } from "@/lib/team-images";
+const triNoviaPhoto = trinoviaImage.src;
+import { maulidahImage } from "@/lib/team-images";
+const maulidahPhoto = maulidahImage.src;
+import { ekaImage } from "@/lib/team-images";
+const ekaPhoto = ekaImage.src;
+import { mamluatulImage } from "@/lib/team-images";
+const mamluatulPhoto = mamluatulImage.src;
 import type {
   ArticleApproachStep,
   ArticleBenefit,

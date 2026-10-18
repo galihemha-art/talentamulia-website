@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 - Build uses a plain vite.config.ts (tanstackStart + nitro cloudflare-module to dist/, React, Tailwind, tsconfig paths) without @lovable.dev/vite-tanstack-config, so the project builds outside Lovable.
 - The /risway product landing uses its own shell and scoped theme; demo requests are handed to the existing company WhatsApp without claiming database submission or live product availability.
+
+- Team portraits and the wordmark use the shared team-images module and bundled WebP assets (the asset-serving URLs return 404 on the local preview server) so responsive variants stay consistent without bundling obsolete originals.

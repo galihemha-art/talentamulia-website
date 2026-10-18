@@ -18,12 +18,18 @@ import {
   Users,
   Wifi,
 } from "lucide-react";
-import maulidah from "@/assets/Maulidah_Muflichah.webp";
-import andiani from "@/assets/Dr_Andiani.webp";
-import eka from "@/assets/Eka_Rachmawaty.webp";
-import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
-import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
-import trinovia from "@/assets/Tri_Novia.webp";
+import { maulidahImage } from "@/lib/team-images";
+const maulidah = maulidahImage.src;
+import { andianiImage } from "@/lib/team-images";
+const andiani = andianiImage.src;
+import { ekaImage } from "@/lib/team-images";
+const eka = ekaImage.src;
+import { mamluatulImage } from "@/lib/team-images";
+const mamluatul = mamluatulImage.src;
+import { hildaImage } from "@/lib/team-images";
+const hilda = hildaImage.src;
+import { trinoviaImage } from "@/lib/team-images";
+const trinovia = trinoviaImage.src;
 import { SiteLink } from "@/components/site/SiteLink";
 import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
@@ -215,15 +221,15 @@ const FAQ = [
 ];
 
 const HERO_PROFILS = [
-  { img: maulidah, name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.", badge: "Founder · Psikolog" },
-  { img: eka, name: "Eka Rachmawaty, M.M., PCC", badge: "Mitra · Konsultan Kepemimpinan & Organisasi" },
-  { img: hilda, name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog", badge: "Mitra · Psikolog Klinis" },
-  { img: mamluatul, name: "Mamluatul Khoiriyah, M.Psi., Psikolog", badge: "Mitra · Psikolog – Konseling, SEFT & Parenting" },
+  { img: maulidah, srcSet: maulidahImage.srcSet, name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.", badge: "Founder · Psikolog" },
+  { img: eka, srcSet: ekaImage.srcSet, name: "Eka Rachmawaty, M.M., PCC", badge: "Mitra · Konsultan Kepemimpinan & Organisasi" },
+  { img: hilda, srcSet: hildaImage.srcSet, name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog", badge: "Mitra · Psikolog Klinis" },
+  { img: mamluatul, srcSet: mamluatulImage.srcSet, name: "Mamluatul Khoiriyah, M.Psi., Psikolog", badge: "Mitra · Psikolog – Konseling, SEFT & Parenting" },
 ];
 
 const TOKOH_SENTRAL = [
-  { img: andiani, name: "Dr. dr. Hj. Andiani, M.Kes.", fellow: false },
-  { img: trinovia, name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom", fellow: true },
+  { img: andiani, srcSet: andianiImage.srcSet, name: "Dr. dr. Hj. Andiani, M.Kes.", fellow: false },
+  { img: trinovia, srcSet: trinoviaImage.srcSet, name: "Dr. Tri Novia, S.Kep., Ners., MM., M.I.Kom", fellow: true },
 ];
 
 function Beranda() {
@@ -289,6 +295,9 @@ function Beranda() {
                 >
                   <img
                     src={p.img}
+                    srcSet={p.srcSet}
+                    sizes="(min-width: 1024px) 288px, (min-width: 640px) 256px, 314px"
+                    loading={i === 0 ? "eager" : "lazy"}
                     alt={`${p.name} — ${p.badge} Talenta Mulia`}
                     width={480}
                     height={600}
@@ -329,6 +338,8 @@ function Beranda() {
               >
                 <img
                   src={t.img}
+                  srcSet={t.srcSet}
+                  sizes="(min-width: 768px) 420px, 100vw"
                   alt={`${t.name} — mitra Talenta Mulia`}
                   width={720}
                   height={900}
