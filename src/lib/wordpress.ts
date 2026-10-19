@@ -1,10 +1,11 @@
 import type { Artikel } from "@/lib/artikel-data";
 import type { AuthorId } from "@/lib/authors";
 import { AUTHORS } from "@/lib/authors";
+import { ARTICLES_PER_PAGE, EXCLUDED_ARTICLE_SLUG } from "@/lib/seo-route-rules";
 
 /** Base URL of the headless WordPress CMS. */
 export const WP_API_BASE =
-  (import.meta.env["VITE_API_URL"] as string | undefined)?.replace(/\/$/, "") ??
+  (import.meta.env?.["VITE_API_URL"] as string | undefined)?.replace(/\/$/, "") ??
   "https://cms.talentamulia.co.id";
 
 const WP_V2 = `${WP_API_BASE}/wp-json/wp/v2`;
@@ -635,12 +636,65 @@ export function localToView(a: Artikel): ArtikelView {
 
 }
 
-/** Published post slugs, newest first. Returns [] when the CMS is unreachable. */
-export async function fetchPublishedSlugs(limit = 100): Promise<string[]> {
-  const posts = await wpFetch<Pick<WordPressPost, "slug">[]>(
-    `/posts?status=publish&per_page=${limit}&orderby=date&order=desc&_fields=slug`,
-  );
-  return (posts ?? []).map((p) => p.slug).filter((s): s is string => Boolean(s));
+/** Strict public collection reads: never disguise a failed page as partial data. */
+async function wpCollection<T>(query: URLSearchParams): Promise<{ posts: T[]; totalPages: number; invalidPage: boolean }> {
+  const response = await fetch(`${WP_V2}/posts?${query}`, {
+    headers: { Accept: "application/json" },
+    signal: AbortSignal.timeout(15000),
+  });
+  if (!response.ok) {
+    const body = await response.text();
+    if (response.status === 400 && body.includes('"rest_post_invalid_page_number"')) {
+      return { posts: [], totalPages: 0, invalidPage: true };
+    }
+    console.error(`WordPress collection failed [${response.status}]: ${body}`);
+    throw new Error("Artikel WordPress tidak dapat diakses. Silakan coba lagi.");
+  }
+  const rawTotalPages = response.headers.get("X-WP-TotalPages");
+  if (rawTotalPages === null || !/^\d+$/.test(rawTotalPages)) throw new Error("WordPress tidak mengembalikan jumlah halaman artikel.");
+  const posts: unknown = await response.json();
+  if (!Array.isArray(posts)) throw new Error("Respons daftar artikel WordPress tidak valid.");
+  return { posts: posts as T[], totalPages: Number(rawTotalPages), invalidPage: false };
+}
+
+/** Exactly one 24-post page; the redirected post is excluded before pagination. */
+export async function fetchPublishedArticlePage(page: number) {
+  const excluded = await wpCollection<Pick<WordPressPost, "id">>(new URLSearchParams({
+    status: "publish", slug: EXCLUDED_ARTICLE_SLUG, _fields: "id", per_page: "1",
+  }));
+  const query = new URLSearchParams({ status: "publish", per_page: String(ARTICLES_PER_PAGE), page: String(page), orderby: "date", order: "desc" });
+  if (excluded.posts[0]) query.set("exclude", String(excluded.posts[0].id));
+  const result = await wpCollection<WordPressPost>(query);
+  if (result.invalidPage) return { items: [], totalPages: 0, invalidPage: true };
+  const categories = await fetchCategories();
+  const media = await fetchMediaByIds(result.posts.map((post) => post.featured_media ?? 0));
+  return {
+    items: result.posts.filter((post) => post.slug !== EXCLUDED_ARTICLE_SLUG).map((post) => toArtikelView(post, categories, media.get(post.featured_media ?? 0))),
+    totalPages: result.totalPages,
+    invalidPage: false,
+  };
+}
+
+/** Sitemap collects every public page; a failed request aborts the whole collection. */
+export async function fetchPublishedSitemapArticles(): Promise<{ slug: string; modified: string }[]> {
+  const articles: { slug: string; modified: string }[] = [];
+  let totalPages = 1;
+  for (let page = 1; page <= totalPages; page += 1) {
+    const result = await wpCollection<Pick<WordPressPost, "slug" | "modified"> & { modified_gmt?: string }>(new URLSearchParams({
+      status: "publish", per_page: "100", page: String(page), orderby: "date", order: "desc", _fields: "slug,modified,modified_gmt",
+    }));
+    if (result.invalidPage) throw new Error("Jumlah halaman WordPress berubah; sitemap belum dapat dibuat lengkap.");
+    totalPages = result.totalPages;
+    articles.push(...result.posts.filter((post) => post.slug && post.slug !== EXCLUDED_ARTICLE_SLUG).map((post) => ({
+      slug: post.slug,
+      modified: post.modified_gmt ? toIsoDate(`${post.modified_gmt}Z`) : toIsoDate(post.modified),
+    })));
+  }
+  return articles;
+}
+
+export async function fetchPublishedSlugs(): Promise<string[]> {
+  return (await fetchPublishedSitemapArticles()).map((post) => post.slug);
 }
 
 /** All published posts, newest first. Returns [] when the CMS is unreachable. */
@@ -651,7 +705,7 @@ export async function fetchPublishedArticles(limit = 50): Promise<ArtikelView[]>
   ]);
   if (!posts || posts.length === 0) return [];
   const media = await fetchMediaByIds(posts.map((p) => p.featured_media ?? 0));
-  return posts.map((p) => toArtikelView(p, categories, media.get(p.featured_media ?? 0)));
+  return posts.filter((p) => p.slug !== EXCLUDED_ARTICLE_SLUG).map((p) => toArtikelView(p, categories, media.get(p.featured_media ?? 0)));
 }
 
 /** Single published post by slug, or null when missing/unreachable. */

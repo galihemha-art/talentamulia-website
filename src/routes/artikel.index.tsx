@@ -1,20 +1,36 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLink } from "@/components/site/SiteLink";
 import { ArtikelGrid } from "@/components/site/TopicClusters";
 import { ARTIKEL } from "@/lib/artikel-data";
-import { fetchPublishedArticles, localToView, type ArtikelView } from "@/lib/wordpress";
+import { fetchPublishedArticles, fetchPublishedArticlePage, localToView, type ArtikelView } from "@/lib/wordpress";
 import { TOPIC_CLUSTERS, serviceTitle } from "@/lib/topic-clusters";
 
+import { articlePageNumber, articlePageExists, EXCLUDED_ARTICLE_SLUG } from "@/lib/seo-route-rules";
+import { ErrorComponent, NotFoundComponent } from "@/components/site/RouteBoundaries";
+
 export const Route = createFileRoute("/artikel/")({
-  loader: async () => {
-    const wp = await fetchPublishedArticles();
-    const items: ArtikelView[] = wp.length > 0 ? wp : ARTIKEL.map(localToView);
-    return { items };
+  validateSearch: (search: Record<string, unknown>): { page?: unknown } => ({ page: search["page"] }),
+  loaderDeps: ({ search }) => ({ page: search.page }),
+  beforeLoad: ({ search }) => {
+    if (articlePageNumber(search.page) === null) throw notFound();
   },
-  head: () => ({
+  loader: async ({ deps }) => {
+    const page = articlePageNumber(deps.page);
+    if (page === null) throw notFound();
+    const [wp, paginated] = await Promise.all([fetchPublishedArticles(), fetchPublishedArticlePage(page)]);
+    if (paginated.invalidPage || !articlePageExists(page, paginated.totalPages)) throw notFound();
+    const items: ArtikelView[] = (wp.length > 0 ? wp : ARTIKEL.map(localToView)).filter((a) => a.slug !== EXCLUDED_ARTICLE_SLUG);
+    return { items, page, paginated };
+  },
+  errorComponent: ErrorComponent,
+  notFoundComponent: NotFoundComponent,
+  head: ({ loaderData }) => {
+    if (!loaderData) return { meta: [{ title: "Artikel tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
+    const path = loaderData.page === 1 ? "/artikel" : `/artikel?page=${loaderData.page}`;
+    return {
     meta: [
       { title: "Artikel & Wawasan Psikologi Kerja — Talenta Mulia Jawa Timur" },
       {
@@ -30,18 +46,19 @@ export const Route = createFileRoute("/artikel/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      ogUrl("/artikel"),
+      ogUrl(path),
     ],
-    links: [canonicalLink("/artikel")],
+    links: [canonicalLink(path)],
     scripts: [
       jsonLd(breadcrumbSchema([{ name: "Artikel", path: "/artikel" }])),
     ],
-  }),
+    };
+  },
   component: Page,
 });
 
 function Page() {
-  const { items } = Route.useLoaderData();
+  const { items, page, paginated } = Route.useLoaderData();
   const featured = items.slice(0, 2);
   const latest = items.slice(0, 3);
 
@@ -120,6 +137,20 @@ function Page() {
             );
           })}
         </div>
+      </section>
+
+      <section aria-labelledby="semua-artikel" className="mx-auto max-w-6xl px-5 pb-16 md:pb-20">
+        <h2 id="semua-artikel" className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">Semua Artikel</h2>
+        <div className="mt-8"><ArtikelGrid items={paginated.items} /></div>
+        {paginated.totalPages > 1 && (
+          <nav aria-label="Pagination artikel" className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-sm font-semibold text-brand-blue">
+            {page > 1 && <a href={`/artikel?page=${page - 1}`} className="underline-offset-4 hover:underline">Sebelumnya</a>}
+            {Array.from({ length: paginated.totalPages }, (_, index) => index + 1).map((number) => (
+              <a key={number} href={`/artikel?page=${number}`} aria-current={number === page ? "page" : undefined} className={number === page ? "text-primary underline underline-offset-4" : "underline-offset-4 hover:underline"}>{number}</a>
+            ))}
+            {page < paginated.totalPages && <a href={`/artikel?page=${page + 1}`} className="underline-offset-4 hover:underline">Berikutnya</a>}
+          </nav>
+        )}
       </section>
 
     </>

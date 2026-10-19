@@ -1,6 +1,6 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
 import { CoachingHubPage } from "@/components/site/CoachingHubPage";
@@ -57,15 +57,29 @@ function titleFor(slug: string) {
   );
 }
 
+import { legacyConsultationTarget, serviceIndexState } from "@/lib/seo-route-rules";
+import { NotFoundComponent } from "@/components/site/RouteBoundaries";
+
 export const Route = createFileRoute("/layanan/$slug")({
+  beforeLoad: ({ params }) => {
+    const target = legacyConsultationTarget("layanan", params.slug);
+    if (target) throw redirect({ to: target, statusCode: 301 });
+    if (serviceIndexState(params.slug) === "missing") throw notFound();
+  },
+  notFoundComponent: NotFoundComponent,
   head: ({ params }) => {
+    const state = serviceIndexState(params.slug);
+    if (state === "missing") return { meta: [{ title: "Layanan tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug] ?? LAYANAN_INDIVIDU[params.slug];
     const title = detail?.nama ?? titleFor(params.slug);
     const isCounseling = params.slug === "konseling-psikologis";
     const isMarriage = params.slug === "konseling-pernikahan";
     const isParenting = params.slug === "parenting-anak";
     const isTeen = params.slug === "konseling-remaja";
-    const pageTitle = isMarriage
+    const isOnlineOffline = params.slug === "konsultasi-online-offline";
+    const pageTitle = isOnlineOffline
+      ? "Konsultasi Psikologi Tatap Muka di Sidoarjo & Online | Talenta Mulia"
+      : isMarriage
       ? "Layanan Konseling Pernikahan Profesional & Solutif | Talenta Mulia"
       : isCounseling
       ? "Konseling Psikologis Profesional | Talenta Mulia"
@@ -74,7 +88,9 @@ export const Route = createFileRoute("/layanan/$slug")({
       : isTeen
       ? "Layanan Konseling Remaja Profesional & Friendly | Talenta Mulia"
       : `${title} — Talenta Mulia Sidoarjo, Jawa Timur`;
-    const description = isMarriage
+    const description = isOnlineOffline
+      ? "Pilih sesi konsultasi psikologi tatap muka di kantor Talenta Mulia Sidoarjo atau online via video call. Lihat alur, persiapan, dan cara membuat janji."
+      : isMarriage
       ? "Layanan konseling pernikahan & pasangan profesional di Talenta Mulia. Psikolog berizin, penengah netral, bantu atasi konflik rumah tangga & komunikasi."
       : isCounseling
       ? "Layanan konseling psikologis profesional dan empatis secara online atau tatap muka di Sidoarjo untuk stres, kecemasan, relasi, dan keluarga."
@@ -84,11 +100,12 @@ export const Route = createFileRoute("/layanan/$slug")({
       ? "Layanan konseling remaja di Talenta Mulia. Psikolog berizin, ramah, & nyambung. Bantu atasi stres sekolah, emosi, pergaulan, hingga krisis identitas."
       : detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
-      : `Layanan ${title} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
+      : `${/^Layanan\b/i.test(title) ? title : `Layanan ${title}`} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
     const path = `/layanan/${params.slug}`;
     return {
       meta: [
         { title: pageTitle },
+        ...(state === "coming-soon" ? [{ name: "robots", content: "noindex, follow" }] : []),
         { name: "description", content: description },
         { property: "og:title", content: pageTitle },
         { property: "og:description", content: description },

@@ -44,6 +44,7 @@ export function KonsultasiOnlineOfflinePage() {
               Konsultasi berlangsung melalui video call, sehingga Anda dapat mengikuti sesi dari
               mana saja. Mode ini cocok untuk konsultasi awal, konseling psikologis, dan coaching.
             </p>
+            <p className="mt-3 text-sm"><Link to="/konsultasi-psikolog-online" className="font-semibold text-brand-blue underline underline-offset-4">konsultasi psikolog online</Link></p>
             <p className="mt-4 rounded-2xl bg-secondary/60 p-5 text-sm leading-relaxed text-muted-foreground">
               <span className="font-semibold text-primary">Catatan: </span>
               pemeriksaan psikologi tertentu yang memerlukan tes tertulis atau observasi langsung

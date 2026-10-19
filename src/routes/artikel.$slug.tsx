@@ -1,5 +1,5 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarClock, Clock } from "lucide-react";
 import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-data";
 import { AUTHORS } from "@/lib/authors";
@@ -21,7 +21,16 @@ import {
   type ArtikelView,
 } from "@/lib/wordpress";
 
+import { legacyConsultationTarget, EXCLUDED_ARTICLE_SLUG } from "@/lib/seo-route-rules";
+import { ErrorComponent, NotFoundComponent } from "@/components/site/RouteBoundaries";
+
 export const Route = createFileRoute("/artikel/$slug")({
+  beforeLoad: ({ params }) => {
+    const target = legacyConsultationTarget("artikel", params.slug);
+    if (target) throw redirect({ to: target, statusCode: 301 });
+  },
+  errorComponent: ErrorComponent,
+  notFoundComponent: NotFoundComponent,
   loader: async ({ params }) => {
     const wp = await fetchArticleBySlug(params.slug);
     if (wp) {
@@ -139,7 +148,7 @@ function Page() {
   const reviewer = artikel.enhancement?.reviewer;
   const cluster = clusterForArticle(artikel);
   const related: ArtikelView[] = pool
-    .filter((a) => a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
+    .filter((a) => a.slug !== EXCLUDED_ARTICLE_SLUG && a.slug !== artikel.slug && (!cluster || cluster.kategori.includes(a.kategori)))
     .slice(0, 3);
 
 
