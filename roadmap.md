@@ -16,3 +16,10 @@
 
 ## Gambar WebP
 - [x] Ganti logo dan foto dengan varian WebP responsif, hapus gambar lama yang tidak dipakai, dan verifikasi tanpa perubahan tampilan.
+
+## SEO artikel — lima poin, tanpa publish
+- [ ] Pagination Semua Artikel, 24 per halaman, validasi halaman dan pengecualian slug lama.
+- [ ] Sitemap lengkap dengan pagination WordPress dan modified per artikel.
+- [ ] 404 slug tidak dikenal dan noindex layanan segera hadir.
+- [ ] Konsolidasi psikolog online: konten sumber, metadata, 301 dan tautan internal.
+- [ ] Metadata online/offline dan tautan ke halaman psikolog online; verifikasi dan daftar file.
