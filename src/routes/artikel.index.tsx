@@ -12,7 +12,7 @@ import { articlePageNumber, articlePageExists, EXCLUDED_ARTICLE_SLUG } from "@/l
 import { ErrorComponent, NotFoundComponent } from "@/components/site/RouteBoundaries";
 
 export const Route = createFileRoute("/artikel/")({
-  validateSearch: (search: Record<string, unknown>) => ({ page: search["page"] }),
+  validateSearch: (search: Record<string, unknown>): { page?: unknown } => ({ page: search["page"] }),
   loaderDeps: ({ search }) => ({ page: search.page }),
   beforeLoad: ({ search }) => {
     if (articlePageNumber(search.page) === null) throw notFound();
