@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { ARTIKEL } from "@/lib/artikel-data";
-import { fetchPublishedSlugs } from "@/lib/wordpress";
+import { fetchPublishedSitemapArticles } from "@/lib/wordpress";
 
+import { COMPLETE_SERVICE_SLUGS } from "@/lib/seo-route-rules";
+import { INDUSTRI_DETAIL } from "@/lib/industri-data";
 import { SITE_URL } from "@/lib/seo";
 
 const BASE_URL = SITE_URL;
 
 interface SitemapEntry {
   path: string;
+  lastmod?: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
 }
@@ -17,8 +19,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const wpSlugs = await fetchPublishedSlugs();
-        const articleSlugs = wpSlugs.length > 0 ? wpSlugs : ARTIKEL.map((a) => a.slug);
+        const articles = await fetchPublishedSitemapArticles();
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/risway", changefreq: "monthly", priority: "0.8" },
@@ -44,13 +45,16 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/kontak", changefreq: "monthly", priority: "0.9" },
           { path: "/kebijakan-privasi", changefreq: "yearly", priority: "0.3" },
           { path: "/syarat-ketentuan", changefreq: "yearly", priority: "0.3" },
-          ...["manufaktur", "kesehatan", "pendidikan", "pemerintahan", "perbankan"].map((slug) => ({
+          { path: "/program/mpp", changefreq: "monthly", priority: "0.8" },
+          ...COMPLETE_SERVICE_SLUGS.map((slug) => ({ path: `/layanan/${slug}`, changefreq: "monthly" as const, priority: "0.7" })),
+          ...INDUSTRI_DETAIL.map(({ slug }) => ({
             path: `/industri/${slug}`,
             changefreq: "monthly" as const,
             priority: "0.5",
           })),
-          ...articleSlugs.map((slug) => ({
+          ...articles.map(({ slug, modified }) => ({
             path: `/artikel/${slug}`,
+            ...(Number.isNaN(new Date(modified).getTime()) ? {} : { lastmod: modified }),
             changefreq: "monthly" as const,
             priority: "0.6",
           })),
@@ -63,10 +67,11 @@ export const Route = createFileRoute("/sitemap.xml")({
           return true;
         });
 
+        const escapeXml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
         const urls = uniqueEntries.map((e) =>
           [
             `  <url>`,
-            `    <loc>${BASE_URL}${e.path}</loc>`,
+            `    <loc>${escapeXml(`${BASE_URL}${e.path}`)}</loc>`,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,

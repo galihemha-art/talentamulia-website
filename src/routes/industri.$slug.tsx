@@ -1,13 +1,19 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { IndustriDetailPage } from "@/components/site/IndustriDetailPage";
 import { getIndustriDetail } from "@/lib/industri-data";
 
+import { NotFoundComponent } from "@/components/site/RouteBoundaries";
+
 export const Route = createFileRoute("/industri/$slug")({
+  beforeLoad: ({ params }) => {
+    if (!getIndustriDetail(params.slug)) throw notFound();
+  },
+  notFoundComponent: NotFoundComponent,
   head: ({ params }) => {
     const data = getIndustriDetail(params.slug);
+    if (!data) return { meta: [{ title: "Industri tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const nama = data?.nama ?? "Industri";
     const title = `Layanan ${nama} — Talenta Mulia Sidoarjo, Jawa Timur`;
     const description =
@@ -43,20 +49,5 @@ function Page() {
 
   if (data) return <IndustriDetailPage data={data} />;
 
-  return (
-    <section className="mx-auto flex min-h-[55vh] max-w-3xl flex-col items-center justify-center px-5 py-24 text-center">
-      <h1 className="font-heading text-4xl font-extrabold tracking-tight text-primary md:text-5xl">
-        Industri
-      </h1>
-      <p className="mt-4 text-muted-foreground">
-        Halaman detail layanan untuk sektor ini sedang kami siapkan.
-      </p>
-      <Link
-        to="/industri"
-        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue"
-      >
-        <ArrowLeft className="h-4 w-4" /> Kembali ke daftar industri
-      </Link>
-    </section>
-  );
+  return <NotFoundComponent />;
 }

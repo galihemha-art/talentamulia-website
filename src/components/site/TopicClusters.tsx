@@ -13,6 +13,7 @@ import {
 /** Existing article card look — unchanged, just reused. */
 export function ArtikelCard({ a }: { a: ArtikelCardData }) {
 
+  if (a.slug === "konsultasi-psikolog-online") return null;
   return (
     <Link
       to="/artikel/$slug"
@@ -35,7 +36,7 @@ export function ArtikelCard({ a }: { a: ArtikelCardData }) {
         {a.title}
       </h3>
       <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-        {a.excerpt}
+        {a.excerpt.replace(/\[(?:…|\.\.\.)\]\s*$/, "…")}
       </p>
       <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
         Baca artikel

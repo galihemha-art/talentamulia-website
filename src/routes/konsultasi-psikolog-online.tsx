@@ -29,9 +29,9 @@ import { LAYANAN_INDIVIDU, KERAHASIAAN_NOTE } from "@/lib/layanan-individu-data"
 
 const PATH = "/konsultasi-psikolog-online";
 
-const TITLE = "Konsultasi Psikolog Online | Psikolog Profesional — Talenta Mulia";
+const TITLE = "Konsultasi Psikolog Online dengan Psikolog Berlisensi | Talenta Mulia";
 const DESCRIPTION =
-  "Konsultasi psikolog online bersama psikolog Talenta Mulia Sidoarjo. Tersedia sesi online maupun tatap muka untuk masalah pribadi, keluarga, stres, dan kecemasan.";
+  "Konsultasi psikolog online via video call bersama psikolog berlisensi Talenta Mulia. Konseling pribadi, pernikahan, keluarga & anak. Jadwal fleksibel, rahasia terjaga.";
 
 const WA_URL =
   "https://wa.me/6282132990498?text=Halo%20Talenta%20Mulia%2C%20saya%20ingin%20konsultasi%20psikolog%20online.";
@@ -136,6 +136,14 @@ const LANGKAH = [
 ];
 
 const FAQ = [
+  {
+    q: "Bagaimana jika saya bingung harus mulai bercerita dari mana?",
+    a: "Anda tidak perlu khawatir. Psikolog kami terlatih untuk memandu percakapan dengan pertanyaan-pertanyaan hangat yang membantu Anda membuka diri secara perlahan.",
+  },
+  {
+    q: "Apakah konsultasi online sama efektifnya dengan tatap muka?",
+    a: "Kenyamanan sesi dapat berbeda bagi setiap orang. Lingkungan rumah yang akrab dapat membantu Anda lebih rileks bercerita; psikolog akan mempertimbangkan kebutuhan Anda dalam menentukan bentuk sesi.",
+  },
   {
     q: "Apa itu konsultasi psikolog online?",
     a: "Konsultasi psikolog online adalah sesi konsultasi jarak jauh bersama psikolog, dilakukan secara daring sehingga Anda dapat mengikutinya dari lokasi yang nyaman dan privat. Isi dan cara kerja sesi pada dasarnya sama dengan konsultasi tatap muka.",
@@ -378,6 +386,15 @@ function Page() {
               </li>
             ))}
           </ol>
+          <div className="mt-8">
+            <h3 className="font-heading text-xl font-semibold text-primary">Persiapan sesi pertama</h3>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+              <li>Cari tempat yang tenang di mana orang lain tidak bisa mendengar percakapan Anda.</li>
+              <li>Gunakan earphone untuk memperjelas suara dan menjaga kerahasiaan obrolan.</li>
+              <li>Tulis poin-poin masalah atau kecemasan yang ingin Anda sampaikan agar tidak ada yang terlewat.</li>
+              <li>Pastikan koneksi internet stabil agar komunikasi selama sesi tidak terganggu.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -398,6 +415,9 @@ function Page() {
             <p className="mt-3 leading-relaxed text-muted-foreground">
               Praktis diikuti dari rumah, kantor, atau lokasi lain yang nyaman dan privat bagi Anda.
               Cocok untuk konsultasi awal, konseling psikologis, dan pendampingan lanjutan.
+            </p>
+            <p className="mt-3 leading-relaxed text-muted-foreground">
+              Sesi daring dapat dilakukan melalui video call, telepon, atau chat. Pilihan media dan detail pelaksanaannya dikonfirmasi saat membuat janji.
             </p>
           </div>
           <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
