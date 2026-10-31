@@ -15,7 +15,8 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/hero-konsultasi.webp";
+import heroFallback from "@/assets/hero-konsultasi.webp";
+import { usePageHero } from "@/lib/page-heroes";
 import { Button } from "@/components/ui/button";
 import { KERAHASIAAN_NOTE } from "@/lib/layanan-individu-data";
 
@@ -113,6 +114,7 @@ const FAQ = [
 ] as const;
 
 export function TeenCounselingPage() {
+  const pageHeroImg = usePageHero();
   return (
     <>
       <section className="overflow-hidden border-b border-border bg-counseling-soft">
@@ -159,8 +161,8 @@ export function TeenCounselingPage() {
             <div className="relative mx-auto w-full max-w-lg">
               <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-background shadow-soft">
                 <img
-                  src={heroImage}
-                  alt="Psikolog berhijab mendengarkan klien dalam sesi konseling Talenta Mulia"
+                  src={pageHeroImg?.src ?? heroFallback}
+                  alt={pageHeroImg?.alt ?? "Psikolog berhijab mendengarkan klien dalam sesi konseling Talenta Mulia"}
                   width={768}
                   height={960}
                   fetchPriority="high"

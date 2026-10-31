@@ -13,6 +13,7 @@ import { NotFoundComponent, ErrorComponent } from "@/components/site/RouteBounda
 import appCss from "../styles.css?url";
 
 import { SiteHeader } from "../components/site/SiteHeader";
+import { PageHeroBanner } from "../components/site/PageHeroBanner";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { WhatsAppButton } from "../components/site/WhatsAppButton";
 import { jsonLd, organizationSchema } from "../lib/structured-data";
@@ -71,6 +72,7 @@ function RootComponent() {
       <div className="flex min-h-screen flex-col bg-background">
         {!isRisway && <SiteHeader />}
         <main className="flex-1">
+          {!isRisway && <PageHeroBanner />}
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>

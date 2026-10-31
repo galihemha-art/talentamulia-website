@@ -18,7 +18,8 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/hero-konsultasi.webp";
+import heroFallback from "@/assets/hero-konsultasi.webp";
+import { usePageHero } from "@/lib/page-heroes";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, serviceSchema, webPageSchema } from "@/lib/structured-data";
 import { AUTHORS } from "@/lib/authors";
@@ -288,6 +289,7 @@ export const Route = createFileRoute("/konseling-pranikah")({
 });
 
 function Page() {
+  const pageHeroImg = usePageHero();
   return (
     <>
       {/* Hero */}
@@ -353,8 +355,8 @@ function Page() {
 
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft">
               <img
-                src={heroImage}
-                alt="Psikolog Talenta Mulia mendampingi sesi konseling pranikah bersama pasangan calon pengantin"
+                src={pageHeroImg?.src ?? heroFallback}
+                alt={pageHeroImg?.alt ?? "Psikolog Talenta Mulia mendampingi sesi konseling pranikah bersama pasangan calon pengantin"}
                 width={1200}
                 height={800}
                 className="h-full w-full object-cover"

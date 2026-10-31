@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { Professional } from "@/lib/professionals-data";
 import type { ServiceImageSet } from "@/lib/service-images";
+import { usePageHero } from "@/lib/page-heroes";
 
 /* ---------------- Hero: image right ---------------- */
 
@@ -36,6 +37,7 @@ export function ServiceHero({
   images: ServiceImageSet;
   highlights?: string[];
 }) {
+  const pageHeroImg = usePageHero();
   return (
     <section className="relative overflow-hidden border-b border-border bg-secondary/40">
       <div
@@ -106,8 +108,8 @@ export function ServiceHero({
           <div className="relative">
             <div className="overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-soft">
               <img
-                src={images.hero}
-                alt={images.heroAlt}
+                src={pageHeroImg?.src ?? images.hero}
+                alt={pageHeroImg?.alt ?? images.heroAlt}
                 width={1400}
                 height={1000}
                 decoding="async"

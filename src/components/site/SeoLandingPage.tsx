@@ -10,7 +10,8 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/hero-konsultasi.webp";
+import heroFallback from "@/assets/hero-konsultasi.webp";
+import { usePageHero } from "@/lib/page-heroes";
 import { AUTHORS, type AuthorId } from "@/lib/authors";
 
 export type LandingCard = { judul: string; teks: string };
@@ -58,6 +59,7 @@ function CardGrid({ items, cols = 3 }: { items: LandingCard[]; cols?: 3 | 4 }) {
 const H2 = "font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl";
 
 export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
+  const pageHeroImg = usePageHero();
   return (
     <>
       {/* Hero */}
@@ -118,8 +120,8 @@ export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
 
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft">
               <img
-                src={heroImage}
-                alt={c.heroAlt}
+                src={pageHeroImg?.src ?? heroFallback}
+                alt={pageHeroImg?.alt ?? c.heroAlt}
                 width={1200}
                 height={800}
                 className="h-full w-full object-cover"
