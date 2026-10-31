@@ -314,7 +314,7 @@ export function withPageSeo<T extends Head>(path: string, head: T): T {
       seen.add("title");
       return { ...m, title: seo.title };
     }
-    const key = m.name ? `name:${m.name}` : m.property ? `property:${m.property}` : "";
+    const key = m["name"] ? `name:${m["name"]}` : m["property"] ? `property:${m["property"]}` : "";
     if (key in replace) {
       seen.add(key);
       return { ...m, content: replace[key] };
