@@ -16,8 +16,8 @@ export const TOKOH_SENTRAL: Tokoh[] = [
     ...andiani,
     key: "andiani",
     gelar: andiani.name,
-    // "Distinguished Fellow" awaits written confirmation — hidden for now.
-    fellow: false,
+    // Owner approved showing "Distinguished Fellow" (Nov 2026).
+    fellow: true,
   },
   {
     key: "trinovia",
