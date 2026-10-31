@@ -1,10 +1,11 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Quote } from "lucide-react";
 
 export const Route = createFileRoute("/testimoni")({
-  head: () => ({
+  head: () => withPageSeo("/testimoni", {
     meta: [
       { title: "Testimoni Klien Talenta Mulia — Sidoarjo & Jawa Timur" },
       {

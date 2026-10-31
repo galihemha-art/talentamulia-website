@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -185,7 +186,7 @@ const FAQ = [
 const PSIKOLOG = ["maulidah", "mamluatul", "hilda"] as const;
 
 export const Route = createFileRoute("/konsultasi-psikolog-online")({
-  head: () => ({
+  head: () => withPageSeo("/konsultasi-psikolog-online", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },

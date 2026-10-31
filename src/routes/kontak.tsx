@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
@@ -8,7 +9,7 @@ import { Link } from "@tanstack/react-router";
 import { COMPANY, MAPS_EMBED_URL } from "@/lib/company";
 
 export const Route = createFileRoute("/kontak")({
-  head: () => ({
+  head: () => withPageSeo("/kontak", {
     meta: [
       { title: "Buat Janji Konsultasi di Sidoarjo, Jawa Timur — Talenta Mulia" },
       {

@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, peopleSchema } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -7,7 +8,7 @@ import { ARTIKEL } from "@/lib/artikel-data";
 
 
 export const Route = createFileRoute("/professionals")({
-  head: () => ({
+  head: () => withPageSeo("/professionals", {
     meta: [
       { title: "Tim Profesional Psikolog & Coach — Talenta Mulia Sidoarjo, Jawa Timur" },
       {

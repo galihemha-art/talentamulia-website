@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
@@ -67,7 +68,7 @@ export const Route = createFileRoute("/layanan/$slug")({
     if (serviceIndexState(params.slug) === "missing") throw notFound();
   },
   notFoundComponent: NotFoundComponent,
-  head: ({ params }) => {
+  head: (ctx) => withPageSeo(`/layanan/${ctx.params.slug}`, (({ params }: typeof ctx) => {
     const state = serviceIndexState(params.slug);
     if (state === "missing") return { meta: [{ title: "Layanan tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug] ?? LAYANAN_INDIVIDU[params.slug];
@@ -151,7 +152,7 @@ export const Route = createFileRoute("/layanan/$slug")({
           : []),
       ],
     };
-  },
+  })(ctx)),
   component: LayananRoutePage,
 });
 

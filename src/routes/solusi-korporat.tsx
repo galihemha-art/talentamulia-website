@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -14,7 +15,7 @@ import {
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
 
 export const Route = createFileRoute("/solusi-korporat")({
-  head: () => ({
+  head: () => withPageSeo("/solusi-korporat", {
     meta: [
       { title: "Solusi Korporat & Human Capital — Talenta Mulia Sidoarjo, Jawa Timur" },
       {

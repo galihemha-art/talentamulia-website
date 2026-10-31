@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { canonicalLink, ogUrl } from "@/lib/seo";
@@ -290,7 +291,7 @@ const config: SeoLandingConfig = {
 };
 
 export const Route = createFileRoute("/psikolog-anak")({
-  head: () => ({
+  head: () => withPageSeo("/psikolog-anak", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },

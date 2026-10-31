@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -5,7 +6,7 @@ import { useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({
+  head: () => withPageSeo("/faq", {
     meta: [
       { title: "Pertanyaan yang Sering Diajukan — Talenta Mulia Sidoarjo, Jawa Timur" },
       {

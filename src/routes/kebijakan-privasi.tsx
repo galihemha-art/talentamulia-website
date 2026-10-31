@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -7,7 +8,7 @@ const DESC =
   "Kebijakan privasi PT Talenta Mulia Indonesia: pengendali data, data yang dikumpulkan, tujuan, pihak ketiga, masa simpan, dan hak pemilik data.";
 
 export const Route = createFileRoute("/kebijakan-privasi")({
-  head: () => ({
+  head: () => withPageSeo("/kebijakan-privasi", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },

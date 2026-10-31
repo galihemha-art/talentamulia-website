@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -252,7 +253,7 @@ const FAQ = [
 ];
 
 export const Route = createFileRoute("/konseling-pranikah")({
-  head: () => ({
+  head: () => withPageSeo("/konseling-pranikah", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },

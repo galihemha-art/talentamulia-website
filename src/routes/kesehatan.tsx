@@ -1,10 +1,11 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, medicalOrganizationSchema } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Activity, ClipboardCheck, Stethoscope } from "lucide-react";
 
 export const Route = createFileRoute("/kesehatan")({
-  head: () => ({
+  head: () => withPageSeo("/kesehatan", {
     meta: [
       { title: "Konsultasi Kesehatan & Akreditasi RS — Talenta Mulia Sidoarjo, Jawa Timur" },
       {

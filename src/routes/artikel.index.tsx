@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, notFound } from "@tanstack/react-router";
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/artikel/")({
   },
   errorComponent: ErrorComponent,
   notFoundComponent: NotFoundComponent,
-  head: ({ loaderData }) => {
+  head: (ctx) => withPageSeo(ctx.loaderData?.page === 1 ? "/artikel" : "/__none", (({ loaderData }: typeof ctx) => {
     if (!loaderData) return { meta: [{ title: "Artikel tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const path = loaderData.page === 1 ? "/artikel" : `/artikel?page=${loaderData.page}`;
     return {
@@ -53,7 +54,7 @@ export const Route = createFileRoute("/artikel/")({
       jsonLd(breadcrumbSchema([{ name: "Artikel", path: "/artikel" }])),
     ],
     };
-  },
+  })(ctx)),
   component: Page,
 });
 

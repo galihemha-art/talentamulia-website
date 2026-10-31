@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Mic, Sparkles } from "lucide-react";
@@ -6,7 +7,7 @@ import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 import { TEAM_CONSENT_NOTE } from "@/lib/professionals-data";
 
 export const Route = createFileRoute("/tokoh-sentral")({
-  head: () => ({
+  head: () => withPageSeo("/tokoh-sentral", {
     meta: [
       { title: "Principal Experts — Mitra Talenta Mulia Sidoarjo" },
       {

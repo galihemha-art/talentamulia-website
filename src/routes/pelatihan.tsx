@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -14,7 +15,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/pelatihan")({
-  head: () => ({
+  head: () => withPageSeo("/pelatihan", {
     meta: [
       { title: "Pelatihan & Seminar untuk Organisasi di Jawa Timur — Talenta Mulia" },
       {

@@ -1,10 +1,11 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Banknote, Building2, Factory, GraduationCap, Stethoscope } from "lucide-react";
 
 export const Route = createFileRoute("/industri/")({
-  head: () => ({
+  head: () => withPageSeo("/industri", {
     meta: [
       { title: "Industri yang Kami Layani — Talenta Mulia Sidoarjo, Jawa Timur" },
       {

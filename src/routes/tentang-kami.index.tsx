@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -15,7 +16,7 @@ import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 import { LEGAL_NOTE, LEGAL_ROWS } from "@/lib/company";
 
 export const Route = createFileRoute("/tentang-kami/")({
-  head: () => ({
+  head: () => withPageSeo("/tentang-kami", {
     meta: [
       { title: "Tentang Kami — Talenta Mulia, Konsultan Psikologi Sidoarjo Jawa Timur" },
       {

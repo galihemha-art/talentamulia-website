@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -7,7 +8,7 @@ const DESC =
   "Syarat dan ketentuan penggunaan layanan konsultasi psikologi, kesehatan, coaching, dan pelatihan Talenta Mulia di Sidoarjo, Jawa Timur.";
 
 export const Route = createFileRoute("/syarat-ketentuan")({
-  head: () => ({
+  head: () => withPageSeo("/syarat-ketentuan", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },

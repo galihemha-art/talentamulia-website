@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -36,7 +37,7 @@ import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
 
 export const Route = createFileRoute("/")({
-  head: () => ({
+  head: () => withPageSeo("/", {
     meta: [
       { title: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo, Jawa Timur" },
       {

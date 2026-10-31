@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -5,7 +6,7 @@ import { ArrowRight, Award, HeartHandshake, Sparkles } from "lucide-react";
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
 
 export const Route = createFileRoute("/program/")({
-  head: () => ({
+  head: () => withPageSeo("/program", {
     meta: [
       { title: "Program Unggulan — MPP, Coaching & Kesejahteraan | Talenta Mulia Sidoarjo" },
       {
