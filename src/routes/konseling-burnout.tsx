@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -264,7 +266,7 @@ const FAQ = [
 ];
 
 export const Route = createFileRoute("/konseling-burnout")({
-  head: () => ({
+  head: () => withPageSeo("/konseling-burnout", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
@@ -323,10 +325,10 @@ function Page() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
                 Konseling Burnout
               </p>
-              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
                 Konseling Burnout dengan Psikolog: Membantu Anda Pulih dan Menata Kembali
                 Keseimbangan Hidup
-              </h1>
+              </PageH1Text></h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 Burnout dapat membuat seseorang merasa sangat lelah, kehilangan motivasi, sulit
                 fokus, atau merasa pekerjaan dan kehidupan sehari-hari semakin berat. Konsultasi

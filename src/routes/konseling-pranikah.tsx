@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -252,7 +254,7 @@ const FAQ = [
 ];
 
 export const Route = createFileRoute("/konseling-pranikah")({
-  head: () => ({
+  head: () => withPageSeo("/konseling-pranikah", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
@@ -311,9 +313,9 @@ function Page() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
                 Konseling Pranikah
               </p>
-              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
                 Konseling Pranikah dengan Psikolog untuk Mempersiapkan Pernikahan dengan Lebih Siap
-              </h1>
+              </PageH1Text></h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 Konseling pranikah membantu pasangan membicarakan hal-hal penting sebelum menikah —
                 mulai dari pola komunikasi, harapan, dan nilai yang dianut, hingga kesiapan

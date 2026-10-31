@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
@@ -27,9 +28,9 @@ export function IndustriDetailPage({ data }: { data: IndustriDetail }) {
             <span className="text-primary">{data.nama}</span>
           </nav>
 
-          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
             {data.nama}
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             {data.subjudul}
           </p>

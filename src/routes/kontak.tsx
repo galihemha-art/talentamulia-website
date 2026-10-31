@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
@@ -8,7 +10,7 @@ import { Link } from "@tanstack/react-router";
 import { COMPANY, MAPS_EMBED_URL } from "@/lib/company";
 
 export const Route = createFileRoute("/kontak")({
-  head: () => ({
+  head: () => withPageSeo("/kontak", {
     meta: [
       { title: "Buat Janji Konsultasi di Sidoarjo, Jawa Timur — Talenta Mulia" },
       {
@@ -133,9 +135,9 @@ function Page() {
     <>
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-4xl px-5 py-20 text-center md:py-24">
-          <h1 className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl"><PageH1Text>
             Buat Janji Konsultasi
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-4 text-lg text-muted-foreground">
             Ceritakan kebutuhan Anda — tim kami di Sidoarjo, Jawa Timur akan menghubungi Anda
             kembali pada jam kerja.

@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
@@ -58,7 +59,7 @@ const FAQ_MPP = [
 ];
 
 export const Route = createFileRoute("/program/mpp")({
-  head: () => ({
+  head: () => withPageSeo("/program/mpp", {
     meta: [
       { title: "Program Masa Persiapan Pensiun (MPP) — Talenta Mulia Sidoarjo, Jawa Timur" },
       {

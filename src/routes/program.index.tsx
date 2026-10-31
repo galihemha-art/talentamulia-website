@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -5,7 +7,7 @@ import { ArrowRight, Award, HeartHandshake, Sparkles } from "lucide-react";
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
 
 export const Route = createFileRoute("/program/")({
-  head: () => ({
+  head: () => withPageSeo("/program", {
     meta: [
       { title: "Program Unggulan — MPP, Coaching & Kesejahteraan | Talenta Mulia Sidoarjo" },
       {
@@ -51,9 +53,9 @@ function Page() {
     <>
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-4xl px-5 py-20 text-center md:py-24">
-          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-primary md:text-5xl">
+          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-primary md:text-5xl"><PageH1Text>
             Program Unggulan Talenta Mulia
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
             Program dengan pendekatan terintegrasi untuk kebutuhan spesifik organisasi dan individu.
           </p>

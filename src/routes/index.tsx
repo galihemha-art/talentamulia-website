@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -36,7 +38,7 @@ import { SITE_URL, canonicalLink, ogUrl } from "@/lib/seo";
 
 
 export const Route = createFileRoute("/")({
-  head: () => ({
+  head: () => withPageSeo("/", {
     meta: [
       { title: "Talenta Mulia — Konsultasi Psikologi & Human Capital Sidoarjo, Jawa Timur" },
       {
@@ -242,9 +244,9 @@ function Beranda() {
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
               Pusat Konsultasi Terintegrasi
             </span>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl">
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-primary md:text-5xl"><PageH1Text>
               Membantu individu, organisasi, dan institusi kesehatan tumbuh lebih baik.
-            </h1>
+            </PageH1Text></h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               Talenta Mulia menghadirkan layanan Psikologi, Executive Coaching, Leadership
               Development, Assessment Center, Edukasi Kesehatan & Wellness, dan Healthcare Consulting yang

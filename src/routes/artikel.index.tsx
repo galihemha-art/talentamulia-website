@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, notFound } from "@tanstack/react-router";
@@ -27,7 +29,7 @@ export const Route = createFileRoute("/artikel/")({
   },
   errorComponent: ErrorComponent,
   notFoundComponent: NotFoundComponent,
-  head: ({ loaderData }) => {
+  head: (ctx) => withPageSeo(ctx.loaderData?.page === 1 ? "/artikel" : "/__none", (({ loaderData }: typeof ctx) => {
     if (!loaderData) return { meta: [{ title: "Artikel tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const path = loaderData.page === 1 ? "/artikel" : `/artikel?page=${loaderData.page}`;
     return {
@@ -53,7 +55,7 @@ export const Route = createFileRoute("/artikel/")({
       jsonLd(breadcrumbSchema([{ name: "Artikel", path: "/artikel" }])),
     ],
     };
-  },
+  })(ctx)),
   component: Page,
 });
 
@@ -66,9 +68,9 @@ function Page() {
     <>
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-4xl px-5 py-20 text-center md:py-24">
-          <h1 className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl"><PageH1Text>
             Artikel &amp; Wawasan
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-4 text-lg text-muted-foreground">
             Catatan praktis dari psikolog, dokter, dan coach kami untuk organisasi dan individu.
           </p>

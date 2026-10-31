@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -7,7 +9,7 @@ const DESC =
   "Kebijakan privasi PT Talenta Mulia Indonesia: pengendali data, data yang dikumpulkan, tujuan, pihak ketiga, masa simpan, dan hak pemilik data.";
 
 export const Route = createFileRoute("/kebijakan-privasi")({
-  head: () => ({
+  head: () => withPageSeo("/kebijakan-privasi", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
@@ -75,9 +77,9 @@ function Page() {
         <span className="text-primary">Kebijakan Privasi</span>
       </nav>
 
-      <h1 className="mt-6 font-heading text-3xl font-bold text-primary md:text-4xl">
+      <h1 className="mt-6 font-heading text-3xl font-bold text-primary md:text-4xl"><PageH1Text>
         Kebijakan Privasi
-      </h1>
+      </PageH1Text></h1>
       <p className="mt-4 text-muted-foreground">
         PT Talenta Mulia Indonesia menghormati privasi setiap klien organisasi maupun individu.
         Halaman ini menjelaskan bagaimana data Anda kami kelola.

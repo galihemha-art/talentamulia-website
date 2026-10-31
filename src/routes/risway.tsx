@@ -1,10 +1,11 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { RiswayPage } from "@/components/risway/RiswayPage";
 import { canonicalLink, canonicalUrl, ogUrl } from "@/lib/seo";
 import { RISWAY } from "@/lib/risway-data";
 
 export const Route = createFileRoute("/risway")({
-  head: () => ({
+  head: () => withPageSeo("/risway", {
     meta: [
       { title: RISWAY.title },
       { name: "description", content: RISWAY.description },

@@ -1,3 +1,4 @@
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, notFound } from "@tanstack/react-router";
@@ -11,7 +12,7 @@ export const Route = createFileRoute("/industri/$slug")({
     if (!getIndustriDetail(params.slug)) throw notFound();
   },
   notFoundComponent: NotFoundComponent,
-  head: ({ params }) => {
+  head: (ctx) => withPageSeo(`/industri/${ctx.params.slug}`, (({ params }: typeof ctx) => {
     const data = getIndustriDetail(params.slug);
     if (!data) return { meta: [{ title: "Industri tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const nama = data?.nama ?? "Industri";
@@ -39,7 +40,7 @@ export const Route = createFileRoute("/industri/$slug")({
         ),
       ],
     };
-  },
+  })(ctx)),
   component: Page,
 });
 

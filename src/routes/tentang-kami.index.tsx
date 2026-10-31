@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -15,7 +17,7 @@ import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 import { LEGAL_NOTE, LEGAL_ROWS } from "@/lib/company";
 
 export const Route = createFileRoute("/tentang-kami/")({
-  head: () => ({
+  head: () => withPageSeo("/tentang-kami", {
     meta: [
       { title: "Tentang Kami — Talenta Mulia, Konsultan Psikologi Sidoarjo Jawa Timur" },
       {
@@ -160,9 +162,9 @@ function Page() {
             <span className="mx-2">&gt;</span>
             <span className="text-primary">Tentang Kami</span>
           </nav>
-          <h1 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-primary md:text-5xl">
+          <h1 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
             Pusat konsultasi terintegrasi — dibangun untuk manusia dan institusi.
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Talenta Mulia menyatukan psikolog, executive coach, dan pemimpin medis dalam satu
             praktik, melayani korporat, rumah sakit, pemerintah, dan individu di seluruh Indonesia.

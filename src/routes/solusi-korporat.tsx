@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -14,7 +16,7 @@ import {
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
 
 export const Route = createFileRoute("/solusi-korporat")({
-  head: () => ({
+  head: () => withPageSeo("/solusi-korporat", {
     meta: [
       { title: "Solusi Korporat & Human Capital — Talenta Mulia Sidoarjo, Jawa Timur" },
       {
@@ -232,10 +234,10 @@ function Page() {
       {/* Hero */}
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+          <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
             Solusi Korporat & Pengembangan Organisasi Talenta Mulia: Optimalkan Potensi SDM dan
             Kesejahteraan Karyawan Anda
-          </h1>
+          </PageH1Text></h1>
           <div className="mt-4 max-w-3xl space-y-4 text-lg leading-relaxed text-muted-foreground">
             <p>
               Selamat datang di layanan Solusi Korporat Biro Psikologi Talenta Mulia. Jika Anda

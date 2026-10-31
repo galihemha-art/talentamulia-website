@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Mic, Sparkles } from "lucide-react";
@@ -6,7 +8,7 @@ import { TOKOH_SENTRAL } from "@/lib/tokoh-sentral-data";
 import { TEAM_CONSENT_NOTE } from "@/lib/professionals-data";
 
 export const Route = createFileRoute("/tokoh-sentral")({
-  head: () => ({
+  head: () => withPageSeo("/tokoh-sentral", {
     meta: [
       { title: "Principal Experts — Mitra Talenta Mulia Sidoarjo" },
       {
@@ -74,9 +76,9 @@ function Page() {
             <span className="mx-2">&gt;</span>
             <span className="text-primary">Principal Experts</span>
           </nav>
-          <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl">
+          <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl"><PageH1Text>
             Principal Experts
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Mitra Talenta Mulia untuk konsultasi organisasi, pelatihan, dan transformasi layanan
             kesehatan.

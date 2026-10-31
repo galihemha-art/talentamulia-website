@@ -1,3 +1,5 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -7,7 +9,7 @@ const DESC =
   "Syarat dan ketentuan penggunaan layanan konsultasi psikologi, kesehatan, coaching, dan pelatihan Talenta Mulia di Sidoarjo, Jawa Timur.";
 
 export const Route = createFileRoute("/syarat-ketentuan")({
-  head: () => ({
+  head: () => withPageSeo("/syarat-ketentuan", {
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
@@ -77,9 +79,9 @@ function Page() {
         <span className="text-primary">Syarat &amp; Ketentuan</span>
       </nav>
 
-      <h1 className="mt-6 font-heading text-3xl font-bold text-primary md:text-4xl">
+      <h1 className="mt-6 font-heading text-3xl font-bold text-primary md:text-4xl"><PageH1Text>
         Syarat &amp; Ketentuan
-      </h1>
+      </PageH1Text></h1>
       <p className="mt-4 text-muted-foreground">
         Ketentuan berikut berlaku untuk penggunaan situs dan layanan PT Talenta Mulia Indonesia (Talenta Mulia).
       </p>

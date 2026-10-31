@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
@@ -70,9 +71,9 @@ export function ServiceHero({
                 {eyebrow}
               </p>
             )}
-            <h1 className="mt-2 font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+            <h1 className="mt-2 font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
               {title}
-            </h1>
+            </PageH1Text></h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
               {valueProp}
             </p>
