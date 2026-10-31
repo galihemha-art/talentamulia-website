@@ -10,7 +10,8 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/hero-konsultasi.webp";
+import heroFallback from "@/assets/hero-konsultasi.webp";
+import { usePageHero } from "@/lib/page-heroes";
 import { AUTHORS, type AuthorId } from "@/lib/authors";
 
 export type LandingCard = { judul: string; teks: string };
@@ -118,7 +119,7 @@ export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
 
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft">
               <img
-                src={heroImage}
+                src={pageHeroImg?.src ?? heroFallback}
                 alt={c.heroAlt}
                 width={1200}
                 height={800}

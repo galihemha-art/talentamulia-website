@@ -19,7 +19,8 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/hero-konsultasi.webp";
+import heroFallback from "@/assets/hero-konsultasi.webp";
+import { usePageHero } from "@/lib/page-heroes";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd, serviceSchema, webPageSchema } from "@/lib/structured-data";
 import { AUTHORS } from "@/lib/authors";
@@ -366,7 +367,7 @@ function Page() {
 
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft">
               <img
-                src={heroImage}
+                src={pageHeroImg?.src ?? heroFallback}
                 alt="Seorang psikolog Talenta Mulia mendampingi klien yang membicarakan kelelahan kerja dalam sesi konseling"
                 width={1200}
                 height={800}
