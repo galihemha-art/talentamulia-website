@@ -115,6 +115,7 @@ const FAQ = [
 ] as const;
 
 export function ParentingCounselingPage() {
+  const pageHeroImg = usePageHero();
   return (
     <>
       <section className="overflow-hidden border-b border-border bg-counseling-soft">
@@ -162,7 +163,7 @@ export function ParentingCounselingPage() {
               <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-background shadow-soft">
                 <img
                   src={pageHeroImg?.src ?? heroFallback}
-                  alt="Psikolog berhijab mendengarkan klien dalam sesi konseling Talenta Mulia"
+                  alt={pageHeroImg?.alt ?? "Psikolog berhijab mendengarkan klien dalam sesi konseling Talenta Mulia"}
                   width={768}
                   height={960}
                   fetchPriority="high"

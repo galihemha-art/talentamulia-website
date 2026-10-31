@@ -301,6 +301,7 @@ export const Route = createFileRoute("/konseling-burnout")({
 });
 
 function Page() {
+  const pageHeroImg = usePageHero();
   return (
     <>
       {/* Hero */}
@@ -368,7 +369,7 @@ function Page() {
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft">
               <img
                 src={pageHeroImg?.src ?? heroFallback}
-                alt="Seorang psikolog Talenta Mulia mendampingi klien yang membicarakan kelelahan kerja dalam sesi konseling"
+                alt={pageHeroImg?.alt ?? "Seorang psikolog Talenta Mulia mendampingi klien yang membicarakan kelelahan kerja dalam sesi konseling"}
                 width={1200}
                 height={800}
                 className="h-full w-full object-cover"

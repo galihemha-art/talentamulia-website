@@ -59,6 +59,7 @@ function CardGrid({ items, cols = 3 }: { items: LandingCard[]; cols?: 3 | 4 }) {
 const H2 = "font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl";
 
 export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
+  const pageHeroImg = usePageHero();
   return (
     <>
       {/* Hero */}
@@ -120,7 +121,7 @@ export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft">
               <img
                 src={pageHeroImg?.src ?? heroFallback}
-                alt={c.heroAlt}
+                alt={pageHeroImg?.alt ?? c.heroAlt}
                 width={1200}
                 height={800}
                 className="h-full w-full object-cover"
