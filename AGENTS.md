@@ -16,3 +16,4 @@
 - SEO route rules share a browser-safe service inventory for indexing and sitemap inclusion, preventing unavailable services from becoming discoverable URLs.
 - WordPress article listing reads one REST page with total-page headers; sitemap reads every page strictly and uses only each post’s modification timestamp, so failed reads never publish partial XML.
 - Route boundaries are shared with the root to keep resource 404s visually identical to unmatched-site 404s.
+- Per-page H1, title and description live in `src/lib/page-seo.ts` (heads wrap `withPageSeo`, H1s use `PageH1Text`); per-page hero images live in `src/lib/page-heroes.ts` — one central map keeps 54 pages unique and editable in one place.
