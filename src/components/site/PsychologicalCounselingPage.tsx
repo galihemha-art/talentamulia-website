@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -131,9 +132,9 @@ export function PsychologicalCounselingPage() {
                 <span className="h-2 w-2 rounded-full bg-counseling" aria-hidden="true" />
                 Ruang aman untuk bertumbuh
               </p>
-              <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight text-primary md:text-5xl">
+              <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight text-primary md:text-5xl"><PageH1Text>
                 Layanan Konseling Psikologis Profesional &amp; Empatis – Talenta Mulia
-              </h1>
+              </PageH1Text></h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                 Dampingi langkah Anda mengatasi kecemasan, stres, hingga pemulihan trauma bersama psikolog profesional yang bekerja sesuai kode etik.
               </p>

@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -134,9 +135,9 @@ export function ParentingCounselingPage() {
                 <span className="h-2 w-2 rounded-full bg-counseling" aria-hidden="true" />
                 Pendampingan tumbuh kembang buah hati
               </p>
-              <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight text-primary md:text-5xl">
+              <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight text-primary md:text-5xl"><PageH1Text>
                 Layanan Parenting &amp; Konseling Anak – Talenta Mulia
-              </h1>
+              </PageH1Text></h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                 Dampingi tumbuh kembang dan dinamika emosi buah hati bersama psikolog anak profesional melalui pendekatan pola asuh yang praktis dan aplikatif.
               </p>

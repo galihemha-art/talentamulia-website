@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -75,9 +76,9 @@ function Page() {
             <span className="mx-2">&gt;</span>
             <span className="text-primary">Principal Experts</span>
           </nav>
-          <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl">
+          <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-primary md:text-5xl"><PageH1Text>
             Principal Experts
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             Mitra Talenta Mulia untuk konsultasi organisasi, pelatihan, dan transformasi layanan
             kesehatan.

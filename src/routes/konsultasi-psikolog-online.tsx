@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { withPageSeo } from "@/lib/page-seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
@@ -244,10 +245,10 @@ function Page() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
                 Konsultasi Psikolog Online
               </p>
-              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
                 Konsultasi Psikolog Online untuk Membantu Anda Menghadapi Masalah dengan Lebih
                 Terarah
-              </h1>
+              </PageH1Text></h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 Ruang konsultasi bersama psikolog untuk memahami masalah, mengelola emosi, dan
                 menentukan langkah yang lebih terarah. Sesi tersedia secara online maupun tatap muka

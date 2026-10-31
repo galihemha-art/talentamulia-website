@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -81,9 +82,9 @@ export function SeoLandingPage({ config: c }: { config: SeoLandingConfig }) {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
                 {c.eyebrow}
               </p>
-              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+              <h1 className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
                 {c.h1}
-              </h1>
+              </PageH1Text></h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">{c.lead}</p>
 
               <div className="mt-8 flex flex-wrap gap-3">

@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
@@ -180,7 +181,7 @@ function LayananPlaceholder({ slug }: { slug: string }) {
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         Layanan
       </p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-primary">{titleFor(slug)}</h1>
+      <h1 className="mt-3 text-4xl font-bold tracking-tight text-primary"><PageH1Text>{titleFor(slug)}</PageH1Text></h1>
       <p className="mt-4 text-muted-foreground">Halaman ini segera hadir (coming soon).</p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Link
