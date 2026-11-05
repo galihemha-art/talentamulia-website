@@ -6,6 +6,9 @@ import asesmen from "@/assets/svc-asesmen.webp";
 import kesehatan from "@/assets/svc-kesehatan.webp";
 import individu from "@/assets/svc-individu.webp";
 import tim from "@/assets/svc-tim.webp";
+import perkembanganHero from "@/assets/hero/pemeriksaan-tumbuh-kembang-anak.webp";
+import perkembanganKonsultasi from "@/assets/hero/konsultasi-parenting-orang-tua.webp";
+import perkembanganBermain from "@/assets/hero/psikolog-anak-bermain.webp";
 
 export const SERVICE_IMAGES = {
   korporat,
@@ -76,9 +79,18 @@ const SETS: Record<string, ServiceImageSet> = {
     wide: tim,
     wideAlt: "Tim profesional Talenta Mulia berdiri bersama di lobi kantor modern",
   },
+  perkembangan: {
+    hero: perkembanganHero,
+    heroAlt: "Psikolog mengamati perkembangan balita yang bermain menara cincin",
+    problem: perkembanganKonsultasi,
+    problemAlt: "Orang tua berkonsultasi dengan psikolog tentang tumbuh kembang anak mereka",
+    wide: perkembanganBermain,
+    wideAlt: "Psikolog bermain balok susun bersama anak dalam sesi stimulasi perkembangan",
+  },
 };
 
 const RULES: { match: RegExp; set: keyof typeof SETS }[] = [
+  { match: /perkembangan|tumbuh-kembang/, set: "perkembangan" },
   { match: /coach|kepemimpinan|leadership|pemimpin/, set: "coaching" },
   { match: /pelatihan|training|workshop|seminar|mpp|pensiun|sekolah/, set: "pelatihan" },
   { match: /asesmen|assessment|pemeriksaan|psikotes|talenta|rekrut|talent|search/, set: "asesmen" },
