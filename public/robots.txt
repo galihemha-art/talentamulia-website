@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://talentamulia.co.id/sitemap.xml
+Sitemap: https://www.talentamulia.co.id/sitemap.xml

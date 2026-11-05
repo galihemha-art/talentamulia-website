@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronRight, Building2, Video } from "lucide-react";
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
@@ -22,9 +23,9 @@ export function KonsultasiOnlineOfflinePage() {
             <span className="text-primary">Online &amp; Offline</span>
           </nav>
 
-          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+          <h1 className="mt-6 max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
             Cara Berkonsultasi: Online &amp; Offline
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Pilih mode yang paling nyaman untuk Anda atau organisasi Anda.
           </p>
@@ -44,6 +45,7 @@ export function KonsultasiOnlineOfflinePage() {
               Konsultasi berlangsung melalui video call, sehingga Anda dapat mengikuti sesi dari
               mana saja. Mode ini cocok untuk konsultasi awal, konseling psikologis, dan coaching.
             </p>
+            <p className="mt-3 text-sm"><Link to="/konsultasi-psikolog-online" className="font-semibold text-brand-blue underline underline-offset-4">konsultasi psikolog online</Link></p>
             <p className="mt-4 rounded-2xl bg-secondary/60 p-5 text-sm leading-relaxed text-muted-foreground">
               <span className="font-semibold text-primary">Catatan: </span>
               pemeriksaan psikologi tertentu yang memerlukan tes tertulis atau observasi langsung

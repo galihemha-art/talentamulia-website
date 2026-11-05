@@ -1,13 +1,14 @@
 import { AUTHORS, AUTHOR_LIST, type Author } from "@/lib/authors";
 import { canonicalUrl, SITE_URL } from "@/lib/seo";
 
-const LOGO = `${SITE_URL}/favicon.ico`;
+const LOGO = `${SITE_URL}/favicon.png`;
 
 const ADDRESS = {
   "@type": "PostalAddress",
-  streetAddress: "Jl. Raya Gadung No.5, Margomulyo, Wage",
-  addressLocality: "Kec. Taman, Sidoarjo",
+  streetAddress: "Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage",
+  addressLocality: "Kec. Taman, Kab. Sidoarjo",
   addressRegion: "Jawa Timur",
+  postalCode: "61257",
   addressCountry: "ID",
 } as const;
 
@@ -18,7 +19,9 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: "Talenta Mulia",
-    alternateName: "Talenta Mulia Consulting",
+    legalName: "PT Talenta Mulia Indonesia",
+    alternateName: "PT Talenta Mulia Indonesia",
+    identifier: { "@type": "PropertyValue", propertyID: "NIB", value: "1410260097435" },
     url: SITE_URL,
     logo: LOGO,
     email: "info@talentamulia.co.id",
@@ -47,19 +50,18 @@ export function organizationSchema() {
 export function medicalOrganizationSchema(path = "/kesehatan") {
   return {
     "@context": "https://schema.org",
-    "@type": "MedicalOrganization",
+    "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#medicalorganization`,
-    name: "Talenta Mulia — Konsultasi Kesehatan & Medical Wellness",
+    name: "Talenta Mulia — Konsultasi Mutu Layanan Kesehatan",
     url: canonicalUrl(path),
     logo: LOGO,
     email: "info@talentamulia.co.id",
     telephone: "+62 821 3299 0498",
     address: ADDRESS,
     areaServed: "Indonesia",
-    medicalSpecialty: ["PublicHealth", "PreventiveMedicine", "Psychiatric"],
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     description:
-      "Layanan konsultasi kesehatan, medical wellness, skrining kesehatan karyawan, dan kepemimpinan medis oleh dokter dan psikolog Talenta Mulia.",
+      "Konsultasi manajemen untuk institusi kesehatan: mutu layanan, akreditasi, dan tata kelola klinis. Talenta Mulia tidak menyelenggarakan pemeriksaan atau pengobatan medis.",
   };
 }
 
@@ -112,40 +114,187 @@ export function articleSchema(input: {
   title: string;
   description: string;
   path: string;
-  authorId: keyof typeof AUTHORS;
+  /** Local author id; use null (with authorName) for CMS authors without a local profile. */
+  authorId: keyof typeof AUTHORS | null;
+  /** Fallback author name when authorId is null. */
+  authorName?: string;
+  /** Editorial author from the CMS; takes precedence when a real name is present. */
+  authorOverride?: { name?: string; role?: string; credentials?: string; profileUrl?: string } | null;
   publishedAt: string;
   updatedAt: string;
   section?: string;
   wordCount?: number;
+  image?: string | null;
+  /** Editorial reviewer from the CMS. */
+  reviewer?: { name?: string; role?: string; credentials?: string; profileUrl?: string } | null;
+  /** Scientific sources from the CMS. */
+  sources?: { title: string; url: string; publisher?: string; publicationDate?: string }[];
 }) {
-  const author = AUTHORS[input.authorId];
+  const author = input.authorId ? AUTHORS[input.authorId] : null;
+  const override = input.authorOverride?.name ? input.authorOverride : null;
+  const teamName = "Tim Talenta Mulia";
+  const isTeam =
+    (override?.name ?? (!author ? (input.authorName ?? "") : "")).trim().toLowerCase() ===
+    teamName.toLowerCase();
+  const authorNode = isTeam
+    ? { "@type": "Organization", name: teamName, url: SITE_URL }
+    : override
+      ? {
+          "@type": "Person",
+          name: override.name,
+          ...(override.credentials || override.role
+            ? { jobTitle: override.role ?? override.credentials }
+            : {}),
+          ...(override.profileUrl ? { url: override.profileUrl } : {}),
+        }
+      : author
+        ? { "@type": "Person", name: author.name, jobTitle: author.jobTitle }
+        : {
+            "@type": "Organization",
+            name: input.authorName ?? "Talenta Mulia",
+            url: SITE_URL,
+          };
+  const reviewerNode = input.reviewer?.name
+    ? {
+        "@type": "Person",
+        name: input.reviewer.name,
+        ...(input.reviewer.role || input.reviewer.credentials
+          ? { jobTitle: input.reviewer.role ?? input.reviewer.credentials }
+          : {}),
+        ...(input.reviewer.profileUrl ? { url: input.reviewer.profileUrl } : {}),
+      }
+    : null;
+  const citations = (input.sources ?? [])
+    .filter((s) => s.title && s.url)
+    .map((s) => ({
+      "@type": "CreativeWork",
+      name: s.title,
+      url: s.url,
+      ...(s.publisher ? { publisher: { "@type": "Organization", name: s.publisher } } : {}),
+      ...(s.publicationDate ? { datePublished: s.publicationDate } : {}),
+    }));
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: input.title,
     description: input.description,
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl(input.path) },
     url: canonicalUrl(input.path),
+    ...(input.image ? { image: [input.image] } : {}),
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
     articleSection: input.section,
     wordCount: input.wordCount,
     inLanguage: "id-ID",
-    author: {
-      "@type": "Person",
-      name: author.name,
-      jobTitle: author.jobTitle,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Talenta Mulia",
-      url: SITE_URL,
-      logo: { "@type": "ImageObject", url: LOGO },
-    },
+    author: authorNode,
+    ...(reviewerNode ? { reviewedBy: reviewerNode } : {}),
+    ...(citations.length ? { citation: citations } : {}),
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
+
+/** ItemList of the editorial five-step approach. Plain structured data. */
+export function articleApproachSchema(
+  steps: { title: string; body: string }[],
+  name = "Pendekatan 5 Langkah",
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: steps.map((step, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: { "@type": "HowToStep", name: step.title, text: step.body },
+    })),
+  };
+}
+
+/** ContactAction for a CTA with a valid target URL. Returns null otherwise. */
+export function articleCtaSchema(cta: {
+  primaryLabel?: string;
+  primaryUrl?: string;
+}): Record<string, unknown> | null {
+  if (!cta.primaryLabel || !cta.primaryUrl) return null;
+  const target = cta.primaryUrl.startsWith("/")
+    ? canonicalUrl(cta.primaryUrl)
+    : /^https?:\/\//i.test(cta.primaryUrl)
+      ? cta.primaryUrl
+      : null;
+  if (!target) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactAction",
+    name: cta.primaryLabel,
+    target,
+  };
+}
+
 
 /** Helper to build a head() scripts entry. */
 export function jsonLd(data: unknown) {
   return { type: "application/ld+json", children: JSON.stringify(data) };
+}
+
+/** WebPage schema tied to the sitewide Organization. */
+export function webPageSchema(input: { name: string; description: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonicalUrl(input.path)}#webpage`,
+    name: input.name,
+    description: input.description,
+    url: canonicalUrl(input.path),
+    inLanguage: "id-ID",
+    isPartOf: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+/** Service schema with Talenta Mulia as provider. */
+export function serviceSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  serviceType?: string;
+  /** Local author ids of professionals actually shown on the page. */
+  providerPeople?: (keyof typeof AUTHORS)[];
+  offerings?: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.name,
+    description: input.description,
+    serviceType: input.serviceType,
+    url: canonicalUrl(input.path),
+    areaServed: "Indonesia",
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: canonicalUrl(input.path),
+      availableLanguage: "id-ID",
+    },
+    provider: { "@id": `${SITE_URL}/#organization` },
+    ...(input.providerPeople?.length
+      ? {
+          employee: input.providerPeople.map((id) => ({
+            "@type": "Person",
+            name: AUTHORS[id].name,
+            jobTitle: AUTHORS[id].jobTitle,
+          })),
+        }
+      : {}),
+    ...(input.offerings?.length
+      ? {
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: input.name,
+            itemListElement: input.offerings.map((o) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: o.name, url: canonicalUrl(o.path) },
+            })),
+          },
+        }
+      : {}),
+  };
 }
