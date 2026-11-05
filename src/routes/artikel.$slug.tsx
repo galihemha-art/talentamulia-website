@@ -1,7 +1,7 @@
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarClock, Clock } from "lucide-react";
-import { ARTIKEL, formatTanggal, readingTime, wordCount } from "@/lib/artikel-data";
+import { ARTIKEL, formatTanggal, isTanggalBerbeda, readingTime, wordCount } from "@/lib/artikel-data";
 import { AUTHORS } from "@/lib/authors";
 import {
   articleApproachSchema,
@@ -190,14 +190,18 @@ function Page() {
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" /> {readingTime(artikel)} menit baca
             </span>
-            <span className="flex items-center gap-2">
-              <CalendarClock className="h-4 w-4" /> Diperbarui{" "}
-              <time dateTime={artikel.updatedAt}>{formatTanggal(artikel.updatedAt)}</time>
-            </span>
-            <span>
-              Dipublikasikan{" "}
-              <time dateTime={artikel.publishedAt}>{formatTanggal(artikel.publishedAt)}</time>
-            </span>
+            {isTanggalBerbeda(artikel.updatedAt, artikel.publishedAt) ? (
+              <span className="flex items-center gap-2">
+                <CalendarClock className="h-4 w-4" /> Diperbarui{" "}
+                <time dateTime={artikel.updatedAt}>{formatTanggal(artikel.updatedAt)}</time>
+              </span>
+            ) : null}
+            {formatTanggal(artikel.publishedAt) ? (
+              <span>
+                Dipublikasikan{" "}
+                <time dateTime={artikel.publishedAt}>{formatTanggal(artikel.publishedAt)}</time>
+              </span>
+            ) : null}
           </div>
         </div>
       </section>
@@ -279,9 +283,14 @@ function Page() {
               ) : null}
             </div>
           ) : null}
-          <p className="mt-4 text-xs text-muted-foreground">
-            Diperbarui <time dateTime={artikel.updatedAt}>{formatTanggal(artikel.updatedAt)}</time>
-          </p>
+          {formatTanggal(artikel.updatedAt || artikel.publishedAt) ? (
+            <p className="mt-4 text-xs text-muted-foreground">
+              Diperbarui{" "}
+              <time dateTime={artikel.updatedAt || artikel.publishedAt}>
+                {formatTanggal(artikel.updatedAt || artikel.publishedAt)}
+              </time>
+            </p>
+          ) : null}
         </section>
 
         </div>
