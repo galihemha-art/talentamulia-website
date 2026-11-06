@@ -46,7 +46,7 @@ export const PAGE_HEROES: Record<string, PageHero> = {
 
   // Layanan korporat
   "/layanan/konsultasi-hr": { src: g("konsultan-hr-perusahaan"), alt: "Konsultan HR berdiskusi dengan HR manager tentang kebijakan SDM perusahaan" },
-  "/layanan/konsultasi-organisasi": { src: hProblem, alt: "Manajer menelaah data organisasi sebagai dasar konsultasi pengembangan organisasi" },
+  "/layanan/konsultasi-organisasi": { src: g("konsultasi-organisasi-perubahan"), alt: "Konsultan memfasilitasi diskusi pengembangan organisasi dengan tim manajemen di depan diagram perubahan" },
   "/layanan/asesmen-psikologi": { src: hAsesmen, alt: "Psikolog mengawasi peserta asesmen psikologi karyawan" },
   "/layanan/assessment-center": { src: g("assessment-center-simulasi"), alt: "Simulasi diskusi kelompok assessment center dengan asesor mencatat perilaku peserta" },
   "/layanan/pemetaan-talenta": { src: g("talent-mapping-nine-box"), alt: "Tim HR menyusun profil karyawan pada papan nine-box dalam sesi talent mapping" },
