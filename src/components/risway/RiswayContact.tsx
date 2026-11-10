@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { features, RISWAY } from "@/lib/risway-data";
+import { trackWhatsAppHandoff } from "@/lib/google-analytics";
 
 const EMPLOYEE_RANGES = ["1–50", "51–200", "201–500", "501–1.000", ">1.000"];
 const INDUSTRIES = ["Outsourcing", "Security", "Cleaning Service", "Field Worker", "Lainnya"];
@@ -39,6 +40,7 @@ export function RiswayContact() {
       const message = `Halo Talenta Mulia, saya ingin menjadwalkan demo gratis RISWAY via meeting online.\n\nNama lengkap: ${data.get("name")}\nPerusahaan: ${data.get("company")}\nJabatan: ${data.get("position") || "-"}\nEmail bisnis: ${data.get("email")}\nNomor WhatsApp: ${data.get("phone")}\nJumlah karyawan: ${data.get("employees")}\nIndustri: ${data.get("industry")}\nFitur diminati: ${interest}\nTanggal meeting: ${dateValue}\nJam meeting: ${data.get("slot")} WIB\nPlatform: ${data.get("platform")}\nCatatan tambahan: ${data.get("notes") || "-"}\n\nSaya menyetujui penggunaan informasi ini untuk menindaklanjuti permintaan demo sesuai Kebijakan Privasi.`;
       const waLink = `https://wa.me/${RISWAY.whatsapp}?text=${encodeURIComponent(message)}`;
       const opened = window.open(waLink, "_blank", "noopener,noreferrer");
+      trackWhatsAppHandoff();
       if (!opened) setWaLink(waLink);
       setSubmitted(true);
     }}>

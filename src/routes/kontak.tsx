@@ -8,6 +8,7 @@ import { Clock, ExternalLink, Mail, MapPin, MessageCircle, Phone, Send } from "l
 import { z } from "zod";
 import { Link } from "@tanstack/react-router";
 import { COMPANY, MAPS_EMBED_URL } from "@/lib/company";
+import { trackWhatsAppHandoff } from "@/lib/google-analytics";
 
 export const Route = createFileRoute("/kontak")({
   head: () => withPageSeo("/kontak", {
@@ -126,6 +127,7 @@ function Page() {
       "_blank",
       "noopener,noreferrer",
     );
+    trackWhatsAppHandoff();
     setSent(true);
     setConsent(false);
     form.reset();

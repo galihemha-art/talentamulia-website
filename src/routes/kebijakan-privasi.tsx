@@ -29,6 +29,10 @@ export const Route = createFileRoute("/kebijakan-privasi")({
 
 const SECTIONS = [
   {
+    h: "Pengukuran kunjungan dengan Google Analytics",
+    p: "Jika Anda mengizinkan Analytics, Google menerima data kunjungan halaman, informasi perangkat dan klik WhatsApp, telepon, serta peta untuk mengukur penggunaan situs. Cookie Analytics dapat mengenali kunjungan berikutnya. Event khusus kami tidak memuat nama, email, nomor WhatsApp, nama organisasi atau isi pesan formulir. Pelacakan ini tidak digunakan untuk personalisasi iklan. Analytics tidak dimuat sebelum persetujuan, dan Global Privacy Control mengesampingkan izin sebelumnya. Gunakan tombol Pengaturan privasi Analytics untuk menolak atau menarik persetujuan kapan saja; penarikan menghentikan pengukuran berikutnya. Persetujuan formulir terpisah dari persetujuan Analytics. Pilihan dan waktu persetujuan disimpan di browser.",
+  },
+  {
     h: "1. Pengendali data",
     p: "Pengendali data pribadi adalah PT Talenta Mulia Indonesia (merek: Talenta Mulia), beralamat di Jl. Gadung No. 05, RT 003 RW 010, Margomulyo, Wage, Kec. Taman, Kab. Sidoarjo, Jawa Timur 61257. Email privasi: [ISI: email privasi].",
   },

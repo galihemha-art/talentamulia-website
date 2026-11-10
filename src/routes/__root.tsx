@@ -16,6 +16,7 @@ import { SiteHeader } from "../components/site/SiteHeader";
 import { PageHeroBanner } from "../components/site/PageHeroBanner";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { WhatsAppButton } from "../components/site/WhatsAppButton";
+import { AnalyticsConsent } from "@/components/site/AnalyticsConsent";
 import { jsonLd, organizationSchema } from "../lib/structured-data";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -41,7 +42,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.png?v=2", type: "image/png" },
     ],
-    scripts: [jsonLd(organizationSchema())],
+    scripts: [jsonLd(organizationSchema()), {
+      children: `window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window['ga-disable-G-V78VEQ6RQV']=true;gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});`,
+    }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -78,6 +81,7 @@ function RootComponent() {
         </main>
         {!isRisway && <SiteFooter />}
         {!isRisway && <WhatsAppButton />}
+        <AnalyticsConsent />
       </div>
     </QueryClientProvider>
   );

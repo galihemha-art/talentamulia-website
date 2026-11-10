@@ -17,6 +17,12 @@
 ## Gambar WebP
 - [x] Ganti logo dan foto dengan varian WebP responsif, hapus gambar lama yang tidak dipakai, dan verifikasi tanpa perubahan tampilan.
 
+## GA4 — pelacakan saja, tanpa publish
+- [x] Pasang gtag langsung untuk G-V78VEQ6RQV, tanpa GTM atau page_view manual; banner persetujuan dan tanpa data pribadi dalam event khusus.
+- [x] Uji klik WhatsApp, telepon, Buka di Maps dan formulir; jangan emit generate_lead untuk handoff WhatsApp. Enam tes lulus; antrean gtag, consent/withdrawal, Kontak/RISWAY dan tampilan HP diverifikasi; penerimaan di Google belum diuji.
+- [ ] Pengaturan key events dan tautan Search Console: menunggu akses administrasi GA4 (koneksi yang tersedia hanya Measurement ID).
+- Peta profil bisnis, Google Sheet dan UTM eksternal: di luar scope terakhir (tracking saja), tidak diubah.
+
 ## SEO artikel — lima poin, tanpa publish
 - [x] Pagination Semua Artikel, 24 per halaman, validasi halaman dan pengecualian slug lama.
 - [x] Sitemap lengkap dengan pagination WordPress dan modified per artikel.
