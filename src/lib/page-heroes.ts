@@ -91,7 +91,7 @@ export const PAGE_HEROES: Record<string, PageHero> = {
   "/program": { src: g("program-pengembangan-perencanaan"), alt: "Brosur program dan buku perencanaan program pengembangan Talenta Mulia", banner: true },
   "/industri": { src: g("sektor-industri-kota"), alt: "Pemandangan kota dengan perkantoran, pabrik, dan rumah sakit dari berbagai sektor industri", banner: true },
   "/tentang-kami": { src: hTim, alt: "Tim profesional Talenta Mulia berdiri bersama di lobi kantor", banner: true },
-  "/tokoh-sentral": { src: "", alt: "" }, // portraits of the Distinguished Fellows are the hero
+  "/tokoh-sentral": { src: "", alt: "" }, // portraits of the central figures are the hero
   "/professionals": { src: g("tim-profesional-diskusi-kasus"), alt: "Psikolog dan konsultan Talenta Mulia berdiskusi kasus di ruang rapat", banner: true },
   "/artikel": { src: g("artikel-membaca-psikologi"), alt: "Perempuan membaca artikel psikologi di tablet di sudut baca yang nyaman", banner: true },
   "/faq": { src: g("faq-tanya-jawab-layanan"), alt: "Staf layanan Talenta Mulia menjawab pertanyaan calon klien", banner: true },

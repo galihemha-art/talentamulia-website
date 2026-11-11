@@ -1,0 +1,66 @@
+/**
+ * Social-share (og:image) per public page. Static files live in public/og/
+ * so head() can reference them by stable URL without importing assets
+ * (asset imports are not resolvable in the server head environment).
+ */
+export const PAGE_OG_IMAGES: Record<string, string> = {
+  "/": "/og/Maulidah_Muflichah-960.webp",
+  "/artikel": "/og/artikel-membaca-psikologi.webp",
+  "/faq": "/og/faq-tanya-jawab-layanan.webp",
+  "/industri": "/og/sektor-industri-kota.webp",
+  "/industri/kesehatan": "/og/industri-kesehatan-rumah-sakit.webp",
+  "/industri/manufaktur": "/og/industri-manufaktur-pabrik.webp",
+  "/industri/pemerintahan": "/og/industri-pemerintahan-instansi.webp",
+  "/industri/pendidikan": "/og/industri-pendidikan-sekolah.webp",
+  "/industri/perbankan": "/og/industri-perbankan-layanan.webp",
+  "/kebijakan-privasi": "/og/ilustrasi-kebijakan-privasi.webp",
+  "/kesehatan": "/og/svc-kesehatan.webp",
+  "/konseling-burnout": "/og/konseling-burnout-kelelahan-kerja.webp",
+  "/konseling-keluarga": "/og/konseling-keluarga-sesi.webp",
+  "/konseling-pranikah": "/og/konseling-pranikah-pasangan.webp",
+  "/konsultasi-psikolog-online": "/og/hero-konsultasi.webp",
+  "/kontak": "/og/kontak-kantor-resepsionis.webp",
+  "/layanan-individu": "/og/svc-individu.webp",
+  "/layanan/asesmen-psikologi": "/og/svc-asesmen.webp",
+  "/layanan/assessment-center": "/og/assessment-center-simulasi.webp",
+  "/layanan/coaching": "/og/coaching-karier-percakapan.webp",
+  "/layanan/dukungan-depresi": "/og/dukungan-psikologis-pendampingan.webp",
+  "/layanan/executive-coaching": "/og/svc-coaching.webp",
+  "/layanan/kesejahteraan-karyawan": "/og/kesejahteraan-karyawan-kantor.webp",
+  "/layanan/konseling-pernikahan": "/og/konseling-pernikahan-suami-istri.webp",
+  "/layanan/konseling-psikologis": "/og/layanan-konseling-psikologis.webp",
+  "/layanan/konseling-remaja": "/og/konseling-remaja-ruang-aman.webp",
+  "/layanan/konsultasi-hr": "/og/konsultan-hr-perusahaan.webp",
+  "/layanan/konsultasi-online-offline": "/og/konsultasi-online-offline.webp",
+  "/layanan/konsultasi-organisasi": "/og/konsultasi-organisasi-perubahan.webp",
+  "/layanan/medical-wellness": "/og/edukasi-wellness-karyawan.webp",
+  "/layanan/parenting-anak": "/og/konsultasi-parenting-orang-tua.webp",
+  "/layanan/pelatihan-kepemimpinan": "/og/pelatihan-kepemimpinan-manajer.webp",
+  "/layanan/pemeriksaan-psikologi-industri": "/og/pemeriksaan-psikologi-industri-psikotes.webp",
+  "/layanan/pemeriksaan-psikologi-klinis": "/og/pemeriksaan-psikologi-klinis-wawancara.webp",
+  "/layanan/pemeriksaan-psikologi-pendidikan": "/og/pemeriksaan-psikologi-pendidikan-siswa.webp",
+  "/layanan/pemeriksaan-psikologi-perkembangan": "/og/pemeriksaan-tumbuh-kembang-anak.webp",
+  "/layanan/pemetaan-talenta": "/og/talent-mapping-nine-box.webp",
+  "/layanan/pendampingan-abk": "/og/pendampingan-anak-berkebutuhan-khusus.webp",
+  "/layanan/pendampingan-sekolah-perusahaan": "/og/pendampingan-sekolah-guru.webp",
+  "/layanan/stres-kecemasan": "/og/konseling-stres-kecemasan-napas.webp",
+  "/layanan/team-coaching": "/og/team-coaching-tim.webp",
+  "/layanan/trauma-healing": "/og/pemulihan-trauma-tenang.webp",
+  "/pelatihan": "/og/svc-pelatihan.webp",
+  "/professionals": "/og/tim-profesional-diskusi-kasus.webp",
+  "/program": "/og/program-pengembangan-perencanaan.webp",
+  "/program/mpp": "/og/program-mpp-persiapan-pensiun.webp",
+  "/psikolog-anak": "/og/psikolog-anak-bermain.webp",
+  "/risway": "/og/risway-workforce.jpg",
+  "/solusi-korporat": "/og/svc-korporat.webp",
+  "/syarat-ketentuan": "/og/ilustrasi-syarat-ketentuan.webp",
+  "/tentang-kami": "/og/svc-tim.webp",
+  "/tes-minat-bakat": "/og/tes-minat-bakat-siswa.webp",
+  "/testimoni": "/og/testimoni-klien-apresiasi.webp",
+  "/tokoh-sentral": "/og/Dr_Andiani-720.webp",
+};
+
+export function pageOgImage(path: string): string | undefined {
+  const p = path.split(/[?#]/)[0]!.replace(/\/+$/, "");
+  return PAGE_OG_IMAGES[p === "" ? "/" : p];
+}

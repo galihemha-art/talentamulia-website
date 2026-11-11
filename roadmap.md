@@ -29,3 +29,13 @@
 - [x] 404 slug tidak dikenal dan noindex layanan segera hadir.
 - [x] Konsolidasi psikolog online: konten sumber, metadata, 301 dan tautan internal.
 - [x] Metadata online/offline dan tautan ke halaman psikolog online; 10 tes lulus, pagination/FAQ/tautan diuji, sitemap 402 artikel dari 403 post (1 redirect), 31 layanan/industri/program HTTP 200; tanpa publish.
+
+## MASTER TASK SEO/GEO 54 halaman (preview only, JANGAN publish)
+- [x] Audit 54 halaman: semua 200, 1 H1, title/desc/canonical unik
+- [x] Konfigurasi terpusat metadata (page-seo.ts) + og:image terpusat (page-og.ts + public/og/)
+- [x] 54 gambar hero/og unik dari aset existing (tanpa generate AI)
+- [x] H1 unik & SEO title/description unik per halaman (terverifikasi 54/54)
+- [x] Internal linking & CTA (sudah ada dari pekerjaan sebelumnya, tidak diubah)
+- [x] Structured data (sudah ada, tidak diubah; tanpa rating/review palsu)
+- [x] Validasi: typecheck bersih, 54 URL 200, og:image 54/54 unik & valid, laporan di Files
+- CATATAN: gelar "Distinguished Fellow" Dr. Andiani TETAP disembunyikan sesuai instruksi pemilik sebelumnya (menimpa poin I brief)

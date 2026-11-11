@@ -4,6 +4,8 @@
  * description and social text; templates read h1 via usePageH1().
  */
 import { useRouterState } from "@tanstack/react-router";
+import { pageOgImage } from "@/lib/page-og";
+import { SITE_URL } from "@/lib/seo";
 
 export type PageSeo = { h1: string; title: string; description: string };
 
@@ -330,6 +332,17 @@ export function withPageSeo<T extends Head>(path: string, head: T): T {
   }
   if (!seen.has("property:og:type")) meta.push({ property: "og:type", content: "website" });
   if (!seen.has("name:twitter:card")) meta.push({ name: "twitter:card", content: "summary_large_image" });
+  const img = pageOgImage(path);
+  if (img) {
+    const absolute = `${SITE_URL}${img}`;
+    const keys = new Set(["property:og:image", "name:twitter:image"]);
+    const kept = meta.filter((m) => {
+      const key = m["name"] ? `name:${m["name"]}` : m["property"] ? `property:${m["property"]}` : "";
+      return !keys.has(key);
+    });
+    kept.push({ property: "og:image", content: absolute }, { name: "twitter:image", content: absolute });
+    return { ...head, meta: kept };
+  }
   return { ...head, meta };
 }
 
