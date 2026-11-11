@@ -21,13 +21,15 @@ import {
   type ArtikelView,
 } from "@/lib/wordpress";
 
-import { legacyConsultationTarget, EXCLUDED_ARTICLE_SLUG } from "@/lib/seo-route-rules";
+import { articleMergeTarget, legacyConsultationTarget, EXCLUDED_ARTICLE_SLUG } from "@/lib/seo-route-rules";
 import { ErrorComponent, NotFoundComponent } from "@/components/site/RouteBoundaries";
 
 export const Route = createFileRoute("/artikel/$slug")({
   beforeLoad: ({ params }) => {
     const target = legacyConsultationTarget("artikel", params.slug);
     if (target) throw redirect({ to: target, statusCode: 301 });
+    const merged = articleMergeTarget(params.slug);
+    if (merged) throw redirect({ to: merged, statusCode: 301 });
   },
   errorComponent: ErrorComponent,
   notFoundComponent: NotFoundComponent,

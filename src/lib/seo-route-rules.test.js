@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { ARTICLES_PER_PAGE, articlePageNumber, articlePageExists, legacyConsultationTarget, serviceIndexState, COMPLETE_SERVICE_SLUGS } from "./seo-route-rules";
+import { ARTICLES_PER_PAGE, articlePageNumber, articlePageExists, legacyConsultationTarget, serviceIndexState, COMPLETE_SERVICE_SLUGS, ARTICLE_MERGE_REDIRECTS, articleMergeTarget, articleMergeRedirectProblems } from "./seo-route-rules";
 
 describe("Owner SEO rules", () => {
   test("article pages contain 24 posts", () => { expect(ARTICLES_PER_PAGE).toBe(24); });
@@ -29,5 +29,25 @@ describe("Owner SEO rules", () => {
   test("complete online/offline service remains indexable", () => {
     expect(serviceIndexState("konsultasi-online-offline")).toBe("complete");
     expect(COMPLETE_SERVICE_SLUGS.includes("konsultasi-online-offline")).toBe(true);
+  });
+  test("merged article slug redirects to its target", () => {
+    expect(articleMergeTarget("lama", { lama: "/artikel/baru" })).toBe("/artikel/baru");
+  });
+  test("slug outside the merge list is not redirected", () => {
+    expect(articleMergeTarget("tidak-ada", { lama: "/artikel/baru" })).toBeNull();
+    expect(articleMergeTarget("lama", {})).toBeNull();
+  });
+  test("chained merges are refused", () => {
+    expect(articleMergeTarget("a", { a: "/artikel/b", b: "/artikel/c" })).toBeNull();
+  });
+  test("self and non-article targets are refused", () => {
+    expect(articleMergeTarget("a", { a: "/artikel/a" })).toBeNull();
+    expect(articleMergeTarget("a", { a: "/layanan/x" })).toBeNull();
+  });
+  test("merge list has no chained or invalid targets", () => {
+    expect(articleMergeRedirectProblems()).toEqual([]);
+  });
+  test("merge list does not touch the legacy consultation slug", () => {
+    expect(articleMergeTarget("konsultasi-psikolog-online")).toBeNull();
   });
 });

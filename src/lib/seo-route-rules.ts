@@ -12,6 +12,42 @@ export function legacyConsultationTarget(kind: "artikel" | "layanan", slug: stri
     : null;
 }
 
+export type ArticleMergeTable = Record<string, string>;
+
+// Daftar berpasangan: slug artikel lama -> alamat tujuan. Tambah satu baris per artikel gabung.
+export const ARTICLE_MERGE_REDIRECTS: ArticleMergeTable = {
+  // Tambah satu baris per artikel gabung, contoh:
+  // "slug-lama": "/artikel/slug-tujuan",
+};
+
+const ARTICLE_PATH_PREFIX = "/artikel/";
+
+function articleSlugFromPath(path: string) {
+  return path.startsWith(ARTICLE_PATH_PREFIX) ? path.slice(ARTICLE_PATH_PREFIX.length) : "";
+}
+
+// Mengembalikan alamat tujuan, atau null bila slug tidak ada di daftar.
+// Redirect berantai dicegah: tujuan tidak boleh berupa slug yang ikut dialihkan.
+export function articleMergeTarget(slug: string, table: ArticleMergeTable = ARTICLE_MERGE_REDIRECTS): string | null {
+  const target = table[slug];
+  if (!target) return null;
+  const targetSlug = articleSlugFromPath(target);
+  if (!targetSlug || targetSlug === slug) return null;
+  if (Object.prototype.hasOwnProperty.call(table, targetSlug)) return null;
+  return target;
+}
+
+export function articleMergeRedirectProblems(table: ArticleMergeTable = ARTICLE_MERGE_REDIRECTS): string[] {
+  const problems: string[] = [];
+  for (const [slug, target] of Object.entries(table)) {
+    const targetSlug = articleSlugFromPath(target);
+    if (!targetSlug) problems.push(`${slug}: tujuan bukan alamat artikel (${target})`);
+    else if (targetSlug === slug) problems.push(`${slug}: tujuan mengarah ke dirinya sendiri`);
+    else if (Object.prototype.hasOwnProperty.call(table, targetSlug)) problems.push(`${slug}: tujuan ikut dialihkan (${target})`);
+  }
+  return problems;
+}
+
 export function articlePageNumber(value: unknown): number | null {
   if (value === undefined) return 1;
   if (typeof value !== "string" && typeof value !== "number") return null;
