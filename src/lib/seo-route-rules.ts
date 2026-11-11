@@ -16,8 +16,17 @@ export type ArticleMergeTable = Record<string, string>;
 
 // Daftar berpasangan: slug artikel lama -> alamat tujuan. Tambah satu baris per artikel gabung.
 export const ARTICLE_MERGE_REDIRECTS: ArticleMergeTable = {
-  // Tambah satu baris per artikel gabung, contoh:
-  // "slug-lama": "/artikel/slug-tujuan",
+  // Kelompok G02 -> artikel rumah tangga Sidoarjo
+  "konseling-pasangan-suami-istri-solusi-objektif-pemulihan-rumah-tangga": "/artikel/konseling-rumah-tangga-sidoarjo-solusi-profesional-pulihkan-komunikasi-dan-komitmen-pasangan",
+  "konseling-pernikahan-profesional-solusi-tepat-pulihkan-hubungan-dan-keharmonisan-keluarga": "/artikel/konseling-rumah-tangga-sidoarjo-solusi-profesional-pulihkan-komunikasi-dan-komitmen-pasangan",
+  "ekspektasi-rumah-tangga-tidak-lagi-sejalan-solusi-konseling-profesional-di-talenta-mulia": "/artikel/konseling-rumah-tangga-sidoarjo-solusi-profesional-pulihkan-komunikasi-dan-komitmen-pasangan",
+  // Kelompok G01 -> artikel konseling pernikahan online
+  "jasa-konseling-pernikahan-online-solusi-cepat-saat-komunikasi-pasangan-mulai-berubah": "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
+  "jasa-konseling-pernikahan-online-untuk-membantu-menghadapi-perubahan-dinamika-hubungan": "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
+  "konsultasi-psikologi-online-untuk-membantu-mengatasi-konflik-dalam-pernikahan-bersama-talenta-mulia": "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
+  "konsultasi-psikologi-online-solusi-praktis-membangun-komunikasi-sehat-bersama-pasangan": "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
+  "konsultasi-psikologi-online-untuk-masalah-komunikasi-pasangan-solusi-terpercaya-kembali-harmonis": "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
+  "konsultasi-psikologi-online-untuk-pasangan-yang-sulit-menemukan-titik-temu-di-talenta-mulia": "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
 };
 
 const ARTICLE_PATH_PREFIX = "/artikel/";

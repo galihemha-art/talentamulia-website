@@ -39,3 +39,9 @@
 - [x] Structured data (sudah ada, tidak diubah; tanpa rating/review palsu)
 - [x] Validasi: typecheck bersih, 54 URL 200, og:image 54/54 unik & valid, laporan di Files
 - CATATAN: gelar "Distinguished Fellow" Dr. Andiani TETAP disembunyikan sesuai instruksi pemilik sebelumnya (menimpa poin I brief)
+
+## Redirect 301 artikel gabung (preview only, JANGAN publish)
+- [x] Daftar terpusat ARTICLE_MERGE_REDIRECTS di src/lib/seo-route-rules.ts (slug lama -> alamat tujuan), aturan legacyConsultationTarget tidak diubah.
+- [x] beforeLoad artikel.$slug.tsx melempar 301 setelah pengecekan legacy; redirect berantai ditolak (tujuan tidak boleh ikut dialihkan).
+- [x] 9 slug gabung: 3 ke artikel rumah tangga Sidoarjo (G02), 6 ke artikel konseling pernikahan online (G01); kedua tujuan artikel existing.
+- [x] Validasi: 14 tes lulus, typecheck bersih, 9 slug lama 301 ke tujuan benar, 2 tujuan 200, artikel lain 200, legacy 301 tetap jalan; tanpa publish.

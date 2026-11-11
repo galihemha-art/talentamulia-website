@@ -47,6 +47,16 @@ describe("Owner SEO rules", () => {
   test("merge list has no chained or invalid targets", () => {
     expect(articleMergeRedirectProblems()).toEqual([]);
   });
+  test("merge list covers both merge groups", () => {
+    expect(Object.keys(ARTICLE_MERGE_REDIRECTS).length).toBe(9);
+    const targets = new Set(Object.values(ARTICLE_MERGE_REDIRECTS));
+    expect([...targets].sort()).toEqual([
+      "/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan",
+      "/artikel/konseling-rumah-tangga-sidoarjo-solusi-profesional-pulihkan-komunikasi-dan-komitmen-pasangan",
+    ]);
+    expect(articleMergeTarget("konsultasi-psikologi-online-solusi-praktis-membangun-komunikasi-sehat-bersama-pasangan")).toBe("/artikel/konseling-pernikahan-online-solusi-praktis-profesional-mengatasi-konflik-pasangan");
+    expect(articleMergeTarget("ekspektasi-rumah-tangga-tidak-lagi-sejalan-solusi-konseling-profesional-di-talenta-mulia")).toBe("/artikel/konseling-rumah-tangga-sidoarjo-solusi-profesional-pulihkan-komunikasi-dan-komitmen-pasangan");
+  });
   test("merge list does not touch the legacy consultation slug", () => {
     expect(articleMergeTarget("konsultasi-psikolog-online")).toBeNull();
   });
