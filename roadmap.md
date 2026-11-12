@@ -45,3 +45,9 @@
 - [x] beforeLoad artikel.$slug.tsx melempar 301 setelah pengecekan legacy; redirect berantai ditolak (tujuan tidak boleh ikut dialihkan).
 - [x] 9 slug gabung: 3 ke artikel rumah tangga Sidoarjo (G02), 6 ke artikel konseling pernikahan online (G01); kedua tujuan artikel existing.
 - [x] Validasi: 14 tes lulus, typecheck bersih, 9 slug lama 301 ke tujuan benar, 2 tujuan 200, artikel lain 200, legacy 301 tetap jalan; tanpa publish.
+
+## Landing page statis Rekrut Tepat (preview only, JANGAN publish tanpa persetujuan pemilik)
+- [x] public/rekrut-tepat/index.html — salinan byte-identik dari file pemilik (md5 sama), tidak diubah sama sekali.
+- [x] public/rekrut-tepat/logo.jpg + public/rekrut-tepat/bu-lia.jpg — nama file persis seperti dipanggil HTML.
+- [x] Route /rekrut-tepat mengarah ke halaman statis dengan window.location.replace("/rekrut-tepat/index.html").
+- [x] Validasi: halaman final 200, logo & foto Bu Lia termuat, 0 resource 404, tanpa console error baru (peringatan ikon sama dengan /siap-sd); tidak menyentuh halaman lain.

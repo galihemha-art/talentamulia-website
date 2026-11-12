@@ -25,6 +25,7 @@ import { Route as PelatihanRouteImport } from './routes/pelatihan'
 import { Route as ProfessionalsRouteImport } from './routes/professionals'
 import { Route as ProgramRouteImport } from './routes/program'
 import { Route as PsikologAnakRouteImport } from './routes/psikolog-anak'
+import { Route as RekrutTepatRouteImport } from './routes/rekrut-tepat'
 import { Route as RiswayRouteImport } from './routes/risway'
 import { Route as SiapSdRouteImport } from './routes/siap-sd'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -123,6 +124,11 @@ const ProgramRoute = ProgramRouteImport.update({
 const PsikologAnakRoute = PsikologAnakRouteImport.update({
   id: '/psikolog-anak',
   path: '/psikolog-anak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RekrutTepatRoute = RekrutTepatRouteImport.update({
+  id: '/rekrut-tepat',
+  path: '/rekrut-tepat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RiswayRoute = RiswayRouteImport.update({
@@ -233,6 +239,7 @@ export interface FileRoutesByFullPath {
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRouteWithChildren
   '/psikolog-anak': typeof PsikologAnakRoute
+  '/rekrut-tepat': typeof RekrutTepatRoute
   '/risway': typeof RiswayRoute
   '/siap-sd': typeof SiapSdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -266,6 +273,7 @@ export interface FileRoutesByTo {
   '/pelatihan': typeof PelatihanRoute
   '/professionals': typeof ProfessionalsRoute
   '/psikolog-anak': typeof PsikologAnakRoute
+  '/rekrut-tepat': typeof RekrutTepatRoute
   '/risway': typeof RiswayRoute
   '/siap-sd': typeof SiapSdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -302,6 +310,7 @@ export interface FileRoutesById {
   '/professionals': typeof ProfessionalsRoute
   '/program': typeof ProgramRouteWithChildren
   '/psikolog-anak': typeof PsikologAnakRoute
+  '/rekrut-tepat': typeof RekrutTepatRoute
   '/risway': typeof RiswayRoute
   '/siap-sd': typeof SiapSdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -340,6 +349,7 @@ export interface FileRouteTypes {
     | '/professionals'
     | '/program'
     | '/psikolog-anak'
+    | '/rekrut-tepat'
     | '/risway'
     | '/siap-sd'
     | '/sitemap.xml'
@@ -373,6 +383,7 @@ export interface FileRouteTypes {
     | '/pelatihan'
     | '/professionals'
     | '/psikolog-anak'
+    | '/rekrut-tepat'
     | '/risway'
     | '/siap-sd'
     | '/sitemap.xml'
@@ -408,6 +419,7 @@ export interface FileRouteTypes {
     | '/professionals'
     | '/program'
     | '/psikolog-anak'
+    | '/rekrut-tepat'
     | '/risway'
     | '/siap-sd'
     | '/sitemap.xml'
@@ -445,6 +457,7 @@ export interface RootRouteChildren {
   ProfessionalsRoute: typeof ProfessionalsRoute
   ProgramRoute: typeof ProgramRouteWithChildren
   PsikologAnakRoute: typeof PsikologAnakRoute
+  RekrutTepatRoute: typeof RekrutTepatRoute
   RiswayRoute: typeof RiswayRoute
   SiapSdRoute: typeof SiapSdRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -569,6 +582,13 @@ declare module '@tanstack/react-router' {
       path: '/psikolog-anak'
       fullPath: '/psikolog-anak'
       preLoaderRoute: typeof PsikologAnakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rekrut-tepat': {
+      id: '/rekrut-tepat'
+      path: '/rekrut-tepat'
+      fullPath: '/rekrut-tepat'
+      preLoaderRoute: typeof RekrutTepatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/risway': {
@@ -771,6 +791,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfessionalsRoute: ProfessionalsRoute,
   ProgramRoute: ProgramRouteWithChildren,
   PsikologAnakRoute: PsikologAnakRoute,
+  RekrutTepatRoute: RekrutTepatRoute,
   RiswayRoute: RiswayRoute,
   SiapSdRoute: SiapSdRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

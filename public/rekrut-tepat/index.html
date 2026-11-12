@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rekrut Tepat — Kit Seleksi Karyawan UMKM | Talenta Mulia</title>
+<meta name="description" content="Kit Rekrut Tepat: scorecard wawancara 8 posisi UMKM, 120 pertanyaan perilaku, kalkulator biaya salah rekrut, checklist onboarding 30 hari. Disusun psikolog. Rp149.000.">
+<meta property="og:title" content="Rekrut Tepat — Kit Seleksi Karyawan untuk UMKM">
+<meta property="og:description" content="Berhenti rekrut pakai feeling. Kit seleksi karyawan dari psikolog, Rp149.000.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D3B66;--navy-dk:#082A4A;--blue:#0A6CB5;--sky:#E8F4FC;--pink:#C8006A;--pink-dk:#9E0054;--pink-soft:#FDE8F2;--cream:#FAFBFD;--line:#E1E7EF;--ink:#17222E;--muted:#4A5868}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--blue)}
+h1,h2,h3{margin:0;font-weight:800;line-height:1.2}
+p{margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:860px;margin:0 auto;padding:0 24px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.btn{display:inline-block;background:var(--pink);color:#fff;font-weight:800;text-decoration:none;border-radius:12px;padding:16px 24px;font-size:17px;border:0;cursor:pointer;font-family:inherit;text-align:center}
+.btn:hover{background:var(--pink-dk);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.14)}
+.btn-ghost:hover{background:rgba(255,255,255,.24)}
+section{padding:64px 0}
+h2{font-size:clamp(26px,4vw,34px)}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.6px;color:var(--pink);text-transform:uppercase}
+.tick{color:#0F7B5F;font-weight:800;margin-right:8px}
+/* top bar */
+.bar{background:#fff;border-bottom:1px solid var(--line)}
+.nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.nav img{height:52px;width:auto;display:block}
+.nav a.wa{color:var(--navy);font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid var(--navy);border-radius:999px;padding:10px 18px}
+/* hero */
+.hero-bg{background:var(--navy);color:#fff}
+.hero{display:flex;flex-wrap:wrap;gap:40px;align-items:center;padding-top:56px;padding-bottom:72px}
+.hero-text{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.pill{align-self:flex-start;background:var(--pink-soft);color:var(--pink-dk);font-weight:700;font-size:14px;border-radius:999px;padding:6px 14px}
+.hero h1{font-size:clamp(32px,5vw,46px);line-height:1.15}
+.hero-lead{font-size:19px;opacity:.93}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.box{flex:1 1 320px;min-width:0;background:#fff;color:var(--ink);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.cover{background:var(--sky);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:4px;margin-bottom:6px}
+.cover small{font-weight:700;color:var(--blue);letter-spacing:.5px}
+.cover strong{font-size:30px;color:var(--navy);line-height:1.1}
+.cover span{font-size:14px;color:var(--muted)}
+/* calc */
+.calc{background:var(--sky)}
+.calc-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:15px}
+.field input,.form input,.form select{border:1.5px solid #C5D0DC;border-radius:10px;padding:12px 14px;font-size:16px;font-family:inherit;background:#fff;width:100%}
+.hint{font-size:13px;color:var(--muted)}
+.out{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.big{font-size:clamp(28px,4.5vw,40px);font-weight:800;color:var(--pink-dk)}
+/* symptoms */
+.sym{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:44px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;background:#fff;color:var(--navy);border:1.5px solid #9DB3C9;text-align:left}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.answer{background:#fff;border-left:0;border-radius:14px;padding:20px;border:1px solid var(--line)}
+/* table */
+.tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{background:#F2F6FA;font-weight:800}
+td.n,th.n{text-align:center}
+tr.total td{font-weight:800;background:#F2F6FA}
+/* steps */
+.num{width:44px;height:44px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* profile */
+.profile{background:var(--navy);color:#fff}
+.profile-in{display:flex;flex-wrap:wrap;gap:32px;align-items:center}
+.photo{flex:0 0 240px;width:240px;max-width:100%;height:auto;aspect-ratio:480/599;object-fit:cover;border-radius:20px;border:4px solid rgba(255,255,255,.18)}
+.profile-text{flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:10px}
+/* price */
+.price{font-size:30px;font-weight:800}
+.label{font-size:13px;font-weight:800;color:var(--blue);letter-spacing:.3px}
+.featured{border:2px solid var(--pink)}
+/* faq */
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+summary{font-weight:700;cursor:pointer}
+details p{margin-top:10px}
+/* form */
+.order{background:var(--navy);color:#fff}
+.form{background:#fff;color:var(--ink);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.form label{font-weight:700;font-size:15px;margin-top:6px}
+.note{font-size:13px;color:var(--muted)}
+footer{background:var(--navy-dk);color:#D5E1EC;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;padding-top:32px;padding-bottom:32px}
+.foot strong{color:#fff}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:rgba(250,251,253,.97);border-top:1px solid var(--line);display:none;z-index:10}
+.sticky .btn{display:block;padding:14px}
+@media (max-width:640px){.sticky{display:block}body{padding-bottom:72px}.nav img{height:40px}}
+:focus-visible{outline:3px solid #F59E0B;outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap nav">
+    <img src="/rekrut-tepat/logo.jpg" alt="Talenta Mulia — Psychology, Healthcare &amp; Leadership" width="560" height="161">
+    <a class="wa" href="#pesan">Tanya via WhatsApp</a>
+  </div>
+</div>
+
+<!-- 1. HERO -->
+<header class="hero-bg">
+  <div class="wrap hero">
+    <div class="hero-text">
+      <div class="pill">Untuk pemilik usaha &amp; penanggung jawab SDM</div>
+      <h1>Capek rekrut karyawan yang baru 2 bulan sudah keluar? Berhenti memilih pakai feeling.</h1>
+      <p class="hero-lead">Kit Rekrut Tepat memberi Anda alat seleksi yang biasa dipakai perusahaan besar, disederhanakan untuk usaha kecil: scorecard wawancara, bank pertanyaan, dan checklist 30 hari pertama. Disusun oleh Psikolog Bunda Lia.</p>
+      <div class="cta-row">
+        <a class="btn" href="#pesan">Ambil Kit Rekrut Tepat · Rp149.000</a>
+        <a class="btn btn-ghost" href="#hitung">Hitung kerugian salah rekrut</a>
+      </div>
+    </div>
+    <div class="box">
+      <div class="cover"><small>KIT EXCEL + PANDUAN PDF</small><strong>Rekrut Tepat</strong><span>Seleksi karyawan UMKM · Talenta Mulia</span></div>
+      <div><span class="tick">✓</span>Scorecard wawancara untuk 8 posisi UMKM</div>
+      <div><span class="tick">✓</span>Bank 120 pertanyaan wawancara perilaku</div>
+      <div><span class="tick">✓</span>Kalkulator biaya salah rekrut</div>
+      <div><span class="tick">✓</span>Checklist onboarding 30 hari</div>
+      <div><span class="tick">✓</span>Form evaluasi masa percobaan</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- 2. MASALAH, DUA AUDIENS -->
+<section>
+  <div class="wrap stack">
+    <div class="kicker">Kenal dengan situasi ini?</div>
+    <h2>Masalah karyawan jarang muncul di hari pertama. Biasanya muncul di bulan kedua.</h2>
+    <div class="grid">
+      <div class="card stack" style="gap:10px">
+        <h3 style="font-size:19px">Kalau Anda pemilik usaha</h3>
+        <p>• Wawancara cuma ngobrol, lalu memutuskan karena “kelihatannya baik”.</p>
+        <p>• Karyawan baru telat, tidak teliti, atau tiba-tiba menghilang.</p>
+        <p>• Anda sendiri yang turun tangan menutup kekosongan.</p>
+        <p>• Uang, waktu, dan tenaga habis untuk mengulang dari nol.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <h3 style="font-size:19px">Kalau Anda admin, supervisor, atau HR</h3>
+        <p>• Diminta “carikan orang” tanpa kriteria yang jelas.</p>
+        <p>• Bingung pertanyaan apa yang benar-benar membedakan kandidat.</p>
+        <p>• Sulit menjelaskan ke atasan kenapa kandidat A lebih layak dari B.</p>
+        <p>• Karyawan baru dilepas begitu saja tanpa pendampingan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. KALKULATOR -->
+<section id="hitung" class="calc">
+  <div class="narrow stack">
+    <div class="kicker">Kalkulator</div>
+    <h2>Berapa sebenarnya biaya salah rekrut di usaha Anda?</h2>
+    <p>Isi dengan angka usaha Anda sendiri. Hitungan ini sengaja dibuat sederhana dan belum memasukkan kerugian yang sulit dihitung.</p>
+    <div class="calc-grid">
+      <div class="field"><label for="c-gaji">Gaji per bulan (Rp)</label><input id="c-gaji" type="number" inputmode="numeric" min="0" step="100000" value="2500000"></div>
+      <div class="field"><label for="c-belajar">Masa belajar sampai produktif (bulan)</label><input id="c-belajar" type="number" inputmode="decimal" min="0" step="0.5" value="1"><span class="hint">Gaji tetap dibayar walau belum produktif.</span></div>
+      <div class="field"><label for="c-rekrut">Biaya sekali rekrut (Rp)</label><input id="c-rekrut" type="number" inputmode="numeric" min="0" step="50000" value="500000"><span class="hint">Iklan lowongan, transport, waktu wawancara.</span></div>
+      <div class="field"><label for="c-kali">Berapa kali ganti orang per tahun</label><input id="c-kali" type="number" inputmode="numeric" min="0" step="1" value="2"></div>
+    </div>
+    <div class="out" aria-live="polite">
+      <div style="font-weight:700">Perkiraan kerugian per tahun, untuk satu posisi:</div>
+      <div class="big" id="c-total">Rp0</div>
+      <div id="c-detail" class="hint" style="font-size:15px"></div>
+      <div style="font-size:15px">Belum termasuk barang rusak atau hilang, pelanggan yang kecewa, dan waktu Anda sendiri. Bandingkan dengan Kit Rekrut Tepat: <strong>Rp149.000</strong>, sekali bayar, dipakai untuk semua posisi.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 & 5. SOLUSI + ISI -->
+<section>
+  <div class="wrap stack">
+    <div class="kicker">Solusinya</div>
+    <h2>Kit Rekrut Tepat: seleksi yang terstruktur, cukup dengan Excel</h2>
+    <p style="font-size:18px;max-width:780px">Setiap kandidat ditanya hal yang sama, dinilai dengan kriteria yang sama, lalu dibandingkan dengan angka. Keputusan jadi lebih adil, lebih cepat, dan bisa dijelaskan.</p>
+    <div class="grid">
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">1. Scorecard 8 posisi</h3><p>Kasir, pramuniaga, sales, admin, kurir, cook/barista, CS online, dan staf gudang. Kriteria dan bobot sudah disiapkan, skor dihitung otomatis.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">2. Bank 120 pertanyaan perilaku</h3><p>Pertanyaan “ceritakan saat Anda…” yang menggali pengalaman nyata, lengkap dengan contoh jawaban kuat dan tanda bahaya.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">3. Kalkulator biaya salah rekrut</h3><p>Versi lengkap dari kalkulator di atas, untuk menghitung dampak per posisi di usaha Anda.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">4. Checklist onboarding 30 hari</h3><p>Apa yang dikenalkan di hari 1, minggu 1, dan bulan 1, supaya karyawan baru cepat produktif dan betah.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">5. Form evaluasi masa percobaan</h3><p>Penilaian sederhana di akhir masa percobaan untuk memutuskan: lanjut, perpanjang, atau berhenti.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">6. Panduan PDF</h3><p>Cara memakai kit dari awal sampai akhir, termasuk contoh pengisian, dengan bahasa yang mudah dipahami.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CEK MANDIRI -->
+<section style="padding-top:0">
+  <div class="narrow stack">
+    <div class="kicker">Cek mandiri</div>
+    <h2>Mana yang paling sering terjadi di usaha Anda?</h2>
+    <p>Klik salah satu untuk melihat bagian kit yang paling membantu.</p>
+    <div class="sym" id="sym"></div>
+    <div class="answer" id="sym-answer" aria-live="polite">Pilih salah satu gejala di atas.</div>
+  </div>
+</section>
+
+<!-- 7. CARA KERJA -->
+<section style="padding-top:0">
+  <div class="wrap stack" style="gap:24px">
+    <h2>Cara kerjanya, 3 langkah</h2>
+    <div class="grid">
+      <div class="stack" style="gap:8px"><div class="num">1</div><strong>Tentukan kriteria</strong><p>Pilih scorecard posisi yang Anda cari, sesuaikan bobotnya dengan kebutuhan usaha.</p></div>
+      <div class="stack" style="gap:8px"><div class="num">2</div><strong>Wawancara &amp; beri skor</strong><p>Ajukan pertanyaan dari bank pertanyaan, isi skor 1–5. Excel menghitung dan meranking kandidat.</p></div>
+      <div class="stack" style="gap:8px"><div class="num">3</div><strong>Dampingi 30 hari</strong><p>Jalankan checklist onboarding, lalu evaluasi di akhir masa percobaan. Masih ragu memilih? Tambahkan psikotes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CONTOH SCORECARD -->
+<section style="padding-top:0">
+  <div class="wrap stack">
+    <div class="kicker">Contoh ilustrasi</div>
+    <h2>Seperti ini scorecard bekerja: memilih kasir</h2>
+    <p>Dua kandidat diwawancarai dengan pertanyaan yang sama. Skor 1–5 dikalikan bobot kriteria.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Kriteria</th><th class="n">Bobot</th><th class="n">Kandidat A</th><th class="n">Kandidat B</th></tr></thead>
+        <tbody>
+          <tr><td>Ketelitian menghitung uang</td><td class="n">30%</td><td class="n">3</td><td class="n">5</td></tr>
+          <tr><td>Kejujuran &amp; tanggung jawab</td><td class="n">25%</td><td class="n">4</td><td class="n">4</td></tr>
+          <tr><td>Sikap melayani pelanggan</td><td class="n">20%</td><td class="n">5</td><td class="n">3</td></tr>
+          <tr><td>Ketahanan kerja shift</td><td class="n">15%</td><td class="n">3</td><td class="n">4</td></tr>
+          <tr><td>Kerja sama tim</td><td class="n">10%</td><td class="n">4</td><td class="n">4</td></tr>
+          <tr class="total"><td>Skor akhir (maks. 5,00)</td><td class="n">100%</td><td class="n">3,75</td><td class="n">4,10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint" style="font-size:15px">Kandidat A lebih ramah saat wawancara, tapi untuk posisi kasir, ketelitian paling berat bobotnya. Dengan scorecard, alasan memilih B jadi jelas dan bisa dijelaskan.</p>
+  </div>
+</section>
+
+<!-- 9. UNTUK SIAPA -->
+<section style="padding-top:0">
+  <div class="wrap grid">
+    <div class="stack" style="background:#E9F5EF;border-radius:16px;padding:24px;gap:8px">
+      <h3 style="font-size:19px">Cocok untuk</h3>
+      <p>• Usaha dengan sekitar 3–50 karyawan: toko, kafe, resto, klinik, bengkel, distributor, jasa</p>
+      <p>• Pemilik yang masih merekrut sendiri</p>
+      <p>• Admin atau supervisor yang diberi tugas rekrutmen</p>
+      <p>• Usaha yang sering ganti karyawan di posisi yang sama</p>
+    </div>
+    <div class="stack" style="background:var(--pink-soft);border-radius:16px;padding:24px;gap:8px">
+      <h3 style="font-size:19px">Kurang cocok jika</h3>
+      <p>• Anda butuh hasil tes psikologi resmi (pilih paket Psikotes Kandidat)</p>
+      <p>• Anda mencari kumpulan soal psikotes untuk diberikan sendiri</p>
+      <p>• Perusahaan Anda sudah punya sistem HR dan asesmen lengkap</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10. PROFIL -->
+<section class="profile">
+  <div class="wrap profile-in">
+    <img class="photo" src="/rekrut-tepat/bu-lia.jpg" alt="Psikolog Bunda Lia, Maulidah Muflihah, M.Psi., Psikolog" width="480" height="599">
+    <div class="profile-text">
+      <div style="font-size:14px;font-weight:700;opacity:.85">DISUSUN OLEH</div>
+      <h2 style="font-size:clamp(24px,3.5vw,30px)">Maulidah Muflihah, M.Psi., Psikolog</h2>
+      <div style="font-weight:600">Psikolog Bunda Lia · Pendiri Biro Psikologi Talenta Mulia · SIPP 20090358-2024-01-4193</div>
+      <p style="opacity:.93">Berpraktik sebagai psikolog sejak 2008. Melalui Talenta Mulia, menangani asesmen seleksi karyawan, wawancara, dan penataan posisi pegawai untuk perusahaan, serta pelatihan untuk lembaga pendidikan. Kit ini merangkum cara kerja tersebut ke dalam alat yang bisa dipakai sendiri oleh pemilik usaha.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. HARGA -->
+<section id="harga">
+  <div class="wrap stack" style="gap:20px">
+    <div class="kicker">Pilihan paket</div>
+    <h2>Mulai dari kit, tambah psikolog saat Anda butuh</h2>
+    <div class="grid">
+      <div class="card featured stack" style="gap:10px">
+        <div class="label" style="color:var(--pink)">MULAI DI SINI</div>
+        <h3 style="font-size:20px">Kit Rekrut Tepat</h3>
+        <div class="price">Rp149.000</div>
+        <div class="note">Sekali bayar, file Excel + PDF</div>
+        <p>Scorecard 8 posisi, 120 pertanyaan perilaku, kalkulator, checklist onboarding, dan form evaluasi masa percobaan.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">DENGAN PSIKOLOG</div>
+        <h3 style="font-size:20px">Psikotes Kandidat</h3>
+        <div class="price">Rp200.000<span style="font-size:16px;font-weight:600">/orang</span></div>
+        <p>Pemeriksaan psikologi oleh psikolog untuk kandidat final, dengan laporan kemampuan, sikap kerja, kepribadian, dan rekomendasi.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">HEMAT</div>
+        <h3 style="font-size:20px">Paket Tim Kecil</h3>
+        <div class="price">Rp850.000</div>
+        <div class="note">5 kandidat atau karyawan</div>
+        <p>Psikotes untuk 5 orang sekaligus, cocok untuk buka cabang atau rekrut beberapa posisi.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">UNTUK PERUSAHAAN</div>
+        <h3 style="font-size:20px">Asesmen &amp; Penataan Posisi</h3>
+        <div class="price" style="font-size:24px">Mulai Rp5 juta</div>
+        <p>Asesmen karyawan yang sudah ada, wawancara, dan rekomendasi penempatan posisi yang tepat. Harga sesuai jumlah karyawan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. BONUS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="stack" style="background:var(--sky);border-radius:20px;padding:28px;gap:6px">
+      <h3 style="font-size:19px">Bonus pembeli Kit</h3>
+      <p>Template pesan WhatsApp untuk mengundang wawancara dan menolak kandidat dengan sopan, supaya nama baik usaha Anda tetap terjaga.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13. FAQ -->
+<section style="padding-top:0">
+  <div class="narrow stack" style="gap:14px">
+    <h2>Pertanyaan yang sering muncul</h2>
+    <details><summary>Apakah kit ini berisi soal psikotes?</summary><p>Tidak. Kit ini berisi alat wawancara terstruktur dan penilaian kerja yang boleh dipakai pemilik usaha. Tes psikologi hanya dilakukan oleh psikolog, melalui paket Psikotes Kandidat.</p></details>
+    <details><summary>Saya tidak terlalu paham Excel. Bisa dipakai?</summary><p>Bisa. Anda cukup mengisi angka 1–5, rumusnya sudah jalan sendiri. File juga bisa dibuka di Google Sheets atau di HP.</p></details>
+    <details><summary>Posisi yang saya cari tidak ada di daftar 8 posisi.</summary><p>Ada scorecard kosong dan panduan menyusun kriteria sendiri. Bank pertanyaan juga dikelompokkan per kemampuan, sehingga bisa dipakai untuk posisi lain.</p></details>
+    <details><summary>Bagaimana dengan kerahasiaan hasil psikotes kandidat?</summary><p>Psikotes dilakukan dengan persetujuan kandidat. Laporan hanya diberikan kepada pihak perusahaan yang memesan, sesuai kode etik psikologi.</p></details>
+    <details><summary>Bagaimana cara bayar dan kapan file dikirim?</summary><p>Pembayaran melalui link pembayaran resmi (QRIS, e-wallet, virtual account). Setelah terkonfirmasi, file dikirim lewat WhatsApp atau email di hari yang sama pada jam kerja.</p></details>
+  </div>
+</section>
+</main>
+
+<!-- 14. FORM WA -->
+<section id="pesan" class="order">
+  <div class="narrow stack">
+    <h2>Pesan sekarang lewat WhatsApp</h2>
+    <p style="opacity:.93">Isi data singkat di bawah. Pesan akan tersusun otomatis di WhatsApp admin Talenta Mulia (0821-3299-0498).</p>
+    <form class="form" id="order-form">
+      <label for="f-nama">Nama Anda</label>
+      <input id="f-nama" type="text" placeholder="Contoh: Pak Hendra" autocomplete="name">
+      <label for="f-usaha">Nama usaha &amp; bidang</label>
+      <input id="f-usaha" type="text" placeholder="Contoh: Kedai Kopi Senja, F&amp;B">
+      <label for="f-kota">Kota</label>
+      <input id="f-kota" type="text" placeholder="Contoh: Surabaya">
+      <label for="f-jumlah">Jumlah karyawan</label>
+      <select id="f-jumlah">
+        <option>1–5 orang</option>
+        <option>6–15 orang</option>
+        <option>16–30 orang</option>
+        <option>31–50 orang</option>
+        <option>Lebih dari 50 orang</option>
+      </select>
+      <label for="f-posisi">Posisi yang paling sering dicari</label>
+      <input id="f-posisi" type="text" placeholder="Contoh: kasir, barista">
+      <label for="f-paket">Paket</label>
+      <select id="f-paket">
+        <option>Kit Rekrut Tepat (Rp149.000)</option>
+        <option>Psikotes Kandidat (Rp200.000/orang)</option>
+        <option>Paket Tim Kecil 5 orang (Rp850.000)</option>
+        <option>Asesmen &amp; Penataan Posisi (perusahaan)</option>
+      </select>
+      <a class="btn" id="wa-btn" href="https://wa.me/6282132990498" target="_blank" rel="noopener" style="margin-top:12px">Kirim pesanan ke WhatsApp</a>
+      <p class="note">Data hanya dipakai untuk memproses pesanan Anda.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div style="flex:1 1 320px"><strong>Biro Psikologi Talenta Mulia</strong><br>Jl. Gadung No. 5 Margomulyo Wage, Kec. Taman, Sidoarjo, Jawa Timur 61257<br>Hotline/WA 0821-3299-0498 · www.TalentaMulia.co.id · IG/TikTok @psikolog.bundalia</div>
+    <div style="flex:1 1 280px">Kit Rekrut Tepat adalah alat bantu seleksi dan wawancara, bukan alat tes psikologi. Pemeriksaan psikologis dilakukan oleh psikolog.<br><br>© 2026 Biro Psikologi Talenta Mulia</div>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn" href="#pesan">Ambil Kit Rekrut Tepat · Rp149.000</a></div>
+
+<script>
+(function () {
+  var rp = function (n) { return 'Rp' + Math.round(n).toLocaleString('id-ID'); };
+  function num(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) || v < 0 ? 0 : v; }
+  function calc() {
+    var gaji = num('c-gaji'), belajar = num('c-belajar'), rekrut = num('c-rekrut'), kali = num('c-kali');
+    var per = rekrut + gaji * belajar;
+    var total = per * kali;
+    document.getElementById('c-total').textContent = rp(total);
+    document.getElementById('c-detail').textContent = kali + ' kali × (biaya rekrut ' + rp(rekrut) + ' + gaji masa belajar ' + rp(gaji * belajar) + ') = ' + rp(per) + ' per kejadian';
+  }
+  ['c-gaji', 'c-belajar', 'c-rekrut', 'c-kali'].forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+  calc();
+
+  var syms = [
+    ['Karyawan baru cepat keluar', 'Mulai dari Checklist Onboarding 30 Hari. Banyak karyawan keluar di bulan pertama karena merasa dibiarkan dan tidak tahu harus bagaimana. Lalu pakai scorecard agar sejak awal memilih orang yang cocok dengan ritme kerja usaha Anda.'],
+    ['Kandidat bagus saat wawancara, mengecewakan saat kerja', 'Gunakan Bank 120 Pertanyaan Perilaku. Pertanyaan “ceritakan saat Anda…” menggali apa yang benar-benar pernah dilakukan kandidat, bukan jawaban hafalan.'],
+    ['Bingung memilih di antara 2–3 kandidat', 'Gunakan Scorecard. Skor dan bobot membuat perbandingan jadi jelas. Jika masih ragu untuk posisi penting, tambahkan Psikotes Kandidat untuk kandidat final.'],
+    ['Sering ada selisih uang atau barang', 'Di scorecard posisi kasir, pramuniaga, dan gudang, kejujuran dan ketelitian diberi bobot tinggi, lengkap dengan pertanyaan pendalamannya. Untuk posisi yang memegang uang, psikotes membantu melihat sikap kerja lebih dalam.'],
+    ['Masa percobaan habis tanpa keputusan jelas', 'Gunakan Form Evaluasi Masa Percobaan: nilai karyawan dengan kriteria yang sama seperti saat rekrut, lalu putuskan lanjut, perpanjang, atau berhenti.'],
+    ['Karyawan lama tidak cocok dengan posisinya', 'Ini bukan masalah rekrutmen saja. Pertimbangkan paket Asesmen & Penataan Posisi: psikolog memetakan kekuatan tiap karyawan dan merekomendasikan posisi yang lebih tepat.']
+  ];
+  var box = document.getElementById('sym'), ans = document.getElementById('sym-answer');
+  syms.forEach(function (s) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = s[0]; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () {
+      box.querySelectorAll('.chip').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      ans.textContent = s[1];
+    });
+    box.appendChild(b);
+  });
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+  function buildWa() {
+    var msg = 'Assalamu’alaikum Admin Talenta Mulia, saya ingin memesan ' + val('f-paket') + '.\n' +
+      'Nama: ' + (val('f-nama') || '-') + '\n' +
+      'Usaha: ' + (val('f-usaha') || '-') + '\n' +
+      'Kota: ' + (val('f-kota') || '-') + '\n' +
+      'Jumlah karyawan: ' + val('f-jumlah') + '\n' +
+      'Posisi yang sering dicari: ' + (val('f-posisi') || '-');
+    document.getElementById('wa-btn').href = 'https://wa.me/6282132990498?text=' + encodeURIComponent(msg);
+  }
+  ['f-nama', 'f-usaha', 'f-kota', 'f-jumlah', 'f-posisi', 'f-paket'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', buildWa);
+    document.getElementById(id).addEventListener('change', buildWa);
+  });
+  document.getElementById('order-form').addEventListener('submit', function (e) { e.preventDefault(); });
+  buildWa();
+})();
+</script>
+</body>
+</html>
