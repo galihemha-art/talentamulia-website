@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import type { Professional } from "@/lib/professionals-data";
 import type { ServiceImageSet } from "@/lib/service-images";
+import { usePageHero } from "@/lib/page-heroes";
 
 /* ---------------- Hero: image right ---------------- */
 
@@ -36,6 +38,7 @@ export function ServiceHero({
   images: ServiceImageSet;
   highlights?: string[];
 }) {
+  const pageHeroImg = usePageHero();
   return (
     <section className="relative overflow-hidden border-b border-border bg-secondary/40">
       <div
@@ -68,9 +71,9 @@ export function ServiceHero({
                 {eyebrow}
               </p>
             )}
-            <h1 className="mt-2 font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+            <h1 className="mt-2 font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
               {title}
-            </h1>
+            </PageH1Text></h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
               {valueProp}
             </p>
@@ -106,8 +109,8 @@ export function ServiceHero({
           <div className="relative">
             <div className="overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-soft">
               <img
-                src={images.hero}
-                alt={images.heroAlt}
+                src={pageHeroImg?.src ?? images.hero}
+                alt={pageHeroImg?.alt ?? images.heroAlt}
                 width={1400}
                 height={1000}
                 decoding="async"
@@ -322,11 +325,6 @@ export function WhySection({
           <h2 className="font-heading text-2xl font-bold tracking-tight text-primary md:text-3xl">
             Mengapa Talenta Mulia
           </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            Kami satu-satunya pusat konsultasi di Jawa Timur yang memadukan psikologi, kesehatan,
-            dan kepemimpinan dalam satu tim — sehingga rekomendasi kami menyentuh manusia dan sistem
-            sekaligus.
-          </p>
           {reasons && reasons.length > 0 && (
             <ul className="mt-6 space-y-3">
               {reasons.map((r) => (

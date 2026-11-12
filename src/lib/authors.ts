@@ -1,8 +1,4 @@
-import maulidah from "@/assets/Maulidah_Muflichah.webp";
-import andiani from "@/assets/Dr_Andiani.webp";
-import eka from "@/assets/Eka_Rachmawaty.webp";
-import mamluatul from "@/assets/Mamluatul_Khoiriyah.webp";
-import hilda from "@/assets/Hilda_Rosa_Ainiyah.webp";
+import { PROFESSIONALS } from "@/lib/professionals-data";
 
 export type AuthorId = "maulidah" | "andiani" | "eka" | "mamluatul" | "hilda";
 
@@ -15,47 +11,26 @@ export type Author = {
   jobTitle: string;
 };
 
-export const AUTHORS: Record<AuthorId, Author> = {
-  maulidah: {
-    id: "maulidah",
-    name: "Maulidah Muflichah, M.Psi., Psikolog., CHt.",
-    role: "Founder · Psikolog Utama · Certified Hypnotherapist",
-    bio: "Founder Talenta Mulia dengan keahlian mendalam di psikologi klinis, terapi keluarga, konseling pernikahan, dan hipnoterapi bersertifikat.",
-    photo: maulidah,
-    jobTitle: "Psikolog Klinis",
-  },
-  andiani: {
-    id: "andiani",
-    name: "Dr. dr. Hj. Andiani, M.Kes., Sp.KKLP.",
-    role: "Konsultan Kepemimpinan Medis & Kesehatan",
-    bio: "Berpengalaman dalam manajemen dan akreditasi rumah sakit, tata kelola klinis, serta kepemimpinan mutu pelayanan kesehatan.",
-    photo: andiani,
-    jobTitle: "Dokter & Konsultan Kesehatan",
-  },
-  eka: {
-    id: "eka",
-    name: "Eka Rachmawaty, M.M., PCC",
-    role: "Konsultan Pengembangan Kepemimpinan & Organisasi · ICF PCC",
-    bio: "Professional Certified Coach (ICF PCC) yang berspesialisasi dalam executive coaching, pengembangan kepemimpinan, talent management, dan pengembangan organisasi.",
-    photo: eka,
-    jobTitle: "Executive Coach",
-  },
-  mamluatul: {
-    id: "mamluatul",
-    name: "Mamluatul Khoiriyah, M.Psi., Psikolog",
-    role: "Psikolog Senior",
-    bio: "Psikolog senior yang fokus pada kesehatan mental, trauma healing, forgiveness dan terapi SEFT, parenting, dan psikologi komunitas.",
-    photo: mamluatul,
-    jobTitle: "Psikolog",
-  },
-  hilda: {
-    id: "hilda",
-    name: "Hilda Rosa Ainiyah, S.Psi., M.Psi., Psikolog",
-    role: "Psikolog Klinis",
-    bio: "Psikolog klinis dan akademisi yang berbasis di Malang, dengan fokus keahlian pada penanganan dampak pengalaman masa kecil (ACEs), konseling hubungan dan kesiapan pranikah, serta eksplorasi diri.",
-    photo: hilda,
-    jobTitle: "Psikolog Klinis",
-  },
+const JOB_TITLE: Record<AuthorId, string> = {
+  maulidah: "Psikolog",
+  mamluatul: "Psikolog",
+  hilda: "Psikolog Klinis",
+  eka: "Konsultan Pengembangan Kepemimpinan & Organisasi",
+  andiani: "Mitra",
 };
+
+export const AUTHORS = Object.fromEntries(
+  PROFESSIONALS.map((p) => [
+    p.id,
+    {
+      id: p.id,
+      name: p.name,
+      role: p.role || "Mitra",
+      bio: p.desc,
+      photo: p.photo,
+      jobTitle: JOB_TITLE[p.id],
+    },
+  ]),
+) as Record<AuthorId, Author>;
 
 export const AUTHOR_LIST = Object.values(AUTHORS);

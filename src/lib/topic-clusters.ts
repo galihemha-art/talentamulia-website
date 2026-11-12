@@ -57,7 +57,7 @@ export const TOPIC_CLUSTERS: TopicCluster[] = [
   {
     id: "kesehatan-kesejahteraan",
     label: "Kesehatan & Kesejahteraan",
-    description: "Medical wellness, kesehatan eksekutif, dan well-being karyawan.",
+    description: "Edukasi kesehatan dan well-being karyawan.",
     kategori: ["Kesehatan", "Kesejahteraan Karyawan"],
     layanan: ["medical-wellness", "kesejahteraan-karyawan"],
     halaman: [{ title: "Konsultasi Kesehatan", to: "/kesehatan" }],
@@ -131,6 +131,6 @@ export function featuredArticles(limit = 2): Artikel[] {
   return (featured.length > 0 ? featured : ARTIKEL).slice(0, limit);
 }
 
-export function clusterForArticle(a: Artikel) {
+export function clusterForArticle(a: Pick<Artikel, "kategori">) {
   return TOPIC_CLUSTERS.find((c) => c.kategori.includes(a.kategori));
 }

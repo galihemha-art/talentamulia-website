@@ -1,3 +1,4 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronRight, UserRound, Users } from "lucide-react";
 import { CtaPenutup } from "@/components/site/LayananDetailPage";
@@ -34,9 +35,9 @@ export function CoachingHubPage() {
             <span className="text-primary">Coaching</span>
           </nav>
 
-          <h1 className="mt-6 font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">
+          <h1 className="mt-6 font-heading text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"><PageH1Text>
             Coaching
-          </h1>
+          </PageH1Text></h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Pendekatan coaching bersertifikat ICF untuk individu dan tim.
           </p>

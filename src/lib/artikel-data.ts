@@ -77,20 +77,40 @@ export const ARTIKEL: Artikel[] = [
 ];
 
 /** Estimated reading time in minutes (200 wpm), min 1. */
-export function readingTime(a: Artikel): number {
+export function readingTime(a: Pick<Artikel, "paragraphs">): number {
   const words = a.paragraphs.join(" ").trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 200));
 }
 
-export function wordCount(a: Artikel): number {
+export function wordCount(a: Pick<Artikel, "paragraphs">): number {
   return a.paragraphs.join(" ").trim().split(/\s+/).length;
 }
 
-export function formatTanggal(iso: string): string {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+function parseTanggal(value: string | null | undefined): Date | null {
+  if (typeof value !== "string") return null;
+  const v = value.trim();
+  if (!v) return null;
+  // Date-only strings (local data) are pinned to midnight Jakarta time.
+  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(v) ? `${v}T00:00:00+07:00` : v);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+const TANGGAL_FMT = new Intl.DateTimeFormat("id-ID", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "Asia/Jakarta",
+});
+
+/** Returns e.g. "5 November 2026", or "" when the date is missing/invalid. */
+export function formatTanggal(value: string | null | undefined): string {
+  const d = parseTanggal(value);
+  return d ? TANGGAL_FMT.format(d) : "";
+}
+
+/** True when both dates are valid and fall on different Jakarta calendar days. */
+export function isTanggalBerbeda(a: string | null | undefined, b: string | null | undefined): boolean {
+  const fa = formatTanggal(a);
+  const fb = formatTanggal(b);
+  return Boolean(fa && fb && fa !== fb);
 }

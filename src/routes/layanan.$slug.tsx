@@ -1,6 +1,8 @@
+import { PageH1Text } from "@/components/site/PageH1Text";
+import { withPageSeo } from "@/lib/page-seo";
 import { canonicalLink, ogUrl } from "@/lib/seo";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { LayananDetailPage } from "@/components/site/LayananDetailPage";
 import { LAYANAN_KORPORAT } from "@/lib/layanan-korporat-data";
 import { CoachingHubPage } from "@/components/site/CoachingHubPage";
@@ -9,6 +11,11 @@ import { PemeriksaanPsikologiDetailPage } from "@/components/site/PemeriksaanPsi
 import { PEMERIKSAAN_PSIKOLOGI } from "@/lib/pemeriksaan-psikologi-data";
 import { LayananIndividuDetailPage } from "@/components/site/LayananIndividuDetailPage";
 import { LAYANAN_INDIVIDU } from "@/lib/layanan-individu-data";
+import { PsychologicalCounselingPage } from "@/components/site/PsychologicalCounselingPage";
+import { MarriageCounselingPage } from "@/components/site/MarriageCounselingPage";
+import { ParentingCounselingPage } from "@/components/site/ParentingCounselingPage";
+import { TeenCounselingPage } from "@/components/site/TeenCounselingPage";
+import { serviceSchema, webPageSchema } from "@/lib/structured-data";
 
 
 const TITLES: Record<string, string> = {
@@ -22,7 +29,7 @@ const TITLES: Record<string, string> = {
   "executive-coaching": "Executive Coaching",
   "team-coaching": "Team Coaching",
   "kesejahteraan-karyawan": "Kesejahteraan Karyawan",
-  "medical-wellness": "Medical Wellness",
+  "medical-wellness": "Program Edukasi Kesehatan & Wellness Karyawan",
   "talent-acquisition": "Talent Acquisition",
   "executive-search": "Executive Search",
   "pendampingan-sekolah-perusahaan": "Pendampingan Sekolah & Perusahaan",
@@ -52,39 +59,110 @@ function titleFor(slug: string) {
   );
 }
 
+import { legacyConsultationTarget, serviceIndexState } from "@/lib/seo-route-rules";
+import { NotFoundComponent } from "@/components/site/RouteBoundaries";
+
 export const Route = createFileRoute("/layanan/$slug")({
-  head: ({ params }) => {
+  beforeLoad: ({ params }) => {
+    const target = legacyConsultationTarget("layanan", params.slug);
+    if (target) throw redirect({ to: target, statusCode: 301 });
+    if (serviceIndexState(params.slug) === "missing") throw notFound();
+  },
+  notFoundComponent: NotFoundComponent,
+  head: (ctx) => withPageSeo(`/layanan/${ctx.params.slug}`, (({ params }: typeof ctx) => {
+    const state = serviceIndexState(params.slug);
+    if (state === "missing") return { meta: [{ title: "Layanan tidak ditemukan — Talenta Mulia" }, { name: "robots", content: "noindex" }] };
     const detail = LAYANAN_KORPORAT[params.slug] ?? PEMERIKSAAN_PSIKOLOGI[params.slug] ?? LAYANAN_INDIVIDU[params.slug];
     const title = detail?.nama ?? titleFor(params.slug);
-    const description = detail
+    const isCounseling = params.slug === "konseling-psikologis";
+    const isMarriage = params.slug === "konseling-pernikahan";
+    const isParenting = params.slug === "parenting-anak";
+    const isTeen = params.slug === "konseling-remaja";
+    const isOnlineOffline = params.slug === "konsultasi-online-offline";
+    const pageTitle = isOnlineOffline
+      ? "Konsultasi Psikologi Tatap Muka di Sidoarjo & Online | Talenta Mulia"
+      : isMarriage
+      ? "Layanan Konseling Pernikahan Profesional & Solutif | Talenta Mulia"
+      : isCounseling
+      ? "Konseling Psikologis Profesional | Talenta Mulia"
+      : isParenting
+      ? "Layanan Parenting & Konseling Anak Profesional | Talenta Mulia"
+      : isTeen
+      ? "Layanan Konseling Remaja Profesional & Friendly | Talenta Mulia"
+      : `${title} — Talenta Mulia Sidoarjo, Jawa Timur`;
+    const description = isOnlineOffline
+      ? "Pilih sesi konsultasi psikologi tatap muka di kantor Talenta Mulia Sidoarjo atau online via video call. Lihat alur, persiapan, dan cara membuat janji."
+      : isMarriage
+      ? "Layanan konseling pernikahan & pasangan profesional di Talenta Mulia. Psikolog berizin, penengah netral, bantu atasi konflik rumah tangga & komunikasi."
+      : isCounseling
+      ? "Layanan konseling psikologis profesional dan empatis secara online atau tatap muka di Sidoarjo untuk stres, kecemasan, relasi, dan keluarga."
+      : isParenting
+      ? "Layanan parenting & konseling anak profesional di Talenta Mulia. Psikolog berizin, bantu konsultasi pola asuh, emosi anak, hingga pendampingan ABK."
+      : isTeen
+      ? "Layanan konseling remaja di Talenta Mulia. Psikolog berizin, ramah, & nyambung. Bantu atasi stres sekolah, emosi, pergaulan, hingga krisis identitas."
+      : detail
       ? `${detail.subjudul} Talenta Mulia, Sidoarjo, Jawa Timur.`
-      : `Layanan ${title} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
+      : `${/^Layanan\b/i.test(title) ? title : `Layanan ${title}`} dari Talenta Mulia, pusat konsultasi psikologi & human capital terintegrasi di Sidoarjo, Jawa Timur.`;
+    const path = `/layanan/${params.slug}`;
     return {
       meta: [
-        { title: `${title} — Talenta Mulia Sidoarjo, Jawa Timur` },
+        { title: pageTitle },
+        ...(state === "coming-soon" ? [{ name: "robots", content: "noindex, follow" }] : []),
         { name: "description", content: description },
-        { property: "og:title", content: `${title} — Talenta Mulia` },
+        { property: "og:title", content: pageTitle },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
-        ogUrl(`/layanan/${params.slug}`),
+        { name: "twitter:title", content: pageTitle },
+        { name: "twitter:description", content: description },
+        ogUrl(path),
       ],
-      links: [canonicalLink(`/layanan/${params.slug}`)],
+      links: [canonicalLink(path)],
       scripts: [
         jsonLd(
           breadcrumbSchema([
-            { name: "Solusi Korporat", path: "/solusi-korporat" },
-            { name: title, path: `/layanan/${params.slug}` },
+            { name: isCounseling || isMarriage || isParenting || isTeen ? "Layanan Individu" : "Solusi Korporat", path: isCounseling || isMarriage || isParenting || isTeen ? "/layanan-individu" : "/solusi-korporat" },
+            { name: title, path },
           ]),
         ),
+        ...(isCounseling || isMarriage || isParenting || isTeen
+          ? [
+              jsonLd(webPageSchema({ name: pageTitle, description, path })),
+              ...(isCounseling
+                ? [
+                    jsonLd(
+                      serviceSchema({
+                        name: "Layanan Konseling Psikologis Profesional & Empatis",
+                        description,
+                        path,
+                        serviceType: "Konseling Psikologis",
+                        providerPeople: ["maulidah", "mamluatul", "hilda"],
+                        offerings: [
+                          { name: "Stres & Kecemasan", path: "/layanan/stres-kecemasan" },
+                          { name: "Konseling Pernikahan", path: "/layanan/konseling-pernikahan" },
+                          { name: "Parenting & Anak", path: "/layanan/parenting-anak" },
+                          { name: "Konseling Remaja", path: "/layanan/konseling-remaja" },
+                          { name: "Trauma Healing", path: "/layanan/trauma-healing" },
+                          { name: "Hipnoterapi", path: "/layanan/hipnoterapi" },
+                        ],
+                      }),
+                    ),
+                  ]
+                : []),
+            ]
+          : []),
       ],
     };
-  },
+  })(ctx)),
   component: LayananRoutePage,
 });
 
 function LayananRoutePage() {
   const { slug } = Route.useParams();
+  if (slug === "konseling-psikologis") return <PsychologicalCounselingPage />;
+  if (slug === "konseling-pernikahan") return <MarriageCounselingPage />;
+  if (slug === "parenting-anak") return <ParentingCounselingPage />;
+  if (slug === "konseling-remaja") return <TeenCounselingPage />;
   if (slug === "coaching") return <CoachingHubPage />;
   if (slug === "konsultasi-online-offline") return <KonsultasiOnlineOfflinePage />;
   const pemeriksaan = PEMERIKSAAN_PSIKOLOGI[slug];
@@ -103,7 +181,7 @@ function LayananPlaceholder({ slug }: { slug: string }) {
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         Layanan
       </p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-primary">{titleFor(slug)}</h1>
+      <h1 className="mt-3 text-4xl font-bold tracking-tight text-primary"><PageH1Text>{titleFor(slug)}</PageH1Text></h1>
       <p className="mt-4 text-muted-foreground">Halaman ini segera hadir (coming soon).</p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Link

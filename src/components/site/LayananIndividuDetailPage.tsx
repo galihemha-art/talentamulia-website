@@ -46,10 +46,10 @@ export function LayananIndividuDetailPage({ data }: { data: LayananIndividuDetai
           { label: "Layanan Individu", to: "/layanan-individu" },
           { label: data.nama },
         ]}
-        eyebrow="Layanan Individu"
+        eyebrow={data.segeraHadir ? "Segera hadir" : "Layanan Individu"}
         title={data.nama}
         valueProp={data.subjudul}
-        ctaPrimary="Jadwalkan Konsultasi"
+        ctaPrimary={data.segeraHadir ? "Daftar minat" : "Jadwalkan Konsultasi"}
         ctaSecondary="Tanya Lewat WhatsApp"
         images={images}
         highlights={["Psikolog bersertifikat", "Online & tatap muka", "Rahasia"]}
@@ -82,7 +82,7 @@ export function LayananIndividuDetailPage({ data }: { data: LayananIndividuDetai
       </section>
 
       <SolutionSection
-        text="Sesi dimulai dari mendengarkan cerita Anda secara utuh, dilanjutkan asesmen ringan bila diperlukan, lalu penyusunan rencana penanganan yang realistis dan terukur bersama psikolog Anda."
+        text="Sesi dimulai dari mendengarkan cerita Anda secara utuh, dilanjutkan asesmen ringan bila diperlukan, lalu penyusunan rencana pendampingan yang realistis dan terukur bersama psikolog Anda."
       />
 
       <BenefitCards title="Yang Anda dapatkan" items={data.yangDidapat} />
@@ -115,7 +115,7 @@ export function LayananIndividuDetailPage({ data }: { data: LayananIndividuDetai
       <CtaBanner
         title={`Mulai langkah pertama Anda`}
         text="Satu percakapan sering kali cukup untuk membuat masalah terasa lebih jernih. Kami siap mendengarkan."
-        primary="Jadwalkan Konsultasi"
+        primary={data.segeraHadir ? "Daftar minat" : "Jadwalkan Konsultasi"}
         secondary="Hubungi Kami"
       />
     </>
