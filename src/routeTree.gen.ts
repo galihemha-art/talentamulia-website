@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArtikelRouteImport } from './routes/artikel'
+import { Route as AyahHadirRouteImport } from './routes/ayah-hadir'
+import { Route as DetoxGadgetRouteImport } from './routes/detox-gadget'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndustriRouteImport } from './routes/industri'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
@@ -53,6 +55,16 @@ const IndexRoute = IndexRouteImport.update({
 const ArtikelRoute = ArtikelRouteImport.update({
   id: '/artikel',
   path: '/artikel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AyahHadirRoute = AyahHadirRouteImport.update({
+  id: '/ayah-hadir',
+  path: '/ayah-hadir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DetoxGadgetRoute = DetoxGadgetRouteImport.update({
+  id: '/detox-gadget',
+  path: '/detox-gadget',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -225,6 +237,8 @@ const TentangKamiLegalitasRoute = TentangKamiLegalitasRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRouteWithChildren
+  '/ayah-hadir': typeof AyahHadirRoute
+  '/detox-gadget': typeof DetoxGadgetRoute
   '/faq': typeof FaqRoute
   '/industri': typeof IndustriRouteWithChildren
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
@@ -261,6 +275,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ayah-hadir': typeof AyahHadirRoute
+  '/detox-gadget': typeof DetoxGadgetRoute
   '/faq': typeof FaqRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kesehatan': typeof KesehatanRoute
@@ -296,6 +312,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/artikel': typeof ArtikelRouteWithChildren
+  '/ayah-hadir': typeof AyahHadirRoute
+  '/detox-gadget': typeof DetoxGadgetRoute
   '/faq': typeof FaqRoute
   '/industri': typeof IndustriRouteWithChildren
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
@@ -335,6 +353,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/artikel'
+    | '/ayah-hadir'
+    | '/detox-gadget'
     | '/faq'
     | '/industri'
     | '/kebijakan-privasi'
@@ -371,6 +391,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ayah-hadir'
+    | '/detox-gadget'
     | '/faq'
     | '/kebijakan-privasi'
     | '/kesehatan'
@@ -405,6 +427,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/artikel'
+    | '/ayah-hadir'
+    | '/detox-gadget'
     | '/faq'
     | '/industri'
     | '/kebijakan-privasi'
@@ -443,6 +467,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtikelRoute: typeof ArtikelRouteWithChildren
+  AyahHadirRoute: typeof AyahHadirRoute
+  DetoxGadgetRoute: typeof DetoxGadgetRoute
   FaqRoute: typeof FaqRoute
   IndustriRoute: typeof IndustriRouteWithChildren
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
@@ -484,6 +510,20 @@ declare module '@tanstack/react-router' {
       path: '/artikel'
       fullPath: '/artikel'
       preLoaderRoute: typeof ArtikelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ayah-hadir': {
+      id: '/ayah-hadir'
+      path: '/ayah-hadir'
+      fullPath: '/ayah-hadir'
+      preLoaderRoute: typeof AyahHadirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/detox-gadget': {
+      id: '/detox-gadget'
+      path: '/detox-gadget'
+      fullPath: '/detox-gadget'
+      preLoaderRoute: typeof DetoxGadgetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -777,6 +817,8 @@ const TentangKamiRouteWithChildren = TentangKamiRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtikelRoute: ArtikelRouteWithChildren,
+  AyahHadirRoute: AyahHadirRoute,
+  DetoxGadgetRoute: DetoxGadgetRoute,
   FaqRoute: FaqRoute,
   IndustriRoute: IndustriRouteWithChildren,
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,

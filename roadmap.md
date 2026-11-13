@@ -51,3 +51,9 @@
 - [x] public/rekrut-tepat/logo.jpg + public/rekrut-tepat/bu-lia.jpg — nama file persis seperti dipanggil HTML.
 - [x] Route /rekrut-tepat mengarah ke halaman statis dengan window.location.replace("/rekrut-tepat/index.html").
 - [x] Validasi: halaman final 200, logo & foto Bu Lia termuat, 0 resource 404, tanpa console error baru (peringatan ikon sama dengan /siap-sd); tidak menyentuh halaman lain.
+
+## Landing page statis Ayah Hadir & Detox Gadget (preview only, JANGAN publish tanpa persetujuan pemilik)
+- [x] public/ayah-hadir/index.html + public/detox-gadget/index.html — salinan byte-identik dari file pemilik (md5 sama), tidak diubah sama sekali.
+- [x] logo.jpg + bu-lia.jpg di kedua folder — nama file persis seperti dipanggil HTML.
+- [x] Route /ayah-hadir dan /detox-gadget mengarah ke halaman statis masing-masing dengan window.location.replace.
+- [x] Validasi: kedua halaman 200, judul & H1 benar, logo & foto Bu Lia termuat, 0 resource 404, tanpa console error baru (peringatan ikon sama dengan /siap-sd); tidak menyentuh halaman lain.

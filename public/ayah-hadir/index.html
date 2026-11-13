@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayah Hadir 30 Hari — Program 10 Menit Sehari untuk Ayah | Talenta Mulia</title>
+<meta name="description" content="Program 30 hari untuk ayah yang sibuk: satu tantangan 10 menit per hari agar hadir di hati anak. Disusun Psikolog Bunda Lia. Rp49.000.">
+<meta property="og:title" content="Ayah Hadir 30 Hari — Sibuk Kerja Bukan Alasan Absen dari Hati Anak">
+<meta property="og:description" content="Program 30 hari untuk ayah yang sibuk: satu tantangan 10 menit per hari agar hadir di hati anak. Disusun Psikolog Bunda Lia. Rp49.000.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D3B66;--navy-dk:#082A4A;--blue:#0A6CB5;--sky:#E8F4FC;--pink:#C8006A;--pink-dk:#9E0054;--pink-soft:#FDE8F2;--cream:#FAFBFD;--line:#E1E7EF;--ink:#17222E;--muted:#4A5868}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--blue)}
+h1,h2,h3{margin:0;font-weight:800;line-height:1.2}
+p{margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:860px;margin:0 auto;padding:0 24px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.btn{display:inline-block;background:var(--pink);color:#fff;font-weight:800;text-decoration:none;border-radius:12px;padding:16px 24px;font-size:17px;border:0;cursor:pointer;font-family:inherit;text-align:center}
+.btn:hover{background:var(--pink-dk);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.14)}
+.btn-ghost:hover{background:rgba(255,255,255,.24)}
+section{padding:64px 0}
+h2{font-size:clamp(26px,4vw,34px)}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.6px;color:var(--pink);text-transform:uppercase}
+.tick{color:#0F7B5F;font-weight:800;margin-right:8px}
+/* top bar */
+.bar{background:#fff;border-bottom:1px solid var(--line)}
+.nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.nav img{height:52px;width:auto;display:block}
+.nav a.wa{color:var(--navy);font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid var(--navy);border-radius:999px;padding:10px 18px}
+/* hero */
+.hero-bg{background:var(--navy);color:#fff}
+.hero{display:flex;flex-wrap:wrap;gap:40px;align-items:center;padding-top:56px;padding-bottom:72px}
+.hero-text{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.pill{align-self:flex-start;background:var(--pink-soft);color:var(--pink-dk);font-weight:700;font-size:14px;border-radius:999px;padding:6px 14px}
+.hero h1{font-size:clamp(32px,5vw,46px);line-height:1.15}
+.hero-lead{font-size:19px;opacity:.93}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.box{flex:1 1 320px;min-width:0;background:#fff;color:var(--ink);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.cover{background:var(--sky);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:4px;margin-bottom:6px}
+.cover small{font-weight:700;color:var(--blue);letter-spacing:.5px}
+.cover strong{font-size:30px;color:var(--navy);line-height:1.1}
+.cover span{font-size:14px;color:var(--muted)}
+/* calc */
+.calc{background:var(--sky)}
+.calc-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:15px}
+.field input,.form input,.form select{border:1.5px solid #C5D0DC;border-radius:10px;padding:12px 14px;font-size:16px;font-family:inherit;background:#fff;width:100%}
+.hint{font-size:13px;color:var(--muted)}
+.out{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.big{font-size:clamp(28px,4.5vw,40px);font-weight:800;color:var(--pink-dk)}
+/* symptoms */
+.sym{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:44px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;background:#fff;color:var(--navy);border:1.5px solid #9DB3C9;text-align:left}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.answer{background:#fff;border-left:0;border-radius:14px;padding:20px;border:1px solid var(--line)}
+/* table */
+.tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{background:#F2F6FA;font-weight:800}
+td.n,th.n{text-align:center}
+tr.total td{font-weight:800;background:#F2F6FA}
+/* steps */
+.num{width:44px;height:44px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* profile */
+.profile{background:var(--navy);color:#fff}
+.profile-in{display:flex;flex-wrap:wrap;gap:32px;align-items:center}
+.photo{flex:0 0 240px;width:240px;max-width:100%;height:auto;aspect-ratio:480/599;object-fit:cover;border-radius:20px;border:4px solid rgba(255,255,255,.18)}
+.profile-text{flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:10px}
+/* price */
+.price{font-size:30px;font-weight:800}
+.label{font-size:13px;font-weight:800;color:var(--blue);letter-spacing:.3px}
+.featured{border:2px solid var(--pink)}
+/* faq */
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+summary{font-weight:700;cursor:pointer}
+details p{margin-top:10px}
+/* form */
+.order{background:var(--navy);color:#fff}
+.form{background:#fff;color:var(--ink);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.form label{font-weight:700;font-size:15px;margin-top:6px}
+.note{font-size:13px;color:var(--muted)}
+footer{background:var(--navy-dk);color:#D5E1EC;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;padding-top:32px;padding-bottom:32px}
+.foot strong{color:#fff}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:rgba(250,251,253,.97);border-top:1px solid var(--line);display:none;z-index:10}
+.sticky .btn{display:block;padding:14px}
+@media (max-width:640px){.sticky{display:block}body{padding-bottom:72px}.nav img{height:40px}}
+:focus-visible{outline:3px solid #F59E0B;outline-offset:2px}
+</style>
+<style>
+.q{background:#fff;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line)}
+.q-head{display:flex;gap:10px}
+.q-no{font-weight:800;color:var(--navy);min-width:24px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;padding-left:34px}
+.opt{min-height:44px;padding:10px 18px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;background:#fff;color:var(--navy);border:1.5px solid #9DB3C9}
+.opt[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.week{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.week b{color:var(--pink-dk);font-size:13px;letter-spacing:.5px}
+@media (max-width:640px){.opts{padding-left:0}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="wrap nav">
+    <img src="/ayah-hadir/logo.jpg" alt="Talenta Mulia — Psychology, Healthcare &amp; Leadership" width="560" height="161">
+    <a class="wa" href="#pesan">Tanya via WhatsApp</a>
+  </div>
+</div>
+
+<header class="hero-bg">
+  <div class="wrap hero">
+    <div class="hero-text">
+      <div class="pill">Untuk ayah yang sibuk · anak usia 4–15 tahun</div>
+      <h1>Sibuk kerja bukan alasan absen dari hati anak. Cukup 10 menit sehari.</h1>
+      <p class="hero-lead">Ayah Hadir 30 Hari adalah program tantangan harian untuk ayah: satu kegiatan sederhana per hari yang membuat anak merasa ayahnya benar-benar ada. Disusun oleh Psikolog Bunda Lia.</p>
+      <div class="cta-row">
+        <a class="btn" href="#pesan">Mulai Ayah Hadir · Rp49.000</a>
+        <a class="btn btn-ghost" href="#cek">Cek seberapa hadir saya</a>
+      </div>
+    </div>
+    <div class="box">
+      <div class="cover"><small>PROGRAM 30 HARI</small><strong>Ayah Hadir</strong><span>oleh Psikolog Bunda Lia · Talenta Mulia</span></div>
+      <div><span class="tick">✓</span>30 kartu tantangan, masing-masing 10 menit</div>
+      <div><span class="tick">✓</span>Lembar refleksi mingguan</div>
+      <div><span class="tick">✓</span>Versi untuk ayah yang kerja jauh atau shift</div>
+      <div><span class="tick">✓</span>Bisa dibaca di HP atau dicetak</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap stack">
+    <div class="kicker">Kenal dengan situasi ini?</div>
+    <h2>Ayah ada di rumah, tapi anak jarang benar-benar merasakannya</h2>
+    <div class="grid">
+      <div class="card">Pulang kerja sudah lelah, akhirnya sama-sama sibuk dengan HP masing-masing.</div>
+      <div class="card">Anak lebih dekat ke ibu. Kalau ayah bertanya, jawabannya cuma “nggak apa-apa”.</div>
+      <div class="card">Ayah hanya muncul saat anak dimarahi, bayar sekolah, atau beri uang saku.</div>
+      <div class="card">Ingin dekat, tapi bingung mulai dari mana dan takut terasa canggung.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="stack" style="background:var(--sky);border-radius:20px;padding:32px;gap:14px">
+      <h2 style="font-size:clamp(24px,3.5vw,30px)">Ini bukan masalah satu-dua keluarga</h2>
+      <p>Pendataan Keluarga 2025 dari Kemendukbangga/BKKBN mencatat <strong>25,8% anak Indonesia</strong> hidup dalam keluarga yang peran ayahnya tidak hadir secara utuh. Sebagian besar bukan karena ayahnya tidak ada, tetapi karena terlalu sibuk atau tidak tahu cara terlibat.</p>
+      <p>Kabar baiknya: kehadiran ayah tidak diukur dari lamanya waktu, tetapi dari kebiasaan kecil yang konsisten.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap stack">
+    <div class="kicker">Isi program</div>
+    <h2>4 minggu, 4 cara hadir</h2>
+    <div class="grid">
+      <div class="week"><b>MINGGU 1</b><h3 style="font-size:19px">Hadir &amp; mendengar</h3><p>Ngobrol tanpa HP, bertanya hal kecil, dan belajar mendengar tanpa langsung menasihati.</p></div>
+      <div class="week"><b>MINGGU 2</b><h3 style="font-size:19px">Bermain &amp; tertawa</h3><p>Permainan sederhana di rumah yang membangun kedekatan, sesuai usia anak.</p></div>
+      <div class="week"><b>MINGGU 3</b><h3 style="font-size:19px">Membimbing dengan lembut</h3><p>Menegur tanpa membentak, memuji usaha, dan membuat aturan bersama.</p></div>
+      <div class="week"><b>MINGGU 4</b><h3 style="font-size:19px">Teladan &amp; ibadah</h3><p>Shalat berjamaah, cerita kisah teladan, dan doa bersama sebelum tidur.</p></div>
+    </div>
+    <p class="hint" style="font-size:15px">Hari 29–30: refleksi dan rencana kebiasaan yang ingin dilanjutkan.</p>
+  </div>
+</section>
+
+<section id="cek" class="calc">
+  <div class="narrow stack">
+    <div class="kicker">Cek mandiri</div>
+    <h2>Seberapa hadir saya untuk anak?</h2>
+    <p>Jawab jujur sesuai keseharian 1 bulan terakhir. Ini refleksi pribadi, <strong>bukan tes psikologi</strong>.</p>
+    <div id="questions" class="stack" style="gap:12px"></div>
+    <div class="out" aria-live="polite">
+      <div id="progress" style="font-weight:700">Terjawab 0 dari 8. Hasil muncul setelah semua terjawab.</div>
+      <div id="result" hidden>
+        <div style="font-weight:800;font-size:20px" id="result-title"></div>
+        <p id="result-text" style="margin:8px 0 14px"></p>
+        <a class="btn" href="#pesan">Mulai program Ayah Hadir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack" style="gap:24px">
+    <h2>Cara kerjanya</h2>
+    <div class="grid">
+      <div class="stack" style="gap:8px"><div class="num">1</div><strong>Terima kartu</strong><p>File 30 kartu tantangan dikirim lewat WhatsApp. Bisa dibaca di HP atau dicetak.</p></div>
+      <div class="stack" style="gap:8px"><div class="num">2</div><strong>10 menit sehari</strong><p>Baca kartu hari itu (1 menit), lakukan kegiatannya bersama anak (10 menit). Tidak perlu biaya tambahan.</p></div>
+      <div class="stack" style="gap:8px"><div class="num">3</div><strong>Refleksi tiap pekan</strong><p>Isi lembar refleksi singkat: apa yang berubah, apa yang sulit, apa yang ingin dilanjutkan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap grid">
+    <div class="stack" style="background:#E9F5EF;border-radius:16px;padding:24px;gap:8px">
+      <h3 style="font-size:19px">Cocok untuk</h3>
+      <p>• Ayah dengan anak usia 4–15 tahun</p>
+      <p>• Ayah yang kerja jauh, shift, atau sering dinas luar kota</p>
+      <p>• Ibu yang ingin mengajak suami lebih terlibat, dengan cara yang tidak menggurui</p>
+      <p>• Sekolah yang ingin melibatkan para ayah</p>
+    </div>
+    <div class="stack" style="background:var(--pink-soft);border-radius:16px;padding:24px;gap:8px">
+      <h3 style="font-size:19px">Kurang cocok jika</h3>
+      <p>• Keluarga sedang menghadapi konflik berat atau kekerasan: hubungi psikolog untuk konsultasi langsung</p>
+      <p>• Anak menunjukkan masalah perilaku atau emosi yang serius</p>
+    </div>
+  </div>
+</section>
+
+<section class="profile">
+  <div class="wrap profile-in">
+    <img class="photo" src="/ayah-hadir/bu-lia.jpg" alt="Psikolog Bunda Lia, Maulidah Muflihah, M.Psi., Psikolog" width="480" height="599">
+    <div class="profile-text">
+      <div style="font-size:14px;font-weight:700;opacity:.85">DISUSUN OLEH</div>
+      <h2 style="font-size:clamp(24px,3.5vw,30px)">Maulidah Muflihah, M.Psi., Psikolog</h2>
+      <div style="font-weight:600">Psikolog Bunda Lia · Psikolog Pendidikan &amp; Keluarga · SIPP 20090358-2024-01-4193</div>
+      <p style="opacity:.93">Mendampingi anak, orang tua, dan sekolah sejak 2008: Pusat Terapan Psikologi Pendidikan UNAIR, dosen psikologi UIN Sunan Ampel Surabaya, psikolog di beberapa sekolah, dan narasumber parenting di radio. Pendekatannya memadukan ilmu psikologi dengan nilai-nilai keislaman keluarga.</p>
+    </div>
+  </div>
+</section>
+
+<section id="harga">
+  <div class="wrap stack" style="gap:20px">
+    <div class="kicker">Pilihan paket</div>
+    <h2>Pilih yang paling pas</h2>
+    <div class="grid">
+      <div class="card featured stack" style="gap:10px">
+        <div class="label" style="color:var(--pink)">MULAI DI SINI</div>
+        <h3 style="font-size:20px">Ayah Hadir 30 Hari</h3>
+        <div class="price">Rp49.000</div>
+        <p>30 kartu tantangan, lembar refleksi mingguan, dan versi untuk ayah yang kerja jauh.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">HEMAT</div>
+        <h3 style="font-size:20px">Paket Keluarga Hadir</h3>
+        <div class="price">Rp79.000</div>
+        <div class="note">Hemat Rp19.000</div>
+        <p>Ayah Hadir 30 Hari + Detox Gadget Keluarga 21 Hari. Ayah dan Bunda bergerak bersama.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">DENGAN PSIKOLOG</div>
+        <h3 style="font-size:20px">Konsultasi Keluarga Online</h3>
+        <div class="price" style="font-size:22px">Hubungi admin</div>
+        <p>Sesi bersama psikolog via Zoom/Google Meet untuk membahas kondisi keluarga Anda secara khusus.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">UNTUK SEKOLAH</div>
+        <h3 style="font-size:20px">Program Ayah Hadir Sekolah</h3>
+        <div class="price">Rp15.000<span style="font-size:16px;font-weight:600">/keluarga</span></div>
+        <div class="note">Minimal 50 keluarga</div>
+        <p>Program untuk semua ayah murid, bisa dipadukan dengan sesi parenting khusus ayah di sekolah.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="narrow stack" style="gap:14px">
+    <h2>Pertanyaan yang sering muncul</h2>
+    <details><summary>Suami saya tidak suka membaca. Apakah tetap bisa?</summary><p>Bisa. Setiap kartu hanya perlu dibaca sekitar 1 menit, berisi satu kegiatan yang jelas. Banyak ibu membelikan program ini lalu mengirim kartu harian ke suami lewat WhatsApp.</p></details>
+    <details><summary>Saya bekerja di luar kota. Bagaimana menjalankannya?</summary><p>Ada versi jarak jauh untuk setiap tantangan: lewat video call, pesan suara, atau surat pendek untuk anak.</p></details>
+    <details><summary>Apakah ini terapi atau konseling?</summary><p>Bukan. Ini program psikoedukasi untuk membangun kebiasaan. Jika keluarga menghadapi masalah yang berat, pilih konsultasi dengan psikolog.</p></details>
+    <details><summary>Bagaimana cara bayar dan kapan file dikirim?</summary><p>Pembayaran melalui link pembayaran resmi (QRIS, e-wallet, virtual account). Setelah terkonfirmasi, file dikirim lewat WhatsApp di hari yang sama pada jam kerja.</p></details>
+  </div>
+</section>
+</main>
+
+<section id="pesan" class="order">
+  <div class="narrow stack">
+    <h2>Pesan sekarang lewat WhatsApp</h2>
+    <p style="opacity:.93">Isi data singkat di bawah. Pesan akan tersusun otomatis di WhatsApp admin Talenta Mulia (0821-3299-0498).</p>
+    <form class="form" id="order-form">
+      <label for="f-nama">Nama Anda</label>
+      <input id="f-nama" type="text" autocomplete="name">
+      <label for="f-kota">Kota</label>
+      <input id="f-kota" type="text" placeholder="Contoh: Sidoarjo">
+      <label for="f-usia">Usia anak</label>
+      <input id="f-usia" type="text" placeholder="Contoh: 7 dan 11 tahun">
+      <label for="f-paket">Paket</label>
+      <select id="f-paket"><option>Ayah Hadir 30 Hari (Rp49.000)</option>
+        <option>Paket Keluarga Hadir: Ayah Hadir + Detox Gadget (Rp79.000)</option>
+        <option>Konsultasi keluarga online dengan psikolog</option>
+        <option>Program untuk sekolah (kolektif)</option></select>
+      <a class="btn" id="wa-btn" href="https://wa.me/6282132990498" target="_blank" rel="noopener" style="margin-top:12px">Kirim pesanan ke WhatsApp</a>
+      <p class="note">Data hanya dipakai untuk memproses pesanan Anda.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div style="flex:1 1 320px"><strong>Biro Psikologi Talenta Mulia</strong><br>Jl. Gadung No. 5 Margomulyo Wage, Kec. Taman, Sidoarjo, Jawa Timur 61257<br>Hotline/WA 0821-3299-0498 · www.TalentaMulia.co.id · IG/TikTok @psikolog.bundalia</div>
+    <div style="flex:1 1 280px">Ayah Hadir 30 Hari adalah program psikoedukasi, bukan terapi atau pemeriksaan psikologis.<br><br>© 2026 Biro Psikologi Talenta Mulia</div>
+  </div>
+</footer>
+<div class="sticky"><a class="btn" href="#pesan">Mulai Ayah Hadir · Rp49.000</a></div>
+
+<script>
+(function () {
+  var qs = [
+    'Saya ngobrol dengan anak minimal 10 menit sehari tanpa memegang HP.',
+    'Saya tahu nama teman dekat anak dan apa yang sedang ia sukai.',
+    'Saya bermain atau beraktivitas berdua dengan anak setiap pekan.',
+    'Anak bercerita kepada saya saat ia sedih atau punya masalah.',
+    'Saya memuji usaha anak, bukan hanya hasilnya.',
+    'Saya bisa menegur anak tanpa membentak.',
+    'Saya shalat atau mengaji bersama anak.',
+    'Saya ikut mengantar, menjemput, atau datang ke acara sekolah anak.'
+  ];
+  function bands(s, max) {
+    if (s >= 13) return ['Ayah yang hadir', 'Kehadiran Anda sudah terasa. Program 30 hari membantu menjaga kebiasaan baik ini dan memperdalam kedekatan.'];
+    if (s >= 7) return ['Hadir, tapi belum konsisten', 'Fondasinya sudah ada. Yang dibutuhkan adalah kebiasaan kecil yang rutin, persis yang dilatih di program Ayah Hadir.'];
+    return ['Saatnya mulai mendekat', 'Tidak ada kata terlambat. Mulailah dari 10 menit sehari. Jika hubungan terasa sangat renggang, pertimbangkan berbicara dengan psikolog.'];
+  }
+
+  var opts = [['Sering', 2], ['Kadang', 1], ['Jarang', 0]];
+  var answers = {};
+  var box = document.getElementById('questions');
+  qs.forEach(function (q, i) {
+    var el = document.createElement('div'); el.className = 'q';
+    el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Pernyataan ' + (i + 1));
+    var head = document.createElement('div'); head.className = 'q-head';
+    var no = document.createElement('span'); no.className = 'q-no'; no.textContent = (i + 1) + '.';
+    var txt = document.createElement('span'); txt.textContent = q;
+    head.appendChild(no); head.appendChild(txt);
+    var row = document.createElement('div'); row.className = 'opts';
+    opts.forEach(function (o) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'opt';
+      b.textContent = o[0]; b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function () {
+        answers[i] = o[1];
+        row.querySelectorAll('.opt').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', 'true'); update();
+      });
+      row.appendChild(b);
+    });
+    el.appendChild(head); el.appendChild(row); box.appendChild(el);
+  });
+  var result = { done: false, score: 0, title: '' };
+  function update() {
+    var keys = Object.keys(answers);
+    var score = keys.reduce(function (s, k) { return s + answers[k]; }, 0);
+    var max = qs.length * 2, done = keys.length === qs.length;
+    var p = document.getElementById('progress');
+    p.hidden = done; p.textContent = 'Terjawab ' + keys.length + ' dari ' + qs.length + '. Hasil muncul setelah semua terjawab.';
+    document.getElementById('result').hidden = !done;
+    var r = bands(score, max);
+    if (done) {
+      document.getElementById('result-title').textContent = 'Skor: ' + score + ' dari ' + max + ' · ' + r[0];
+      document.getElementById('result-text').textContent = r[1];
+    }
+    result = { done: done, score: score, max: max, title: r[0] };
+    buildWa();
+  }
+
+  function buildWa() {
+    var msg = 'Assalamu\u2019alaikum Admin Talenta Mulia, saya ingin memesan ' + val('f-paket') + '.\n' +
+      'Nama: ' + (val('f-nama') || '-') + '\n' +
+      'Kota: ' + (val('f-kota') || '-') + '\n' +
+      'Usia anak: ' + (val('f-usia') || '-') +
+      (result.done ? '\nHasil cek kehadiran: ' + result.score + '/' + result.max + ' (' + result.title + ')' : '');
+    document.getElementById('wa-btn').href = 'https://wa.me/6282132990498?text=' + encodeURIComponent(msg);
+  }
+  var FIELDS = ['f-nama', 'f-kota', 'f-usia', 'f-paket'];
+
+  function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+  FIELDS.forEach(function (id) {
+    document.getElementById(id).addEventListener('input', buildWa);
+    document.getElementById(id).addEventListener('change', buildWa);
+  });
+  document.getElementById('order-form').addEventListener('submit', function (e) { e.preventDefault(); });
+  buildWa();
+
+})();
+</script>
+</body>
+</html>

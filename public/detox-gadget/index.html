@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detox Gadget Keluarga 21 Hari — Program Orang Tua | Talenta Mulia</title>
+<meta name="description" content="Program 21 hari untuk keluarga: kontrak gadget, jadwal layar sesuai usia, dan 60 ide aktivitas pengganti. Disusun Psikolog Bunda Lia. Rp49.000.">
+<meta property="og:title" content="Detox Gadget Keluarga 21 Hari — Dari Rebutan HP ke Waktu Bersama">
+<meta property="og:description" content="Program 21 hari untuk keluarga: kontrak gadget, jadwal layar sesuai usia, dan 60 ide aktivitas pengganti. Disusun Psikolog Bunda Lia. Rp49.000.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D3B66;--navy-dk:#082A4A;--blue:#0A6CB5;--sky:#E8F4FC;--pink:#C8006A;--pink-dk:#9E0054;--pink-soft:#FDE8F2;--cream:#FAFBFD;--line:#E1E7EF;--ink:#17222E;--muted:#4A5868}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--blue)}
+h1,h2,h3{margin:0;font-weight:800;line-height:1.2}
+p{margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:860px;margin:0 auto;padding:0 24px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.btn{display:inline-block;background:var(--pink);color:#fff;font-weight:800;text-decoration:none;border-radius:12px;padding:16px 24px;font-size:17px;border:0;cursor:pointer;font-family:inherit;text-align:center}
+.btn:hover{background:var(--pink-dk);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.14)}
+.btn-ghost:hover{background:rgba(255,255,255,.24)}
+section{padding:64px 0}
+h2{font-size:clamp(26px,4vw,34px)}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.6px;color:var(--pink);text-transform:uppercase}
+.tick{color:#0F7B5F;font-weight:800;margin-right:8px}
+/* top bar */
+.bar{background:#fff;border-bottom:1px solid var(--line)}
+.nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.nav img{height:52px;width:auto;display:block}
+.nav a.wa{color:var(--navy);font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid var(--navy);border-radius:999px;padding:10px 18px}
+/* hero */
+.hero-bg{background:var(--navy);color:#fff}
+.hero{display:flex;flex-wrap:wrap;gap:40px;align-items:center;padding-top:56px;padding-bottom:72px}
+.hero-text{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.pill{align-self:flex-start;background:var(--pink-soft);color:var(--pink-dk);font-weight:700;font-size:14px;border-radius:999px;padding:6px 14px}
+.hero h1{font-size:clamp(32px,5vw,46px);line-height:1.15}
+.hero-lead{font-size:19px;opacity:.93}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.box{flex:1 1 320px;min-width:0;background:#fff;color:var(--ink);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.cover{background:var(--sky);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:4px;margin-bottom:6px}
+.cover small{font-weight:700;color:var(--blue);letter-spacing:.5px}
+.cover strong{font-size:30px;color:var(--navy);line-height:1.1}
+.cover span{font-size:14px;color:var(--muted)}
+/* calc */
+.calc{background:var(--sky)}
+.calc-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:15px}
+.field input,.form input,.form select{border:1.5px solid #C5D0DC;border-radius:10px;padding:12px 14px;font-size:16px;font-family:inherit;background:#fff;width:100%}
+.hint{font-size:13px;color:var(--muted)}
+.out{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.big{font-size:clamp(28px,4.5vw,40px);font-weight:800;color:var(--pink-dk)}
+/* symptoms */
+.sym{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:44px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;background:#fff;color:var(--navy);border:1.5px solid #9DB3C9;text-align:left}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.answer{background:#fff;border-left:0;border-radius:14px;padding:20px;border:1px solid var(--line)}
+/* table */
+.tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{background:#F2F6FA;font-weight:800}
+td.n,th.n{text-align:center}
+tr.total td{font-weight:800;background:#F2F6FA}
+/* steps */
+.num{width:44px;height:44px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* profile */
+.profile{background:var(--navy);color:#fff}
+.profile-in{display:flex;flex-wrap:wrap;gap:32px;align-items:center}
+.photo{flex:0 0 240px;width:240px;max-width:100%;height:auto;aspect-ratio:480/599;object-fit:cover;border-radius:20px;border:4px solid rgba(255,255,255,.18)}
+.profile-text{flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:10px}
+/* price */
+.price{font-size:30px;font-weight:800}
+.label{font-size:13px;font-weight:800;color:var(--blue);letter-spacing:.3px}
+.featured{border:2px solid var(--pink)}
+/* faq */
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+summary{font-weight:700;cursor:pointer}
+details p{margin-top:10px}
+/* form */
+.order{background:var(--navy);color:#fff}
+.form{background:#fff;color:var(--ink);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.form label{font-weight:700;font-size:15px;margin-top:6px}
+.note{font-size:13px;color:var(--muted)}
+footer{background:var(--navy-dk);color:#D5E1EC;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;padding-top:32px;padding-bottom:32px}
+.foot strong{color:#fff}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:rgba(250,251,253,.97);border-top:1px solid var(--line);display:none;z-index:10}
+.sticky .btn{display:block;padding:14px}
+@media (max-width:640px){.sticky{display:block}body{padding-bottom:72px}.nav img{height:40px}}
+:focus-visible{outline:3px solid #F59E0B;outline-offset:2px}
+</style>
+<style>
+.q{background:#fff;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line)}
+.q-head{display:flex;gap:10px}
+.q-no{font-weight:800;color:var(--navy);min-width:24px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;padding-left:34px}
+.opt{min-height:44px;padding:10px 18px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;background:#fff;color:var(--navy);border:1.5px solid #9DB3C9}
+.opt[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.week{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.week b{color:var(--pink-dk);font-size:13px;letter-spacing:.5px}
+@media (max-width:640px){.opts{padding-left:0}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="wrap nav">
+    <img src="/detox-gadget/logo.jpg" alt="Talenta Mulia — Psychology, Healthcare &amp; Leadership" width="560" height="161">
+    <a class="wa" href="#pesan">Tanya via WhatsApp</a>
+  </div>
+</div>
+
+<header class="hero-bg">
+  <div class="wrap hero">
+    <div class="hero-text">
+      <div class="pill">Untuk orang tua anak usia 3–15 tahun</div>
+      <h1>Anak marah kalau HP diambil? Yang perlu detox bukan cuma anaknya.</h1>
+      <p class="hero-lead">Detox Gadget Keluarga adalah program 21 hari untuk mengurangi waktu layar secara bertahap, tanpa drama, dan dijalani bersama satu keluarga. Disusun oleh Psikolog Bunda Lia.</p>
+      <div class="cta-row">
+        <a class="btn" href="#pesan">Mulai Detox Gadget · Rp49.000</a>
+        <a class="btn btn-ghost" href="#hitung">Hitung waktu layar anak</a>
+      </div>
+    </div>
+    <div class="box">
+      <div class="cover"><small>PROGRAM 21 HARI</small><strong>Detox Gadget Keluarga</strong><span>oleh Psikolog Bunda Lia · Talenta Mulia</span></div>
+      <div><span class="tick">✓</span>Kontrak gadget keluarga siap tanda tangan</div>
+      <div><span class="tick">✓</span>Jadwal waktu layar sesuai usia anak</div>
+      <div><span class="tick">✓</span>60 ide aktivitas pengganti layar</div>
+      <div><span class="tick">✓</span>Panduan menghadapi anak yang marah atau menangis</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap stack">
+    <div class="kicker">Kenal dengan situasi ini?</div>
+    <h2>Gadget yang awalnya membantu, lama-lama mengatur suasana rumah</h2>
+    <div class="grid">
+      <div class="card">HP diambil sebentar saja, anak langsung menangis, membanting, atau mengamuk.</div>
+      <div class="card">Makan, belajar, bahkan sebelum tidur, selalu ada layar yang menyala.</div>
+      <div class="card">Sudah membuat aturan, tapi selalu gagal di hari ketiga.</div>
+      <div class="card">Ayah dan Bunda sendiri juga sulit lepas dari HP, jadi sulit menegur anak.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="stack" style="background:var(--sky);border-radius:20px;padding:32px;gap:14px">
+      <h2 style="font-size:clamp(24px,3.5vw,30px)">Kenapa harus satu keluarga?</h2>
+      <p>Rata-rata waktu layar orang Indonesia disebut mencapai <strong>7,5 jam per hari</strong> (Menko PMK, 2025). Anak belajar dari apa yang ia lihat di rumah. Ikatan Dokter Anak Indonesia (IDAI) juga mengingatkan: anak usia 2–6 tahun sebaiknya tidak lebih dari <strong>1 jam layar sehari</strong>, didampingi orang tua, dan orang tua ikut tidak memainkan HP di depan anak.</p>
+      <p>Karena itu program ini dijalani bersama, bukan hanya “menghukum” anak.</p>
+    </div>
+  </div>
+</section>
+
+<section id="hitung" class="calc">
+  <div class="narrow stack">
+    <div class="kicker">Hitung sendiri</div>
+    <h2>Berapa banyak waktu anak di depan layar setahun?</h2>
+    <div class="calc-grid">
+      <div class="field"><label for="c-jam">Rata-rata jam layar anak per hari</label><input id="c-jam" type="number" inputmode="decimal" min="0" max="24" step="0.5" value="4"><span class="hint">Hitung semua layar: HP, tablet, TV, laptop, konsol game.</span></div>
+    </div>
+    <div class="out" aria-live="polite">
+      <div style="font-weight:700">Dalam setahun, itu sama dengan:</div>
+      <div class="big" id="c-hari">0 hari penuh</div>
+      <div id="c-detail" style="font-size:15px"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <div class="kicker">Isi program</div>
+    <h2>3 pekan, bertahap tanpa drama</h2>
+    <div class="grid">
+      <div class="week"><b>PEKAN 1</b><h3 style="font-size:19px">Sadar</h3><p>Catat pola layar keluarga, kenali pemicu, lalu sepakati kontrak gadget bersama anak.</p></div>
+      <div class="week"><b>PEKAN 2</b><h3 style="font-size:19px">Kurangi</h3><p>Zona bebas HP (meja makan, kamar tidur), jadwal layar sesuai usia, dan cara menghadapi protes anak.</p></div>
+      <div class="week"><b>PEKAN 3</b><h3 style="font-size:19px">Ganti</h3><p>Isi waktu yang kosong dengan aktivitas dari 60 ide pengganti, termasuk kegiatan ibadah keluarga.</p></div>
+    </div>
+    <div class="grid">
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">Kontrak gadget keluarga</h3><p>Template aturan yang disusun dan ditandatangani bersama anak, berlaku juga untuk Ayah dan Bunda.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">60 ide aktivitas pengganti</h3><p>Dikelompokkan per usia dan per situasi: di rumah, saat hujan, saat menunggu, dan akhir pekan.</p></div>
+      <div class="card stack" style="gap:8px"><h3 style="font-size:19px">Saat anak mengamuk</h3><p>Langkah demi langkah menghadapi tangisan atau kemarahan saat layar dimatikan, tanpa ikut terpancing emosi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap grid">
+    <div class="stack" style="background:#E9F5EF;border-radius:16px;padding:24px;gap:8px">
+      <h3 style="font-size:19px">Cocok untuk</h3>
+      <p>• Orang tua anak usia 3–15 tahun</p>
+      <p>• Keluarga yang sering ribut karena urusan HP atau game</p>
+      <p>• Orang tua yang ingin memberi contoh, bukan hanya melarang</p>
+      <p>• Sekolah yang ingin mengajak wali murid bergerak bersama</p>
+    </div>
+    <div class="stack" style="background:var(--pink-soft);border-radius:16px;padding:24px;gap:8px">
+      <h3 style="font-size:19px">Kurang cocok jika</h3>
+      <p>• Anak sudah mogok sekolah, tidak mau makan atau tidur, atau mengamuk berat karena game: konsultasikan langsung dengan psikolog</p>
+      <p>• Anda mencari aplikasi pemblokir otomatis</p>
+    </div>
+  </div>
+</section>
+
+<section class="profile">
+  <div class="wrap profile-in">
+    <img class="photo" src="/detox-gadget/bu-lia.jpg" alt="Psikolog Bunda Lia, Maulidah Muflihah, M.Psi., Psikolog" width="480" height="599">
+    <div class="profile-text">
+      <div style="font-size:14px;font-weight:700;opacity:.85">DISUSUN OLEH</div>
+      <h2 style="font-size:clamp(24px,3.5vw,30px)">Maulidah Muflihah, M.Psi., Psikolog</h2>
+      <div style="font-weight:600">Psikolog Bunda Lia · Psikolog Pendidikan &amp; Keluarga · SIPP 20090358-2024-01-4193</div>
+      <p style="opacity:.93">Mendampingi anak, orang tua, dan sekolah sejak 2008: Pusat Terapan Psikologi Pendidikan UNAIR, dosen psikologi UIN Sunan Ampel Surabaya, psikolog di beberapa sekolah, dan narasumber parenting di radio. Pendekatannya memadukan ilmu psikologi dengan nilai-nilai keislaman keluarga.</p>
+    </div>
+  </div>
+</section>
+
+<section id="harga">
+  <div class="wrap stack" style="gap:20px">
+    <div class="kicker">Pilihan paket</div>
+    <h2>Pilih yang paling pas</h2>
+    <div class="grid">
+      <div class="card featured stack" style="gap:10px">
+        <div class="label" style="color:var(--pink)">MULAI DI SINI</div>
+        <h3 style="font-size:20px">Detox Gadget Keluarga 21 Hari</h3>
+        <div class="price">Rp49.000</div>
+        <p>Program 21 hari, kontrak gadget, jadwal layar per usia, 60 ide aktivitas, dan panduan saat anak mengamuk.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">HEMAT</div>
+        <h3 style="font-size:20px">Paket Keluarga Hadir</h3>
+        <div class="price">Rp79.000</div>
+        <div class="note">Hemat Rp19.000</div>
+        <p>Detox Gadget Keluarga + Ayah Hadir 30 Hari. Ayah dan Bunda bergerak bersama.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">DENGAN PSIKOLOG</div>
+        <h3 style="font-size:20px">Konsultasi Online</h3>
+        <div class="price" style="font-size:22px">Hubungi admin</div>
+        <p>Sesi bersama psikolog via Zoom/Google Meet, untuk anak yang sudah sangat sulit lepas dari gadget atau game.</p>
+      </div>
+      <div class="card stack" style="gap:10px">
+        <div class="label">UNTUK SEKOLAH</div>
+        <h3 style="font-size:20px">Program Sekolah</h3>
+        <div class="price">Rp15.000<span style="font-size:16px;font-weight:600">/keluarga</span></div>
+        <div class="note">Minimal 50 keluarga</div>
+        <p>Program untuk semua wali murid, bisa dipadukan dengan seminar parenting “Menjadi Orang Tua Bijak di Era Digital”.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="narrow stack" style="gap:14px">
+    <h2>Pertanyaan yang sering muncul</h2>
+    <details><summary>Apakah anak harus berhenti total memakai gadget?</summary><p>Tidak. Tujuannya adalah waktu layar yang sehat dan terkendali sesuai usia, bukan larangan total.</p></details>
+    <details><summary>Anak saya sudah remaja. Apakah masih bisa?</summary><p>Bisa. Untuk remaja, programnya menekankan kesepakatan dan tanggung jawab, bukan larangan sepihak.</p></details>
+    <details><summary>Apakah ini terapi kecanduan?</summary><p>Bukan. Ini program psikoedukasi untuk kebiasaan keluarga. Jika gadget sudah mengganggu sekolah, tidur, atau makan anak, pilih konsultasi dengan psikolog.</p></details>
+    <details><summary>Bagaimana cara bayar dan kapan file dikirim?</summary><p>Pembayaran melalui link pembayaran resmi (QRIS, e-wallet, virtual account). Setelah terkonfirmasi, file dikirim lewat WhatsApp di hari yang sama pada jam kerja.</p></details>
+  </div>
+</section>
+</main>
+
+<section id="pesan" class="order">
+  <div class="narrow stack">
+    <h2>Pesan sekarang lewat WhatsApp</h2>
+    <p style="opacity:.93">Isi data singkat di bawah. Pesan akan tersusun otomatis di WhatsApp admin Talenta Mulia (0821-3299-0498).</p>
+    <form class="form" id="order-form">
+      <label for="f-nama">Nama Anda</label>
+      <input id="f-nama" type="text" autocomplete="name">
+      <label for="f-kota">Kota</label>
+      <input id="f-kota" type="text" placeholder="Contoh: Sidoarjo">
+      <label for="f-usia">Usia anak</label>
+      <input id="f-usia" type="text" placeholder="Contoh: 5 dan 9 tahun">
+      <label for="f-paket">Paket</label>
+      <select id="f-paket"><option>Detox Gadget Keluarga 21 Hari (Rp49.000)</option>
+        <option>Paket Keluarga Hadir: Ayah Hadir + Detox Gadget (Rp79.000)</option>
+        <option>Konsultasi online dengan psikolog</option>
+        <option>Program untuk sekolah (kolektif)</option></select>
+      <a class="btn" id="wa-btn" href="https://wa.me/6282132990498" target="_blank" rel="noopener" style="margin-top:12px">Kirim pesanan ke WhatsApp</a>
+      <p class="note">Data hanya dipakai untuk memproses pesanan Anda.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div style="flex:1 1 320px"><strong>Biro Psikologi Talenta Mulia</strong><br>Jl. Gadung No. 5 Margomulyo Wage, Kec. Taman, Sidoarjo, Jawa Timur 61257<br>Hotline/WA 0821-3299-0498 · www.TalentaMulia.co.id · IG/TikTok @psikolog.bundalia</div>
+    <div style="flex:1 1 280px">Detox Gadget Keluarga adalah program psikoedukasi, bukan terapi atau pemeriksaan psikologis.<br><br>© 2026 Biro Psikologi Talenta Mulia</div>
+  </div>
+</footer>
+<div class="sticky"><a class="btn" href="#pesan">Mulai Detox Gadget · Rp49.000</a></div>
+
+<script>
+(function () {
+  function calc() {
+    var j = parseFloat(document.getElementById('c-jam').value);
+    if (isNaN(j) || j < 0) j = 0; if (j > 24) j = 24;
+    var jamTahun = j * 365, hari = jamTahun / 24;
+    document.getElementById('c-hari').textContent = Math.round(hari).toLocaleString('id-ID') + ' hari penuh';
+    document.getElementById('c-detail').textContent = j.toLocaleString('id-ID') + ' jam × 365 hari = ' + Math.round(jamTahun).toLocaleString('id-ID') + ' jam per tahun, atau sekitar ' + (hari / 30).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' bulan tanpa berhenti. Bayangkan jika separuhnya dipakai untuk bermain, membaca, dan ngobrol bersama.';
+  }
+  document.getElementById('c-jam').addEventListener('input', calc);
+  calc();
+  var result = { done: false };
+  function buildWa() {
+    var msg = 'Assalamu\u2019alaikum Admin Talenta Mulia, saya ingin memesan ' + val('f-paket') + '.\n' +
+      'Nama: ' + (val('f-nama') || '-') + '\n' +
+      'Kota: ' + (val('f-kota') || '-') + '\n' +
+      'Usia anak: ' + (val('f-usia') || '-');
+    document.getElementById('wa-btn').href = 'https://wa.me/6282132990498?text=' + encodeURIComponent(msg);
+  }
+  var FIELDS = ['f-nama', 'f-kota', 'f-usia', 'f-paket'];
+
+  function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+  FIELDS.forEach(function (id) {
+    document.getElementById(id).addEventListener('input', buildWa);
+    document.getElementById(id).addEventListener('change', buildWa);
+  });
+  document.getElementById('order-form').addEventListener('submit', function (e) { e.preventDefault(); });
+  buildWa();
+
+})();
+</script>
+</body>
+</html>
